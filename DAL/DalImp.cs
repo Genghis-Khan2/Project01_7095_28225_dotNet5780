@@ -37,41 +37,45 @@ namespace DAL
 
         public List<BankAccount> GetBankAccounts()
         {
-            //TODO: Finish implementation of function
-            foreach (GuestRequest i in DataSource.guestRequestsList)
-            {
+            //TODO: Hardcode bank account
+            List<BankAccount> ret = new List<BankAccount>();
+            ret.Add(new BankAccount { });
+            ret.Add(new BankAccount { });
+            ret.Add(new BankAccount { });
+            ret.Add(new BankAccount { });
+            ret.Add(new BankAccount { });
 
-            }
+            return ret;
         }
 
-        public List<Guest> GetGuests()
+        public List<GuestRequest> GetGuests()
         {
-            throw new NotImplementedException();
+            return DataSource.guestRequestsList;
         }
 
         public List<HostingUnit> GetHostingUnits()
         {
-            throw new NotImplementedException();
+            return DataSource.hostingUnitsList;
         }
 
         public List<Order> GetOrders()
         {
-            throw new NotImplementedException();
+            return DataSource.ordersList;
         }
 
         public void RemoveHostingUnit(HostingUnit hu)
         {
-            throw new NotImplementedException();
+            DataSource.hostingUnitsList.Remove(hu);
         }
 
         public void UpdateGuestRequest(GuestRequest gr)
         {
-            throw new NotImplementedException();
+            //TODO: Implement
         }
 
         public void UpdateHostingUnit(HostingUnit hu)
         {
-            throw new NotImplementedException();
+            //TODO: Implement
         }
 
         public void UpdateOrder(Order ord)
