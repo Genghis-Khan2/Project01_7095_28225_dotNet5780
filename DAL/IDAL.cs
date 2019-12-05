@@ -6,9 +6,9 @@ namespace DAL
 {
     interface IDAL
     {
-        public void AddGuestRequest(Guest gr);
+        public void AddGuestRequest(BE.GuestRequest gr);
 
-        public void UpdateGuestRequest(Guest gr);
+        public void UpdateGuestRequest(BE.GuestRequest gr);
 
 
         public void AddHostingUnit(HostingUnit hu);
