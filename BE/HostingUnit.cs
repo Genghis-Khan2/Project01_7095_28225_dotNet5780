@@ -13,6 +13,6 @@ namespace BE
         private Host Owner { set; get; }
         private string HostingUnitName { get; set; }
         private int[][] Diary { get; set; }
-        //TODL: ToString
+        //TODO: ToString
     }
 }
