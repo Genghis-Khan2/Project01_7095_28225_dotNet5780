@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BE;
 
 namespace DAL
 {
-    interface IDAL
+    public interface IDAL
     {
-        public void AddGuestRequest(BE.GuestRequest gr);
+        public void AddGuestRequest(GuestRequest gr);
 
-        public void UpdateGuestRequest(BE.GuestRequest gr);
+        public void UpdateGuestRequest(GuestRequest gr);
 
 
         public void AddHostingUnit(HostingUnit hu);
