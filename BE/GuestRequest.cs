@@ -25,6 +25,11 @@ namespace BE
         private Enums.IsInterested Jacuzzi { get; set; }
         private Enums.IsInterested Garden { get; set; }
         private Enums.IsInterested ChildrensAttractions { get; set; }
+
+        /// <summary>
+        /// The function returns the GuestRequest information in a string type
+        /// </summary>
+        /// <returns>The GuestRequest information in string type</returns>
         public override string ToString()
         {
             string res = "";

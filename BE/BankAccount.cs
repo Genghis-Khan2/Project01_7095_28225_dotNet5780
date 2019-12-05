@@ -7,7 +7,7 @@ namespace BE
     /// <summary>
     /// The class represents a bank account
     /// </summary>
-    class BankAccount
+    public class BankAccount
     {
         private int BankNumber { get; set; }
         private string BankName { get; set; }
@@ -15,6 +15,11 @@ namespace BE
         private string BranchAddress { get; set; }
         private string BranchCity { get; set; }
         private int BankAccountNumber { get; set; }
+
+        /// <summary>
+        /// The function returns the BankAccount information in a string type
+        /// </summary>
+        /// <returns>The BankAccount information in string type</returns>
         public override string ToString()
         {
             string res = "";
