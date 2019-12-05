@@ -6,57 +6,29 @@ namespace DAL
 {
     interface IDAL
     {
-        public void addGuestRequest(Guest gr)
-        {
+        public void AddGuestRequest(Guest gr);
 
-        }
-
-        public void updateGuestRequest(Guest gr)
-        {
-
-        }
+        public void UpdateGuestRequest(Guest gr);
 
 
-        public void addHostingUnit(HostingUnit hu)
-        {
+        public void AddHostingUnit(HostingUnit hu);
 
-        }
+        public void RemoveHostingUnit(HostingUnit hu);
 
-        public void removeHostingUnit(HostingUnit hu)
-        {
-
-        }
-
-        public void updateHostingUnit(HostingUnit hu)
-        {
-
-        }
+        public void UpdateHostingUnit(HostingUnit hu);
 
 
-        public void addOrder(Order ord)
-        {
+        public void AddOrder(Order ord);
 
-        }
-
-        public void updateOrder(Order ord)
-        {
-
-        }
+        public void UpdateOrder(Order ord);
 
 
-        public List<HostingUnit> getHostingUnits()
-        {
+        public List<HostingUnit> GetHostingUnits();
 
-        }
+        public List<Guest> GetGuests();
 
-        public List<Guest> getGuests()
-        {
+        public List<Order> GetOrders();
 
-        }
-
-        public List<Order> getOrders()
-        {
-
-        }
+        public List<BankAccount> GetBankAccounts();
     }
 }
