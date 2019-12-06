@@ -14,7 +14,7 @@ namespace DAL
         /// <param name="gr">GuestRequest to be added to the data collection</param>
         public void AddGuestRequest(GuestRequest gr)
         {
-            DataSource.guestRequestsList.Add(gr);
+            DataSource.guestRequestsList.Add(gr.Clone());
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace DAL
         /// <param name="hu">HostingUnit to be added to the data collection</param>
         public void AddHostingUnit(HostingUnit hu)
         {
-            DataSource.hostingUnitsList.Add(hu);
+            DataSource.hostingUnitsList.Add(hu.Clone());
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace DAL
         /// <param name="ord">Order to be added to the data collection</param>
         public void AddOrder(Order ord)
         {
-            DataSource.ordersList.Add(ord);
+            DataSource.ordersList.Add(ord.Clone());
         }
 
         public List<BankAccount> GetBankAccounts()
@@ -50,12 +50,12 @@ namespace DAL
 
         public List<GuestRequest> GetGuests()
         {
-            return DataSource.guestRequestsList;
+            return DataSource.guestRequestsList.Clone();
         }
 
         public List<HostingUnit> GetHostingUnits()
         {
-            return DataSource.hostingUnitsList;
+            return DataSource.hostingUnitsList.Clone();
         }
 
         public List<Order> GetOrders()
@@ -70,12 +70,14 @@ namespace DAL
 
         public void UpdateGuestRequest(GuestRequest gr)
         {
-            //TODO: Implement
+            int index = DataSource.guestRequestsList.FindIndex(new Predicate<GuestRequest>(x => x.PrivateName == gr.PrivateName && x.FamilyName == x.FamilyName));
+            DataSource.guestRequestsList[index] = gr.Clone();
         }
 
         public void UpdateHostingUnit(HostingUnit hu)
         {
-            //TODO: Implement
+            int index = DataSource.hostingUnitsList.FindIndex(new Predicate<HostingUnit>(x => x.HostingUnitKey == hu.HostingUnitKey));
+            DataSource.hostingUnitsList[index] = hu.Clone();
         }
 
         public void UpdateOrder(Order ord)

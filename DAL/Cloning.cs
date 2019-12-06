@@ -75,5 +75,28 @@ namespace DAL
 
             return ret;
         }
+
+        public static List<HostingUnit> Clone(this List<HostingUnit> original)
+        {
+            List<HostingUnit> ret = new List<HostingUnit>();
+            foreach (HostingUnit i in original)
+            {
+                ret.Add(i.Clone());
+            }
+
+            return ret;
+        }
+
+        public static List<GuestRequest> Clone(this List<GuestRequest> original)
+        {
+            List<GuestRequest> ret = new List<GuestRequest>();
+            foreach (GuestRequest i in original)
+            {
+                ret.Add(i.Clone());
+            }
+
+            return ret;
+        }
+
     }
 }
