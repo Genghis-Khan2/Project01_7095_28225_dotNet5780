@@ -8,13 +8,26 @@ namespace DAL
 {
     public class DalImp : IDAL
     {
+        private DalImp() { }
+
+        protected static DalImp instance;
+
+        public IDAL getDal()
+        {
+            return new DalImp();
+        }
+
         /// <summary>
         /// This function adds a guest request to the data's list
         /// </summary>
         /// <param name="gr">GuestRequest to be added to the data collection</param>
         public void AddGuestRequest(GuestRequest gr)
         {
-            DataSource.guestRequestsList.Add(gr.Clone());
+            if (!DataSource.guestRequestsList.Exists(x => x.GuestRequestKey == gr.GuestRequestKey))
+            {
+                gr.GuestRequestKey = ++Configuration.Number;
+                DataSource.guestRequestsList.Add(gr.Clone());
+            }
         }
 
         /// <summary>
@@ -23,6 +36,7 @@ namespace DAL
         /// <param name="hu">HostingUnit to be added to the data collection</param>
         public void AddHostingUnit(HostingUnit hu)
         {
+            hu.HostingUnitKey = ++Configuration.Number;
             DataSource.hostingUnitsList.Add(hu.Clone());
         }
 
@@ -48,7 +62,7 @@ namespace DAL
             return ret;
         }
 
-        public List<GuestRequest> GetGuests()
+        public List<GuestRequest> GetGuestRequests()
         {
             return DataSource.guestRequestsList.Clone();
         }
@@ -60,7 +74,7 @@ namespace DAL
 
         public List<Order> GetOrders()
         {
-            return DataSource.ordersList;
+            return DataSource.ordersList.Clone();
         }
 
         public void RemoveHostingUnit(HostingUnit hu)
@@ -70,7 +84,7 @@ namespace DAL
 
         public void UpdateGuestRequest(GuestRequest gr)
         {
-            int index = DataSource.guestRequestsList.FindIndex(new Predicate<GuestRequest>(x => x.PrivateName == gr.PrivateName && x.FamilyName == x.FamilyName));
+            int index = DataSource.guestRequestsList.FindIndex(new Predicate<GuestRequest>(x => x.GuestRequestKey == gr.GuestRequestKey));
             DataSource.guestRequestsList[index] = gr.Clone();
         }
 
