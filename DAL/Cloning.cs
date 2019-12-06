@@ -70,10 +70,10 @@ namespace DAL
                 Diary = original.Diary.Clone() as int[][],
                 HostingUnitKey = original.HostingUnitKey,
                 HostingUnitName = original.HostingUnitName.Clone() as string,
-                Owner = original.Owner.Clone() as Host;
-        };
+                Owner = original.Owner.Clone() as Host
+            };
 
             return ret;
         }
-}
+    }
 }
