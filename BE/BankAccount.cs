@@ -9,12 +9,12 @@ namespace BE
     /// </summary>
     public class BankAccount
     {
-        private int BankNumber { get; set; }
-        private string BankName { get; set; }
-        private int BranchNumber { get; set; }
-        private string BranchAddress { get; set; }
-        private string BranchCity { get; set; }
-        private int BankAccountNumber { get; set; }
+        public int BankNumber { get; set; }
+        public string BankName { get; set; }
+        public int BranchNumber { get; set; }
+        public string BranchAddress { get; set; }
+        public string BranchCity { get; set; }
+        public int BankAccountNumber { get; set; }
 
         /// <summary>
         /// The function returns the BankAccount information in a string type
