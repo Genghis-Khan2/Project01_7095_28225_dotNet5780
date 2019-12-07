@@ -33,22 +33,22 @@ namespace BE
         public override string ToString()
         {
             string res = "";
-            res += "Guest Request Key: " + GuestRequestKey;
-            res += "Private Name: " + PrivateName;
-            res += "Family Name: " + FamilyName;
-            res += "Mail Address: " + MailAddress;
-            res += "Status: " + Status;
-            res += "Registration Date: " + RegistrationDate;
-            res += "Entry Date: " + EntryDate;
-            res += "Release Date: " + ReleaseDate;
-            res += "Area: " + Area;
-            res += "Type: " + Type;
-            res += "Adults: " + Adults;
-            res += "Children: " + Children;
-            res += "Pool: " + Pool;
-            res += "Jacuzzi: " + Jacuzzi;
-            res += "Garden" + Garden;
-            res += "Childrens Attractions: " + ChildrensAttractions;
+            res += "Guest Request Key: " + GuestRequestKey + "\n";
+            res += "Private Name: " + PrivateName + "\n";
+            res += "Family Name: " + FamilyName + "\n";
+            res += "Mail Address: " + MailAddress + "\n";
+            res += "Status: " + Status + "\n";
+            res += "Registration Date: " + RegistrationDate + "\n";
+            res += "Entry Date: " + EntryDate + "\n";
+            res += "Release Date: " + ReleaseDate + "\n";
+            res += "Area: " + Area + "\n";
+            res += "Type: " + Type + "\n";
+            res += "Adults: " + Adults + "\n";
+            res += "Children: " + Children + "\n";
+            res += "Pool: " + Pool + "\n";
+            res += "Jacuzzi: " + Jacuzzi + "\n";
+            res += "Garden" + Garden + "\n";
+            res += "Childrens Attractions: " + ChildrensAttractions + "\n";
             return res;
         }
         //TODO: SubArea?

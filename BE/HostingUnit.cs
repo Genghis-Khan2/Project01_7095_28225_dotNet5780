@@ -9,10 +9,20 @@ namespace BE
     /// </summary>
     public class HostingUnit
     {
-        public int HostingUnitKey { get; set; }
+        private int HostingUnitKey { get; }
         public Host Owner { set; get; }
         public string HostingUnitName { get; set; }
         public int[][] Diary { get; set; }
-        //TODO: ToString
+        public override string ToString()
+        {
+            string res = "";
+            res += "Hosting Unit Key: " + HostingUnitKey+"\n";
+            res += "Owner: " + Owner + "\n";
+            res += "Hosting Unit Name: " + HostingUnitName + "\n";
+            for (int i = 0; i < Diary.Length; i++)
+            {
+                res
+            }
+        }
     }
 }

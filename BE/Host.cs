@@ -24,13 +24,13 @@ namespace BE
         public override string ToString()
         {
             string res = "";
-            res += "Host Key: " + HostKey;
-            res += "Private Name: " + PrivateName;
-            res += "Family Name: " + FamilyName;
-            res += "Phone Number: " + PhoneNumber;
-            res += "Mail Address: " + MailAddress;
-            res += "Bank Accuont: " + BankAccuont;
-            res += "Collection Clearance: " + CollectionClearance;
+            res += "Host Key: " + HostKey + "\n";
+            res += "Private Name: " + PrivateName + "\n";
+            res += "Family Name: " + FamilyName + "\n";
+            res += "Phone Number: " + PhoneNumber + "\n";
+            res += "Mail Address: " + MailAddress + "\n";
+            res += "Bank Accuont: " + BankAccuont + "\n";
+            res += "Collection Clearance: " + CollectionClearance + "\n";
             return res;
         }
 
