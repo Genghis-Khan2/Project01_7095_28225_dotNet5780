@@ -22,7 +22,7 @@ namespace BE
             {
                 //Input integrity checking by using the email address integrity check in the System.Net.Mail.MailAddress function
                 try
-                { 
+                {
                     new System.Net.Mail.MailAddress(value);
                     this.MailAddress = value;
                     //if the email address valid

@@ -31,11 +31,13 @@ namespace BE
                     this.MailAddress = "plony@almony.com";
                 }
             }
-        }//TODO:check if the mal is valid
+        }
         public BankAccount BankAccuont { get; set; }
         public bool CollectionClearance { get; set; }//TODO: is it list?
-        //TODO: comments
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Host()
         {
             this.HostKey = Configuration.HostKey++;
@@ -47,6 +49,15 @@ namespace BE
             this.CollectionClearance = false;
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="privateName">Host first name</param>
+        /// <param name="familyName">The host's last name</param>
+        /// <param name="phoneNumber">The host's phone number</param>
+        /// <param name="mailAddress">Host Email Address</param>
+        /// <param name="bankAccuont">Host Bank Account Details</param>
+        /// <param name="collectionClearance">Certificate of collection from the bank account</param>
         public Host(string privateName, string familyName, string phoneNumber, string mailAddress, BankAccount bankAccuont, bool collectionClearance)
         {
             this.HostKey = Configuration.HostKey++;
@@ -56,6 +67,7 @@ namespace BE
             this.BankAccuont = bankAccuont;
             this.CollectionClearance = collectionClearance;
         }
+
         /// <summary>
         /// The function returns the host information in a string type
         /// </summary>

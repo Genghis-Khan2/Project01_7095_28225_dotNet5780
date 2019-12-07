@@ -47,7 +47,7 @@ namespace BE
             this.BranchCity = branchCity;
             this.BankAccountNumber = bankAccountNumber;
         }
-        
+
         /// <summary>
         /// The function returns the BankAccount information in a string type
         /// </summary>

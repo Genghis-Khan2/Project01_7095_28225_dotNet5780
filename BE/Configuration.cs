@@ -10,7 +10,7 @@ namespace BE
     class Configuration
     {
         public static int GuestRequestKey = 0;//using by GuestRequest and Order
-        public static int BankNumber=0;//using by BankAccount
+        public static int BankNumber = 0;//using by BankAccount
         public static int HostKey = 0;//using by Host
         public static int HostingUnitKey = 0;//using by HostingUnit and Order
         public static int OrderKey = 0;//using by Order
