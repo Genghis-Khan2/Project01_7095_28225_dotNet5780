@@ -12,17 +12,27 @@ namespace BE
         private int HostingUnitKey { get; }
         public Host Owner { set; get; }
         public string HostingUnitName { get; set; }
-        public int[][] Diary { get; set; }
-        public override string ToString()
+        public bool[][] Diary { get; set; }//TODO: need to be bool?
+        public override string ToString()//TODO: check if the function is work
         {
             string res = "";
             res += "Hosting Unit Key: " + HostingUnitKey+"\n";
             res += "Owner: " + Owner + "\n";
             res += "Hosting Unit Name: " + HostingUnitName + "\n";
-            for (int i = 0; i < Diary.Length; i++)
+            res += "Diary: \n";
+            DateTime index = new DateTime(1, 1, 2048);
+            DateTime endOfYear = new DateTime(1, 1, 2049);
+            while (index<endOfYear)
             {
-                res
+                res += index.ToString("MMMM")+":\n";//TODO: check if it works
+                int cMonth = index.Month;
+                while (index.Month==cMonth)
+                {
+                    res += index.Day + " - " + Diary[index.Month - 1][index.Day - 1]+"\n";
+                    index.AddDays(1);
+                }
             }
+            return res;
         }
     }
 }
