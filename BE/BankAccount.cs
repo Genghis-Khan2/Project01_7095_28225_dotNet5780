@@ -37,7 +37,7 @@ namespace BE
         /// <param name="branchNumber">Branch number</param>
         /// <param name="branchAddress">Address of the branch</param>
         /// <param name="branchCity">Branch City</param>
-        /// <param name="bankAccountNumber"></param>
+        /// <param name="bankAccountNumber">Bank account number</param>
         public BankAccount(string bankName, int branchNumber, string branchAddress, string branchCity, int bankAccountNumber)
         {
             this.BankNumber = Configuration.BankNumber++;
@@ -47,6 +47,7 @@ namespace BE
             this.BranchCity = branchCity;
             this.BankAccountNumber = bankAccountNumber;
         }
+        
         /// <summary>
         /// The function returns the BankAccount information in a string type
         /// </summary>
