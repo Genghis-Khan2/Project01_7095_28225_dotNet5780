@@ -20,13 +20,16 @@ namespace BE
             }
             set
             {
+                //Input integrity checking by using the email address integrity check in the System.Net.Mail.MailAddress function
                 try
-                {
+                { 
                     new System.Net.Mail.MailAddress(value);
                     this.MailAddress = value;
+                    //if the email address valid
                 }
                 catch
                 {
+                    //if the email address is invalid
                     this.MailAddress = "plony@almony.com";
                 }
             }
@@ -43,7 +46,10 @@ namespace BE
         public Enums.IsInterested Jacuzzi { get; set; }
         public Enums.IsInterested Garden { get; set; }
         public Enums.IsInterested ChildrensAttractions { get; set; }
-        //TODO: comments
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public GuestRequest()
         {
             //Values that are independent of the user
@@ -67,6 +73,17 @@ namespace BE
             this.ChildrensAttractions = Enums.IsInterested.Possible;
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="privateName">Customer first name</param>
+        /// <param name="familyName">Customer's last name</param>
+        /// <param name="mailAddress">Customer Email Address</param>
+        /// <param name="registrationDate">System registration date</param>
+        /// <param name="entryDate">Preferred date for starting the vacation</param>
+        /// <param name="releaseDate">Preferred date for ending the vacation</param>
+        /// <param name="area">The desired resort in Israel</param>
+        /// <param name="type">Type of hosting unit desired</param>
         public GuestRequest(string privateName, string familyName, string mailAddress, DateTime registrationDate, DateTime entryDate, DateTime releaseDate, Enums.Area area, Enums.HostingUnitType type)
         {
             //Values that are independent of the user
@@ -90,6 +107,21 @@ namespace BE
             this.ChildrensAttractions = Enums.IsInterested.Possible;
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="privateName">Customer first name</param>
+        /// <param name="familyName">Customer's last name</param>
+        /// <param name="mailAddress">Customer Email Address</param>
+        /// <param name="registrationDate">System registration date</param>
+        /// <param name="entryDate">Preferred date for starting the vacation</param>
+        /// <param name="releaseDate">Preferred date for ending the vacation</param>
+        /// <param name="area">The desired resort in Israel</param>
+        /// <param name="type">Type of hosting unit desired</param>
+        /// <param name="pool">Is interested in the pool</param>
+        /// <param name="jacuzzi">Is interested in Jacuzziparam>
+        /// <param name="garden">Is interested in the garden</param>
+        /// <param name="childrensAttractions">Is interested in children's attractions</param>
         public GuestRequest(string privateName, string familyName, string mailAddress, DateTime registrationDate, DateTime entryDate, DateTime releaseDate, Enums.Area area, Enums.HostingUnitType type, Enums.IsInterested pool, Enums.IsInterested jacuzzi, Enums.IsInterested garden, Enums.IsInterested childrensAttractions)
         {
             //Values that are independent of the user
