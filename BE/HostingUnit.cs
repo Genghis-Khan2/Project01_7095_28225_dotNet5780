@@ -13,6 +13,15 @@ namespace BE
         public Host Owner { set; get; }
         public string HostingUnitName { get; set; }
         public bool[][] Diary { get; set; }//TODO: need to be bool?
+
+        public HostingUnit()
+        {
+            
+        }
+        /// <summary>
+        /// The function returns the hosting unit information in a string type
+        /// </summary>
+        /// <returns>The hosting unit information in string type</returns>
         public override string ToString()//TODO: check if the function is work
         {
             string res = "";

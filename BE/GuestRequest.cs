@@ -25,7 +25,21 @@ namespace BE
         public Enums.IsInterested Jacuzzi { get; set; }
         public Enums.IsInterested Garden { get; set; }
         public Enums.IsInterested ChildrensAttractions { get; set; }
-
+        //TODO: comments
+        public GuestRequest()
+        {
+            GuestRequestKey = Configuration.GuestRequestKey++;
+            PrivateName = "";
+            FamilyName = "";
+            MailAddress = "plony@almony.com";
+            Status = Enums.RequestStatus.UnTreated;
+            RegistrationDate = new DateTime(1,1,2020);
+            EntryDate = new DateTime(1, 1, 2020);
+            ReleaseDate = new DateTime(1, 1, 2020);//Note that this is a default date but it will create an error if it tries to be fulfilled
+            Area = Enums.Area.All;
+            //this.SubArea=all;
+            this.Type=Enums.HostingUnitType.
+        }
         /// <summary>
         /// The function returns the GuestRequest information in a string type
         /// </summary>
@@ -52,8 +66,19 @@ namespace BE
             return res;
         }
         //TODO: SubArea?
-        //TODO: Check if everyone needs the get and set
-        //TODO:Continue to insert the properties
+
+        private bool IsValidEmail(string email)//TODO:test it
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 
 }

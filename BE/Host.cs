@@ -9,14 +9,14 @@ namespace BE
     /// </summary>
     public class Host
     {
-        public int HostKey { get; set; }
+        private int HostKey { get; }
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
         public int PhoneNumber { get; set; }
-        public string MailAddress { get; set; }
+        public string MailAddress { get; set; }//TODO:check if the mal is valid
         public BankAccount BankAccuont { get; set; }
         public bool CollectionClearance { get; set; }//TODO: is it list?
-
+        //TODO: cunstructor
         /// <summary>
         /// The function returns the host information in a string type
         /// </summary>

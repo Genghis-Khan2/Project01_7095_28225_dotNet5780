@@ -9,7 +9,7 @@ namespace BE
     /// </summary>
     public class Enums
     {
-        public enum HostingUnitType { Zimmer, AccommodationApartment, Hotel, Camping }
+        public enum HostingUnitType { All, Zimmer, AccommodationApartment, Hotel, Camping }
         public enum Area { All, North, South, Center, Jerusalem }
         public enum RequestStatus { UnTreated, SentMail, CustomerUnresponsiveness, CustomerResponsiveness }
         public enum OrderStatus { Open, ClosedWithDeal, CloseWithExpired }
