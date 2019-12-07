@@ -11,8 +11,8 @@ namespace BE
     {
         public enum HostingUnitType { All, Zimmer, AccommodationApartment, Hotel, Camping }
         public enum Area { All, North, South, Center, Jerusalem }
-        public enum RequestStatus { UnTreated, SentMail, CustomerUnresponsiveness, CustomerResponsiveness }
-        public enum OrderStatus { Open, ClosedWithDeal, CloseWithExpired }
+        public enum RequestStatus { Open, ClosedWithDeal, CloseWithExpired }
+        public enum OrderStatus { UnTreated, SentMail, CustomerUnresponsiveness, CustomerResponsiveness }
         public enum IsInterested { Necessary, Possible, Uninterested }
 
 

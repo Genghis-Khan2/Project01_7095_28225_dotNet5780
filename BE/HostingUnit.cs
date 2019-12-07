@@ -78,8 +78,8 @@ namespace BE
             res += "Owner: " + Owner + "\n";
             res += "Hosting Unit Name: " + HostingUnitName + "\n";
             res += "Diary: \n";
-            DateTime index = new DateTime(1, 1, 2048);
-            DateTime endOfYear = new DateTime(1, 1, 2049);
+            DateTime index = new DateTime(2020, 1, 1);
+            DateTime endOfYear = new DateTime(2020, 1, 1);
             while (index < endOfYear)
             {
                 res += index.ToString("MMMM") + ":\n";//TODO: check if it works
