@@ -12,9 +12,27 @@ namespace BE
         private int GuestRequestKey { get; }//No need to change, determined when creating the object
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
-        public string MailAddress { get; set; }
+        public string MailAddress
+        {
+            get
+            {
+                return this.MailAddress;
+            }
+            set
+            {
+                try
+                {
+                    new System.Net.Mail.MailAddress(value);
+                    this.MailAddress = value;
+                }
+                catch
+                {
+                    this.MailAddress = "plony@almony.com";
+                }
+            }
+        }
         public Enums.RequestStatus Status { get; set; }
-        public DateTime RegistrationDate { get; set; }//TODO:In this way? Shouldn't the SET be changed?
+        public DateTime RegistrationDate { get; set; }
         public DateTime EntryDate { get; set; }
         public DateTime ReleaseDate { get; set; }
         public Enums.Area Area { get; set; }
@@ -120,18 +138,6 @@ namespace BE
         }
         //TODO: SubArea?
 
-        private bool IsValidEmail(string email)//TODO:test it
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
     }
 
 }

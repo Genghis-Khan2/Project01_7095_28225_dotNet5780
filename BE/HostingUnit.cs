@@ -12,11 +12,46 @@ namespace BE
         private int HostingUnitKey { get; }
         public Host Owner { set; get; }
         public string HostingUnitName { get; set; }
-        public bool[][] Diary { get; set; }//TODO: need to be bool?
+        public bool[,] Diary { get; set; }//TODO: need to be bool?
 
         public HostingUnit()
         {
-            
+            this.HostingUnitKey = Configuration.HostingUnitKey++;
+            this.Owner = new Host();
+            this.HostingUnitName = "";
+            this.Diary = new bool[12,31];
+            for (int i = 0; i < 12; i++)
+            {
+                for (int j = 0; j < 31; j++)
+                {
+                    this.Diary[i, j] = false;
+                }
+            }
+        }
+
+
+        public HostingUnit(Host owner, string hostingUnitName)
+        {
+            this.HostingUnitKey = Configuration.HostingUnitKey++;
+            this.Owner = owner;
+            this.HostingUnitName = hostingUnitName;
+            this.Diary = new bool[12, 31];
+            for (int i = 0; i < 12; i++)
+            {
+                for (int j = 0; j < 31; j++)
+                {
+                    this.Diary[i, j] = false;
+                }
+            }
+        }
+
+
+        public HostingUnit(Host owner, string hostingUnitName, bool[,] diary)
+        {
+            this.HostingUnitKey = Configuration.HostingUnitKey++;
+            this.Owner = owner;
+            this.HostingUnitName = hostingUnitName;
+            this.Diary = diary;
         }
         /// <summary>
         /// The function returns the hosting unit information in a string type
@@ -37,7 +72,7 @@ namespace BE
                 int cMonth = index.Month;
                 while (index.Month==cMonth)
                 {
-                    res += index.Day + " - " + Diary[index.Month - 1][index.Day - 1]+"\n";
+                    res += index.Day + " - " + Diary[index.Month - 1,index.Day - 1]+"\n";
                     index.AddDays(1);
                 }
             }

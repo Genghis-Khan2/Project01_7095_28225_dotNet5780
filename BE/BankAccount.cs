@@ -16,6 +16,10 @@ namespace BE
         public string BranchAddress { get; set; }
         public string BranchCity { get; set; }
         public int BankAccountNumber { get; set; }
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public BankAccount()
         {
             this.BankNumber = Configuration.BankNumber++;
@@ -25,6 +29,15 @@ namespace BE
             this.BranchCity = "";
             this.BankAccountNumber = 0;
         }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="bankName">Name of the bank</param>
+        /// <param name="branchNumber">Branch number</param>
+        /// <param name="branchAddress">Address of the branch</param>
+        /// <param name="branchCity">Branch City</param>
+        /// <param name="bankAccountNumber"></param>
         public BankAccount(string bankName, int branchNumber, string branchAddress, string branchCity, int bankAccountNumber)
         {
             this.BankNumber = Configuration.BankNumber++;
