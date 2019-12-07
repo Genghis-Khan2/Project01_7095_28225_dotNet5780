@@ -7,12 +7,12 @@ namespace BE
     /// <summary>
     /// The class represents a hosting unit
     /// </summary>
-    class HostingUnit
+    public class HostingUnit
     {
-        private int HostingUnitKey { get; set; }
-        private Host Owner { set; get; }
-        private string HostingUnitName { get; set; }
-        private int[][] Diary { get; set; }
+        public int HostingUnitKey { get; set; }
+        public Host Owner { set; get; }
+        public string HostingUnitName { get; set; }
+        public int[][] Diary { get; set; }
         //TODO: ToString
     }
 }

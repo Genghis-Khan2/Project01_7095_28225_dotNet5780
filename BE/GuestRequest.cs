@@ -10,21 +10,21 @@ namespace BE
     public class GuestRequest
     {
         private int GuestRequestKey { get; }//No need to change, determined when creating the object
-        private string PrivateName { get; set; }
-        private string FamilyName { get; set; }
-        private string MailAddress { get; set; }
-        private Enums.RequestStatus Status { get; set; }
-        private DateTime RegistrationDate { get; set; }//TODO:In this way? Shouldn't the SET be changed?
-        private DateTime EntryDate { get; set; }
-        private DateTime ReleaseDate { get; set; }
-        private Enums.Area Area { get; set; }
-        private Enums.HostingUnitType Type { get; set; }
-        private int Adults { get; set; }
-        private int Children { get; set; }
-        private Enums.IsInterested Pool { get; set; }
-        private Enums.IsInterested Jacuzzi { get; set; }
-        private Enums.IsInterested Garden { get; set; }
-        private Enums.IsInterested ChildrensAttractions { get; set; }
+        public string PrivateName { get; set; }
+        public string FamilyName { get; set; }
+        public string MailAddress { get; set; }
+        public Enums.RequestStatus Status { get; set; }
+        public DateTime RegistrationDate { get; set; }//TODO:In this way? Shouldn't the SET be changed?
+        public DateTime EntryDate { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public Enums.Area Area { get; set; }
+        public Enums.HostingUnitType Type { get; set; }
+        public int Adults { get; set; }
+        public int Children { get; set; }
+        public Enums.IsInterested Pool { get; set; }
+        public Enums.IsInterested Jacuzzi { get; set; }
+        public Enums.IsInterested Garden { get; set; }
+        public Enums.IsInterested ChildrensAttractions { get; set; }
 
         /// <summary>
         /// The function returns the GuestRequest information in a string type
