@@ -13,7 +13,25 @@ namespace BE
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
         public string PhoneNumber { get; set; }
-        public string MailAddress { get; set; }//TODO:check if the mal is valid
+        public string MailAddress
+        {
+            get
+            {
+                return this.MailAddress;
+            }
+            set
+            {
+                try
+                {
+                    new System.Net.Mail.MailAddress(value);
+                    this.MailAddress = value;
+                }
+                catch
+                {
+                    this.MailAddress = "plony@almony.com";
+                }
+            }
+        }//TODO:check if the mal is valid
         public BankAccount BankAccuont { get; set; }
         public bool CollectionClearance { get; set; }//TODO: is it list?
         //TODO: comments
@@ -29,20 +47,12 @@ namespace BE
             this.CollectionClearance = false;
         }
 
-        public Host(string privateName,string familyName, string phoneNumber, string mailAddress,BankAccount bankAccuont, bool collectionClearance)
+        public Host(string privateName, string familyName, string phoneNumber, string mailAddress, BankAccount bankAccuont, bool collectionClearance)
         {
             this.HostKey = Configuration.HostKey++;
             this.PrivateName = privateName;
             this.FamilyName = familyName;
-            try
-            {
-                new System.Net.Mail.MailAddress(mailAddress);
-                this.MailAddress = mailAddress;
-            }
-            catch
-            {
-                this.MailAddress = "plony@almony.com";
-            }
+            this.MailAddress = mailAddress;
             this.BankAccuont = bankAccuont;
             this.CollectionClearance = collectionClearance;
         }
