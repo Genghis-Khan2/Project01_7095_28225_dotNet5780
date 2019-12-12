@@ -23,12 +23,12 @@ namespace BE
         public override string ToString()
         {
             string res = "";
-            res += "Bank Number: " + BankNumber;
-            res += "Bank Name: " + BankName;
-            res += "Branch Number: " + BranchNumber;
-            res += "Branch Address: " + BranchAddress;
-            res += "Branch City: " + BranchCity;
-            res += "Bank Account Number: " + BankAccountNumber;
+            res += "Bank Number: " + BankNumber + "\n";
+            res += "Bank Name: " + BankName + "\n";
+            res += "Branch Number: " + BranchNumber + "\n";
+            res += "Branch Address: " + BranchAddress + "\n";
+            res += "Branch City: " + BranchCity + "\n";
+            res += "Bank Account Number: " + BankAccountNumber + "\n";
             return res;
         }
     }

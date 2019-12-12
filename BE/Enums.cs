@@ -14,5 +14,7 @@ namespace BE
         public enum RequestStatus { UnTreated, SentMail, CustomerUnresponsiveness, CustomerResponsiveness }
         public enum OrderStatus { Open, ClosedWithDeal, CloseWithExpired }
         public enum IsInterested { Necessary, Possible, Uninterested }
+
+        
     }
 }
