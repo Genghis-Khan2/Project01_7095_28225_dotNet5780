@@ -37,7 +37,7 @@ namespace DAL
         /// <param name="hu">HostingUnit to be added to the data collection</param>
         public void AddHostingUnit(HostingUnit hu)
         {
-            hu.HostingUnitKey = ++Configuration.Number;
+            hu.HostingUnitKey = ++Configuration.HostingUnitKey;
             DataSource.hostingUnitsList.Add(hu.Clone());
         }
 
