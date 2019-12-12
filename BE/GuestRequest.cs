@@ -9,8 +9,7 @@ namespace BE
     /// </summary>
     public class GuestRequest
     {
-        private int GuestRequestKey { get; }//No need to change, determined when creating the object
-        public int GuestId { get; set; }
+        public int GuestRequestKey { get; private set; }//No need to change, determined when creating the object
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
         public string MailAddress

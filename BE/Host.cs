@@ -9,7 +9,7 @@ namespace BE
     /// </summary>
     public class Host
     {
-        private int HostKey { get; }
+        public int HostKey { get; private set; }
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
         public string PhoneNumber { get; set; }
