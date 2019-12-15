@@ -96,7 +96,7 @@ namespace DAL
 
         public void UpdateOrder(Order ord)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();//TODO: do it ;)
         }
     }
 }

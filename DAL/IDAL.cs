@@ -9,29 +9,31 @@ namespace DAL
     {
 
         IDAL getDal();
+
+        //Functions for working with customer requirement
         void AddGuestRequest(GuestRequest gr);
 
         void UpdateGuestRequest(GuestRequest gr);
 
-
+        //Functions for working with hosting units
         void AddHostingUnit(HostingUnit hu);
 
         void RemoveHostingUnit(HostingUnit hu);
 
         void UpdateHostingUnit(HostingUnit hu);
 
-
+        //Functions for working with Orders
         void AddOrder(Order ord);
 
         void UpdateOrder(Order ord);
 
 
-        List<HostingUnit> GetHostingUnits();
+        List<HostingUnit> GetAllHostingUnits();
 
-        List<GuestRequest> GetGuestRequests();
+        List<GuestRequest> GetAllGuestRequests();
 
-        List<Order> GetOrders();
+        List<Order> GetAllOrders();
 
-        List<BankAccount> GetBankAccounts();
+        List<BankAccount> GetAllBankAccounts();
     }
 }

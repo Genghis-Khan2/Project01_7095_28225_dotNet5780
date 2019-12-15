@@ -9,7 +9,7 @@ namespace BE
     /// </summary>
     public class HostingUnit
     {
-        public int HostingUnitKey { get; private set; }
+        public int HostingUnitKey { get; set; }
         public Host Owner { set; get; }
         public string HostingUnitName { get; set; }
         public bool[,] Diary { get; set; }//TODO: need to be bool?

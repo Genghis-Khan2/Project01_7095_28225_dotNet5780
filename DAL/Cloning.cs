@@ -51,7 +51,7 @@ namespace DAL
         {
             Host ret = new Host()
             {
-                BankAccount = original.BankAccount.Clone() as BankAccount,
+                BankAccount= original.BankAccount.Clone() as BankAccount,
                 CollectionClearance = original.CollectionClearance,
                 FamilyName = original.FamilyName.Clone() as string,
                 HostKey = original.HostKey,
