@@ -67,7 +67,7 @@ namespace DAL
         {
             HostingUnit ret = new HostingUnit()
             {
-                Diary = original.Diary.Clone() as int[][],
+                Diary = original.Diary.Clone() as bool[,],
                 HostingUnitKey = original.HostingUnitKey,
                 HostingUnitName = original.HostingUnitName.Clone() as string,
                 Owner = original.Owner.Clone() as Host

@@ -49,7 +49,7 @@ namespace DAL
             DataSource.ordersList.Add(ord.Clone());
         }
 
-        public List<BankAccount> GetBankAccounts()
+        public List<BankAccount> GetAllBankAccounts()
         {
             //TODO: Hardcode bank account
             List<BankAccount> ret = new List<BankAccount>();
@@ -62,17 +62,17 @@ namespace DAL
             return ret;
         }
 
-        public List<GuestRequest> GetGuestRequests()
+        public List<GuestRequest> GetAllGuestRequests()
         {
             return DataSource.guestRequestsList.Clone();
         }
 
-        public List<HostingUnit> GetHostingUnits()
+        public List<HostingUnit> GetAllHostingUnits()
         {
             return DataSource.hostingUnitsList.Clone();
         }
 
-        public List<Order> GetOrders()
+        public List<Order> GetAllOrders()
         {
             return DataSource.ordersList.Clone();
         }
