@@ -9,7 +9,7 @@ namespace BE
     /// </summary>
     public class Host
     {
-        public int HostKey { get; private set; }
+        public int HostKey { get; set; }
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
         public string PhoneNumber { get; set; }
@@ -32,7 +32,7 @@ namespace BE
                 }
             }
         }
-        public BankAccount BankAccuont { get; set; }
+        public BankAccount BankAccount { get; set; }
         public bool CollectionClearance { get; set; }//TODO: is it list?
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace BE
             this.FamilyName = "";
             this.PhoneNumber = "000-0000000";
             this.MailAddress = "plony@almony.com";
-            this.BankAccuont = new BankAccount();
+            this.BankAccount = new BankAccount();
             this.CollectionClearance = false;
         }
 
@@ -64,7 +64,7 @@ namespace BE
             this.PrivateName = privateName;
             this.FamilyName = familyName;
             this.MailAddress = mailAddress;
-            this.BankAccuont = bankAccuont;
+            this.BankAccount = bankAccuont;
             this.CollectionClearance = collectionClearance;
         }
 
@@ -80,7 +80,7 @@ namespace BE
             res += "Family Name: " + FamilyName + "\n";
             res += "Phone Number: " + PhoneNumber + "\n";
             res += "Mail Address: " + MailAddress + "\n";
-            res += "Bank Accuont: " + BankAccuont + "\n";
+            res += "Bank Accuont: " + BankAccount + "\n";
             res += "Collection Clearance: " + CollectionClearance + "\n";
             return res;
         }

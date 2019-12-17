@@ -11,7 +11,7 @@ namespace BE
     {
         public int HostingUnitKey { get; set; }
         public int GuestRequestKey { get; set; }
-        public int OrderKey { get; private set; }
+        public int OrderKey { get; set; }
         public Enums.OrderStatus Status { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime OrderDate { get; set; }

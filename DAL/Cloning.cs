@@ -51,7 +51,7 @@ namespace DAL
         {
             Host ret = new Host()
             {
-                BankAccount = original.BankAccount.Clone() as BankAccount,
+                BankAccount= original.BankAccount.Clone() as BankAccount,
                 CollectionClearance = original.CollectionClearance,
                 FamilyName = original.FamilyName.Clone() as string,
                 HostKey = original.HostKey,
@@ -67,7 +67,7 @@ namespace DAL
         {
             HostingUnit ret = new HostingUnit()
             {
-                Diary = original.Diary.Clone() as int[][],
+                Diary = original.Diary.Clone() as bool[,],
                 HostingUnitKey = original.HostingUnitKey,
                 HostingUnitName = original.HostingUnitName.Clone() as string,
                 Owner = original.Owner.Clone() as Host
