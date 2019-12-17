@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Text;
 using BE;
 
@@ -51,7 +52,7 @@ namespace DAL
         {
             Host ret = new Host()
             {
-                BankAccount= original.BankAccount.Clone() as BankAccount,
+                BankAccount = original.BankAccount.Clone() as BankAccount,
                 CollectionClearance = original.CollectionClearance,
                 FamilyName = original.FamilyName.Clone() as string,
                 HostKey = original.HostKey,
@@ -76,6 +77,21 @@ namespace DAL
             return ret;
         }
 
+        public static Order Clone(this Order original)
+        {
+            Order ret = new Order()
+            {
+                CreateDate = original.CreateDate,
+                GuestRequestKey = original.GuestRequestKey,
+                HostingUnitKey = original.HostingUnitKey,
+                OrderDate = original.OrderDate,
+                OrderKey = original.OrderKey,
+                Status = original.Status
+            };
+
+            return ret;
+        }
+
         public static List<HostingUnit> Clone(this List<HostingUnit> original)
         {
             List<HostingUnit> ret = new List<HostingUnit>();
@@ -91,6 +107,28 @@ namespace DAL
         {
             List<GuestRequest> ret = new List<GuestRequest>();
             foreach (GuestRequest i in original)
+            {
+                ret.Add(i.Clone());
+            }
+
+            return ret;
+        }
+
+        public static List<BankAccount> Clone(this List<BankAccount> original)
+        {
+            var ret = new List<BankAccount>();
+            foreach (var i in original)
+            {
+                ret.Add(i.Clone());
+            }
+
+            return ret;
+        }
+
+        public static List<Order> Clone(this List<Order> original)
+        {
+            var ret = new List<Order>();
+            foreach (var i in original)
             {
                 ret.Add(i.Clone());
             }

@@ -24,9 +24,12 @@ namespace DAL
         /// <param name="gr">GuestRequest to be added to the data collection</param>
         public void AddGuestRequest(GuestRequest gr)
         {
-            if (!DataSource.guestRequestsList.Exists(x => x.GuestRequestKey == gr.GuestRequestKey))
+            var linq = from item in DataSource.guestRequestsList
+                       where item.GuestRequestKey == gr.GuestRequestKey
+                       select new { Num = item.GuestRequestKey };
+            if (linq.Count() == 0)
             {
-                gr.GuestRequestKey = ++Configuration.Number;
+                gr.GuestRequestKey = Configuration.GuestRequestKey++;
                 DataSource.guestRequestsList.Add(gr.Clone());
             }
         }
@@ -37,8 +40,14 @@ namespace DAL
         /// <param name="hu">HostingUnit to be added to the data collection</param>
         public void AddHostingUnit(HostingUnit hu)
         {
-            hu.HostingUnitKey = ++Configuration.HostingUnitKey;
-            DataSource.hostingUnitsList.Add(hu.Clone());
+            var linq = from item in DataSource.hostingUnitsList
+                       where item.HostingUnitKey == hu.HostingUnitKey
+                       select new { Num = item.HostingUnitKey };
+            if (linq.Count() == 0)
+            {
+                hu.HostingUnitKey = Configuration.HostingUnitKey++;
+                DataSource.hostingUnitsList.Add(hu.Clone());
+            }
         }
 
         /// <summary>
@@ -47,35 +56,85 @@ namespace DAL
         /// <param name="ord">Order to be added to the data collection</param>
         public void AddOrder(Order ord)
         {
-            DataSource.ordersList.Add(ord.Clone());
+            var linq = from item in DataSource.ordersList
+                       where item.OrderKey == ord.OrderKey
+                       select new { Num = item.OrderKey };
+            if (linq.Count() == 0)
+            {
+                ord.OrderKey = Configuration.OrderKey++;
+                DataSource.ordersList.Add(ord.Clone());
+            }
         }
 
-        public List<BankAccount> GetAllBankAccounts()
+        public IEnumerable<BankAccount> GetAllBankAccounts()
         {
-            //TODO: Hardcode bank account
             List<BankAccount> ret = new List<BankAccount>();
-            ret.Add(new BankAccount { });
-            ret.Add(new BankAccount { });
-            ret.Add(new BankAccount { });
-            ret.Add(new BankAccount { });
-            ret.Add(new BankAccount { });
+            ret.Add(new BankAccount
+            {
+                BankAccountNumber = 10000,
+                BankName = "Mizrachi",
+                BankNumber = 100,
+                BranchAddress = "31 Maple St.",
+                BranchCity = "Police",
+                BranchNumber = 1221
+            });
+            ret.Add(new BankAccount
+            {
+                BankAccountNumber = 12125,
+                BankName = "Discount",
+                BankNumber = 326,
+                BranchAddress = "5 Daisy Ave.",
+                BranchCity = "New York City",
+                BranchNumber = 432
+            });
+            ret.Add(new BankAccount
+            {
+                BankAccountNumber = 264162,
+                BankName = "Chase",
+                BankNumber = 241,
+                BranchAddress = "5 North Marshall St.",
+                BranchCity = "Far Rockaway",
+                BranchNumber = 3235
+            });
+            ret.Add(new BankAccount
+            {
+                BankAccountNumber = 254294,
+                BankName = "Amex",
+                BankNumber = 3846,
+                BranchAddress = "8675 Tarkiln Hill Ave.",
+                BranchCity = "Reading",
+                BranchNumber = 36495
+            });
+            ret.Add(new BankAccount
+            {
+                BankAccountNumber = 94646,
+                BankName = "Pepper",
+                BankNumber = 6461,
+                BranchAddress = "606 North Marshall Drive",
+                BranchCity = "North Ridgeville",
+                BranchNumber = 4154945
+            });
 
-            return ret;
+            return from item in ret.Clone()
+                   select item;
         }
 
-        public List<GuestRequest> GetAllGuestRequests()
+        public IEnumerable<GuestRequest> GetAllGuestRequests()
         {
-            return DataSource.guestRequestsList.Clone();
+            return from item in DataSource.guestRequestsList.Clone()
+                   select item;
         }
 
-        public List<HostingUnit> GetAllHostingUnits()
+        public IEnumerable<HostingUnit> GetAllHostingUnits()
         {
-            return DataSource.hostingUnitsList.Clone();
+            return from item in DataSource.hostingUnitsList.Clone()
+                   select item;
         }
 
-        public List<Order> GetAllOrders()
+        public IEnumerable<Order> GetAllOrders()
         {
-            return DataSource.ordersList.Clone();
+            return from item in DataSource.ordersList.Clone()
+                   select item;
         }
 
         public void RemoveHostingUnit(HostingUnit hu)

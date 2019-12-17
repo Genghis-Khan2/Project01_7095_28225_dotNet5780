@@ -28,12 +28,12 @@ namespace DAL
         void UpdateOrder(Order ord);
 
 
-        List<HostingUnit> GetAllHostingUnits();
+        IEnumerable<HostingUnit> GetAllHostingUnits();
 
-        List<GuestRequest> GetAllGuestRequests();
+        IEnumerable<GuestRequest> GetAllGuestRequests();
 
-        List<Order> GetAllOrders();
+        IEnumerable<Order> GetAllOrders();
 
-        List<BankAccount> GetAllBankAccounts();
+        IEnumerable<BankAccount> GetAllBankAccounts();
     }
 }
