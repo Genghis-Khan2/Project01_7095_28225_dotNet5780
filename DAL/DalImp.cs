@@ -11,11 +11,13 @@ namespace DAL
     {
         private DalImp() { }
 
-        protected static DalImp instance;
+        protected static DalImp instance = null;
 
         public IDAL getDal()
         {
-            return new DalImp();
+            if (instance == null)
+                return new DalImp();
+            return instance;
         }
 
         /// <summary>
@@ -139,7 +141,15 @@ namespace DAL
 
         public void RemoveHostingUnit(HostingUnit hu)
         {
-            DataSource.hostingUnitsList.Remove(hu);
+            var res = from item in DataSource.hostingUnitsList
+                      let temp = item.HostingUnitKey
+                      where temp == hu.HostingUnitKey
+                      select item;
+
+            foreach (var it in res)
+            {
+                DataSource.hostingUnitsList.Remove(it);
+            }
         }
 
         public void UpdateGuestRequest(GuestRequest gr)
