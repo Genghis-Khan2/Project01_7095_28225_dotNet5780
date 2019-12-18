@@ -7,13 +7,13 @@ using DS;
 
 namespace DAL
 {
-    public class DalImp : IDAL
+    public class DalImp : IDAL//TODO: some bug here
     {
         private DalImp() { }
 
         protected static DalImp instance = null;
 
-        public IDAL getDal()
+        public static IDAL getDal()
         {
             if (instance == null)
             {
@@ -71,7 +71,7 @@ namespace DAL
             }
         }
 
-        public IEnumerable<BankAccount> GetAllBankAccounts()
+        public IEnumerable<BankAccount> GetAllHostingUnits()
         {
             List<BankAccount> ret = new List<BankAccount>();
             ret.Add(new BankAccount
