@@ -16,7 +16,10 @@ namespace DAL
         public IDAL getDal()
         {
             if (instance == null)
-                return new DalImp();
+            {
+                instance = new DalImp();
+                return instance;
+            }
             return instance;
         }
 
