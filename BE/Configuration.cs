@@ -14,6 +14,6 @@ namespace BE
         public static int HostKey = 0;//using by Host
         public static int HostingUnitKey = 0;//using by HostingUnit and Order
         public static int OrderKey = 0;//using by Order
-        //TODO: מספר עמלה?
+        public static float Commission = 0;//TODO: get the real Commission
     }
 }

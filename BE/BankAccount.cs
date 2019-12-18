@@ -9,7 +9,6 @@ namespace BE
     /// </summary>
     public class BankAccount
     {
-        //TODO: write comment
         public int BankNumber { get; set; }
         public string BankName { get; set; }
         public int BranchNumber { get; set; }

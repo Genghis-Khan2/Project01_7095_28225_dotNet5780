@@ -10,7 +10,6 @@ namespace DAL
     {
         public static GuestRequest Clone(this GuestRequest original)
         {
-            //TODO: Finish up the function
             GuestRequest ret = new GuestRequest()
             {
                 Adults = original.Adults,
