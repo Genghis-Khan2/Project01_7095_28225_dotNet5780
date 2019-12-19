@@ -1,4 +1,6 @@
 ﻿using System;
+using BL;
+using BE;
 
 namespace UI
 {
