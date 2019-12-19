@@ -10,6 +10,7 @@ namespace BL
     {
         private BLImp() { }
         //TODO: check all the Exeption DAL level throw and check they treated
+        //
         protected static BLImp instance = null;
         public void AddGuestRequest(GuestRequest gr)
         {
