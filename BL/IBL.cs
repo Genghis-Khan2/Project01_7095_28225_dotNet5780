@@ -17,7 +17,7 @@ namespace BL
         void UpdateGuestRequest(GuestRequest gr);
 
         //Functions for working with hosting units
-        void AddHostingUnit(HostingUnit hu);
+        void AddHostingUnit(HostingUnit hu); 
 
         void RemoveHostingUnit(HostingUnit hu);
 
