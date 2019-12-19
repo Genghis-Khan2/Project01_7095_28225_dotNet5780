@@ -129,7 +129,7 @@ namespace BL
             //TODO: write the function
             throw new NotImplementedException();
         }
-
+        //TODO:work on it
         public IEnumerable<IGrouping<Enums.Area, GuestRequest>> getAllGuestByArea()//is it a good prototype?
         {
             //TODO: write the function
