@@ -8,7 +8,7 @@ namespace BL
 {
     public interface IBL
     {
-
+        //TODO: add all the function prototype in BLImp to here
         //Functions for working with customer requirement
         void AddGuestRequest(GuestRequest gr);
 
