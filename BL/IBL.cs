@@ -9,15 +9,13 @@ namespace BL
     public interface IBL
     {
 
-        IBL getDal();
-
         //Functions for working with customer requirement
         void AddGuestRequest(GuestRequest gr);
 
         void UpdateGuestRequest(GuestRequest gr);
 
         //Functions for working with hosting units
-        void AddHostingUnit(HostingUnit hu);
+        void AddHostingUnit(HostingUnit hu); 
 
         void RemoveHostingUnit(HostingUnit hu);
 

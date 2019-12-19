@@ -24,7 +24,6 @@ namespace DAL
 
         void UpdateOrder(Order ord, int key);
 
-
         IEnumerable<HostingUnit> GetAllHostingUnits();
 
         IEnumerable<GuestRequest> GetAllGuestRequests();
