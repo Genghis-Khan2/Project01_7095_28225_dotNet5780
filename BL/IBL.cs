@@ -9,8 +9,6 @@ namespace BL
     public interface IBL
     {
 
-        IBL getDal();
-
         //Functions for working with customer requirement
         void AddGuestRequest(GuestRequest gr);
 
