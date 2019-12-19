@@ -5,7 +5,8 @@ using System.Text;
 namespace Exceptions
 {
     /// <summary>
-    /// 
+    /// <c>Exception</c> that represents an error caused by a value that was attempted to be inserted, but already
+    /// existed in the data structure
     /// </summary>
     public class AlreadyExistsException : Exception
     {
@@ -17,7 +18,9 @@ namespace Exceptions
         /// <param name="type">Data type stored in the list</param>
         /// <example>
         /// <code>
-        /// 
+        /// var e = new AlreadyExistsException(123, "GuestRequest");
+        /// Console.WriteLine(e.Message);
+        /// "The key 123 already exists as a GuestRequest"
         /// </code>
         /// </example>
         public AlreadyExistsException(int val, string type)

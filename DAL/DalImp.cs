@@ -8,9 +8,18 @@ using Exceptions;
 
 namespace DAL
 {
+    /// <summary>
+    /// Implementation of the DAL.
+    /// Implemented using lists for the data types
+    /// See <see cref="IDAL"/> for the DAL interface
+    /// </summary>
+
     public class DalImp : IDAL
     {
         #region Singletory These parts are what make the class a singletory
+        /// <summary>
+        /// Private constructor for DalImp so that another instance can't be created
+        /// </summary>
         private DalImp() { }
 
         protected static DalImp instance = null;
@@ -18,7 +27,7 @@ namespace DAL
         /// <summary>
         /// This is the factory method of DalImp
         /// </summary>
-        /// <returns>The instance of the singleton factory (singletory)</returns>
+        /// <returns>The <see cref="instance"/> of the singleton factory (singletory)</returns>
         public static IDAL GetDal()
         {
             if (instance == null)
@@ -36,24 +45,24 @@ namespace DAL
         #region AddGuestRequest This function adds a guest request
 
         /// <summary>
-        /// This function adds a guest request to the data's list
+        /// This function adds a <paramref name="request"/> to the data's list
         /// </summary>
         /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
-        /// <param name="gr">GuestRequest to be added to the data collection</param>
-        public void AddGuestRequest(GuestRequest gr)
+        /// <param name="request">GuestRequest to be added to the data collection</param>
+        public void AddGuestRequest(GuestRequest request)
         {
             var linq = from item in DataSource.guestRequestsList
-                       where item.GuestRequestKey == gr.GuestRequestKey
+                       where item.GuestRequestKey == request.GuestRequestKey
                        select new { Num = item.GuestRequestKey };
             if (linq.Count() == 0)
             {
-                gr.GuestRequestKey = Configuration.GuestRequestKey++;
-                DataSource.guestRequestsList.Add(gr.Clone());
+                request.GuestRequestKey = Configuration.GuestRequestKey++;
+                DataSource.guestRequestsList.Add(request.Clone());
             }
 
             else
             {
-                throw new AlreadyExistsException(gr.GuestRequestKey, "GuestRequest");
+                throw new AlreadyExistsException(request.GuestRequestKey, "GuestRequest");
             }
         }
 
@@ -85,7 +94,7 @@ namespace DAL
         /// <summary>
         /// This function updates a guest request
         /// </summary>
-        /// <exception cref="KeyNotFoundException">Thrown if object with key of parameter key does not exist</exception>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
         /// <param name="gr">Guest request to update to</param>
         /// <param name="key">Key of guest request to update</param>
         public void UpdateGuestRequest(GuestRequest gr, int key)
@@ -109,24 +118,24 @@ namespace DAL
         #region AddHostingUnit This function adds a hosting unit
 
         /// <summary>
-        /// This function adds a hosting unit to the data's list
+        /// This function adds a <paramref name="unit"/> to the data's list.
         /// </summary>
         /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
-        /// <param name="hu">HostingUnit to be added to the data collection</param>
-        public void AddHostingUnit(HostingUnit hu)
+        /// <param name="unit">HostingUnit to be added to the data collection</param>
+        public void AddHostingUnit(HostingUnit unit)
         {
             var linq = from item in DataSource.hostingUnitsList
-                       where item.HostingUnitKey == hu.HostingUnitKey
+                       where item.HostingUnitKey == unit.HostingUnitKey
                        select new { Num = item.HostingUnitKey };
             if (linq.Count() == 0)
             {
-                hu.HostingUnitKey = Configuration.HostingUnitKey++;
-                DataSource.hostingUnitsList.Add(hu.Clone());
+                unit.HostingUnitKey = Configuration.HostingUnitKey++;
+                DataSource.hostingUnitsList.Add(unit.Clone());
             }
 
             else
             {
-                throw new AlreadyExistsException(hu.HostingUnitKey, "HostingUnit");
+                throw new AlreadyExistsException(unit.HostingUnitKey, "HostingUnit");
             }
         }
 
@@ -159,7 +168,7 @@ namespace DAL
         /// <summary>
         /// This function removes a hosting unit from the data
         /// </summary>
-        /// <exception cref="KeyNotFoundException">Thrown if no hosting unit with a matching key is found</exception>
+        /// <exception cref="KeyNotFoundException">Thrown if no hosting unit with a matching <paramref name="key"/> is found</exception>
         /// <param name="key">Key to remove the hosting unit of</param>
         public void RemoveHostingUnit(int key)
         {
@@ -185,7 +194,7 @@ namespace DAL
         /// <summary>
         /// This function updates a hosting unit
         /// </summary>
-        /// <exception cref="KeyNotFoundException">Thrown when hosting unit with key is not found</exception>
+        /// <exception cref="KeyNotFoundException">Thrown when hosting unit with <paramref name="key"/> is not found</exception>
         /// <param name="hu">Hosting unit to update to</param>
         /// <param name="key">Key of hosting unit to update</param>
         public void UpdateHostingUnit(HostingUnit hu, int key)
@@ -209,24 +218,24 @@ namespace DAL
         #region AddOrder This function adds and order
 
         /// <summary>
-        /// This function addes an order to the data's list
+        /// This function addes an <paramref name="order"/> to the data's list
         /// </summary>
         /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
-        /// <param name="ord">Order to be added to the data collection</param>
-        public void AddOrder(Order ord)
+        /// <param name="order">Order to be added to the data collection</param>
+        public void AddOrder(Order order)
         {
             var linq = from item in DataSource.ordersList
-                       where item.OrderKey == ord.OrderKey
+                       where item.OrderKey == order.OrderKey
                        select new { Num = item.OrderKey };
             if (linq.Count() == 0)
             {
-                ord.OrderKey = Configuration.OrderKey++;
-                DataSource.ordersList.Add(ord.Clone());
+                order.OrderKey = Configuration.OrderKey++;
+                DataSource.ordersList.Add(order.Clone());
             }
 
             else
             {
-                throw new AlreadyExistsException(ord.OrderKey, "Order");
+                throw new AlreadyExistsException(order.OrderKey, "Order");
             }
         }
 

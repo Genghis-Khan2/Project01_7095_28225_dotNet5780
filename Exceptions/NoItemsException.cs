@@ -7,12 +7,12 @@ namespace Exceptions
     public class NoItemsException : Exception
     {
         /// <summary>
-        /// Standard constructor
+        /// Standard constructor.
+        /// See <see cref="NoItemsException(string)"/> for a specific exception
         /// </summary>
         /// <remarks>
         /// Message is non-specific to a certain type
         /// </remarks>
-        /// See <see cref="NoItemsException(string)"/> for a specific exception
         public NoItemsException()
             : base("No items exist")
         {
@@ -29,4 +29,5 @@ namespace Exceptions
 
         }
     }
+
 }
