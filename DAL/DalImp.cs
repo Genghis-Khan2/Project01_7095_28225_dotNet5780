@@ -7,7 +7,7 @@ using DS;
 
 namespace DAL
 {
-    public class DalImp : IDAL//TODO: some bug here
+    public class DalImp : IDAL
     {
         private DalImp() { }
 
@@ -71,7 +71,7 @@ namespace DAL
             }
         }
 
-        public IEnumerable<BankAccount> GetAllHostingUnits()
+        public IEnumerable<BankAccount> GetAllBankAccounts()
         {
             List<BankAccount> ret = new List<BankAccount>();
             ret.Add(new BankAccount
@@ -145,7 +145,7 @@ namespace DAL
         public void RemoveHostingUnit(HostingUnit hu)
         {
             var res = from item in DataSource.hostingUnitsList
-                      let temp = item.HostingUnitKey
+                      let temp = hu.HostingUnitKey
                       where temp == hu.HostingUnitKey
                       select item;
 
@@ -157,8 +157,13 @@ namespace DAL
 
         public void UpdateGuestRequest(GuestRequest gr)
         {
-            int index = DataSource.guestRequestsList.FindIndex(new Predicate<GuestRequest>(x => x.GuestRequestKey == gr.GuestRequestKey));
-            DataSource.guestRequestsList[index] = gr.Clone();
+            var linq = from item in DataSource.guestRequestsList
+                       where item.GuestRequestKey == gr.GuestRequestKey
+                       select item;
+            for (int i = 0; i < linq.Count(); i++)
+            {
+
+            }
         }
 
         public void UpdateHostingUnit(HostingUnit hu)
