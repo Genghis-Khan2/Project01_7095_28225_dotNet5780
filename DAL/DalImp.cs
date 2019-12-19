@@ -13,6 +13,7 @@ namespace DAL
         private DalImp() { }
 
         protected static DalImp instance = null;
+
         /// <summary>
         /// This is the factory method of DalImp
         /// </summary>
@@ -26,10 +27,13 @@ namespace DAL
             }
             return instance;
         }
+
         #endregion
 
         #region GuestRequest These functions perform actions on GuestRequests
+
         #region AddGuestRequest This function adds a guest request
+
         /// <summary>
         /// This function adds a guest request to the data's list
         /// </summary>
@@ -45,9 +49,11 @@ namespace DAL
                 DataSource.guestRequestsList.Add(gr.Clone());
             }
         }
+
         #endregion
 
         #region GetAllGuestRequests This function returns the guest requests
+
         /// <summary>
         /// This function returns the guest requests in the data
         /// </summary>
@@ -57,9 +63,11 @@ namespace DAL
             return from item in DataSource.guestRequestsList.Clone()
                    select item;
         }
+
         #endregion
 
         #region UpdateGuestRequest This function updates a guest request
+
         /// <summary>
         /// This function updates a guest request
         /// </summary>
@@ -70,11 +78,15 @@ namespace DAL
             int i = DataSource.guestRequestsList.FindIndex(t => t.GuestRequestKey == key);
             DataSource.guestRequestsList[i] = gr;
         }
+
         #endregion
+
         #endregion
 
         #region HostingUnit These functions perform actions on HostingUnits
+
         #region AddHostingUnit This function adds a hosting unit
+
         /// <summary>
         /// This function adds a hosting unit to the data's list
         /// </summary>
@@ -90,9 +102,11 @@ namespace DAL
                 DataSource.hostingUnitsList.Add(hu.Clone());
             }
         }
+
         #endregion
 
         #region GetAllHostingUnits This function returns all hosting units
+
         /// <summary>
         /// This function returns the hosting units in the data
         /// </summary>
@@ -102,9 +116,11 @@ namespace DAL
             return from item in DataSource.hostingUnitsList.Clone()
                    select item;
         }
+
         #endregion
 
         #region RemoveHostingUnit This function removes a hosting unit
+
         /// <summary>
         /// This function removes a hosting unit from the data
         /// </summary>
@@ -122,9 +138,11 @@ namespace DAL
                 DataSource.hostingUnitsList.Remove(it);
             }
         }
+
         #endregion
 
         #region UpdateHostingUnit This function updates a hosting unit
+
         /// <summary>
         /// This function updates a hosting unit
         /// </summary>
@@ -135,11 +153,15 @@ namespace DAL
             int index = DataSource.hostingUnitsList.FindIndex(new Predicate<HostingUnit>(x => x.HostingUnitKey == key));
             DataSource.hostingUnitsList[index] = hu.Clone();
         }
+
         #endregion
+
         #endregion
 
         #region Order These functions perform actions on Orders
+
         #region AddOrder This function adds and order
+
         /// <summary>
         /// This function addes an order to the data's list
         /// </summary>
@@ -155,9 +177,11 @@ namespace DAL
                 DataSource.ordersList.Add(ord.Clone());
             }
         }
+
         #endregion
 
         #region GetAllOrders This function returns all the orders
+
         /// <summary>
         /// This function returns the orders in the data
         /// </summary>
@@ -167,9 +191,11 @@ namespace DAL
             return from item in DataSource.ordersList.Clone()
                    select item;
         }
+
         #endregion
 
         #region UpdateOrder This function updates an order
+
         /// <summary>
         /// This function updates an order
         /// </summary>
@@ -180,10 +206,15 @@ namespace DAL
             int index = DataSource.ordersList.FindIndex(new Predicate<Order>(x => x.OrderKey == key));
             DataSource.ordersList[index] = ord.Clone();
         }
-        #endregion
+
         #endregion
 
+        #endregion
+
+        #region BankAccount These functions perform actions on BankAccounts
+
         #region GetAllBankAccounts This function returns all the bank accounts
+
         /// <summary>
         /// This function returns the bank accounts in the data
         /// </summary>
@@ -240,6 +271,9 @@ namespace DAL
             return from item in ret.Clone()
                    select item;
         }
+
+        #endregion
+
         #endregion
     }
 }
