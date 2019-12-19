@@ -12,7 +12,10 @@ namespace DAL
         private DalImp() { }
 
         protected static DalImp instance = null;
-
+        /// <summary>
+        /// This is the factory method of DalImp
+        /// </summary>
+        /// <returns>The instance of the singleton factory (singletory)</returns>
         public static IDAL getDal()
         {
             if (instance == null)
@@ -71,6 +74,10 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// This function returns the bank accounts in the data
+        /// </summary>
+        /// <returns>IEnumerable to go over the list of bank accounts</returns>
         public IEnumerable<BankAccount> GetAllBankAccounts()
         {
             List<BankAccount> ret = new List<BankAccount>();
@@ -124,29 +131,46 @@ namespace DAL
                    select item;
         }
 
+        /// <summary>
+        /// This function returns the guest requests in the data
+        /// </summary>
+        /// <returns>IEnumerable to go over the list of guest requests</returns>
         public IEnumerable<GuestRequest> GetAllGuestRequests()
         {
             return from item in DataSource.guestRequestsList.Clone()
                    select item;
         }
 
+        /// <summary>
+        /// This function returns the hosting units in the data
+        /// </summary>
+        /// <returns>IEnumerable to go over the list of hosting units</returns>
         public IEnumerable<HostingUnit> GetAllHostingUnits()
         {
             return from item in DataSource.hostingUnitsList.Clone()
                    select item;
         }
 
+        /// <summary>
+        /// This function returns the orders in the data
+        /// </summary>
+        /// <returns>IEnumerable to go over the list of orders</returns>
         public IEnumerable<Order> GetAllOrders()
         {
             return from item in DataSource.ordersList.Clone()
                    select item;
         }
 
-        public void RemoveHostingUnit(HostingUnit hu)
+        /// <summary>
+        /// This function removes a hosting unit from the data
+        /// </summary>
+        /// Important Note: It will not compare all fields. It will only compare the key 
+        /// <param name="key">Key to remove the hosting unit of</param>
+        public void RemoveHostingUnit(int key)
         {
             var res = from item in DataSource.hostingUnitsList
-                      let temp = hu.HostingUnitKey
-                      where temp == hu.HostingUnitKey
+                      let temp = key
+                      where temp == item.HostingUnitKey
                       select item;
 
             foreach (var it in res)
@@ -155,26 +179,37 @@ namespace DAL
             }
         }
 
-        public void UpdateGuestRequest(GuestRequest gr)
+        /// <summary>
+        /// This function updates a guest request
+        /// </summary>
+        /// <param name="gr">Guest request to update to</param>
+        /// <param name="key">Key of guest request to update</param>
+        public void UpdateGuestRequest(GuestRequest gr, int key)
         {
-            var linq = from item in DataSource.guestRequestsList
-                       where item.GuestRequestKey == gr.GuestRequestKey
-                       select item;
-            for (int i = 0; i < linq.Count(); i++)
-            {
-
-            }
+            int i = DataSource.guestRequestsList.FindIndex(t => t.GuestRequestKey == key);
+            DataSource.guestRequestsList[i] = gr;
         }
 
-        public void UpdateHostingUnit(HostingUnit hu)
+        /// <summary>
+        /// This function updates a hosting unit
+        /// </summary>
+        /// <param name="hu">Hosting unit to update to</param>
+        /// <param name="key">Key of hosting unit to update</param>
+        public void UpdateHostingUnit(HostingUnit hu, int key)
         {
-            int index = DataSource.hostingUnitsList.FindIndex(new Predicate<HostingUnit>(x => x.HostingUnitKey == hu.HostingUnitKey));
+            int index = DataSource.hostingUnitsList.FindIndex(new Predicate<HostingUnit>(x => x.HostingUnitKey == key));
             DataSource.hostingUnitsList[index] = hu.Clone();
         }
 
-        public void UpdateOrder(Order ord)
+        /// <summary>
+        /// This function updates an order
+        /// </summary>
+        /// <param name="ord">Order to update to</param>
+        /// <param name="key">Key of order to update</param>
+        public void UpdateOrder(Order ord, int key)
         {
-            throw new NotImplementedException();//TODO: do it ;)
+            int index = DataSource.ordersList.FindIndex(new Predicate<Order>(x => x.OrderKey == key));
+            DataSource.ordersList[index] = ord.Clone();
         }
     }
 }
