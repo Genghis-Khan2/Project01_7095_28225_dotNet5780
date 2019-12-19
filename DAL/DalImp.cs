@@ -4,6 +4,7 @@ using System.Text;
 using System.Linq;
 using BE;
 using DS;
+using Exceptions;
 
 namespace DAL
 {
@@ -18,7 +19,7 @@ namespace DAL
         /// This is the factory method of DalImp
         /// </summary>
         /// <returns>The instance of the singleton factory (singletory)</returns>
-        public static IDAL getDal()
+        public static IDAL GetDal()
         {
             if (instance == null)
             {
@@ -37,6 +38,7 @@ namespace DAL
         /// <summary>
         /// This function adds a guest request to the data's list
         /// </summary>
+        /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
         /// <param name="gr">GuestRequest to be added to the data collection</param>
         public void AddGuestRequest(GuestRequest gr)
         {
@@ -48,6 +50,11 @@ namespace DAL
                 gr.GuestRequestKey = Configuration.GuestRequestKey++;
                 DataSource.guestRequestsList.Add(gr.Clone());
             }
+
+            else
+            {
+                throw new AlreadyExistsException(gr.GuestRequestKey, "GuestRequest");
+            }
         }
 
         #endregion
@@ -57,11 +64,18 @@ namespace DAL
         /// <summary>
         /// This function returns the guest requests in the data
         /// </summary>
+        /// <exception cref="NoItemsException">Thrown if there are no guest requests</exception>
         /// <returns>IEnumerable to go over the list of guest requests</returns>
         public IEnumerable<GuestRequest> GetAllGuestRequests()
         {
-            return from item in DataSource.guestRequestsList.Clone()
-                   select item;
+            var v = from item in DataSource.guestRequestsList.Clone()
+                    select item;
+            if (v.Count() == 0)
+            {
+                throw new NoItemsException("GuestRequest");
+            }
+
+            return v;
         }
 
         #endregion
@@ -71,11 +85,18 @@ namespace DAL
         /// <summary>
         /// This function updates a guest request
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of parameter key does not exist</exception>
         /// <param name="gr">Guest request to update to</param>
         /// <param name="key">Key of guest request to update</param>
         public void UpdateGuestRequest(GuestRequest gr, int key)
         {
             int i = DataSource.guestRequestsList.FindIndex(t => t.GuestRequestKey == key);
+
+            if (-1 == i)
+            {
+                throw new KeyNotFoundException("No guest request with key specified");
+            }
+
             DataSource.guestRequestsList[i] = gr;
         }
 
@@ -90,6 +111,7 @@ namespace DAL
         /// <summary>
         /// This function adds a hosting unit to the data's list
         /// </summary>
+        /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
         /// <param name="hu">HostingUnit to be added to the data collection</param>
         public void AddHostingUnit(HostingUnit hu)
         {
@@ -101,6 +123,11 @@ namespace DAL
                 hu.HostingUnitKey = Configuration.HostingUnitKey++;
                 DataSource.hostingUnitsList.Add(hu.Clone());
             }
+
+            else
+            {
+                throw new AlreadyExistsException(hu.HostingUnitKey, "HostingUnit");
+            }
         }
 
         #endregion
@@ -110,11 +137,19 @@ namespace DAL
         /// <summary>
         /// This function returns the hosting units in the data
         /// </summary>
+        /// <exception cref="NoItemsException">Thrown if there are no items in the hosting units list</exception>
         /// <returns>IEnumerable to go over the list of hosting units</returns>
         public IEnumerable<HostingUnit> GetAllHostingUnits()
         {
-            return from item in DataSource.hostingUnitsList.Clone()
-                   select item;
+            var v = from item in DataSource.hostingUnitsList.Clone()
+                    select item;
+
+            if (v.Count() == 0)
+            {
+                throw new NoItemsException("HostingUnit");
+            }
+
+            return v;
         }
 
         #endregion
@@ -124,7 +159,7 @@ namespace DAL
         /// <summary>
         /// This function removes a hosting unit from the data
         /// </summary>
-        /// Important Note: It will not compare all fields. It will only compare the key 
+        /// <exception cref="KeyNotFoundException">Thrown if no hosting unit with a matching key is found</exception>
         /// <param name="key">Key to remove the hosting unit of</param>
         public void RemoveHostingUnit(int key)
         {
@@ -132,6 +167,10 @@ namespace DAL
                       let temp = key
                       where temp == item.HostingUnitKey
                       select item;
+            if (res.Count() == 0)
+            {
+                throw new KeyNotFoundException("No hosting unit with key specified");
+            }
 
             foreach (var it in res)
             {
@@ -146,11 +185,18 @@ namespace DAL
         /// <summary>
         /// This function updates a hosting unit
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown when hosting unit with key is not found</exception>
         /// <param name="hu">Hosting unit to update to</param>
         /// <param name="key">Key of hosting unit to update</param>
         public void UpdateHostingUnit(HostingUnit hu, int key)
         {
             int index = DataSource.hostingUnitsList.FindIndex(new Predicate<HostingUnit>(x => x.HostingUnitKey == key));
+
+            if (-1 == index)
+            {
+                throw new KeyNotFoundException("No hosting unit with key specified found");
+            }
+
             DataSource.hostingUnitsList[index] = hu.Clone();
         }
 
@@ -165,6 +211,7 @@ namespace DAL
         /// <summary>
         /// This function addes an order to the data's list
         /// </summary>
+        /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
         /// <param name="ord">Order to be added to the data collection</param>
         public void AddOrder(Order ord)
         {
@@ -176,6 +223,11 @@ namespace DAL
                 ord.OrderKey = Configuration.OrderKey++;
                 DataSource.ordersList.Add(ord.Clone());
             }
+
+            else
+            {
+                throw new AlreadyExistsException(ord.OrderKey, "Order");
+            }
         }
 
         #endregion
@@ -185,11 +237,18 @@ namespace DAL
         /// <summary>
         /// This function returns the orders in the data
         /// </summary>
+        /// <exception cref="NoItemsException">Thrown when there are no orders in the list</exception>
         /// <returns>IEnumerable to go over the list of orders</returns>
         public IEnumerable<Order> GetAllOrders()
         {
-            return from item in DataSource.ordersList.Clone()
-                   select item;
+            var v = from item in DataSource.ordersList.Clone()
+                    select item;
+            if (v.Count() == 0)
+            {
+                throw new NoItemsException("Order");
+            }
+
+            return v;
         }
 
         #endregion
@@ -199,11 +258,18 @@ namespace DAL
         /// <summary>
         /// This function updates an order
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown when an order with the specified key is not found</exception>
         /// <param name="ord">Order to update to</param>
         /// <param name="key">Key of order to update</param>
         public void UpdateOrder(Order ord, int key)
         {
             int index = DataSource.ordersList.FindIndex(new Predicate<Order>(x => x.OrderKey == key));
+
+            if (-1 == index)
+            {
+                throw new KeyNotFoundException("There is no order with the key specified");
+            }
+
             DataSource.ordersList[index] = ord.Clone();
         }
 
@@ -218,58 +284,68 @@ namespace DAL
         /// <summary>
         /// This function returns the bank accounts in the data
         /// </summary>
+        /// <exception cref="NoItemsException">Thrown when there are no bank accounts in the list</exception>
         /// <returns>IEnumerable to go over the list of bank accounts</returns>
         public IEnumerable<BankAccount> GetAllBankAccounts()
         {
-            List<BankAccount> ret = new List<BankAccount>();
-            ret.Add(new BankAccount
+            List<BankAccount> ret = new List<BankAccount>
             {
-                BankAccountNumber = 10000,
-                BankName = "Mizrachi",
-                BankNumber = 100,
-                BranchAddress = "31 Maple St.",
-                BranchCity = "Police",
-                BranchNumber = 1221
-            });
-            ret.Add(new BankAccount
-            {
-                BankAccountNumber = 12125,
-                BankName = "Discount",
-                BankNumber = 326,
-                BranchAddress = "5 Daisy Ave.",
-                BranchCity = "New York City",
-                BranchNumber = 432
-            });
-            ret.Add(new BankAccount
-            {
-                BankAccountNumber = 264162,
-                BankName = "Chase",
-                BankNumber = 241,
-                BranchAddress = "5 North Marshall St.",
-                BranchCity = "Far Rockaway",
-                BranchNumber = 3235
-            });
-            ret.Add(new BankAccount
-            {
-                BankAccountNumber = 254294,
-                BankName = "Amex",
-                BankNumber = 3846,
-                BranchAddress = "8675 Tarkiln Hill Ave.",
-                BranchCity = "Reading",
-                BranchNumber = 36495
-            });
-            ret.Add(new BankAccount
-            {
-                BankAccountNumber = 94646,
-                BankName = "Pepper",
-                BankNumber = 6461,
-                BranchAddress = "606 North Marshall Drive",
-                BranchCity = "North Ridgeville",
-                BranchNumber = 4154945
-            });
+                new BankAccount
+                {
+                    BankAccountNumber = 10000,
+                    BankName = "Mizrachi",
+                    BankNumber = 100,
+                    BranchAddress = "31 Maple St.",
+                    BranchCity = "Police",
+                    BranchNumber = 1221
+                },
+                new BankAccount
+                {
+                    BankAccountNumber = 12125,
+                    BankName = "Discount",
+                    BankNumber = 326,
+                    BranchAddress = "5 Daisy Ave.",
+                    BranchCity = "New York City",
+                    BranchNumber = 432
+                },
+                new BankAccount
+                {
+                    BankAccountNumber = 264162,
+                    BankName = "Chase",
+                    BankNumber = 241,
+                    BranchAddress = "5 North Marshall St.",
+                    BranchCity = "Far Rockaway",
+                    BranchNumber = 3235
+                },
+                new BankAccount
+                {
+                    BankAccountNumber = 254294,
+                    BankName = "Amex",
+                    BankNumber = 3846,
+                    BranchAddress = "8675 Tarkiln Hill Ave.",
+                    BranchCity = "Reading",
+                    BranchNumber = 36495
+                },
+                new BankAccount
+                {
+                    BankAccountNumber = 94646,
+                    BankName = "Pepper",
+                    BankNumber = 6461,
+                    BranchAddress = "606 North Marshall Drive",
+                    BranchCity = "North Ridgeville",
+                    BranchNumber = 4154945
+                }
+            };
 
-            return from item in ret.Clone()
-                   select item;
+            var v = from item in ret.Clone()
+                    select item;
+
+            if (v.Count() == 0)
+            {
+                throw new NoItemsException("BankAccount");
+            }
+
+            return v;
         }
 
         #endregion
