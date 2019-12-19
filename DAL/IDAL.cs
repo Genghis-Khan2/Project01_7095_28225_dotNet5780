@@ -7,9 +7,6 @@ namespace DAL
 {
     public interface IDAL
     {
-
-        IDAL getDal();
-
         //Functions for working with customer requirement
         void AddGuestRequest(GuestRequest gr);
 
