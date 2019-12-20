@@ -129,8 +129,14 @@ namespace BL
             //TODO: write the function
             throw new NotImplementedException();
         }
+        //TODO:work on it
+        public IEnumerable<IGrouping<Enums.Area, GuestRequest>> getAllGuestByArea()//is it a good prototype?
+        {
+            //TODO: write the function
+            throw new NotImplementedException();
+        }
 
-        public IEnumerable<HostingUnits> getAllGuestByArea(Configuration.Area area)
+        public IEnumerable<IGrouping<number, GuestRequest>> getAllGuestByNumerOf(Enums.Area area)
         {
             //TODO: write the function
             throw new NotImplementedException();
@@ -142,7 +148,6 @@ namespace BL
 מאז שנשלח מייל ללקוח גדול או שווה למספר הימים שהפונקציה קיבלה. 
 
 הגדר פונקציות המחזירות את הקבוצות הבאות )ע"י שימוש ב-Grouping )
- רשימת לקוחות מקובצת )Grouping )ע"פ אזור הנופש הנדרש.
  רשימת לקוחות מקובצת )Grouping )ע"פ מספר הנופשים.
  רשימת מארחים מקובצת )Grouping )ע"פ מספר יחידות האירוח שהם מחזיקים
  רשימת יחידות אירוח מקובצת )Grouping )ע"פ אזור הנופש הנדרש.
