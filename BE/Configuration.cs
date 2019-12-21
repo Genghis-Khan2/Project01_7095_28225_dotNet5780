@@ -9,11 +9,11 @@ namespace BE
     /// </summary>
     public class Configuration
     {
-        public static int GuestRequestKey = 0;//using by GuestRequest and Order
-        public static int BankNumber = 0;//using by BankAccount
-        public static int HostKey = 0;//using by Host
-        public static int HostingUnitKey = 0;//using by HostingUnit and Order
-        public static int OrderKey = 0;//using by Order
+        public static int GuestRequestKey = 0;///Using by <see cref="GuestRequest"/> and <see cref="Order"/>
+        public static int BankNumber = 0;///Using by <see cref="BankAccount"/>
+        public static int HostKey = 0;///Using by <see cref="Host"/>
+        public static int HostingUnitKey = 0;///Using by <see cref="HostingUnit"/> and <see cref="Order"/>
+        public static int OrderKey = 0;///Using by <see cref="Order"/>
         public static float Commission = 0;//TODO: get the real Commission
     }
 }

@@ -295,11 +295,11 @@ namespace DAL
         /// </summary>
         /// <exception cref="NoItemsException">Thrown when there are no bank accounts in the list</exception>
         /// <returns>IEnumerable to go over the list of bank accounts</returns>
-        public IEnumerable<BankAccount> GetAllBankAccounts()
+        public IEnumerable<BankBranch> GetAllBankAccounts()
         {
-            List<BankAccount> ret = new List<BankAccount>
+            List<BankBranch> ret = new List<BankBranch>
             {
-                new BankAccount
+                new BankBranch
                 {
                     BankAccountNumber = 10000,
                     BankName = "Mizrachi",
@@ -308,7 +308,7 @@ namespace DAL
                     BranchCity = "Police",
                     BranchNumber = 1221
                 },
-                new BankAccount
+                new BankBranch
                 {
                     BankAccountNumber = 12125,
                     BankName = "Discount",
@@ -317,7 +317,7 @@ namespace DAL
                     BranchCity = "New York City",
                     BranchNumber = 432
                 },
-                new BankAccount
+                new BankBranch
                 {
                     BankAccountNumber = 264162,
                     BankName = "Chase",
@@ -326,7 +326,7 @@ namespace DAL
                     BranchCity = "Far Rockaway",
                     BranchNumber = 3235
                 },
-                new BankAccount
+                new BankBranch
                 {
                     BankAccountNumber = 254294,
                     BankName = "Amex",
@@ -335,7 +335,7 @@ namespace DAL
                     BranchCity = "Reading",
                     BranchNumber = 36495
                 },
-                new BankAccount
+                new BankBranch
                 {
                     BankAccountNumber = 94646,
                     BankName = "Pepper",
