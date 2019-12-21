@@ -48,12 +48,12 @@ namespace BL
 
         public IEnumerable<BankAccount> GetAllBankAccounts()
         {
-            return DalImp.getDal().GetAllBankAccounts();
+            return DalImp.GetDal().GetAllBankAccounts();
         }
 
         public IEnumerable<GuestRequest> GetAllGuestRequests()
         {
-            return DalImp.getDal().GetAllGuestRequests();
+            return DalImp.GetDal().GetAllGuestRequests();
         }
 
         /// <summary>
@@ -62,12 +62,12 @@ namespace BL
         /// <returns>IEnumerator to </returns>
         public IEnumerable<HostingUnit> GetAllHostingUnits()
         {
-            return DalImp.getDal().GetAllHostingUnits();
+            return DalImp.GetDal().GetAllHostingUnits();
         }
 
         public IEnumerable<Order> GetAllOrders()
         {
-            return DalImp.getDal().GetAllOrders();
+            return DalImp.GetDal().GetAllOrders();
         }
 
         public void RemoveHostingUnit(HostingUnit hu)
