@@ -13,7 +13,6 @@ namespace DAL
     /// Implemented using lists for the data types
     /// See <see cref="IDAL"/> for the DAL interface
     /// </summary>
-
     public class DalImp : IDAL
     {
         #region Singletory These parts are what make the class a singletory

@@ -16,7 +16,7 @@ namespace BL
         void UpdateGuestRequest(GuestRequest gr);
 
         //Functions for working with hosting units
-        void AddHostingUnit(HostingUnit hu); 
+        void AddHostingUnit(HostingUnit hu);
 
         void RemoveHostingUnit(HostingUnit hu);
 
@@ -34,6 +34,9 @@ namespace BL
 
         IEnumerable<Order> GetAllOrders();
 
-        IEnumerable<BankAccount> GetAllBankAccounts();
+        IEnumerable<BankBranch> GetAllBankAccounts();
+        #endregion
+        #region Functions specially added to BL
+        #endregion
     }
 }
