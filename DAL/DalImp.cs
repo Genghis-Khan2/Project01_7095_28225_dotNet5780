@@ -13,7 +13,6 @@ namespace DAL
     /// Implemented using lists for the data types
     /// See <see cref="IDAL"/> for the DAL interface
     /// </summary>
-
     public class DalImp : IDAL
     {
         #region Singletory These parts are what make the class a singletory
@@ -56,7 +55,7 @@ namespace DAL
                        select new { Num = item.GuestRequestKey };
             if (linq.Count() == 0)
             {
-                request.GuestRequestKey = Configuration.GuestRequestKey++;
+                request.GuestRequestKey = Configuration.GuestRequestKey;
                 DataSource.guestRequestsList.Add(request.Clone());
             }
 
@@ -129,7 +128,7 @@ namespace DAL
                        select new { Num = item.HostingUnitKey };
             if (linq.Count() == 0)
             {
-                unit.HostingUnitKey = Configuration.HostingUnitKey++;
+                unit.HostingUnitKey = Configuration.HostingUnitKey;
                 DataSource.hostingUnitsList.Add(unit.Clone());
             }
 
@@ -229,7 +228,7 @@ namespace DAL
                        select new { Num = item.OrderKey };
             if (linq.Count() == 0)
             {
-                order.OrderKey = Configuration.OrderKey++;
+                order.OrderKey = Configuration.OrderKey;
                 DataSource.ordersList.Add(order.Clone());
             }
 
@@ -295,11 +294,11 @@ namespace DAL
         /// </summary>
         /// <exception cref="NoItemsException">Thrown when there are no bank accounts in the list</exception>
         /// <returns>IEnumerable to go over the list of bank accounts</returns>
-        public IEnumerable<BankAccount> GetAllBankAccounts()
+        public IEnumerable<BankBranch> GetAllBankAccounts()
         {
-            List<BankAccount> ret = new List<BankAccount>
+            List<BankBranch> ret = new List<BankBranch>
             {
-                new BankAccount
+                new BankBranch
                 {
                     BankAccountNumber = 10000,
                     BankName = "Mizrachi",
@@ -308,7 +307,7 @@ namespace DAL
                     BranchCity = "Police",
                     BranchNumber = 1221
                 },
-                new BankAccount
+                new BankBranch
                 {
                     BankAccountNumber = 12125,
                     BankName = "Discount",
@@ -317,7 +316,7 @@ namespace DAL
                     BranchCity = "New York City",
                     BranchNumber = 432
                 },
-                new BankAccount
+                new BankBranch
                 {
                     BankAccountNumber = 264162,
                     BankName = "Chase",
@@ -326,7 +325,7 @@ namespace DAL
                     BranchCity = "Far Rockaway",
                     BranchNumber = 3235
                 },
-                new BankAccount
+                new BankBranch
                 {
                     BankAccountNumber = 254294,
                     BankName = "Amex",
@@ -335,7 +334,7 @@ namespace DAL
                     BranchCity = "Reading",
                     BranchNumber = 36495
                 },
-                new BankAccount
+                new BankBranch
                 {
                     BankAccountNumber = 94646,
                     BankName = "Pepper",

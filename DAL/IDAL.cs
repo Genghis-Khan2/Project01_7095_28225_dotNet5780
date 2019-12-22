@@ -7,7 +7,8 @@ namespace DAL
 {
     public interface IDAL
     {
-        // No need for the singletory functions to be here... They are in DalImp
+        // No need for the singletory functions to be here... They are in
+        /// <see cref="DalImp"/>
 
         #region GuestRequest These functions perform actions on GuestRequests
 
@@ -133,7 +134,7 @@ namespace DAL
         /// This function returns the bank accounts in the data
         /// </summary>
         /// <returns>IEnumerable to go over the list of bank accounts</returns>
-        IEnumerable<BankAccount> GetAllBankAccounts();
+        IEnumerable<BankBranch> GetAllBankAccounts();
 
         #endregion
 

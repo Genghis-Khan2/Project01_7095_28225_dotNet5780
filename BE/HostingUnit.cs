@@ -12,65 +12,36 @@ namespace BE
         public int HostingUnitKey { get; set; }
         public Host Owner { set; get; }
         public string HostingUnitName { get; set; }
-        public bool[,] Diary { get; set; }//TODO: need to be bool?
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public HostingUnit()
+        public bool[,] Diary
         {
-            this.HostingUnitKey = Configuration.HostingUnitKey++;
-            this.Owner = new Host();
-            this.HostingUnitName = "";
-            this.Diary = new bool[12, 31];
-            //init the diary
-            for (int i = 0; i < 12; i++)
+            get
             {
-                for (int j = 0; j < 31; j++)
+                return this.Diary;//TODO:check if we need to send a new object or just reference
+            }
+            set
+            {
+                if (value == null)
                 {
-                    this.Diary[i, j] = false;
+                    for (int i = 0; i < 12; i++)
+                    {
+                        for (int j = 0; j < 31; j++)
+                        {
+                            this.Diary[i, j] = false;
+                        }
+                    }
+                }
+                else
+                {
+                    this.Diary = value;//TODO: is it smart?
                 }
             }
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="owner">The owner of the hosting unit</param>
-        /// <param name="hostingUnitName">Name of the hosting unit</param>
-        public HostingUnit(Host owner, string hostingUnitName)
-        {
-            this.HostingUnitKey = Configuration.HostingUnitKey++;
-            this.Owner = owner;
-            this.HostingUnitName = hostingUnitName;
-            this.Diary = new bool[12, 31];
-            //init diary
-            for (int i = 0; i < 12; i++)
-            {
-                for (int j = 0; j < 31; j++)
-                {
-                    this.Diary[i, j] = false;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="owner">The owner of the hosting unit</param>
-        /// <param name="diary">The status of the hosting unit for one year</param>
-        public HostingUnit(Host owner, string hostingUnitName, bool[,] diary)
-        {
-            this.HostingUnitKey = Configuration.HostingUnitKey++;
-            this.Owner = owner;
-            this.HostingUnitName = hostingUnitName;
-            this.Diary = diary;
         }
 
         /// <summary>
         /// The function returns the hosting unit information in a string type
         /// </summary>
         /// <returns>The hosting unit information in string type</returns>
+        ///<seealso cref="Object.ToString()"/> 
         public override string ToString()//TODO: check if the function is work
         {
             string res = "";
