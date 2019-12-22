@@ -6,6 +6,11 @@ using DAL;
 
 namespace BL
 {
+    /// <summary>
+    /// Implementation of the BL.
+    /// Implemented using lists for the data types
+    /// See <see cref="IBL"/> for the BL interface
+    /// </summary>
     class BLImp : IBL
     {
 
@@ -15,9 +20,9 @@ namespace BL
         protected static BLImp instance = null;
 
         /// <summary>
-        /// This function return the BLImp Object according to singelton
+        /// This is the factory method of BLImp
         /// </summary>
-        /// <returns>The BLImp Object</returns>
+        /// <returns>The <see cref="instance"/> of the singleton factory (singletory)</returns>
         public IBL getBL()
         {
             if (instance == null)
@@ -46,14 +51,14 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<BankAccount> GetAllBankAccounts()
+        public IEnumerable<BankBranch> GetAllBankAccounts()
         {
-            return DalImp.getDal().GetAllBankAccounts();
+            return DalImp.GetDal().GetAllBankAccounts();
         }
 
         public IEnumerable<GuestRequest> GetAllGuestRequests()
         {
-            return DalImp.getDal().GetAllGuestRequests();
+            return DalImp.GetDal().GetAllGuestRequests();
         }
 
         /// <summary>
@@ -62,12 +67,12 @@ namespace BL
         /// <returns>IEnumerator to </returns>
         public IEnumerable<HostingUnit> GetAllHostingUnits()
         {
-            return DalImp.getDal().GetAllHostingUnits();
+            return DalImp.GetDal().GetAllHostingUnits();
         }
 
         public IEnumerable<Order> GetAllOrders()
         {
-            return DalImp.getDal().GetAllOrders();
+            return DalImp.GetDal().GetAllOrders();
         }
 
         public void RemoveHostingUnit(HostingUnit hu)
@@ -140,7 +145,7 @@ namespace BL
         {
             //TODO: write the function
             throw new NotImplementedException();
-        }
+        }//TODO:need to check if did all the grouping function
         /*
          
 

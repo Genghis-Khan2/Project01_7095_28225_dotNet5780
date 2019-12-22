@@ -134,7 +134,7 @@ namespace DAL
         /// This function returns the bank accounts in the data
         /// </summary>
         /// <returns>IEnumerable to go over the list of bank accounts</returns>
-        IEnumerable<BankAccount> GetAllBankAccounts();
+        IEnumerable<BankBranch> GetAllBankAccounts();
 
         #endregion
 

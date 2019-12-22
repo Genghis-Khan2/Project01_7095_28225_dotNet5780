@@ -50,9 +50,9 @@ namespace DAL
         /// </summary>
         /// <param name="original">BankAccount object to clone</param>
         /// <returns>Cloned BankAccount object</returns>
-        public static BankAccount Clone(this BankAccount original)
+        public static BankBranch Clone(this BankBranch original)
         {
-            BankAccount ret = new BankAccount()
+            BankBranch ret = new BankBranch()
             {
                 BankAccountNumber = original.BankAccountNumber,
                 BankName = original.BankName.Clone() as string,
@@ -78,7 +78,8 @@ namespace DAL
         {
             Host ret = new Host()
             {
-                BankAccount = original.BankAccount.Clone() as BankAccount,
+                BankBranchDetails = original.BankBranchDetails.Clone() as BankBranch,
+                BankAccountNumber = original.BankAccountNumber,
                 CollectionClearance = original.CollectionClearance,
                 FamilyName = original.FamilyName.Clone() as string,
                 HostKey = original.HostKey,
@@ -189,9 +190,9 @@ namespace DAL
         /// </summary>
         /// <param name="original">BankAccount List to clone</param>
         /// <returns>Cloned BankAccount List</returns>
-        public static List<BankAccount> Clone(this List<BankAccount> original)
+        public static List<BankBranch> Clone(this List<BankBranch> original)
         {
-            var ret = new List<BankAccount>();
+            var ret = new List<BankBranch>();
             foreach (var i in original)
             {
                 ret.Add(i.Clone());
