@@ -56,7 +56,7 @@ namespace DAL
                        select new { Num = item.GuestRequestKey };
             if (linq.Count() == 0)
             {
-                request.GuestRequestKey = Configuration.GuestRequestKey++;
+                request.GuestRequestKey = Configuration.GuestRequestKey;
                 DataSource.guestRequestsList.Add(request.Clone());
             }
 
@@ -129,7 +129,7 @@ namespace DAL
                        select new { Num = item.HostingUnitKey };
             if (linq.Count() == 0)
             {
-                unit.HostingUnitKey = Configuration.HostingUnitKey++;
+                unit.HostingUnitKey = Configuration.HostingUnitKey;
                 DataSource.hostingUnitsList.Add(unit.Clone());
             }
 
@@ -229,7 +229,7 @@ namespace DAL
                        select new { Num = item.OrderKey };
             if (linq.Count() == 0)
             {
-                order.OrderKey = Configuration.OrderKey++;
+                order.OrderKey = Configuration.OrderKey;
                 DataSource.ordersList.Add(order.Clone());
             }
 

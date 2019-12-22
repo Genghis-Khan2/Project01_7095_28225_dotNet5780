@@ -10,6 +10,7 @@ namespace BL
     {
         //TODO: add all the function prototype in BLImp to here
         //Functions for working with customer requirement
+        #region Functions also found in IDAL that are used to work with data
         void AddGuestRequest(GuestRequest gr);
 
         void UpdateGuestRequest(GuestRequest gr);
