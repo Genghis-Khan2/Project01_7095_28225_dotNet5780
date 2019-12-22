@@ -28,7 +28,7 @@ namespace BE
                 if (!IsInitializedGuestRequestKey)
                 {
                     IsInitializedGuestRequestKey = true;
-                    GuestRequestKey = 0;
+                    GuestRequestKey = 1;
                 }
                 return GuestRequestKey++;
             }

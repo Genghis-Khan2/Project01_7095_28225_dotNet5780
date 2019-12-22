@@ -50,12 +50,17 @@ namespace DAL
         /// <param name="request">GuestRequest to be added to the data collection</param>
         public void AddGuestRequest(GuestRequest request)
         {
+            if (0 == request.GuestRequestKey)
+            {
+                request.GuestRequestKey = Configuration.GuestRequestKey;
+            }
+
             var linq = from item in DataSource.guestRequestsList
                        where item.GuestRequestKey == request.GuestRequestKey
                        select new { Num = item.GuestRequestKey };
+
             if (linq.Count() == 0)
             {
-                request.GuestRequestKey = Configuration.GuestRequestKey;
                 DataSource.guestRequestsList.Add(request.Clone());
             }
 
@@ -91,12 +96,12 @@ namespace DAL
         #region UpdateGuestRequest This function updates a guest request
 
         /// <summary>
-        /// This function updates a guest request
+        /// This function updates a guest request of key <paramref name="key"/> to the status <paramref name="stat"/>
         /// </summary>
         /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
-        /// <param name="gr">Guest request to update to</param>
         /// <param name="key">Key of guest request to update</param>
-        public void UpdateGuestRequest(GuestRequest gr, int key)
+        /// <param name="stat">Status to update guest request to</param>
+        public void UpdateGuestRequest(int key, Enums.RequestStatus stat)
         {
             int i = DataSource.guestRequestsList.FindIndex(t => t.GuestRequestKey == key);
 
@@ -105,7 +110,7 @@ namespace DAL
                 throw new KeyNotFoundException("No guest request with key specified");
             }
 
-            DataSource.guestRequestsList[i] = gr;
+            DataSource.guestRequestsList[i].Status = stat;
         }
 
         #endregion
@@ -123,13 +128,17 @@ namespace DAL
         /// <param name="unit">HostingUnit to be added to the data collection</param>
         public void AddHostingUnit(HostingUnit unit)
         {
+            if (unit.HostingUnitKey == 0)
+            {
+                unit.HostingUnitKey = Configuration.HostingUnitKey;
+            }
             var linq = from item in DataSource.hostingUnitsList
                        where item.HostingUnitKey == unit.HostingUnitKey
                        select new { Num = item.HostingUnitKey };
+
             if (linq.Count() == 0)
             {
-                unit.HostingUnitKey = Configuration.HostingUnitKey;
-                DataSource.hostingUnitsList.Add(unit.Clone());
+                DataSource.hostingUnitsList.Add(unit.Clone()); // Otherwise it might be changed elsewhere
             }
 
             else
@@ -223,12 +232,16 @@ namespace DAL
         /// <param name="order">Order to be added to the data collection</param>
         public void AddOrder(Order order)
         {
+            if (0 == order.OrderKey)
+            {
+                order.OrderKey = Configuration.OrderKey;
+            }
+
             var linq = from item in DataSource.ordersList
                        where item.OrderKey == order.OrderKey
                        select new { Num = item.OrderKey };
             if (linq.Count() == 0)
             {
-                order.OrderKey = Configuration.OrderKey;
                 DataSource.ordersList.Add(order.Clone());
             }
 
@@ -264,12 +277,12 @@ namespace DAL
         #region UpdateOrder This function updates an order
 
         /// <summary>
-        /// This function updates an order
+        /// This function updates an order with a key of <paramref name="key"/> to a status of <paramref name="stat"/>
         /// </summary>
         /// <exception cref="KeyNotFoundException">Thrown when an order with the specified key is not found</exception>
-        /// <param name="ord">Order to update to</param>
-        /// <param name="key">Key of order to update</param>
-        public void UpdateOrder(Order ord, int key)
+        /// <param name="key">Key of Order to update the status of</param>
+        /// <param name="stat">Status to update Order status to</param>
+        public void UpdateOrder(int key, Enums.OrderStatus stat)
         {
             int index = DataSource.ordersList.FindIndex(new Predicate<Order>(x => x.OrderKey == key));
 
@@ -278,7 +291,7 @@ namespace DAL
                 throw new KeyNotFoundException("There is no order with the key specified");
             }
 
-            DataSource.ordersList[index] = ord.Clone();
+            DataSource.ordersList[index].Status = stat;
         }
 
         #endregion
