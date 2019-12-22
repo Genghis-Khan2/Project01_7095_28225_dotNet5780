@@ -7,7 +7,8 @@ namespace DAL
 {
     public interface IDAL
     {
-        // No need for the singletory functions to be here... They are in DalImp
+        // No need for the singletory functions to be here... They are in
+        /// <see cref="DalImp"/>
 
         #region GuestRequest These functions perform actions on GuestRequests
 
