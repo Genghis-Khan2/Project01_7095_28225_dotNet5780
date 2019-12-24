@@ -48,7 +48,7 @@ namespace BE
                 if (!IsInitializedBankNumber)
                 {
                     IsInitializedBankNumber = true;
-                    BankNumber = 0;
+                    BankNumber = 1;
                 }
                 return BankNumber++;
             }
@@ -67,7 +67,7 @@ namespace BE
                 if (!IsInitializedHostKey)
                 {
                     IsInitializedHostKey = true;
-                    HostKey = 0;
+                    HostKey = 1;
                 }
                 return HostKey++;
             }
@@ -86,7 +86,7 @@ namespace BE
                 if (!IsInitializedHostingUnitKey)
                 {
                     IsInitializedHostingUnitKey = true;
-                    HostingUnitKey = 0;
+                    HostingUnitKey = 1;
                 }
                 return HostingUnitKey++;
             }
@@ -105,7 +105,7 @@ namespace BE
                 if (!IsInitializedOrderKey)
                 {
                     IsInitializedOrderKey = true;
-                    OrderKey = 0;
+                    OrderKey = 1;
                 }
                 return OrderKey++;
             }
