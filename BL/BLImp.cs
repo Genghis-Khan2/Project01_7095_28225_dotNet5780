@@ -14,7 +14,7 @@ namespace BL
     /// </summary>
     class BLImp : IBL
     {
-
+        //TODO: orgenize using #regine
         private BLImp() { }
         //TODO: check all the Exeption DAL level throw and check they treated
         protected static BLImp instance = null;
@@ -162,6 +162,29 @@ namespace BL
             throw new NotImplementedException();
         }
 
+        public void UpdateGuestRequest(int key, Enums.RequestStatus stat)
+        {
+            //TODO:do it
+            throw new NotImplementedException();
+        }
+
+        public void RemoveHostingUnit(int key)
+        {
+            //TODO:do it
+            throw new NotImplementedException();
+        }
+
+        public void UpdateHostingUnit(HostingUnit hu, int key)
+        {
+            //TODO:do it
+            throw new NotImplementedException();
+        }
+
+        public void UpdateOrder(int key, Enums.OrderStatus stat)
+        {
+            //TODO:do it
+            throw new NotImplementedException();
+        }
     }
 }
 
