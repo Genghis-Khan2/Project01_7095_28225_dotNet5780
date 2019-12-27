@@ -36,7 +36,9 @@ namespace BL
 
         IEnumerable<BankBranch> GetAllBankAccounts();
         #endregion
+
         #region Functions specially added to BL
+
         #endregion
     }
 }
