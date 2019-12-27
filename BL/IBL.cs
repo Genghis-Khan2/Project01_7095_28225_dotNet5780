@@ -148,7 +148,7 @@ namespace BL
         #endregion
 
         #region Functions specialy added in BL layer, not found in IDAL
-       
+
         #region Other function
         //TDOO:find good defintion to this functions
         IEnumerable<HostingUnit> GetAllAvailableHostingUnit(DateTime date, int days);
@@ -164,14 +164,14 @@ namespace BL
 
         int getAllsuccessfulOrder(HostingUnit hostingUnit);
         #endregion
-        
+
         #region Grouping functions
         IEnumerable<IGrouping<Enums.Area, GuestRequest>> getAllGuestByArea();
         IEnumerable<IGrouping<int, GuestRequest>> getAllGuestByNumerOfVacationers(Enums.Area area);//TODO:need to check if did all the grouping function
         IEnumerable<IGrouping<int, Host>> getAllHostByNumberOfHostingUnits();
         IEnumerable<IGrouping<Enums.Area, HostingUnit>> GetHostingUnitByArea(Enums.Area area);
         #endregion
-        
+
         #endregion
     }
 
