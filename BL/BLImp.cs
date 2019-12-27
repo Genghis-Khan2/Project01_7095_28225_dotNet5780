@@ -157,7 +157,11 @@ namespace BL
             //TODO: do it
             throw new NotImplementedException();
         }
-        public 
+        public IEnumerable<IGrouping<Enums.Area, HostingUnit>> GetHostingUnitByArea(Enums.Area area)
+        {
+            //TODO: do it
+            throw new NotImplementedException();
+        }
  
     }
 }
