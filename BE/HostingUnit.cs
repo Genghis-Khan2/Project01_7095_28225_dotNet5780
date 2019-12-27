@@ -81,5 +81,21 @@ namespace BE
             }
             return res;
         }
+
+        /// <summary>
+        /// This delegate defines a function that accepts a hosting unit and returns the result of some logical operation on it
+        /// </summary>
+        /// <param name="hostingUnit">The hosting unit to work on it</param>
+        /// <returns>The result of func</returns>
+        /// <remarks>
+        /// We chose to put this delegate here even though it only used the BL layer (*** function)
+        /// because we couldn't find another place to put it,
+        /// it couldn't be put in the IBL interface (put delegate in interface is problematic)
+        /// and we couldn't put it in implementation (BLImp ) because That is already expressed in the declaration of the function in the interface.
+        /// We also couldn't put it in the configuration class because it was defined as a class that is responsible for global variables
+        /// and all is variables are static.
+        /// So, the only option we are given is to put it here and hope that our severe grime in breaking the layer model is understood
+        /// </remarks>
+        public delegate bool isMeetTheDefinition(HostingUnit hostingUnit);
     }
 }

@@ -3,31 +3,30 @@ using System.Collections.Generic;
 using System.Text;
 using DAL;
 using BE;
+using System.Linq;
 
 namespace BL
 {
     public interface IBL
     {
+
         //TODO: add all the function prototype in BLImp to here
         //Functions for working with customer requirement
-        #region Functions also found in IDAL that are used to work with data
         void AddGuestRequest(GuestRequest gr);
+        void AddHostingUnit(HostingUnit hu);
 
         void UpdateGuestRequest(GuestRequest gr);
 
         //Functions for working with hosting units
-        void AddHostingUnit(HostingUnit hu);
 
         void RemoveHostingUnit(HostingUnit hu);
 
         void UpdateHostingUnit(HostingUnit hu);
 
-        //Functions for working with Orders
         void AddOrder(Order ord);
 
         void UpdateOrder(Order ord);
 
-        //Get Functions
         IEnumerable<HostingUnit> GetAllHostingUnits();
 
         IEnumerable<GuestRequest> GetAllGuestRequests();
@@ -35,10 +34,26 @@ namespace BL
         IEnumerable<Order> GetAllOrders();
 
         IEnumerable<BankBranch> GetAllBankAccounts();
-        #endregion
 
-        #region Functions specially added to BL
+        IEnumerable<HostingUnit> GetAllAvailableHostingUnit(DateTime date, int days);
 
-        #endregion
+
+        int getNumberOfDateInRange(DateTime startDay);
+
+        int getNumberOfDateInRange(DateTime startDay, DateTime endDay);
+
+        IEnumerable<Order> getAllOrderInRange(int numberOfDays);
+        IEnumerable<GuestRequest> getAllGuestRequestWhere(HostingUnit.isMeetTheDefinition func);
+
+        int getAmountOfOrderToGuest(GuestRequest guestRequest);
+
+        int getAllsuccessfulOrder(HostingUnit hostingUnit);
+      
+        //TODO:work on it
+        IEnumerable<IGrouping<Enums.Area, GuestRequest>> getAllGuestByArea();
+        IEnumerable<IGrouping<int, GuestRequest>> getAllGuestByNumerOfVacationers(Enums.Area area);//TODO:need to check if did all the grouping function
+        IEnumerable<IGrouping<int, Host>> getAllHostByNumberOfHostingUnits();
+        IEnumerable<IGrouping<Enums.Area, HostingUnit>> GetHostingUnitByArea(Enums.Area area);
+
     }
 }

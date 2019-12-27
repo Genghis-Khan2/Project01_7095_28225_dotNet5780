@@ -15,7 +15,6 @@ namespace BL
     class BLImp : IBL
     {
 
-        public delegate bool isMeetTheDefinition(HostingUnit hostingUnit);
         private BLImp() { }
         //TODO: check all the Exeption DAL level throw and check they treated
         protected static BLImp instance = null;
@@ -123,7 +122,7 @@ namespace BL
             //TODO: do it
             throw new NotImplementedException();
         }
-        public IEnumerable<GuestRequest> getAllGuestRequestWhere(isMeetTheDefinition func)
+        public IEnumerable<GuestRequest> getAllGuestRequestWhere(HostingUnit.isMeetTheDefinition func)
         {
             //TODO: write the function
             throw new NotImplementedException();
@@ -152,7 +151,7 @@ namespace BL
             //TODO: write the function
             throw new NotImplementedException();
         }//TODO:need to check if did all the grouping function
-          public IEnumerable<IGrouping<int, Host>> getAllHostByNumberOfHostingUnits()
+        public IEnumerable<IGrouping<int, Host>> getAllHostByNumberOfHostingUnits()
         {
             //TODO: do it
             throw new NotImplementedException();
@@ -162,7 +161,7 @@ namespace BL
             //TODO: do it
             throw new NotImplementedException();
         }
- 
+
     }
 }
 
