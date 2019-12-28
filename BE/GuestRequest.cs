@@ -16,7 +16,7 @@ namespace BE
         {
             get
             {
-                return this.MailAddress;
+                return mailAddress;
             }
             set
             {
@@ -24,16 +24,18 @@ namespace BE
                 try
                 {
                     new System.Net.Mail.MailAddress(value);
-                    this.MailAddress = value;
+                    mailAddress = value;
                     //if the email address valid
                 }
                 catch
                 {
                     //if the email address is invalid
-                    this.MailAddress = "plony@almony.com";
+                    mailAddress = "plony@almony.com";
                 }
             }
         }
+
+        private string mailAddress;
         public Enums.RequestStatus Status { get; set; }
         public DateTime RegistrationDate { get; set; }
         public DateTime EntryDate { get; set; }
