@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using BE;
 using DAL;
-using System.Linq;
+using Exceptions;
 
 namespace BL
 {
@@ -24,7 +23,7 @@ namespace BL
         /// This is the factory method of BLImp
         /// </summary>
         /// <returns>The <see cref="instance"/> of the singleton factory (singletory)</returns>
-        static  public IBL getBL()
+        static public IBL getBL()
         {
             if (instance == null)
             {
@@ -34,29 +33,56 @@ namespace BL
             return instance;
         }
 
+        /// <summary>
+        /// This function add GuestRequest to the data
+        /// </summary>
+        /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
+        /// <param name="gr">The GuestRequst to add</param>
         public void AddGuestRequest(GuestRequest gr)
         {
-            //TODO: write the function
+            //TODO:do it
             throw new NotImplementedException();
         }
 
-        public void AddHostingUnit(HostingUnit hu)
+        /// <summary>
+        /// Add HostingUnit to the data
+        /// </summary>
+        /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
+        /// <param name="hostingUnit">The HostingUnit to add</param>
+        public void AddHostingUnit(HostingUnit hostingUnit)
         {
-            //TODO: write the function
+            //TODO: we need notItems for Host?
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Add Order to the data
+        /// </summary>
+        /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
+        /// <param name="ord">Order to add</param>
         public void AddOrder(Order ord)
         {
             //TODO: write the function
+            //TODO: dont need exception when HostingUnit and GuestRequest isnt exist?
+            //יש לוודא בעת יצירת הזמנה ללקוח, שהתאריכים המבוקשים פנויים ביחידת האירוח שמוצעת לו.
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// The function returns the list of all existing bank branches in Israel
+        /// </summary>
+        /// <exception cref="NoItemsException">Thrown when there are no bank accounts in the list</exception>
+        /// <returns><see cref="IEnumerable{BankBranch}"/> to go over the list of bank accounts</returns>
         public IEnumerable<BankBranch> GetAllBankAccounts()
         {
             return DalImp.GetDal().GetAllBankAccounts();
         }
 
+        /// <summary>
+        /// This function return all the GuestRequest in the data
+        /// </summary>
+        /// <exception cref="NoItemsException">Thrown if there are no guest requests</exception>
+        /// <returns><see cref="IEnumerable{GuestRequest}"/> to go over the list of guest requests</returns>
         public IEnumerable<GuestRequest> GetAllGuestRequests()
         {
             return DalImp.GetDal().GetAllGuestRequests();
@@ -65,20 +91,33 @@ namespace BL
         /// <summary>
         /// The Function return all the Hosting unit
         /// </summary>
-        /// <returns>IEnumerator to </returns>
+        /// <exception cref="NoItemsException">Thrown if there are no items in the hosting units list</exception>
+        /// <returns><see cref="IEnumerable{HostingUnit}"/> to go over the list of hosting units</returns>
         public IEnumerable<HostingUnit> GetAllHostingUnits()
         {
             return DalImp.GetDal().GetAllHostingUnits();
         }
 
+        /// <summary>
+        /// This function return all the Order
+        /// </summary>
+        /// <exception cref="NoItemsException">Thrown when there are no orders in the list</exception>
+        /// <returns><see cref="IEnumerable{Order}"/> to go over the list of orders</returns>
         public IEnumerable<Order> GetAllOrders()
         {
             return DalImp.GetDal().GetAllOrders();
         }
 
+        /// <summary>
+        /// This function removes a hosting unit from the data
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no hosting unit with a matching <paramref name="key"/> is found</exception>
+        ///<exception cref=""></exception>
+            /// <param name="key">Key to remove the hosting unit of</param>
         public void RemoveHostingUnit(HostingUnit hu)
         {
             //TODO: write the function
+            //• לא ניתן למחוק יחידת אירוח כל עוד יש הצעה הקשורה אליה במצב פתוח.
             throw new NotImplementedException();
         }
 
@@ -191,7 +230,6 @@ namespace BL
 
 /*
 tasks:
-1. finish to write all the definition
 2. write all the definition in IBL
 3. Write comments to all the function
 4. write the function
