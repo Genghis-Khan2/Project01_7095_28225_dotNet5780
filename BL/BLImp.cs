@@ -13,7 +13,7 @@ namespace BL
     /// Implemented using lists for the data types
     /// See <see cref="IBL"/> for the BL interface
     /// </summary>
-    class BLImp : IBL
+    public class BLImp : IBL
     {
         //TODO: orgenize using #regine
         private BLImp() { }
@@ -24,7 +24,7 @@ namespace BL
         /// This is the factory method of BLImp
         /// </summary>
         /// <returns>The <see cref="instance"/> of the singleton factory (singletory)</returns>
-        public IBL getBL()
+        static  public IBL getBL()
         {
             if (instance == null)
             {
