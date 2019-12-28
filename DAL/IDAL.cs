@@ -35,11 +35,12 @@ namespace DAL
         #region UpdateGuestRequest This function updates a guest request
 
         /// <summary>
-        /// This function updates a guest request
+        /// This function updates a guest request of key <paramref name="key"/> to the status <paramref name="stat"/>
         /// </summary>
-        /// <param name="gr">Guest request to update to</param>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
         /// <param name="key">Key of guest request to update</param>
-        void UpdateGuestRequest(GuestRequest gr, int key);
+        /// <param name="stat">Status to update guest request to</param>
+        void UpdateGuestRequest(int key, Enums.RequestStatus stat);
 
         #endregion
 
@@ -116,11 +117,12 @@ namespace DAL
         #region UpdateOrder This function updates an order
 
         /// <summary>
-        /// This function updates an order
+        /// This function updates an order with a key of <paramref name="key"/> to a status of <paramref name="stat"/>
         /// </summary>
-        /// <param name="ord">Order to update to</param>
-        /// <param name="key">Key of order to update</param>
-        void UpdateOrder(Order ord, int key);
+        /// <exception cref="KeyNotFoundException">Thrown when an order with the specified key is not found</exception>
+        /// <param name="key">Key of Order to update the status of</param>
+        /// <param name="stat">Status to update Order status to</param>
+        void UpdateOrder(int key, Enums.OrderStatus stat);
 
         #endregion
 

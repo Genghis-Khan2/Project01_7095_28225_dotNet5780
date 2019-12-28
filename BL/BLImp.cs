@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using BE;
 using DAL;
@@ -14,8 +15,7 @@ namespace BL
     /// </summary>
     class BLImp : IBL
     {
-
-        public delegate bool isMeetTheDefinition(HostingUnit hostingUnit);
+        //TODO: orgenize using #regine
         private BLImp() { }
         //TODO: check all the Exeption DAL level throw and check they treated
         protected static BLImp instance = null;
@@ -118,7 +118,12 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<GuestRequest> getAllGuestRequestWhere(isMeetTheDefinition func)
+        public IEnumerable<Order> getAllOrderInRange(int numberOfDays)
+        {
+            //TODO: do it
+            throw new NotImplementedException();
+        }
+        public IEnumerable<GuestRequest> getAllGuestRequestWhere(HostingUnit.isMeetTheDefinition func)
         {
             //TODO: write the function
             throw new NotImplementedException();
@@ -142,21 +147,52 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<IGrouping<number, GuestRequest>> getAllGuestByNumerOf(Enums.Area area)
+        public IEnumerable<IGrouping<int, GuestRequest>> getAllGuestByNumerOfVacationers(Enums.Area area)
         {
             //TODO: write the function
             throw new NotImplementedException();
         }//TODO:need to check if did all the grouping function
-        /*
-         
+        public IEnumerable<IGrouping<int, Host>> getAllHostByNumberOfHostingUnits()
+        {
+            //TODO: do it
+            throw new NotImplementedException();
+        }
+        public IEnumerable<IGrouping<Enums.Area, HostingUnit>> GetHostingUnitByArea(Enums.Area area)
+        {
+            //TODO: do it
+            throw new NotImplementedException();
+        }
 
- פונקציה שמקבלת מספר ימים, ומחזירה את כל ההזמנות שמשך הזמן שעבר מאז שנוצרו /
-מאז שנשלח מייל ללקוח גדול או שווה למספר הימים שהפונקציה קיבלה. 
+        public void UpdateGuestRequest(int key, Enums.RequestStatus stat)
+        {
+            //TODO:do it
+            throw new NotImplementedException();
+        }
 
-הגדר פונקציות המחזירות את הקבוצות הבאות )ע"י שימוש ב-Grouping )
- רשימת לקוחות מקובצת )Grouping )ע"פ מספר הנופשים.
- רשימת מארחים מקובצת )Grouping )ע"פ מספר יחידות האירוח שהם מחזיקים
- רשימת יחידות אירוח מקובצת )Grouping )ע"פ אזור הנופש הנדרש.
-         */
+        public void RemoveHostingUnit(int key)
+        {
+            //TODO:do it
+            throw new NotImplementedException();
+        }
+
+        public void UpdateHostingUnit(HostingUnit hu, int key)
+        {
+            //TODO:do it
+            throw new NotImplementedException();
+        }
+
+        public void UpdateOrder(int key, Enums.OrderStatus stat)
+        {
+            //TODO:do it
+            throw new NotImplementedException();
+        }
     }
 }
+
+/*
+tasks:
+1. finish to write all the definition
+2. write all the definition in IBL
+3. Write comments to all the function
+4. write the function
+     */
