@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using BE;
 using DAL;
+using System.Linq;
 
 namespace BL
 {
