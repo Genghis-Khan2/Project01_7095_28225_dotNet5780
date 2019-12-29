@@ -230,7 +230,7 @@ namespace DAL
         /// </summary>
         /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
         /// <exception cref="AlreadyExistsException">Thrown when guestRequest</exception>
-        /// <exception cref="InfoNotExists">Thrown when the GuestRequest of the Order already exists</exception>
+        /// <exception cref="InfoNotExistsException">Thrown when the GuestRequest of the Order already exists</exception>
         /// <param name="order">Order to be added to the data collection</param>
         public void AddOrder(Order order)
         {

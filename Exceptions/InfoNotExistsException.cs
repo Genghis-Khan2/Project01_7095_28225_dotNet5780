@@ -14,7 +14,7 @@ namespace Exceptions
         /// <param name="typeCheckingExisting">The type that needs the info that does not exist</param>
         /// <example>
         /// <code>
-        /// var e = new InfoNotExists("GuestRequest", "Order");
+        /// var e = new InfoNotExistsException("GuestRequest", "Order");
         /// Console.WriteLine(e.Message);
         /// "The GuestRequest does not exist for Order"
         /// </code>

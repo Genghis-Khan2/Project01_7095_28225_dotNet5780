@@ -168,22 +168,22 @@ namespace BL
         //TDOO:find good defintion to this functions
         IEnumerable<HostingUnit> GetAllAvailableHostingUnit(DateTime date, int days);
 
-        int getNumberOfDateInRange(DateTime startDay);
+        int GetNumberOfDateInRange(DateTime startDay);
 
-        int getNumberOfDateInRange(DateTime startDay, DateTime endDay);
+        int GetNumberOfDateInRange(DateTime startDay, DateTime endDay);
 
-        IEnumerable<Order> getAllOrderInRange(int numberOfDays);
-        IEnumerable<GuestRequest> getAllGuestRequestWhere(isMeetTheDefinition func);
+        IEnumerable<Order> GetAllOrderInRange(int numberOfDays);
+        IEnumerable<GuestRequest> GetAllGuestRequestWhere(isMeetTheDefinition func);
 
-        int getAmountOfOrderToGuest(GuestRequest guestRequest);
+        int GetAmountOfOrderToGuest(GuestRequest guestRequest);
 
-        int getAllsuccessfulOrder(HostingUnit hostingUnit);
+        int GetAllsuccessfulOrder(HostingUnit hostingUnit);
         #endregion
 
         #region Grouping functions
-        IEnumerable<IGrouping<Enums.Area, GuestRequest>> getAllGuestByArea();
-        IEnumerable<IGrouping<int, GuestRequest>> getAllGuestByNumerOfVacationers(Enums.Area area);//TODO:need to check if did all the grouping function
-        IEnumerable<IGrouping<int, Host>> getAllHostByNumberOfHostingUnits();
+        IEnumerable<IGrouping<Enums.Area, GuestRequest>> GetAllGuestByArea();
+        IEnumerable<IGrouping<int, GuestRequest>> GetAllGuestByNumerOfVacationers(Enums.Area area);//TODO:need to check if did all the grouping function
+        IEnumerable<IGrouping<int, Host>> GetAllHostByNumberOfHostingUnits();
         IEnumerable<IGrouping<Enums.Area, HostingUnit>> GetHostingUnitByArea(Enums.Area area);
         #endregion
 
