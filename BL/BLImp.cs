@@ -113,7 +113,7 @@ namespace BL
         /// </summary>
         /// <exception cref="KeyNotFoundException">Thrown if no hosting unit with a matching <paramref name="key"/> is found</exception>
         ///<exception cref=""></exception>
-            /// <param name="key">Key to remove the hosting unit of</param>
+        /// <param name="key">Key to remove the hosting unit of</param>
         public void RemoveHostingUnit(HostingUnit hu)
         {
             //TODO: write the function
