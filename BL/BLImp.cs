@@ -37,7 +37,7 @@ namespace BL
 
         #endregion
 
-        #region Functions used to work with the data also exist in the DAL layer
+        #region Functions used to work with the data, also exist in the DAL layer
 
         #region GuestRequest These functions perform actions on GuestRequests
 
@@ -227,41 +227,11 @@ namespace BL
 
         #endregion
 
+        #region Auxiliary functions used to process data from the DAL layer
 
-        /// <summary>
-        /// The function return all the GuestRequest That matches certain conditions (defined by <see cref="isMeetTheDefinition"/>)
-        /// </summary>
-        /// <param name="func">Function(defined by <see cref="isMeetTheDefinition"/>)</param>
-        /// <returns><see cref="IEnumerable{GuestRequest}"/> to go over the list of all the GuestRequest That match the condition</returns>
-        public IEnumerable<GuestRequest> GetAllGuestRequestWhere(isMeetTheDefinition func)
-        {
-            //TODO: write the function
-            throw new NotImplementedException();
-        }
+        #region Functions that perform date-related calculations
 
-        /// <summary>
-        /// The function return all the <see cref="Order"/> sent to <paramref name="guestRequest"/>
-        /// </summary>
-        /// <param name="guestRequest">The Guest Request to check how many <see cref="Order"/> where sent to her </param>
-        /// <exception cref="KeyNotFoundException">Thrown when there isnt GuestRequst in data that exsist the <paramref name="key"/></exception>
-        /// <returns>The amount of order sent to the GuestRequest</returns>
-        public int GetAmountOfOrderToGuest(GuestRequest guestRequest)
-        {
-            //TODO: write the function
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// The function returns the list of all available hosting units starting in the <paramref name="date"/> and ending <paramref name="days"/> days later
-        /// </summary>
-        /// <param name="date">Start date</param>
-        /// <param name="days">How many days</param>
-        /// <returns><see cref="IEnumerable{HostingUnit}"/> to go over the list of all free hosting unit in the range</returns>
-        public IEnumerable<HostingUnit> GetAllAvailableHostingUnit(DateTime date, int days)
-        {
-            //TODO: write the function
-            throw new NotImplementedException();
-        }
+        #region GetNumberOfDateInRange This function return the amount of date in range
 
         /// <summary>
         /// The function return all the days from the <paramref name="startDay"/> to now
@@ -273,6 +243,10 @@ namespace BL
             //TODO: write the function
             throw new NotImplementedException();
         }
+
+        #endregion
+
+        #region GetNumberOfDateInRange This function return the amount of day in range
 
         /// <summary>
         /// The function return all the days from the <paramref name="startDay"/> to <paramref name="endDay"/>
@@ -286,6 +260,59 @@ namespace BL
             throw new NotImplementedException();
         }
 
+        #endregion
+
+        #endregion
+        
+        #region GetAllGuestRequestWhere This function return all the GuestRequest that match condition
+
+        /// <summary>
+        /// The function return all the GuestRequest That matches certain conditions (defined by <see cref="isMeetTheDefinition"/>)
+        /// </summary>
+        /// <param name="func">Function(defined by <see cref="isMeetTheDefinition"/>)</param>
+        /// <returns><see cref="IEnumerable{GuestRequest}"/> to go over the list of all the GuestRequest That match the condition</returns>
+        public IEnumerable<GuestRequest> GetAllGuestRequestWhere(isMeetTheDefinition func)
+        {
+            //TODO: write the function
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region GetAmountOfOrderToGuest This function return the amount of order sent to GuestRequst
+
+        /// <summary>
+        /// The function return all the <see cref="Order"/> sent to <paramref name="guestRequest"/>
+        /// </summary>
+        /// <param name="guestRequest">The Guest Request to check how many <see cref="Order"/> where sent to her </param>
+        /// <exception cref="KeyNotFoundException">Thrown when there isnt GuestRequst in data that exsist the <paramref name="key"/></exception>
+        /// <returns>The amount of order sent to the GuestRequest</returns>
+        public int GetAmountOfOrderToGuest(GuestRequest guestRequest)
+        {
+            //TODO: write the function
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region GetAllAvailableHostingUnit This function return all the Available Hosting unit int range
+
+        /// <summary>
+        /// The function returns the list of all available hosting units starting in the <paramref name="date"/> and ending <paramref name="days"/> days later
+        /// </summary>
+        /// <param name="date">Start date</param>
+        /// <param name="days">How many days</param>
+        /// <returns><see cref="IEnumerable{HostingUnit}"/> to go over the list of all free hosting unit in the range</returns>
+        public IEnumerable<HostingUnit> GetAllAvailableHostingUnit(DateTime date, int days)
+        {
+            //TODO: write the function
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region GetAllOrderInRange This function return all the order where sent in some days
+        
         /// <summary>
         /// The function return all the <see cref="Order"/>s that the amount of day from there creation\since they sent email to the client 
         /// is greater or equal to <paramref name="numberOfDays"/>
@@ -300,7 +327,9 @@ namespace BL
             throw new NotImplementedException();
         }
 
+        #endregion
 
+        #region GetAllsuccessfulOrder This function return the amount of successful order sent to the HostingUnit
 
         /// <summary>
         /// The function returns the number of orders sent\the number
@@ -315,8 +344,13 @@ namespace BL
             throw new NotImplementedException();
         }
 
+        #endregion 
+
+        #endregion
+
         #region Functions used for grouping
 
+        #region GetAllGuestByArea This function return all the GuestRequest group by Area
 
         /// <summary>
         /// The function return all the GuestRequest group by <see cref="Enums.Area"/> 
@@ -328,6 +362,10 @@ namespace BL
             throw new NotImplementedException();
         }
 
+        #endregion
+
+        #region GetAllGuestByNumerOfVacationers This function return all the GuestRequest group by number of Vacationers
+
         /// <summary>
         /// The function return all the GuestRequest group by number of Vacationers
         /// </summary>
@@ -337,6 +375,10 @@ namespace BL
             //TODO: write the function
             throw new NotImplementedException();
         }//TODO:need to check if did all the grouping function
+
+        #endregion
+
+        #region GetAllHostByNumberOfHostingUnits This function return all the Host group by number of Hosting unit
 
         /// <summary>
         /// The function return all the Host group by the number of Hosting unit they have
@@ -348,6 +390,10 @@ namespace BL
             throw new NotImplementedException();
         }
 
+        #endregion
+
+        #region GetHostingUnitByArea This function return all the HostingUnit group by Area
+
         /// <summary>
         /// The function return all the Hosting unit group by area
         /// </summary>
@@ -357,6 +403,8 @@ namespace BL
             //TODO: do it
             throw new NotImplementedException();
         }
+
+        #endregion
 
         #endregion
 
