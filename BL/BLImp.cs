@@ -108,8 +108,7 @@ namespace BL
         /// <param name="hostingUnit">The HostingUnit to add</param>
         public void AddHostingUnit(HostingUnit hostingUnit)
         {
-            //TODO: we need notItems for Host?
-            throw new NotImplementedException();
+            DalImp.GetDal().AddHostingUnit(hostingUnit);
         }
 
         #endregion
@@ -140,6 +139,9 @@ namespace BL
         {
             //TODO: write the function
             //REMARK לא ניתן למחוק יחידת אירוח כל עוד יש הצעה הקשורה אליה במצב פתוח.
+
+            var allOrders = DalImp.GetDal().GetAllOrders();
+var all
             throw new NotImplementedException();
         }
 

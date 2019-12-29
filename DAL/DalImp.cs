@@ -453,5 +453,53 @@ namespace DAL
         #endregion
 
         #endregion
+
+        #region Host These function perform actions on Host
+
+        #region GetAllHosts This function return all the Hosts
+
+        /// <summary>
+        /// This function return all the Host 
+        /// </summary>
+        /// <exception cref="NoItemsException">Thrown when there are no Host</exception>
+        /// <returns><seealso cref="IEnumerable{Host}"/> to go over the list of all the Hosts</returns>
+        public IEnumerable<Host> GetAllHosts()
+        {
+            var listOfAllHosts = from item in DataSource.hostingUnitsList
+                                 select item.Owner;
+            if (listOfAllHosts.Count() == 0)
+                throw new NoItemsException("Host");
+            return listOfAllHosts.Distinct().ToList().Clone();
+        }
+
+        #endregion
+
+        #region GetHost This function return host
+
+        /// <summary>
+        /// This function return the Host with the <paramref name="key"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">The requested <see cref="Host"/>'s KEY</param>
+        /// <returns>The Host with the  <paramref name="key"/></returns>
+        public Host GetHost(int key)
+        {
+            try
+            {
+                var host = GetAllHosts().Where((x => x.HostKey == key));
+                if (host.Count() == 0)
+                    throw new KeyNotFoundException("No Host with key specified");
+                return host.First().Clone();
+            }
+            catch (NoItemsException)
+            {
+                throw new KeyNotFoundException("No Host with key specified");
+            }
+        }
+
+        #endregion
+
+        #endregion
+
     }
 }

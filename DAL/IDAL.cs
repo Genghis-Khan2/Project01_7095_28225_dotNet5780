@@ -174,5 +174,30 @@ namespace DAL
         #endregion
 
         #endregion
+
+        #region Host These function perform actions on Host
+
+        #region GetAllHosts This function return all the Hosts
+
+        /// <summary>
+        /// This function return all the Host 
+        /// </summary>
+        /// <returns><seealso cref="IEnumerable{Host}"/> to go over the list of all the Hosts</returns>
+        IEnumerable<Host> GetAllHosts();
+
+        #endregion
+
+        #region GetHost This function return host
+
+        /// <summary>
+        /// This function return the Host with the <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The requested <see cref="Host"/>'s KEY</param>
+        /// <returns>The Host with the  <paramref name="key"/></returns>
+        Host GetHost(int key);
+
+        #endregion
+        
+        #endregion
     }
 }

@@ -209,7 +209,7 @@ namespace DAL
         /// This function clones an Order List
         /// </summary>
         /// <param name="original">Order List to clone</param>
-        /// <returns>Order BankAccount List</returns>
+        /// <returns>Cloned Order List</returns>
         public static List<Order> Clone(this List<Order> original)
         {
             var ret = new List<Order>();
@@ -223,7 +223,26 @@ namespace DAL
 
         #endregion
 
+        #region Host-List-Clone Clones Host List
+
+        /// <summary>
+        /// This function clones an Host List
+        /// </summary>
+        /// <param name="original">Host List to clone</param>
+        /// <returns>Cloned Host List</returns>
+        public static List<Host> Clone(this List<Host> original)
+        {
+            var ret = new List<Host>();
+            foreach (var i in original)
+            {
+                ret.Add(i.Clone());
+            }
+
+            return ret;
+        }
+
         #endregion
 
+        #endregion
     }
 }
