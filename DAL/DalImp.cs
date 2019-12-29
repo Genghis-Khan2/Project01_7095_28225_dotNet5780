@@ -236,12 +236,12 @@ namespace DAL
         {
             if (!DataSource.guestRequestsList.Exists(x => x.GuestRequestKey == order.GuestRequestKey))
             {
-                throw new InfoNotExists("GuestRequest", "Order");
+                throw new InfoNotExistsException("GuestRequest", "Order");
             }
 
             if (!DataSource.hostingUnitsList.Exists(x => x.HostingUnitKey == order.HostingUnitKey))
             {
-                throw new InfoNotExists("HostingUnit", "Order");
+                throw new InfoNotExistsException("HostingUnit", "Order");
             }
 
             if (DataSource.ordersList.Exists(x => x.GuestRequestKey == order.GuestRequestKey))

@@ -116,6 +116,7 @@ namespace BE
         /// This variable Using by <see cref="Order"/>,
         /// This variable is not a "runner" and therefore does not need what we defined in the comment above
         /// </summary>
-        public static float Commission { get; set; } = 0;//TODO: get the real Commission
+        /// <remarks>We set it to 10 NIS according to the Targil</remarks>
+        public static float Commission { get; set; } = 10;
     }
 }

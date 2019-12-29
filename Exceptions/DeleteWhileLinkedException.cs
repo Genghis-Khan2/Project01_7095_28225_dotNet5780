@@ -7,7 +7,7 @@ namespace Exceptions
     /// <summary>
     /// <c>Exception</c> that represent error caused by trying to delete object when there are objects linked with it
     /// </summary>
-    class DeleteWhileLinked : Exception
+    class DeleteWhileLinkedException : Exception
     {
         /// <summary>
         /// Constructor that creates an exception with a specific error message suited
@@ -25,7 +25,7 @@ namespace Exceptions
         /// "Cannot delete the X object(ID: ******) because there are object(ID: ******) attached to it"
         /// </code>
         /// </example>
-        public DeleteWhileLinked(string ObjectType1, int ID1, string ObjectType2, int ID2)
+        public DeleteWhileLinkedException(string ObjectType1, int ID1, string ObjectType2, int ID2)
             : base(String.Format("Cannot delete the {0} object(ID: {1}) because there are objects({2} - ID: {3}) attached to it", ObjectType1, ID1, ObjectType2, ID2))
         {
 
