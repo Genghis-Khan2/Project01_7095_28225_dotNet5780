@@ -223,37 +223,62 @@ namespace BL
         /// <summary>
         /// The function return all the <see cref="Order"/> sent to <paramref name="guestRequest"/>
         /// </summary>
-        /// <param name="key">The Key of the Guest Request to check how many <see cref="Order"/> where sent to her </param>
-        /// <exception cref="NoItemsException"
-        /// <returns>The amount of order sent to <paramref name="guestRequest"/></returns>
-        public int getAmountOfOrderToGuest(int key)
+        /// <param name="guestRequest">The Guest Request to check how many <see cref="Order"/> where sent to her </param>
+        /// <exception cref="KeyNotFoundException">Thrown when there isnt GuestRequst in data that exsist the <paramref name="key"/></exception>
+        /// <returns>The amount of order sent to the GuestRequest</returns>
+        public int getAmountOfOrderToGuest(GuestRequest guestRequest)
         {
             //TODO: write the function
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// The function returns the number of orders sent\the number
+        /// of successfully closed orders for <paramref name="hostingUnit"/>
+        /// </summary>
+        /// <param name="hostingUnit">The hosting unit to check</param>
+        /// <returns>The number of orders sent\the number  of successfully closed orders for <paramref name="hostingUnit"/>
+        /// </returns>
         public int getAllsuccessfulOrder(HostingUnit hostingUnit)
         {
             //TODO: write the function
             throw new NotImplementedException();
         }
-        //TODO:work on it
-        public IEnumerable<IGrouping<Enums.Area, GuestRequest>> getAllGuestByArea()//is it a good prototype?
+
+        /// <summary>
+        /// The function return all the GuestRequest group by <see cref="Enums.Area"/> 
+        /// </summary>
+        /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all guestRequest group by area</returns>
+        public IEnumerable<IGrouping<Enums.Area, GuestRequest>> getAllGuestByArea()
         {
             //TODO: write the function
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// The function return all the GuestRequest group by number of Vacationers
+        /// </summary>
+        /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all guestRequest group by number of Vacationers</returns>
         public IEnumerable<IGrouping<int, GuestRequest>> getAllGuestByNumerOfVacationers(Enums.Area area)
         {
             //TODO: write the function
             throw new NotImplementedException();
         }//TODO:need to check if did all the grouping function
+
+        /// <summary>
+        /// The function return all the Host group by the number of Hosting unit they have
+        /// </summary>
+        /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all Host group by the number of Hosting unit they have</returns>
         public IEnumerable<IGrouping<int, Host>> getAllHostByNumberOfHostingUnits()
         {
             //TODO: do it
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// The function return all the Hosting unit group by area
+        /// </summary>
+        /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all the Hosting unit group by area</returns>
         public IEnumerable<IGrouping<Enums.Area, HostingUnit>> GetHostingUnitByArea(Enums.Area area)
         {
             //TODO: do it
@@ -267,6 +292,9 @@ namespace BL
 /*
 tasks:
 2. write all the definition in IBL
-3. Write comments to all the function
-4. write the function
+3. Write comments to all the function in BLimp
+4. write coment in IBL
+4.5. לסדר ע"י רגין
+5. לעבור על התנאים בתרגיל ולוודא שנזרקים חריגות בהתאם
+6. לכתוב את הפונקציות
      */
