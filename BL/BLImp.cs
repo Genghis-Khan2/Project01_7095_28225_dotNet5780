@@ -32,7 +32,7 @@ namespace BL
             }
             return instance;
         }
-
+        
         /// <summary>
         /// This function add GuestRequest to the data
         /// </summary>
@@ -54,11 +54,12 @@ namespace BL
             //TODO: we need notItems for Host?
             throw new NotImplementedException();
         }
-
+        
         /// <summary>
         /// Add Order to the data
         /// </summary>
         /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
+        /// <exception cref="InfoNotExists">Thrown when the GuestRequest or HostingUnit of the Order does not exist</exception>
         /// <param name="ord">Order to add</param>
         public void AddOrder(Order ord)
         {
@@ -111,29 +112,35 @@ namespace BL
         /// <summary>
         /// This function removes a hosting unit from the data
         /// </summary>
-        /// <exception cref="KeyNotFoundException">Thrown if no hosting unit with a matching <paramref name="key"/> is found</exception>
-        ///<exception cref=""></exception>
+        /// <exception cref="KeyNotFoundException">Thrown if no hosting unit in the data match the <paramref name="hostingUnit"/></exception>
+        ///<exception cref="DeleteWhileLinked">Thrown if there is any open <see cref="Order"/> linked to <paramref name="hostingUnit"/> </exception>
         /// <param name="key">Key to remove the hosting unit of</param>
-        public void RemoveHostingUnit(HostingUnit hu)
+        public void RemoveHostingUnit(int key)
         {
             //TODO: write the function
             //• לא ניתן למחוק יחידת אירוח כל עוד יש הצעה הקשורה אליה במצב פתוח.
             throw new NotImplementedException();
         }
 
-        public void UpdateGuestRequest(GuestRequest gr)
+        /// <summary>
+        /// This function updates a guest request of key <paramref name="key"/> to the status <paramref name="stat"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">Key of guest request to update</param>
+        /// <param name="stat">Status to update guest request to</param>
+        public void UpdateGuestRequest(int key, Enums.RequestStatus stat)
         {
             //TODO: write the function
             throw new NotImplementedException();
         }
 
-        public void UpdateHostingUnit(HostingUnit hu)
+        public void UpdateHostingUnit(HostingUnit hu, int key)
         {
             //TODO: write the function
             throw new NotImplementedException();
         }
 
-        public void UpdateOrder(Order ord)
+        public void UpdateOrder(int key, Enums.OrderStatus stat)
         {
             //TODO: write the function
             throw new NotImplementedException();
@@ -202,29 +209,7 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public void UpdateGuestRequest(int key, Enums.RequestStatus stat)
-        {
-            //TODO:do it
-            throw new NotImplementedException();
-        }
 
-        public void RemoveHostingUnit(int key)
-        {
-            //TODO:do it
-            throw new NotImplementedException();
-        }
-
-        public void UpdateHostingUnit(HostingUnit hu, int key)
-        {
-            //TODO:do it
-            throw new NotImplementedException();
-        }
-
-        public void UpdateOrder(int key, Enums.OrderStatus stat)
-        {
-            //TODO:do it
-            throw new NotImplementedException();
-        }
     }
 }
 
