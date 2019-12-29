@@ -106,9 +106,9 @@ namespace BL
         /// <summary>
         /// This function updates a hosting unit
         /// </summary>
-        /// <param name="hu">Hosting unit to update to</param>
+        /// <param name="hostingUnit">Hosting unit to update to</param>
         /// <param name="key">Key of hosting unit to update</param>
-        void UpdateHostingUnit(HostingUnit hu, int key);
+        void UpdateHostingUnit(HostingUnit hostingUnit, int key);
 
         #endregion
 

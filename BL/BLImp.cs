@@ -133,16 +133,17 @@ namespace BL
         /// This function removes a hosting unit from the data
         /// </summary>
         /// <exception cref="KeyNotFoundException">Thrown if no hosting unit in the data match the hosting unit with the <paramref name="key"/></exception>
-        ///<exception cref="ChangedWhileLinkedException">Thrown if there is any open <see cref="Order"/> linked to the hosting unit with the <paramref name="key"/> and you try to change the <see cref="Host.CollectionClearance"/> property in the <see cref="HostingUnit.Owner"/> property</exception>
+        ///<exception cref="ChangedWhileLinkedException">Thrown if there is any open <see cref="Order"/> linked to the hosting unit with the <paramref name="key"/> and you try to delete it</exception>
         /// <param name="key">Key to remove the hosting unit of</param>
         public void RemoveHostingUnit(int key)
         {
+            //we assume that An Order considered "open" if  its status is "Enums.OrderStatus.UnTreated" and also "Enums.OrderStatus.SentMail"
             //REMARK לא ניתן למחוק יחידת אירוח כל עוד יש הצעה הקשורה אליה במצב פתוח.
-            var linkOrderList = from order in DalImp.GetDal().GetAllOrders()
-                                where order.HostingUnitKey == key
-                                select order;
-            if (linkOrderList.Count() != 0)
-                throw new ChangedWhileLinkedException("delete", "HostingUnit", key, "Order", linkOrderList.First().OrderKey);
+            var linkedOpenOrderList = from order in DalImp.GetDal().GetAllOrders()
+                                      where (order.HostingUnitKey == key && (order.Status == Enums.OrderStatus.UnTreated || order.Status == Enums.OrderStatus.SentMail))
+                                      select order;
+            if (linkedOpenOrderList.Count() != 0)
+                throw new ChangedWhileLinkedException("delete", "HostingUnit", key, "Order", linkedOpenOrderList.First().OrderKey);
             DalImp.GetDal().RemoveHostingUnit(key);
         }
 
@@ -154,14 +155,24 @@ namespace BL
         /// This function updates a hosting unit
         /// </summary>
         /// <exception cref="KeyNotFoundException">Thrown when hosting unit with <paramref name="key"/> is not found</exception>
-        /// <exception cref="de"
-        /// <param name="hu">Hosting unit to update to</param>
+        ///<exception cref="ChangedWhileLinkedException">Thrown if there is any open <see cref="Order"/> linked to the hosting unit with the <paramref name="key"/> and you try to change the <see cref="Host.CollectionClearance"/> property in the <see cref="HostingUnit.Owner"/> property</exception>
+        /// <param name="hostingUnit">Hosting unit to update to</param>
         /// <param name="key">Key of hosting unit to update</param>
-        public void UpdateHostingUnit(HostingUnit hu, int key)
+        public void UpdateHostingUnit(HostingUnit hostingUnit, int key)
         {
-            //TODO: write the function
+            //we assume that An Order considered "open" if  its status is "Enums.OrderStatus.UnTreated" and also "Enums.OrderStatus.SentMail
             //REMARK: • לא ניתן לבטל הרשאה לחיוב חשבון כאשר יש הצעה הקשורה אליה במצב פתוח.
-            throw new NotImplementedException();
+            var hostBeforeUpdating = DalImp.GetDal().GetHost(key);
+            if (!hostingUnit.Owner.CollectionClearance && hostBeforeUpdating.CollectionClearance)//If you try to cancel the account cancellation permission
+            {
+                var linkedOpenOrderList = from order in DalImp.GetDal().GetAllOrders()
+                                          where (order.HostingUnitKey == key && (order.Status == Enums.OrderStatus.UnTreated || order.Status == Enums.OrderStatus.SentMail))
+                                          select order;
+                if (linkedOpenOrderList.Count() != 0)
+                    throw new ChangedWhileLinkedException("change CollectionClearance of", "HostingUnit", key, "Order", linkedOpenOrderList.First().OrderKey);
+
+            }
+            DalImp.GetDal().UpdateHostingUnit(hostingUnit, key);
         }
         #endregion
 
@@ -183,7 +194,7 @@ namespace BL
             //REMARK: יש לוודא בעת יצירת הזמנה ללקוח, שהתאריכים המבוקשים פנויים ביחידת האירוח שמוצעת לו.
             //REMARK: לא ניתן לקבוע אירוח לתאריך שכבר תפוס ע"י לקוח אחר
             //REMARK: • אם מוסיפים הזמנה, אזי יש לוודא שהלקוח ויחידת האירוח אכן קיימים.
-            
+
             throw new NotImplementedException();
         }
 
