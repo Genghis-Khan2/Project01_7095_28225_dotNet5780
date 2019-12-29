@@ -127,7 +127,7 @@ namespace BL
         /// This function removes a hosting unit from the data
         /// </summary>
         /// <exception cref="KeyNotFoundException">Thrown if no hosting unit in the data match the hosting unit with the <paramref name="key"/></exception>
-        ///<exception cref="DeleteWhileLinkedException">Thrown if there is any open <see cref="Order"/> linked to the hosting unit with the <paramref name="key"/> </exception>
+        ///<exception cref="ChangedWhileLinkedException">Thrown if there is any open <see cref="Order"/> linked to the hosting unit with the <paramref name="key"/> and you try to change the <see cref="Host.CollectionClearance"/> property in the <see cref="HostingUnit.Owner"/> property</exception>
         /// <param name="key">Key to remove the hosting unit of</param>
         public void RemoveHostingUnit(int key)
         {
@@ -144,6 +144,7 @@ namespace BL
         /// This function updates a hosting unit
         /// </summary>
         /// <exception cref="KeyNotFoundException">Thrown when hosting unit with <paramref name="key"/> is not found</exception>
+        /// <exception cref="de"
         /// <param name="hu">Hosting unit to update to</param>
         /// <param name="key">Key of hosting unit to update</param>
         public void UpdateHostingUnit(HostingUnit hu, int key)
@@ -198,8 +199,8 @@ namespace BL
         /// This function updates an order with a key of <paramref name="key"/> to a status of <paramref name="stat"/>
         /// </summary>
         /// <exception cref="KeyNotFoundException">Thrown when an order with the specified key is not found</exception>
-        ///<exception cref=""
-            /// <param name="key">Key of Order to update the status of</param>
+        ///<exception cref="AlreadyClosedException">Thrown when tryin to change the status of Order Whose status has already been set to "closed"</exception>
+        /// <param name="key">Key of Order to update the status of</param>
         /// <param name="stat">Status to update Order status to</param>
         public void UpdateOrder(int key, Enums.OrderStatus stat)
         {
