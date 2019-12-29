@@ -17,21 +17,23 @@ namespace BE
         {
             get
             {
-                return this.MailAddress;
+                return mailAddress;
             }
             set
             {
                 try
                 {
                     new System.Net.Mail.MailAddress(value);
-                    this.MailAddress = value;
+                    this.mailAddress = value;
                 }
                 catch
                 {
-                    this.MailAddress = "plony@almony.com";
+                    mailAddress = "plony@almony.com";
                 }
             }
         }
+
+        private string mailAddress;
         public BankBranch BankBranchDetails { get; set; }
         public int BankAccountNumber { get; set; }
         public bool CollectionClearance { get; set; }

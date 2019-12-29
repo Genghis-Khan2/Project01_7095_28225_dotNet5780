@@ -151,7 +151,7 @@ namespace UI
             }
 
             Console.WriteLine("GuestRequests requiring a pool:");
-            foreach (var i in bl.getAllGuestRequestWhere(isGuestRequestWithPool))
+            foreach (var i in bl.GetAllGuestRequestWhere(isGuestRequestWithPool))
             {
                 Console.WriteLine(i);
             }
@@ -163,7 +163,7 @@ namespace UI
             }
 
             Console.WriteLine("Amount of orders to the guest:");
-            Console.WriteLine(bl.getAmountOfOrderToGuest(gr));
+            //Console.WriteLine(bl.getAmountOfOrderToGuest(gr));
         }
     }
 }
