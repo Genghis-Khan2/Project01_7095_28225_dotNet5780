@@ -20,7 +20,7 @@ namespace Exceptions
         /// <code>
         /// var e = new AlreadyExistsException(123, "GuestRequest");
         /// Console.WriteLine(e.Message);
-        /// "The key 123 already exists as a GuestRequest"
+        /// OUTPUT: "The key 123 already exists as a GuestRequest"
         /// </code>
         /// </example>
         public AlreadyExistsException(int val, string type)

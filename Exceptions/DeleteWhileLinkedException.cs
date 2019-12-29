@@ -20,13 +20,13 @@ namespace Exceptions
         /// <param name="ID2">The ID number of the object linked to the object that they were trying to delete</param>
         /// <example>
         /// <code>
-        /// var e = new DeleteWhileLinked(new HostingUnit(), new Order());
+        /// var e = new DeleteWhileLinked("HostingUnit", 1234, "Order", 1024);
         /// Console.WriteLine(e.Message);
-        /// "Cannot delete the X object(ID: ******) because there are object(ID: ******) attached to it"
+        /// OUTPUT: "Cannot delete the HostingUnit object(ID: 1234) because the Order(ID: 1024) object attached to it"
         /// </code>
         /// </example>
         public DeleteWhileLinkedException(string ObjectType1, int ID1, string ObjectType2, int ID2)
-            : base(String.Format("Cannot delete the {0} object(ID: {1}) because there are objects({2} - ID: {3}) attached to it", ObjectType1, ID1, ObjectType2, ID2))
+            : base(String.Format("Cannot delete the {0} object(ID: {1}) because the {2}(ID: {3}) object attached to it", ObjectType1, ID1, ObjectType2, ID2))
         {
 
         }

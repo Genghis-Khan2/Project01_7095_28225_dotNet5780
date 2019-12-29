@@ -16,7 +16,7 @@ namespace Exceptions
         /// <code>
         /// var e = new InfoNotExistsException("GuestRequest", "Order");
         /// Console.WriteLine(e.Message);
-        /// "The GuestRequest does not exist for Order"
+        /// OUTPUT: "The GuestRequest does not exist for Order"
         /// </code>
         /// </example>
         public InfoNotExistsException(string typeNotExisting, string typeCheckingExisting)

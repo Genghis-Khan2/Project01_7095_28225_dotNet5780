@@ -126,8 +126,8 @@ namespace BL
         /// <summary>
         /// This function removes a hosting unit from the data
         /// </summary>
-        /// <exception cref="KeyNotFoundException">Thrown if no hosting unit in the data match the <paramref name="hostingUnit"/></exception>
-        ///<exception cref="DeleteWhileLinkedException">Thrown if there is any open <see cref="Order"/> linked to <paramref name="hostingUnit"/> </exception>
+        /// <exception cref="KeyNotFoundException">Thrown if no hosting unit in the data match the hosting unit with the <paramref name="key"/></exception>
+        ///<exception cref="DeleteWhileLinkedException">Thrown if there is any open <see cref="Order"/> linked to the hosting unit with the <paramref name="key"/> </exception>
         /// <param name="key">Key to remove the hosting unit of</param>
         public void RemoveHostingUnit(int key)
         {
@@ -198,7 +198,8 @@ namespace BL
         /// This function updates an order with a key of <paramref name="key"/> to a status of <paramref name="stat"/>
         /// </summary>
         /// <exception cref="KeyNotFoundException">Thrown when an order with the specified key is not found</exception>
-        /// <param name="key">Key of Order to update the status of</param>
+        ///<exception cref=""
+            /// <param name="key">Key of Order to update the status of</param>
         /// <param name="stat">Status to update Order status to</param>
         public void UpdateOrder(int key, Enums.OrderStatus stat)
         {
@@ -426,4 +427,7 @@ tasks:
 6. לכתוב את הפונקציות
 7.לוודא שכל התנאים מומשו(כל הלינקיו וכו')
 8. לבדוק את הפונקציות
-     */
+    TODO: do auto refactor to all code
+     * */
+
+
