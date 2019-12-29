@@ -137,12 +137,13 @@ namespace BL
         /// <param name="key">Key to remove the hosting unit of</param>
         public void RemoveHostingUnit(int key)
         {
-            //TODO: write the function
             //REMARK לא ניתן למחוק יחידת אירוח כל עוד יש הצעה הקשורה אליה במצב פתוח.
-
-            var allOrders = DalImp.GetDal().GetAllOrders();
-var all
-            throw new NotImplementedException();
+            var linkOrderList = from order in DalImp.GetDal().GetAllOrders()
+                                where order.HostingUnitKey == key
+                                select order;
+            if (linkOrderList.Count() != 0)
+                throw new ChangedWhileLinkedException("delete", "HostingUnit", key, "Order", linkOrderList.First().OrderKey);
+            DalImp.GetDal().RemoveHostingUnit(key);
         }
 
         #endregion
@@ -179,10 +180,10 @@ var all
         public void AddOrder(Order ord)
         {
             //TODO: write the function
-            //TODO: dont need exception when HostingUnit and GuestRequest isnt exist?
             //REMARK: יש לוודא בעת יצירת הזמנה ללקוח, שהתאריכים המבוקשים פנויים ביחידת האירוח שמוצעת לו.
             //REMARK: לא ניתן לקבוע אירוח לתאריך שכבר תפוס ע"י לקוח אחר
             //REMARK: • אם מוסיפים הזמנה, אזי יש לוודא שהלקוח ויחידת האירוח אכן קיימים.
+            
             throw new NotImplementedException();
         }
 
