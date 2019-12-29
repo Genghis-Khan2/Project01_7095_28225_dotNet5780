@@ -229,7 +229,8 @@ namespace DAL
         /// This function addes an <paramref name="order"/> to the data's list
         /// </summary>
         /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
-        /// <exception cref="InfoNotExists">Thrown when the GuestRequest or HostingUnit of the Order does not exist</exception>
+        /// <exception cref="AlreadyExistsException">Thrown when guestRequest</exception>
+        /// <exception cref="InfoNotExists">Thrown when the GuestRequest of the Order already exists</exception>
         /// <param name="order">Order to be added to the data collection</param>
         public void AddOrder(Order order)
         {
@@ -241,6 +242,11 @@ namespace DAL
             if (!DataSource.hostingUnitsList.Exists(x => x.HostingUnitKey == order.HostingUnitKey))
             {
                 throw new InfoNotExistsException("HostingUnit", "Order");
+            }
+
+            if (DataSource.ordersList.Exists(x => x.GuestRequestKey == order.GuestRequestKey))
+            {
+                throw new AlreadyExistsException(order.GuestRequestKey, "Order's GuestRequest");
             }
 
             if (0 == order.OrderKey)
