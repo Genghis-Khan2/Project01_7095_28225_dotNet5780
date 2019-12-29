@@ -149,7 +149,7 @@ namespace UI
                 Console.WriteLine(i);
             }
 
-            foreach (var i in bl.getAllGuestRequestWhere(isGuestRequestWithPool)
+            foreach (var i in bl.getAllGuestRequestWhere(isGuestRequestWithPool))
                 {
                 Console.WriteLine(i);
             }
