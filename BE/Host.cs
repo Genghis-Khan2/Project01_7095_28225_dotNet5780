@@ -34,7 +34,7 @@ namespace BE
         }
         public BankBranch BankBranchDetails { get; set; }
         public int BankAccountNumber { get; set; }
-        public bool CollectionClearance { get; set; }//TODO: is it list?
+        public bool CollectionClearance { get; set; }
 
         /// <summary>
         /// The function returns the host information in a string type

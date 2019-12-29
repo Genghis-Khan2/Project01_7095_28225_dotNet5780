@@ -52,7 +52,7 @@ namespace BL
         public void AddGuestRequest(GuestRequest gr)
         {
             //TODO:do it
-            //תאריך תחילת הנופש קודם לפחות ביום אחד לתאריך סיום הנופש
+            //REMARK: תאריך תחילת הנופש קודם לפחות ביום אחד לתאריך סיום הנופש
             throw new NotImplementedException();
         }
 
@@ -72,7 +72,7 @@ namespace BL
 
         #endregion
 
-        #region UpdateGuestRequest This function updates a guest request
+        #region UpdateGuestRequest This function updates a guest request status
 
         /// <summary>
         /// This function updates a guest request of key <paramref name="key"/> to the status <paramref name="stat"/>
@@ -132,7 +132,7 @@ namespace BL
         public void RemoveHostingUnit(int key)
         {
             //TODO: write the function
-            //• לא ניתן למחוק יחידת אירוח כל עוד יש הצעה הקשורה אליה במצב פתוח.
+            //REMARK לא ניתן למחוק יחידת אירוח כל עוד יש הצעה הקשורה אליה במצב פתוח.
             throw new NotImplementedException();
         }
 
@@ -149,6 +149,7 @@ namespace BL
         public void UpdateHostingUnit(HostingUnit hu, int key)
         {
             //TODO: write the function
+            //REMARK: • לא ניתן לבטל הרשאה לחיוב חשבון כאשר יש הצעה הקשורה אליה במצב פתוח.
             throw new NotImplementedException();
         }
         #endregion
@@ -169,7 +170,9 @@ namespace BL
         {
             //TODO: write the function
             //TODO: dont need exception when HostingUnit and GuestRequest isnt exist?
-            //יש לוודא בעת יצירת הזמנה ללקוח, שהתאריכים המבוקשים פנויים ביחידת האירוח שמוצעת לו.
+            //REMARK: יש לוודא בעת יצירת הזמנה ללקוח, שהתאריכים המבוקשים פנויים ביחידת האירוח שמוצעת לו.
+            //REMARK: לא ניתן לקבוע אירוח לתאריך שכבר תפוס ע"י לקוח אחר
+            //REMARK: • אם מוסיפים הזמנה, אזי יש לוודא שהלקוח ויחידת האירוח אכן קיימים.
             throw new NotImplementedException();
         }
 
@@ -189,7 +192,7 @@ namespace BL
 
         #endregion
 
-        #region UpdateOrder This function updates an order
+        #region UpdateOrder This function updates an order status
 
         /// <summary>
         /// This function updates an order with a key of <paramref name="key"/> to a status of <paramref name="stat"/>
@@ -200,6 +203,12 @@ namespace BL
         public void UpdateOrder(int key, Enums.OrderStatus stat)
         {
             //TODO: write the function
+            //REMARK: בעל יחידת אירוח יוכל לשלוח הזמנה ללקוח )שינוי הסטטוס ל "נשלח מייל"(, רק אם חתם על הרשאה לחיוב חשבון בנק
+            //REMARK: לאחר שסטטוס ההזמנה השתנה לסגירת עיסקה – לא ניתן לשנות יותר את הסטטוס שלה.
+            //REMARK: כאשר סטטוס ההזמנה משתנה בגלל סגירת עסקה – יש לבצע חישוב עמלה בגובה של 10 ₪ ליום אירוח. )עיין הערה למטה(
+            //REMARK: כאשר סטטוס ההזמנה משתנה בגלל סגירת עסקה – יש לסמן במטריצה את התאריכים הרלוונטיים.
+            //REMARK: כאשר סטטוס הזמנה משתנה עקב סגירת עסקה – יש לשנות את הסטטוס של דרישת הלקוח בהתאם, וכן לשנות את הסטטוס של כל ההזמנות האחרות של אותו לקוח.
+            //REMARK:   כאשר סטטוס ההזמנה משתנה ל"נשלח מייל" – המערכת תשלח באופן אוטומטי מייל  ללקוח עם פרטי ההזמנה. ניתן לדחות את הביצוע בפועל של שליחת המייל לשלב הבא, וכעת רק להדפיס הודעה על המסך.
             throw new NotImplementedException();
         }
 
@@ -413,10 +422,8 @@ namespace BL
 
 /*
 tasks:
-2. write all the definition in IBL
-3. Write comments to all the function in BLimp
-4. write coment in IBL
-4.5. לסדר ע"י רגין
 5. לעבור על התנאים בתרגיל ולוודא שנזרקים חריגות בהתאם
 6. לכתוב את הפונקציות
+7.לוודא שכל התנאים מומשו(כל הלינקיו וכו')
+8. לבדוק את הפונקציות
      */
