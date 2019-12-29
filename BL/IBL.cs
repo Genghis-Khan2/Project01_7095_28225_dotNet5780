@@ -246,6 +246,19 @@ namespace BL
 
         #endregion
 
+        #region CheckIfAvailable This function check if the diary available in the range
+
+        /// <summary>
+        /// The function return if the range between <paramref name="entryDate"/> to <paramref name="ReleaseDate"/> is Available
+        /// </summary>
+        /// <param name="diary">The Array of all the date in the year</param>
+        /// <param name="entryDate">Entry date of the range</param>
+        /// <param name="ReleaseDate">Release date of the range</param>
+        /// <returns>Boolean, if the range is available</returns>
+        bool CheckIfAvailable(bool[,] diary, DateTime entryDate, DateTime ReleaseDate);
+
+        #endregion
+
         #endregion
 
         #region Grouping functions

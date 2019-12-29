@@ -12,6 +12,11 @@ namespace BL
     /// Implemented using lists for the data types
     /// See <see cref="IBL"/> for the BL interface
     /// </summary>
+    /// <remarks>
+    /// For represent dates we use the <see cref="DateTime"/> class But because we are always talking about the range
+    /// of that year (<see cref="HostingUnit.Diary"/> represents one year) we do not refer to the "year" part of the object, 
+    /// so for convenience in calculations we always place it to 2020 
+    /// </remarks>
     public class BLImp : IBL
     {
         #region Singletory These parts are what make the class a singletory
@@ -52,7 +57,7 @@ namespace BL
         public void AddGuestRequest(GuestRequest gr)
         {
             //REMARK: תאריך תחילת הנופש קודם לפחות ביום אחד לתאריך סיום הנופש
-            if (gr.EntryDate.AddDays(1) > gr.ReleaseDate)
+            if (!IsLeastThenOneDay(gr.EntryDate, gr.ReleaseDate))
             {
                 throw new ArgumentException("The release date must be at least one day after the entry date", "ReleaseDate");
             }
@@ -389,7 +394,65 @@ namespace BL
 
         #endregion
 
-        #region checkIfAvailable(bool[12,31] diary, DateTime entryDate, )
+        #region Function to work with Dairy array
+
+        #region CheckIfAvailable This function check if the diary available in the range
+
+        /// <summary>
+        /// The function return if the range between <paramref name="entryDate"/> to <paramref name="ReleaseDate"/> is Available
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the vacation start date is not at least one day before the vacation end date</exception>
+        /// <exception cref="FormatException">Thrown when the Format of the <paramref name="diary"/> isnt good</exception>
+        /// <param name="diary">The Array of all the date in the year</param>
+        /// <param name="entryDate">Entry date of the range</param>
+        /// <param name="ReleaseDate">Release date of the range</param>
+        /// <returns>Boolean, if the range is available</returns>
+        public bool CheckIfAvailable(bool[,] diary, DateTime entryDate, DateTime ReleaseDate)
+        {
+            if (!IsLeastThenOneDay(entryDate, ReleaseDate))
+                throw new ArgumentException("The release date must be at least one day after the entry date", "ReleaseDate");
+            try
+            {
+                DateTime end = new DateTime(2020, ReleaseDate.Month, ReleaseDate.Day);
+
+                for (DateTime dt = new DateTime(2020, entryDate.Month, entryDate.Day); dt < end; dt = dt.AddDays(1))
+                {
+                    //We assume that the array is defined in this way: bool[12,31]
+                    if (diary[dt.Month, dt.Day])
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                throw new FormatException("Diary must be 12*31 array");
+            }
+        }
+
+        #endregion
+
+        #region IsLeastThenOneDay This function check if date is at least one day before the second date
+
+        /// <summary>
+        /// This function check if <paramref name="date1"/> is at least one day before the <paramref name="date2"/>
+        /// </summary>
+        /// <param name="date1">First date</param>
+        /// <param name="date2">Second date</param>
+        /// <returns>Boolean, if date is at least one day before the second date</returns>
+        public bool IsLeastThenOneDay(DateTime date1, DateTime date2)
+        {
+            DateTime dt1 = new DateTime(2020, date1.Month, date1.Day);
+            DateTime dt2 = new DateTime(2020, date2.Month, date2.Day);
+            if (date1.AddDays(1) > date2)
+                return false;
+            return true;
+        }
+
+        #endregion
+
+        #endregion
 
         #endregion
 
