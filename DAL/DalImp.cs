@@ -279,7 +279,7 @@ namespace DAL
         /// <param name="order">Order to be added to the data collection</param>
         public void AddOrder(Order order)
         {
-            
+
             if (DataSource.ordersList.Exists(x => x.GuestRequestKey == order.GuestRequestKey))
             {
                 throw new AlreadyExistsException(order.GuestRequestKey, "Order's GuestRequest");

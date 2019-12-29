@@ -197,7 +197,7 @@ namespace DAL
         Host GetHost(int key);
 
         #endregion
-        
+
         #endregion
     }
 }

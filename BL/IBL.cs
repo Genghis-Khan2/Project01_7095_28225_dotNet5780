@@ -246,6 +246,8 @@ namespace BL
 
         #endregion
 
+        #region Function to work with Dairy array
+
         #region CheckIfAvailable This function check if the diary available in the range
 
         /// <summary>
@@ -258,6 +260,21 @@ namespace BL
         bool CheckIfAvailable(bool[,] diary, DateTime entryDate, DateTime ReleaseDate);
 
         #endregion
+
+        #region IsLeastThenOneDay This function check if date is at least one day before the second date
+
+        /// <summary>
+        /// This function check if <paramref name="date1"/> is at least one day before the <paramref name="date2"/>
+        /// </summary>
+        /// <param name="date1">First date</param>
+        /// <param name="date2">Second date</param>
+        /// <returns>Boolean, if date is at least one day before the second date</returns>
+        bool IsLeastThenOneDay(DateTime date1, DateTime date2);
+
+        #endregion
+
+        #endregion
+
 
         #endregion
 
