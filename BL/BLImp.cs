@@ -87,9 +87,10 @@ namespace BL
         ///<remarks>I assume that like <see cref="UpdateOrder(int, Enums.OrderStatus)"/> if the status is already close its need to throw Exception</remarks>
         public void UpdateGuestRequest(int key, Enums.RequestStatus stat)
         {
-            GuestRequest gr = DalImp.GetDal().GetGuestRequests(key);
-
-            throw new NotImplementedException();
+            GuestRequest gr = DalImp.GetDal().GetGuestRequest(key);
+            if (gr.Status == Enums.RequestStatus.ClosedWithDeal || gr.Status == Enums.RequestStatus.CloseWithExpired)
+                throw new AlreadyClosedException("GuestRequest", gr.GuestRequestKey);
+            DalImp.GetDal().UpdateGuestRequest(key, stat);
         }
 
         #endregion

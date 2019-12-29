@@ -7,7 +7,7 @@ namespace Exceptions
     /// <summary>
     /// <c>Exception</c> that represents an error caused by trying to change object that is status is closed
     /// </summary>
-    class AlreadyClosedException : Exception
+    public class AlreadyClosedException : Exception
     {
         /// <summary>
         /// Constructor that creates an exception with a specific error message
@@ -28,3 +28,4 @@ namespace Exceptions
 
         }
     }
+}

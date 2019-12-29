@@ -7,7 +7,7 @@ namespace Exceptions
     /// <summary>
     /// <c>Exception</c> that represent error caused by trying to delete object when there are objects linked with it
     /// </summary>
-    class ChangedWhileLinkedException : Exception
+    public class ChangedWhileLinkedException : Exception
     {
         /// <summary>
         /// Constructor that creates an exception with a specific error message suited
