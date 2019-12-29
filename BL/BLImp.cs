@@ -51,9 +51,12 @@ namespace BL
         /// <param name="gr">The GuestRequst to add</param>
         public void AddGuestRequest(GuestRequest gr)
         {
-            //TODO:do it
             //REMARK: תאריך תחילת הנופש קודם לפחות ביום אחד לתאריך סיום הנופש
-            throw new NotImplementedException();
+            if (gr.EntryDate.AddDays(1) > gr.ReleaseDate)
+            {
+                throw new ArgumentException("The release date must be at least one day after the entry date", "ReleaseDate");
+            }
+            DalImp.GetDal().AddGuestRequest(gr);
         }
 
         #endregion
@@ -78,11 +81,14 @@ namespace BL
         /// This function updates a guest request of key <paramref name="key"/> to the status <paramref name="stat"/>
         /// </summary>
         /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        ///<exception cref="AlreadyClosedException">Thrown when tryin to change the status of GuestRequest Whose status has already been set to "closed"</exception>
         /// <param name="key">Key of guest request to update</param>
         /// <param name="stat">Status to update guest request to</param>
+        ///<remarks>I assume that like <see cref="UpdateOrder(int, Enums.OrderStatus)"/> if the status is already close its need to throw Exception</remarks>
         public void UpdateGuestRequest(int key, Enums.RequestStatus stat)
         {
-            //TODO: write the function
+            GuestRequest gr = DalImp.GetDal().GetGuestRequests(key);
+
             throw new NotImplementedException();
         }
 
@@ -424,7 +430,6 @@ namespace BL
 
 /*
 tasks:
-5. לעבור על התנאים בתרגיל ולוודא שנזרקים חריגות בהתאם
 6. לכתוב את הפונקציות
 7.לוודא שכל התנאים מומשו(כל הלינקיו וכו')
 8. לבדוק את הפונקציות

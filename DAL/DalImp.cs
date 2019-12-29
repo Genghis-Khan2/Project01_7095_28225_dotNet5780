@@ -116,6 +116,27 @@ namespace DAL
 
         #endregion
 
+        #region GetGuestRequest This function return guestRequset
+
+        /// <summary>
+        /// This function return GuestRequest according to <paramref name="key"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">The key of the GuestRequest</param>
+        /// <returns>The GuestRequest with the <paramref name="key"/></returns>
+        public GuestRequest GetGuestRequest(int key)
+        {
+            int i = DataSource.guestRequestsList.FindIndex(t => t.GuestRequestKey == key);
+
+            if (-1 == i)
+            {
+                throw new KeyNotFoundException("No guest request with key specified");
+            }
+            return DataSource.guestRequestsList[i].Clone();
+        }
+
+        #endregion
+
         #endregion
 
         #region HostingUnit These functions perform actions on HostingUnits
@@ -220,6 +241,27 @@ namespace DAL
 
         #endregion
 
+        #region GetHostingUnit This function return HostingUnit
+
+        /// <summary>
+        /// This function return HostingUnit according to <paramref name="key"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">The key of the HostingUnit</param>
+        /// <returns>The HostingUnit with the <paramref name="key"/></returns>
+        public HostingUnit GetHostingUnit(int key)
+        {
+            int i = DataSource.hostingUnitsList.FindIndex(t => t.HostingUnitKey == key);
+
+            if (-1 == i)
+            {
+                throw new KeyNotFoundException("No hosting unit with key specified");
+            }
+            return DataSource.hostingUnitsList[i].Clone();
+        }
+
+        #endregion
+
         #endregion
 
         #region Order These functions perform actions on Orders
@@ -310,6 +352,27 @@ namespace DAL
             }
 
             DataSource.ordersList[index].Status = stat;
+        }
+
+        #endregion
+
+        #region GetOrder This function return Order
+
+        /// <summary>
+        /// This function return Order according to <paramref name="key"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">The key of the Order</param>
+        /// <returns>The Order with the <paramref name="key"/></returns>
+        public Order GetOrder(int key)
+        {
+            int i = DataSource.ordersList.FindIndex(t => t.OrderKey == key);
+
+            if (-1 == i)
+            {
+                throw new KeyNotFoundException("No order with key specified");
+            }
+            return DataSource.ordersList[i].Clone();
         }
 
         #endregion
