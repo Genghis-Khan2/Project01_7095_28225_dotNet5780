@@ -16,6 +16,7 @@ namespace DAL
     public class DalImp : IDAL
     {
         #region Singletory These parts are what make the class a singletory
+
         /// <summary>
         /// Private constructor for DalImp so that another instance can't be created
         /// </summary>
@@ -111,6 +112,27 @@ namespace DAL
             }
 
             DataSource.guestRequestsList[i].Status = stat;
+        }
+
+        #endregion
+
+        #region GetGuestRequest This function return guestRequset
+
+        /// <summary>
+        /// This function return GuestRequest according to <paramref name="key"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">The key of the GuestRequest</param>
+        /// <returns>The GuestRequest with the <paramref name="key"/></returns>
+        public GuestRequest GetGuestRequest(int key)
+        {
+            int i = DataSource.guestRequestsList.FindIndex(t => t.GuestRequestKey == key);
+
+            if (-1 == i)
+            {
+                throw new KeyNotFoundException("No guest request with key specified");
+            }
+            return DataSource.guestRequestsList[i].Clone();
         }
 
         #endregion
@@ -219,6 +241,27 @@ namespace DAL
 
         #endregion
 
+        #region GetHostingUnit This function return HostingUnit
+
+        /// <summary>
+        /// This function return HostingUnit according to <paramref name="key"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">The key of the HostingUnit</param>
+        /// <returns>The HostingUnit with the <paramref name="key"/></returns>
+        public HostingUnit GetHostingUnit(int key)
+        {
+            int i = DataSource.hostingUnitsList.FindIndex(t => t.HostingUnitKey == key);
+
+            if (-1 == i)
+            {
+                throw new KeyNotFoundException("No hosting unit with key specified");
+            }
+            return DataSource.hostingUnitsList[i].Clone();
+        }
+
+        #endregion
+
         #endregion
 
         #region Order These functions perform actions on Orders
@@ -229,7 +272,8 @@ namespace DAL
         /// This function addes an <paramref name="order"/> to the data's list
         /// </summary>
         /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
-        /// <exception cref="InfoNotExists">Thrown when the GuestRequest or HostingUnit of the Order does not exist</exception>
+        /// <exception cref="AlreadyExistsException">Thrown when guestRequest</exception>
+        /// <exception cref="InfoNotExistsException">Thrown when the GuestRequest of the Order already exists</exception>
         /// <param name="order">Order to be added to the data collection</param>
         public void AddOrder(Order order)
         {
@@ -241,6 +285,11 @@ namespace DAL
             if (!DataSource.hostingUnitsList.Exists(x => x.HostingUnitKey == order.HostingUnitKey))
             {
                 throw new InfoNotExistsException("HostingUnit", "Order");
+            }
+
+            if (DataSource.ordersList.Exists(x => x.GuestRequestKey == order.GuestRequestKey))
+            {
+                throw new AlreadyExistsException(order.GuestRequestKey, "Order's GuestRequest");
             }
 
             if (0 == order.OrderKey)
@@ -303,6 +352,27 @@ namespace DAL
             }
 
             DataSource.ordersList[index].Status = stat;
+        }
+
+        #endregion
+
+        #region GetOrder This function return Order
+
+        /// <summary>
+        /// This function return Order according to <paramref name="key"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">The key of the Order</param>
+        /// <returns>The Order with the <paramref name="key"/></returns>
+        public Order GetOrder(int key)
+        {
+            int i = DataSource.ordersList.FindIndex(t => t.OrderKey == key);
+
+            if (-1 == i)
+            {
+                throw new KeyNotFoundException("No order with key specified");
+            }
+            return DataSource.ordersList[i].Clone();
         }
 
         #endregion

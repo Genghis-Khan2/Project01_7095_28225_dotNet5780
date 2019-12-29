@@ -44,6 +44,17 @@ namespace DAL
 
         #endregion
 
+        #region GetGuestRequest This function return guestRequset
+
+        /// <summary>
+        /// This function return GuestRequest according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the GuestRequest</param>
+        /// <returns>The GuestRequest with the <paramref name="key"/></returns>
+        GuestRequest GetGuestRequest(int key);
+
+        #endregion
+
         #endregion
 
         #region HostingUnit These functions perform actions on HostingUnits
@@ -90,6 +101,17 @@ namespace DAL
 
         #endregion
 
+        #region GetHostingUnit This function return HostingUnit
+
+        /// <summary>
+        /// This function return HostingUnit according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the HostingUnit</param>
+        /// <returns>The HostingUnit with the <paramref name="key"/></returns>
+        HostingUnit GetHostingUnit(int key);
+
+        #endregion
+
         #endregion
 
         #region Order These functions perform actions on Orders
@@ -123,6 +145,17 @@ namespace DAL
         /// <param name="key">Key of Order to update the status of</param>
         /// <param name="stat">Status to update Order status to</param>
         void UpdateOrder(int key, Enums.OrderStatus stat);
+
+        #endregion
+
+        #region GetOrder This function return Order
+
+        /// <summary>
+        /// This function return Order according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the Order</param>
+        /// <returns>The Order with the <paramref name="key"/></returns>
+        Order GetOrder(int key);
 
         #endregion
 

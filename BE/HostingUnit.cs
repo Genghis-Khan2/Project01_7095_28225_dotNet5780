@@ -82,6 +82,6 @@ namespace BE
             return res;
         }
 
-        
+
     }//TODO:check if we choose to do it like this
 }
