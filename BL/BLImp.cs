@@ -187,6 +187,7 @@ namespace BL
         /// </summary>
         /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
         /// <exception cref="InfoNotExistsException">Thrown when the GuestRequest or HostingUnit of the Order does not exist</exception>
+        /// <exception cref="ArgumentException">Thrown When requested dates are not available in the hosting unit (ie occupied by another)</exception>
         /// <param name="ord">Order to add</param>
         public void AddOrder(Order ord)
         {
@@ -194,8 +195,18 @@ namespace BL
             //REMARK: יש לוודא בעת יצירת הזמנה ללקוח, שהתאריכים המבוקשים פנויים ביחידת האירוח שמוצעת לו.
             //REMARK: לא ניתן לקבוע אירוח לתאריך שכבר תפוס ע"י לקוח אחר
             //REMARK: • אם מוסיפים הזמנה, אזי יש לוודא שהלקוח ויחידת האירוח אכן קיימים.
+            DalImp.GetDal().AddOrder()
 
-            throw new NotImplementedException();
+            if (!DataSource.guestRequestsList.Exists(x => x.GuestRequestKey == order.GuestRequestKey))
+            {
+                throw new InfoNotExistsException("GuestRequest", "Order");
+            }
+
+            if (!DataSource.hostingUnitsList.Exists(x => x.HostingUnitKey == order.HostingUnitKey))
+            {
+                throw new InfoNotExistsException("HostingUnit", "Order");
+            }
+            DalImp.GetDal().AddOrder(ord);
         }
 
         #endregion
@@ -376,7 +387,9 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        #endregion 
+        #endregion
+
+        #region checkIfAvailable(bool[12,31] diary, DateTime entryDate, )
 
         #endregion
 
