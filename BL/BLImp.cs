@@ -32,15 +32,17 @@ namespace BL
             }
             return instance;
         }
-        
+
         /// <summary>
         /// This function add GuestRequest to the data
         /// </summary>
         /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
+        /// <exception cref="ArgumentException">Thrown when the vacation start date is not at least one day before the vacation end date</exception>
         /// <param name="gr">The GuestRequst to add</param>
         public void AddGuestRequest(GuestRequest gr)
         {
             //TODO:do it
+            //תאריך תחילת הנופש קודם לפחות ביום אחד לתאריך סיום הנופש
             throw new NotImplementedException();
         }
 
@@ -113,7 +115,7 @@ namespace BL
         /// This function removes a hosting unit from the data
         /// </summary>
         /// <exception cref="KeyNotFoundException">Thrown if no hosting unit in the data match the <paramref name="hostingUnit"/></exception>
-        ///<exception cref="DeleteWhileLinked">Thrown if there is any open <see cref="Order"/> linked to <paramref name="hostingUnit"/> </exception>
+        ///<exception cref="DeleteWhileLinkedException">Thrown if there is any open <see cref="Order"/> linked to <paramref name="hostingUnit"/> </exception>
         /// <param name="key">Key to remove the hosting unit of</param>
         public void RemoveHostingUnit(int key)
         {
@@ -134,48 +136,97 @@ namespace BL
             throw new NotImplementedException();
         }
 
+         /// <summary>
+        /// This function updates a hosting unit
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown when hosting unit with <paramref name="key"/> is not found</exception>
+        /// <param name="hu">Hosting unit to update to</param>
+        /// <param name="key">Key of hosting unit to update</param>
         public void UpdateHostingUnit(HostingUnit hu, int key)
         {
             //TODO: write the function
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// This function updates an order with a key of <paramref name="key"/> to a status of <paramref name="stat"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown when an order with the specified key is not found</exception>
+        /// <param name="key">Key of Order to update the status of</param>
+        /// <param name="stat">Status to update Order status to</param>
         public void UpdateOrder(int key, Enums.OrderStatus stat)
         {
             //TODO: write the function
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// The function returns the list of all available hosting units starting in the <paramref name="date"/> and ending <paramref name="days"/> days later
+        /// </summary>
+        /// <param name="date">Start date</param>
+        /// <param name="days">How many days</param>
+        /// <returns><see cref="IEnumerable{HostingUnit}"/> to go over the list of all free hosting unit in the range</returns>
         public IEnumerable<HostingUnit> GetAllAvailableHostingUnit(DateTime date, int days)
         {
             //TODO: write the function
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// The function return all the days from the <paramref name="startDay"/> to now
+        /// </summary>
+        /// <param name="startDay">Start day of the count</param>
+        /// <returns>All the day from <paramref name="startDay"/> to now</returns>
         public int getNumberOfDateInRange(DateTime startDay)
         {
             //TODO: write the function
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// The function return all the days from the <paramref name="startDay"/> to <paramref name="endDay"/>
+        /// </summary>
+        /// <param name="startDay">Start date for counting</param>
+        /// <param name="endDay">End day of the counting</param>
+        /// <returns>All the days from <paramref name="startDay"/> to <paramref name="endDay"/></returns>
         public int getNumberOfDateInRange(DateTime startDay, DateTime endDay)
         {
             //TODO: write the function
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// The function return all the <see cref="Order"/>s that the amount of day from there creation\since they sent email to the client 
+        /// is greater or equal to <paramref name="numberOfDays"/>
+        /// </summary>
+        /// <param name="numberOfDays">The amount of day to check</param>
+        /// <returns>All the <see cref="Order"/>s that the amount of day from there creation\since they sent email to the client 
+        /// is greater or equal to <paramref name="numberOfDays"/>
+        /// </returns>
         public IEnumerable<Order> getAllOrderInRange(int numberOfDays)
         {
             //TODO: do it
             throw new NotImplementedException();
         }
-        public IEnumerable<GuestRequest> getAllGuestRequestWhere(HostingUnit.isMeetTheDefinition func)
+
+        /// <summary>
+        /// The function return all the GuestRequest That matches certain conditions (defined by <see cref="isMeetTheDefinition"/>)
+        /// </summary>
+        /// <param name="func">Function(defined by <see cref="isMeetTheDefinition"/>)</param>
+        /// <returns><see cref="IEnumerable{GuestRequest}"/> to go over the list of all the GuestRequest That match the condition</returns>
+        public IEnumerable<GuestRequest> getAllGuestRequestWhere(isMeetTheDefinition func)
         {
             //TODO: write the function
             throw new NotImplementedException();
         }
 
-        public int getAmountOfOrderToGuest(GuestRequest guestRequest)
+        /// <summary>
+        /// The function return all the <see cref="Order"/> sent to <paramref name="guestRequest"/>
+        /// </summary>
+        /// <param name="key">The Key of the Guest Request to check how many <see cref="Order"/> where sent to her </param>
+        /// <exception cref="NoItemsException"
+        /// <returns>The amount of order sent to <paramref name="guestRequest"/></returns>
+        public int getAmountOfOrderToGuest(int key)
         {
             //TODO: write the function
             throw new NotImplementedException();

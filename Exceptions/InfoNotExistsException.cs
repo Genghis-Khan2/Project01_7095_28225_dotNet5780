@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Exceptions
 {
-    public class InfoNotExists : Exception
+    public class InfoNotExistsException : Exception
     {
         /// <summary>
         /// Constructor that creates an exception with a specific error message suited
@@ -19,7 +19,7 @@ namespace Exceptions
         /// "The GuestRequest does not exist for Order"
         /// </code>
         /// </example>
-        public InfoNotExists(string typeNotExisting, string typeCheckingExisting)
+        public InfoNotExistsException(string typeNotExisting, string typeCheckingExisting)
             : base(String.Format("The {0} does not exist for {1}", typeNotExisting, typeCheckingExisting))
         {
 
