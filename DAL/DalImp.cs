@@ -16,7 +16,7 @@ namespace DAL
     public class DalImp : IDAL
     {
         #region Singletory These parts are what make the class a singletory
-       
+
         /// <summary>
         /// Private constructor for DalImp so that another instance can't be created
         /// </summary>

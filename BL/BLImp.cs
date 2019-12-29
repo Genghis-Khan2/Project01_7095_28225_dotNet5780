@@ -263,7 +263,7 @@ namespace BL
         #endregion
 
         #endregion
-        
+
         #region GetAllGuestRequestWhere This function return all the GuestRequest that match condition
 
         /// <summary>
@@ -312,7 +312,7 @@ namespace BL
         #endregion
 
         #region GetAllOrderInRange This function return all the order where sent in some days
-        
+
         /// <summary>
         /// The function return all the <see cref="Order"/>s that the amount of day from there creation\since they sent email to the client 
         /// is greater or equal to <paramref name="numberOfDays"/>
@@ -348,7 +348,7 @@ namespace BL
 
         #endregion
 
-        #region Functions used for grouping
+        #region Grouping functions
 
         #region GetAllGuestByArea This function return all the GuestRequest group by Area
 
