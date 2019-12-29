@@ -4,6 +4,10 @@ using System.Text;
 
 namespace Exceptions
 {
+    /// <summary>
+    /// This class represents an exception that is formed when an operation is being called when there are no items
+    /// when items are necessary for a certain operation
+    /// </summary>
     public class NoItemsException : Exception
     {
         /// <summary>
