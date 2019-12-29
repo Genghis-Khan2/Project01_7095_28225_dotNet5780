@@ -21,7 +21,7 @@ namespace BL
     /// and all is variables are static.
     /// So, the only option we are given is to put it here and hope that our severe grime in breaking the layer model is understood
     /// </remarks>
-    public delegate bool isMeetTheDefinition(HostingUnit hostingUnit);//TODO: fix the coment
+    public delegate bool isMeetTheDefinition(GuestRequest hostingUnit);//TODO: fix the coment
     public interface IBL
     {
 
