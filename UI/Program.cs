@@ -144,22 +144,25 @@ namespace UI
 
             bl.AddOrder(o);
 
-            Console.WriteLine("");
+            Console.WriteLine("Available HostingUnits:");
             foreach (var i in bl.GetAllAvailableHostingUnit(new DateTime(2019, 3, 2), 60))
             {
                 Console.WriteLine(i);
             }
 
+            Console.WriteLine("GuestRequests requiring a pool:");
             foreach (var i in bl.getAllGuestRequestWhere(isGuestRequestWithPool))
             {
                 Console.WriteLine(i);
             }
 
+            Console.WriteLine("All bank accounts:");
             foreach (var i in bl.GetAllBankAccounts())
             {
                 Console.WriteLine(i); ;
             }
 
+            Console.WriteLine("Amount of orders to the guest:");
             Console.WriteLine(bl.getAmountOfOrderToGuest(gr));
         }
     }
