@@ -56,9 +56,11 @@ namespace DAL
                 request.GuestRequestKey = Configuration.GuestRequestKey;
             }
 
+
             var linq = from item in DataSource.guestRequestsList
                        where item.GuestRequestKey == request.GuestRequestKey
                        select new { Num = item.GuestRequestKey };
+
 
             if (linq.Count() == 0)
             {
@@ -154,6 +156,8 @@ namespace DAL
             {
                 unit.HostingUnitKey = Configuration.HostingUnitKey;
             }
+
+
             var linq = from item in DataSource.hostingUnitsList
                        where item.HostingUnitKey == unit.HostingUnitKey
                        select new { Num = item.HostingUnitKey };

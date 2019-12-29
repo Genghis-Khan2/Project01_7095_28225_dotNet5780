@@ -28,12 +28,15 @@ namespace BE
                 if (!IsInitializedGuestRequestKey)
                 {
                     IsInitializedGuestRequestKey = true;
-                    GuestRequestKey = 1;
+                    guestRequestKey = 1;
                 }
-                return GuestRequestKey++;
+                return guestRequestKey++;
             }
-            private set { GuestRequestKey = value; }
+
+            private set { guestRequestKey = value; }
         }
+
+        private static int guestRequestKey;
 
 
         /// <summary>
@@ -48,12 +51,14 @@ namespace BE
                 if (!IsInitializedBankNumber)
                 {
                     IsInitializedBankNumber = true;
-                    BankNumber = 1;
+                    bankNumber = 1;
                 }
-                return BankNumber++;
+                return bankNumber++;
             }
-            private set { BankNumber = value; }
+            private set { bankNumber = value; }
         }
+
+        private static int bankNumber;
 
         /// <summary>
         /// This variable Using by <see cref="Host"/>,
@@ -67,12 +72,14 @@ namespace BE
                 if (!IsInitializedHostKey)
                 {
                     IsInitializedHostKey = true;
-                    HostKey = 1;
+                    hostKey = 1;
                 }
-                return HostKey++;
+                return hostKey++;
             }
-            private set { HostKey = value; }
+            private set { hostKey = value; }
         }
+
+        private static int hostKey;
 
         /// <summary>
         /// This variable Using by <see cref="HostingUnit"/> and <see cref="Order"/>,
@@ -86,12 +93,14 @@ namespace BE
                 if (!IsInitializedHostingUnitKey)
                 {
                     IsInitializedHostingUnitKey = true;
-                    HostingUnitKey = 1;
+                    hostingUnitKey = 1;
                 }
-                return HostingUnitKey++;
+                return hostingUnitKey++;
             }
-            private set { HostingUnitKey = value; }
+            private set { hostingUnitKey = value; }
         }
+
+        private static int hostingUnitKey;
 
         /// <summary>
         /// This variable Using by <see cref="Order"/>,
@@ -105,12 +114,14 @@ namespace BE
                 if (!IsInitializedOrderKey)
                 {
                     IsInitializedOrderKey = true;
-                    OrderKey = 1;
+                    orderKey = 1;
                 }
-                return OrderKey++;
+                return orderKey++;
             }
-            private set { OrderKey = value; }
+            private set { orderKey = value; }
         }
+
+        private static int orderKey;
 
         /// <summary>
         /// This variable Using by <see cref="Order"/>,
