@@ -144,13 +144,14 @@ namespace UI
 
             bl.AddOrder(o);
 
+            Console.WriteLine("");
             foreach (var i in bl.GetAllAvailableHostingUnit(new DateTime(2019, 3, 2), 60))
             {
                 Console.WriteLine(i);
             }
 
-            foreach (var i in bl.getAllGuestRequestWhere(isGuestRequestWithPool)
-                {
+            foreach (var i in bl.getAllGuestRequestWhere(isGuestRequestWithPool))
+            {
                 Console.WriteLine(i);
             }
 
