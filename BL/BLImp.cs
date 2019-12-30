@@ -285,7 +285,7 @@ namespace BL
                 throw new KeyNotFoundException("There is no order with the key specified");
 
             Order ord = GetOrder(key);
-            
+
             //I assumed that when the status is changed to close ("CustomerResponsiveness" or "CustomerUnresponsiveness") 
             //you can still change the type of close but not to any open status("UnTreated" or "SentMail")
             if (IsClosed(ord.Status) && !IsClosed(stat))
