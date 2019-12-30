@@ -445,6 +445,23 @@ namespace DAL
 
         #endregion
 
+        #region GetBankBranch This function return BankAccount
+
+        /// <summary>
+        /// This function return BankBranch according to <paramref name="key"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">The key of the BankBranch</param>
+        public BankBranch GetBankBranch(int key)
+        {
+            var bankList = GetAllBankAccounts();
+            if (!bankList.Any((bb => bb.BankNumber == key)))
+                throw new KeyNotFoundException("No BankBranch with key specified");
+            return bankList.Where((bb => bb.BankNumber == key)).First();
+        }
+
+        #endregion
+
         #endregion
 
         #region Host These function perform actions on Host

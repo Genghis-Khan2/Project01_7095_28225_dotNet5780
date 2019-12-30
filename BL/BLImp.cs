@@ -89,12 +89,12 @@ namespace BL
         ///<exception cref="AlreadyClosedException">Thrown when tryin to change the status of GuestRequest Whose status has already been set to "closed"</exception>
         /// <param name="key">Key of guest request to update</param>
         /// <param name="stat">Status to update guest request to</param>
-        ///<remarks>I assume that like <see cref="UpdateOrder(int, Enums.OrderStatus)"/> if the status is already close its need to throw Exception</remarks>
+        ///<remarks>I assume that like <see cref="UpdateOrder(int, Enums.OrderStatus)"/> if the status is already close itsn't need to throw Exception</remarks>
         public void UpdateGuestRequest(int key, Enums.RequestStatus stat)
         {
             GuestRequest gr = DalImp.GetDal().GetGuestRequest(key);
-            if (gr.Status == Enums.RequestStatus.ClosedWithDeal || gr.Status == Enums.RequestStatus.CloseWithExpired)
-                throw new AlreadyClosedException("GuestRequest", gr.GuestRequestKey);
+            if (IsClosed(gr.Status) && !IsClosed(stat))
+                throw new AlreadyClosedException("GuestRequest", gr.GuestRequestKey);//TODO: write all the AlreadyClosedException if's in this form
             DalImp.GetDal().UpdateGuestRequest(key, stat);
         }
 
@@ -275,8 +275,8 @@ namespace BL
         public void UpdateOrder(int key, Enums.OrderStatus stat)
         {
             //TODO: write the function
-            //REMARK: בעל יחידת אירוח יוכל לשלוח הזמנה ללקוח )שינוי הסטטוס ל "נשלח מייל"(, רק אם חתם על הרשאה לחיוב חשבון בנק
-            //REMARK: לאחר שסטטוס ההזמנה השתנה לסגירת עיסקה – לא ניתן לשנות יותר את הסטטוס שלה.
+            //REMARK: בעל יחידת אירוח יוכל לשלוח הזמנה ללקוח )שינוי הסטטוס ל "נשלח מייל"(, רק אם חתם על הרשאה לחיוב חשבון בנק - done
+            //REMARK: לאחר שסטטוס ההזמנה השתנה לסגירת עיסקה – לא ניתן לשנות יותר את הסטטוס שלה. - done
             //REMARK: כאשר סטטוס ההזמנה משתנה בגלל סגירת עסקה – יש לבצע חישוב עמלה בגובה של 10 ₪ ליום אירוח. )עיין הערה למטה(
             //REMARK: כאשר סטטוס ההזמנה משתנה בגלל סגירת עסקה – יש לסמן במטריצה את התאריכים הרלוונטיים.
             //REMARK: כאשר סטטוס הזמנה משתנה עקב סגירת עסקה – יש לשנות את הסטטוס של דרישת הלקוח בהתאם, וכן לשנות את הסטטוס של כל ההזמנות האחרות של אותו לקוח.
@@ -641,6 +641,8 @@ namespace BL
 
         #endregion
 
+        #region Function to work with status
+
         #region IsClosed This function return if Order is closed
 
         /// <summary>
@@ -656,6 +658,26 @@ namespace BL
         }
 
         #endregion
+
+        #region IsClosed This function return if GuestRequest is closed
+
+        /// <summary>
+        /// This function return if guestRequest is closed 
+        /// </summary>
+        /// <param name="ord">The guestRequest to check is status</param>
+        /// <returns>boolean, if the status is closed or not</returns>
+        public bool IsClosed(Enums.RequestStatus stat)
+        {
+            if (stat == Enums.RequestStatus.ClosedWithDeal || stat == Enums.RequestStatus.CloseWithExpired)
+                return true;
+            return false;
+        }
+
+        #endregion
+
+
+        #endregion
+
 
         #endregion
 

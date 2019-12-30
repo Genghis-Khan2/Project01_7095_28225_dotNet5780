@@ -16,7 +16,7 @@ namespace BE
         {
             get
             {
-                return this.Diary;//TODO:check if we need to send a new object or just reference
+                return this.Diary;
             }
             set
             {
@@ -32,7 +32,7 @@ namespace BE
                 }
                 else
                 {
-                    this.Diary = value;//TODO: is it smart?
+                    this.Diary = value;
                 }
             }
         }
@@ -40,7 +40,7 @@ namespace BE
         #region Properties related to the hosting conditions in the hosting unit
         public Enums.Area Area { get; set; }
         public Enums.HostingUnitType Type { get; set; }
-        public int NumberOfPlacesForAdults { get; set; }//TODO: ISSUSE #8
+        public int NumberOfPlacesForAdults { get; set; }
         public int NumberOfPlacesForChildren { get; set; }
         public bool IsTherePool { get; set; }
         public bool IsThereJacuzzi { get; set; }
@@ -52,7 +52,7 @@ namespace BE
         /// </summary>
         /// <returns>The hosting unit information in string type</returns>
         ///<seealso cref="Object.ToString()"/> 
-        public override string ToString()//TODO: check if the function is work
+        public override string ToString()
         {
             string res = "";
             res += "Hosting Unit Key: " + HostingUnitKey + "\n";
@@ -83,5 +83,5 @@ namespace BE
         }
 
 
-    }//TODO:check if we choose to do it like this
+    }
 }

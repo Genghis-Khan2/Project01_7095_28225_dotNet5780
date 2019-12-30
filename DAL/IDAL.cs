@@ -161,19 +161,30 @@ namespace DAL
 
         #endregion
 
-        #region BankAccount These functions perform actions on BankAcccounts
+        #region BankAccount These functions perform actions on BankAccounts
 
         #region GetAllBankAccounts This function returns all the bank accounts
 
         /// <summary>
         /// This function returns the bank accounts in the data
         /// </summary>
+        /// <exception cref="NoItemsException">Thrown when there are no bank accounts in the list</exception>
         /// <returns>IEnumerable to go over the list of bank accounts</returns>
-        IEnumerable<BankBranch> GetAllBankAccounts();
+         IEnumerable<BankBranch> GetAllBankAccounts();
+        #endregion
+
+        #region GetBankBranch This function return BankAccount
+
+        /// <summary>
+        /// This function return BankBranch according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the BankBranch</param>
+         BankBranch GetBankBranch(int key);
 
         #endregion
 
         #endregion
+
 
         #region Host These function perform actions on Host
 

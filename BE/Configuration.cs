@@ -16,6 +16,8 @@ namespace BE
     /// </remarks>
     public class Configuration
     {
+        #region GuestRequestKey
+
         /// <summary>
         /// This variable Using by <see cref="GuestRequest"/> and <see cref="Order"/>,
         /// see the comments up
@@ -38,6 +40,9 @@ namespace BE
 
         private static int guestRequestKey;
 
+        #endregion
+
+        #region BankNumber
 
         /// <summary>
         /// This variable Using by <see cref="BankAccount"/>,
@@ -60,6 +65,10 @@ namespace BE
 
         private static int bankNumber;
 
+        #endregion
+
+        #region HostKey
+
         /// <summary>
         /// This variable Using by <see cref="Host"/>,
         /// see the comments up
@@ -80,6 +89,10 @@ namespace BE
         }
 
         private static int hostKey;
+
+        #endregion
+
+        #region HostingUnitKey
 
         /// <summary>
         /// This variable Using by <see cref="HostingUnit"/> and <see cref="Order"/>,
@@ -102,6 +115,10 @@ namespace BE
 
         private static int hostingUnitKey;
 
+        #endregion
+
+        #region OrderKey
+
         /// <summary>
         /// This variable Using by <see cref="Order"/>,
         /// see the comments up
@@ -123,11 +140,19 @@ namespace BE
 
         private static int orderKey;
 
+        #endregion
+
+        #region Commission
+
         /// <summary>
         /// This variable Using by <see cref="Order"/>,
         /// This variable is not a "runner" and therefore does not need what we defined in the comment above
         /// </summary>
         /// <remarks>We set it to 10 NIS according to the Targil</remarks>
         public static float Commission { get; set; } = 10;
+
+        #endregion
+
+
     }
 }
