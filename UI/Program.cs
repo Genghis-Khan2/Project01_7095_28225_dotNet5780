@@ -28,41 +28,6 @@ namespace UI
         }
         static void Main(string[] args)
         {
-            //bool isValidNum = false;
-            //string user;
-            //int user_i = 0;
-            //while (!isValidNum)
-            //{
-            //    Console.WriteLine("Hello! Who are you?");
-            //    Console.WriteLine("1. Guest\n2. Host\n3. Site admin");
-            //    user = Console.ReadLine();
-            //    isValidNum = int.TryParse(user, out user_i);
-            //    if (isValidNum)
-            //    {
-            //        if (user_i > 3 || user_i < 1)
-            //        {
-            //            isValidNum = false;
-            //        }
-            //    }
-            //    if (!isValidNum)
-            //    {
-            //        Console.WriteLine("Invalid value. Please enter 1, 2 or 3");
-            //    }
-            //}
-
-            //switch (user_i)
-            //{
-            //    case 1:
-            //        handleGuest();
-            //        break;
-            //    case 2:
-            //        handleHost();
-            //        break;
-            //    case 3:
-            //        handleAdmin();
-            //        break;
-            //}
-
             IBL bl = BLImp.getBL();
             GuestRequest gr = new GuestRequest
             {
@@ -88,6 +53,7 @@ namespace UI
             {
                 Area = Enums.Area.North,
                 HostingUnitName = "Black Nose World",
+                Diary = null,
                 IsThereChildrensAttractions = false,
                 IsThereGarden = true,
                 IsThereJacuzzi = true,
@@ -135,7 +101,7 @@ namespace UI
 
             Order o = new Order()
             {
-                CreateDate = new DateTime(2019, 29, 2),
+                CreateDate = new DateTime(2019, 2, 25),
                 GuestRequestKey = gr.GuestRequestKey,
                 HostingUnitKey = hu2.HostingUnitKey,
                 OrderDate = new DateTime(2019, 4, 2),
@@ -144,26 +110,26 @@ namespace UI
 
             bl.AddOrder(o);
 
-            Console.WriteLine("Available HostingUnits:");
-            foreach (var i in bl.GetAllAvailableHostingUnit(new DateTime(2019, 3, 2), 60))
-            {
-                Console.WriteLine(i);
-            }
+            //Console.WriteLine("Available HostingUnits:");
+            //foreach (var i in bl.GetAllAvailableHostingUnit(new DateTime(2019, 3, 2), 60))
+            //{
+            //    Console.WriteLine(i);
+            //}
 
-            Console.WriteLine("GuestRequests requiring a pool:");
-            foreach (var i in bl.GetAllGuestRequestWhere(isGuestRequestWithPool))
-            {
-                Console.WriteLine(i);
-            }
+            //Console.WriteLine("GuestRequests requiring a pool:");
+            //foreach (var i in bl.GetAllGuestRequestWhere(isGuestRequestWithPool))
+            //{
+            //    Console.WriteLine(i);
+            //}
 
-            Console.WriteLine("All bank accounts:");
-            foreach (var i in bl.GetAllBankAccounts())
-            {
-                Console.WriteLine(i); ;
-            }
+            //Console.WriteLine("All bank accounts:");
+            //foreach (var i in bl.GetAllBankAccounts())
+            //{
+            //    Console.WriteLine(i); ;
+            //}
 
             Console.WriteLine("Amount of orders to the guest:");
-            //Console.WriteLine(bl.getAmountOfOrderToGuest(gr));
+            Console.WriteLine(bl.GetAmountOfOrderToGuest(gr));
         }
     }
 }

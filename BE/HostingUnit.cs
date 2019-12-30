@@ -16,7 +16,7 @@ namespace BE
         {
             get
             {
-                return this.Diary;
+                return diary;
             }
             set
             {
@@ -26,16 +26,18 @@ namespace BE
                     {
                         for (int j = 0; j < 31; j++)
                         {
-                            this.Diary[i, j] = false;
+                            diary[i, j] = false;
                         }
                     }
                 }
                 else
                 {
-                    this.Diary = value;
+                    diary = value;
                 }
             }
         }
+
+        private bool[,] diary = new bool[12, 31];
 
         #region Properties related to the hosting conditions in the hosting unit
         public Enums.Area Area { get; set; }

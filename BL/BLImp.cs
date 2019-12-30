@@ -604,14 +604,14 @@ namespace BL
                 for (DateTime dt = new DateTime(2020, entryDate.Month, entryDate.Day); dt < end; dt = dt.AddDays(1))
                 {
                     //We assume that the array is defined in this way: bool[12,31]
-                    if (diary[dt.Month, dt.Day])
+                    if (diary[dt.Month - 1, dt.Day - 1])
                     {
                         return false;
                     }
                 }
                 return true;
             }
-            catch (Exception)
+            catch (IndexOutOfRangeException)
             {
                 throw new FormatException("Diary must be 12*31 array");
             }
