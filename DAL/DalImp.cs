@@ -494,5 +494,78 @@ namespace DAL
 
         #endregion
 
+        #region IfExists These function check if object exsits in the data
+
+        #region CheckIfGuestRequestExists This function check if guestRequest exists in the data
+
+        /// <summary>
+        /// This function return if guestRequest exists in the data
+        /// </summary>
+        /// <param name="key">The key of the guestRequest</param>
+        /// <returns>boolean, if the guestRequest exists or not</returns>
+        public bool CheckIfGuestRequestExists(int key)
+        {
+            return DataSource.guestRequestsList.Exists((gr => gr.GuestRequestKey == key));
+        }
+
+        #endregion
+
+        #region CheckIfHostingUnitExists This function check if hostingUnit exists in the data
+
+        /// <summary>
+        /// This function return if hostingUnit exists in the data
+        /// </summary>
+        /// <param name="key">The key of the hostingUnit</param>
+        /// <returns>boolean, if the hostingUnit exists or not</returns>
+        public bool CheckIfHostingUnitExists(int key)
+        {
+            return DataSource.hostingUnitsList.Exists((hu => hu.HostingUnitKey == key));
+        }
+
+        #endregion
+
+        #region CheckIfOrderExists This function check if order exists in the data
+
+        /// <summary>
+        /// This function return if order exists in the data
+        /// </summary>
+        /// <param name="key">The key of the order</param>
+        /// <returns>boolean, if the order exists or not</returns>
+        public bool CheckIfOrderExists(int key)
+        {
+            return DataSource.ordersList.Exists((o => o.OrderKey == key));
+        }
+
+        #endregion
+
+        #region CheckIfBankAccountExists This function check if bankAccount exists in the data
+
+        /// <summary>
+        /// This function return if bankAccount exists in the data
+        /// </summary>
+        /// <param name="key">The key of the bankAccount</param>
+        /// <returns>boolean, if the bankAccount exists or not</returns>
+        public bool CheckIfBankAccountExists(int key)
+        {
+            return GetAllBankAccounts().Any((ba => ba.BankAccountNumber == key));
+        }
+
+        #endregion
+
+        #region CheckIfHostExists This function check if host exists in the data
+
+        /// <summary>
+        /// This function return if host exists in the data
+        /// </summary>
+        /// <param name="key">The key of the host</param>
+        /// <returns>boolean, if the host exists or not</returns>
+        public bool CheckIfHostExists(int key)
+        {
+            return GetAllHosts().Any((h => h.HostKey == key));
+        }
+
+        #endregion
+
+        #endregion
     }
 }

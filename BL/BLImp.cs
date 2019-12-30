@@ -223,25 +223,26 @@ namespace BL
         /// </summary>
         /// <exception cref="AlreadyExistsException">Thrown when the key is already in the list</exception>
         /// <exception cref="InfoNotExistsException">Thrown when the GuestRequest or HostingUnit of the Order does not exist</exception>
-        /// <exception cref="ArgumentException">Thrown When requested dates are not available in the hosting unit (ie occupied by another)</exception>
+        /// <exception cref="OccupiedDatesException">Thrown When requested dates are not available in the hosting unit (ie occupied by another)</exception>
         /// <param name="ord">Order to add</param>
         public void AddOrder(Order ord)
         {
-            //TODO: write the function
+            ///<remarks>we dont need to check if the entry date and the release date are good because its checked when you create the guestRequest(in <see cref="AddGuestRequest(GuestRequest)"/>)</remarks>
             //REMARK: יש לוודא בעת יצירת הזמנה ללקוח, שהתאריכים המבוקשים פנויים ביחידת האירוח שמוצעת לו.
             //REMARK: לא ניתן לקבוע אירוח לתאריך שכבר תפוס ע"י לקוח אחר
             //REMARK: • אם מוסיפים הזמנה, אזי יש לוודא שהלקוח ויחידת האירוח אכן קיימים.
-            DalImp.GetDal().AddOrder()
 
-            if (!DataSource.guestRequestsList.Exists(x => x.GuestRequestKey == order.GuestRequestKey))
-            {
-                throw new InfoNotExistsException("GuestRequest", "Order");
-            }
-
-            if (!DataSource.hostingUnitsList.Exists(x => x.HostingUnitKey == order.HostingUnitKey))
-            {
+            //check that the GuestRequest and HostingUnit of the Order exist
+            if (!CheckIfHostingUnitExists(ord.HostingUnitKey))
                 throw new InfoNotExistsException("HostingUnit", "Order");
-            }
+            if (!CheckIfGuestRequestExists(ord.GuestRequestKey))
+                throw new InfoNotExistsException("GuestRequest", "Order");
+
+            //check that the requested dates are available in the hosting unit (ie. not occupied by another), 
+            //its will never throw the "KeyNotFoundException" because we already check that the HostingUnit and the GuestRequest are exists
+            if (!CheckIfAvailable(DalImp.GetDal().GetHostingUnit(ord.HostingUnitKey).Diary, DalImp.GetDal().GetGuestRequest(ord.GuestRequestKey).EntryDate, DalImp.GetDal().GetGuestRequest(ord.GuestRequestKey).ReleaseDate))
+                throw new OccupiedDatesException();
+
             DalImp.GetDal().AddOrder(ord);
         }
 
@@ -268,6 +269,7 @@ namespace BL
         /// </summary>
         /// <exception cref="KeyNotFoundException">Thrown when an order with the specified key is not found</exception>
         ///<exception cref="AlreadyClosedException">Thrown when tryin to change the status of Order Whose status has already been set to "closed"</exception>
+        ///<exception cref="UnauthorizedActionException">Throw when try to change the status to <see cref="Enums.OrderStatus.SentMail"/> but the <see cref="Host.CollectionClearance"/> is false</exception>
         /// <param name="key">Key of Order to update the status of</param>
         /// <param name="stat">Status to update Order status to</param>
         public void UpdateOrder(int key, Enums.OrderStatus stat)
@@ -279,7 +281,19 @@ namespace BL
             //REMARK: כאשר סטטוס ההזמנה משתנה בגלל סגירת עסקה – יש לסמן במטריצה את התאריכים הרלוונטיים.
             //REMARK: כאשר סטטוס הזמנה משתנה עקב סגירת עסקה – יש לשנות את הסטטוס של דרישת הלקוח בהתאם, וכן לשנות את הסטטוס של כל ההזמנות האחרות של אותו לקוח.
             //REMARK:   כאשר סטטוס ההזמנה משתנה ל"נשלח מייל" – המערכת תשלח באופן אוטומטי מייל  ללקוח עם פרטי ההזמנה. ניתן לדחות את הביצוע בפועל של שליחת המייל לשלב הבא, וכעת רק להדפיס הודעה על המסך.
-            throw new NotImplementedException();
+            if (!CheckIfOrderExists(key))
+                throw new KeyNotFoundException("There is no order with the key specified");
+
+            Order ord = GetOrder(key);
+            
+            //I assumed that when the status is changed to close ("CustomerResponsiveness" or "CustomerUnresponsiveness") 
+            //you can still change the type of close but not to any open status("UnTreated" or "SentMail")
+            if (IsClosed(ord.Status) && !IsClosed(stat))
+                throw new AlreadyClosedException("Order", key);
+
+            if (!GetHostingUnit(ord.HostingUnitKey).Owner.CollectionClearance && stat == Enums.OrderStatus.SentMail)
+                throw new UnauthorizedAccessException("a host cannot send an email if it does not authorize an account billing authorization");
+
         }
 
         #endregion
@@ -352,6 +366,80 @@ namespace BL
 
         #endregion
 
+        #region IfExists These function check if object exsits in the data
+
+        #region CheckIfGuestRequestExists This function check if guestRequest exists in the data
+
+        /// <summary>
+        /// This function return if guestRequest exists in the data
+        /// </summary>
+        /// <param name="key">The key of the guestRequest</param>
+        /// <returns>boolean, if the guestRequest exists or not</returns>
+        public bool CheckIfGuestRequestExists(int key)
+        {
+            return DalImp.GetDal().CheckIfGuestRequestExists(key);
+        }
+
+        #endregion
+
+        #region CheckIfHostingUnitExists This function check if hostingUnit exists in the data
+
+        /// <summary>
+        /// This function return if hostingUnit exists in the data
+        /// </summary>
+        /// <param name="key">The key of the hostingUnit</param>
+        /// <returns>boolean, if the hostingUnit exists or not</returns>
+        public bool CheckIfHostingUnitExists(int key)
+        {
+            return DalImp.GetDal().CheckIfHostingUnitExists(key);
+        }
+
+        #endregion
+
+        #region CheckIfOrderExists This function check if order exists in the data
+
+        /// <summary>
+        /// This function return if order exists in the data
+        /// </summary>
+        /// <param name="key">The key of the order</param>
+        /// <returns>boolean, if the order exists or not</returns>
+        public bool CheckIfOrderExists(int key)
+        {
+            return DalImp.GetDal().CheckIfOrderExists(key);
+        }
+
+        #endregion
+
+        #region CheckIfBankAccountExists This function check if bankAccount exists in the data
+
+        /// <summary>
+        /// This function return if bankAccount exists in the data
+        /// </summary>
+        /// <param name="key">The key of the bankAccount</param>
+        /// <returns>boolean, if the bankAccount exists or not</returns>
+        public bool CheckIfBankAccountExists(int key)
+        {
+            return DalImp.GetDal().CheckIfBankAccountExists(key);
+        }
+
+        #endregion
+
+        #region CheckIfHostExists This function check if host exists in the data
+
+        /// <summary>
+        /// This function return if host exists in the data
+        /// </summary>
+        /// <param name="key">The key of the host</param>
+        /// <returns>boolean, if the host exists or not</returns>
+        public bool CheckIfHostExists(int key)
+        {
+            return DalImp.GetDal().CheckIfHostExists(key);
+        }
+
+        #endregion
+
+        #endregion
+
         #endregion
 
         #region Auxiliary functions used to process data from the DAL layer
@@ -385,6 +473,25 @@ namespace BL
         {
             //TODO: write the function
             throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region IsLeastThenOneDay This function check if date is at least one day before the second date
+
+        /// <summary>
+        /// This function check if <paramref name="date1"/> is at least one day before the <paramref name="date2"/>
+        /// </summary>
+        /// <param name="date1">First date</param>
+        /// <param name="date2">Second date</param>
+        /// <returns>Boolean, if date is at least one day before the second date</returns>
+        public bool IsLeastThenOneDay(DateTime date1, DateTime date2)
+        {
+            DateTime dt1 = new DateTime(2020, date1.Month, date1.Day);
+            DateTime dt2 = new DateTime(2020, date2.Month, date2.Day);
+            if (date1.AddDays(1) > date2)
+                return false;
+            return true;
         }
 
         #endregion
@@ -512,24 +619,41 @@ namespace BL
 
         #endregion
 
-        #region IsLeastThenOneDay This function check if date is at least one day before the second date
+        #region MarkingInTheDiary This function mark a vaction in the diary
 
         /// <summary>
-        /// This function check if <paramref name="date1"/> is at least one day before the <paramref name="date2"/>
+        /// This function mark a vaction(<paramref name="enteryDate"/> - <paramref name="releaseDate"/>) in <paramref name="diary"/>
         /// </summary>
-        /// <param name="date1">First date</param>
-        /// <param name="date2">Second date</param>
-        /// <returns>Boolean, if date is at least one day before the second date</returns>
-        public bool IsLeastThenOneDay(DateTime date1, DateTime date2)
+        /// <param name="diary">The array represent all the days in the year</param>
+        /// <param name="enteryDate">Start date of the vaction</param>
+        /// <param name="releaseDate">End date of the vaction</param>
+        /// <remarks>This function assume that the range is available and dosnt check it, to check use the<see cref="CheckIfAvailable(bool[,], DateTime, DateTime)"/> function</remarks>
+        public void MarkingInTheDiary(ref bool[,] diary, DateTime enteryDate, DateTime releaseDate)
         {
-            DateTime dt1 = new DateTime(2020, date1.Month, date1.Day);
-            DateTime dt2 = new DateTime(2020, date2.Month, date2.Day);
-            if (date1.AddDays(1) > date2)
-                return false;
-            return true;
+            DateTime endDt = new DateTime(2020, releaseDate.Month, releaseDate.Day);
+            for (DateTime dt = new DateTime(2020, enteryDate.Month, enteryDate.Day); dt < endDt; dt.AddDays(1))
+            {
+                diary[dt.Month, dt.Day] = true;
+            }
         }
 
         #endregion
+
+        #endregion
+
+        #region IsClosed This function return if Order is closed
+
+        /// <summary>
+        /// This function return if Order is closed 
+        /// </summary>
+        /// <param name="ord">The order to check is status</param>
+        /// <returns>boolean, if the status is closed or not</returns>
+        public bool IsClosed(Enums.OrderStatus stat)
+        {
+            if (stat == Enums.OrderStatus.CustomerResponsiveness || stat == Enums.OrderStatus.CustomerUnresponsiveness)
+                return true;
+            return false;
+        }
 
         #endregion
 
@@ -600,6 +724,8 @@ namespace BL
 
 /*
 tasks:
+8. לבדוק שהשמות בBE תואמים לנאמר בתרגיל
+7. check that all the function in BLImp also in IBL
 6. לכתוב את הפונקציות
 7.לוודא שכל התנאים מומשו(כל הלינקיו וכו')
 8. לבדוק את הפונקציות

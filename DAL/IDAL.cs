@@ -199,5 +199,65 @@ namespace DAL
         #endregion
 
         #endregion
+
+        #region IfExists These function check if object exsits in the data
+
+        #region CheckIfGuestRequestExists This function check if guestRequest exists in the data
+
+        /// <summary>
+        /// This function return if guestRequest exists in the data
+        /// </summary>
+        /// <param name="key">The key of the guestRequest</param>
+        /// <returns>boolean, if the guestRequest exists or not</returns>
+        bool CheckIfGuestRequestExists(int key);
+
+        #endregion
+
+        #region CheckIfHostingUnitExists This function check if hostingUnit exists in the data
+
+        /// <summary>
+        /// This function return if hostingUnit exists in the data
+        /// </summary>
+        /// <param name="key">The key of the hostingUnit</param>
+        /// <returns>boolean, if the hostingUnit exists or not</returns>
+        bool CheckIfHostingUnitExists(int key);
+
+        #endregion
+
+        #region CheckIfOrderExists This function check if order exists in the data
+
+        /// <summary>
+        /// This function return if order exists in the data
+        /// </summary>
+        /// <param name="key">The key of the order</param>
+        /// <returns>boolean, if the order exists or not</returns>
+        bool CheckIfOrderExists(int key);
+
+        #endregion
+
+        #region CheckIfBankAccountExists This function check if bankAccount exists in the data
+
+        /// <summary>
+        /// This function return if bankAccount exists in the data
+        /// </summary>
+        /// <param name="key">The key of the bankAccount</param>
+        /// <returns>boolean, if the bankAccount exists or not</returns>
+        bool CheckIfBankAccountExists(int key);
+
+        #endregion
+
+        #region CheckIfHostExists This function check if host exists in the data
+
+        /// <summary>
+        /// This function return if host exists in the data
+        /// </summary>
+        /// <param name="key">The key of the host</param>
+        /// <returns>boolean, if the host exists or not</returns>
+        bool CheckIfHostExists(int key);
+
+        #endregion
+
+        #endregion
+
     }
 }
