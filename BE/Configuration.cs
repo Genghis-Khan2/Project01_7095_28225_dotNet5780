@@ -153,6 +153,11 @@ namespace BE
 
         #endregion
 
+        #region NumberOfDaysUntilExpired
 
+        ///<remarks>We set it to 14 arbitrarily ("10 business days") because it is not explicitly stated how much to put it</remarks>
+        public static int NumberOfDaysUntilExpired { get; set; } = 14;
+
+        #endregion
     }
 }
