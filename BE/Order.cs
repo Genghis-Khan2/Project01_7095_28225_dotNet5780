@@ -15,7 +15,7 @@ namespace BE
         public Enums.OrderStatus Status { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime OrderDate { get; set; }
-
+        public float Commission { get; set; }
         /// <summary>
         /// The function returns the host information in a string type
         /// </summary>
