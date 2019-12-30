@@ -66,7 +66,7 @@ namespace BL
 
         #endregion
 
-        #region GetAllGuestRequests This function returns the guest requests
+        #region GetAllGuestRequests This function returns all the guest requests
 
         /// <summary>
         /// This function return all the GuestRequest in the data
@@ -96,6 +96,21 @@ namespace BL
             if (gr.Status == Enums.RequestStatus.ClosedWithDeal || gr.Status == Enums.RequestStatus.CloseWithExpired)
                 throw new AlreadyClosedException("GuestRequest", gr.GuestRequestKey);
             DalImp.GetDal().UpdateGuestRequest(key, stat);
+        }
+
+        #endregion
+
+        #region GetGuestRequest This function return guest request
+
+        /// <summary>
+        /// This function return GuestRequest according to <paramref name="key"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">The key of the GuestRequest</param>
+        /// <returns>The GuestRequest with the <paramref name="key"/></returns>
+        public GuestRequest GetGuestRequest(int key)
+        {
+            return DalImp.GetDal().GetGuestRequest(key);
         }
 
         #endregion
@@ -181,6 +196,22 @@ namespace BL
         }
         #endregion
 
+        #region GetHostingUnit This function return HostingUnit
+
+        /// <summary>
+        /// This function return HostingUnit according to <paramref name="key"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">The key of the HostingUnit</param>
+        /// <returns>The HostingUnit with the <paramref name="key"/></returns>
+        public HostingUnit GetHostingUnit(int key)
+        {
+            return DalImp.GetDal().GetHostingUnit(key);
+        }
+
+        #endregion
+
+
         #endregion
 
         #region Order These functions perform actions on Orders
@@ -253,6 +284,21 @@ namespace BL
 
         #endregion
 
+        #region GetOrder This function return Order
+
+        /// <summary>
+        /// This function return Order according to <paramref name="key"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">The key of the Order</param>
+        /// <returns>The Order with the <paramref name="key"/></returns>
+        public Order GetOrder(int key)
+        {
+            return DalImp.GetDal().GetOrder(key);
+        }
+
+        #endregion
+
         #endregion
 
         #region BankAccount These functions perform actions on BankAccounts
@@ -267,6 +313,39 @@ namespace BL
         public IEnumerable<BankBranch> GetAllBankAccounts()
         {
             return DalImp.GetDal().GetAllBankAccounts();
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Host These function perform actions on Host
+
+        #region GetAllHosts This function return all the Hosts
+
+        /// <summary>
+        /// This function return all the Host 
+        /// </summary>
+        /// <exception cref="NoItemsException">Thrown when there are no Host</exception>
+        /// <returns><seealso cref="IEnumerable{Host}"/> to go over the list of all the Hosts</returns>
+        public IEnumerable<Host> GetAllHosts()
+        {
+            return DalImp.GetDal().GetAllHosts();
+        }
+
+        #endregion
+
+        #region GetHost This function return host
+
+        /// <summary>
+        /// This function return the Host with the <paramref name="key"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">The requested <see cref="Host"/>'s KEY</param>
+        /// <returns>The Host with the  <paramref name="key"/></returns>
+        public Host GetHost(int key)
+        {
+            return DalImp.GetDal().GetHost(key);
         }
 
         #endregion
