@@ -482,6 +482,8 @@ namespace BL
 
         #region IsLeastThenOneDay This function check if date is at least one day before the second date
 
+        //TODO: CR GK: Should this really be public?
+
         /// <summary>
         /// This function check if <paramref name="date1"/> is at least one day before the <paramref name="date2"/>
         /// </summary>
@@ -583,7 +585,7 @@ namespace BL
 
         #endregion
 
-        #region Function to work with Dairy array
+        #region Function to work with Diary array
 
         #region CheckIfAvailable This function check if the diary available in the range
 

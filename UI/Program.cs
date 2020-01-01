@@ -110,26 +110,96 @@ namespace UI
 
             bl.AddOrder(o);
 
-            //Console.WriteLine("Available HostingUnits:");
-            //foreach (var i in bl.GetAllAvailableHostingUnit(new DateTime(2019, 3, 2), 60))
-            //{
-            //    Console.WriteLine(i);
-            //}
+            Console.WriteLine("Available HostingUnits:");
+            foreach (var i in bl.GetAllAvailableHostingUnit(new DateTime(2019, 3, 2), 60))
+            {
+                Console.WriteLine(i);
+            }
 
-            //Console.WriteLine("GuestRequests requiring a pool:");
-            //foreach (var i in bl.GetAllGuestRequestWhere(isGuestRequestWithPool))
-            //{
-            //    Console.WriteLine(i);
-            //}
+            Console.WriteLine("GuestRequests requiring a pool:");
+            foreach (var i in bl.GetAllGuestRequestWhere(isGuestRequestWithPool))
+            {
+                Console.WriteLine(i);
+            }
 
-            //Console.WriteLine("All bank accounts:");
-            //foreach (var i in bl.GetAllBankAccounts())
-            //{
-            //    Console.WriteLine(i); ;
-            //}
+            Console.WriteLine("All bank accounts:");
+            foreach (var i in bl.GetAllBankAccounts())
+            {
+                Console.WriteLine(i);
+            }
 
             Console.WriteLine("Amount of orders to the guest:");
             Console.WriteLine(bl.GetAmountOfOrderToGuest(gr));
+
+            Console.WriteLine("Dates from 15.5.2019 to now");
+            bl.GetNumberOfDateInRange(new DateTime(2019, 5, 15));
+
+            Console.WriteLine("Dates from 25.2.2019 to 25.3.2019");
+            bl.GetNumberOfDateInRange(new DateTime(2019, 2, 25), new DateTime(2019, 3, 25));
+
+            Console.WriteLine("There are {0} orders to the guestRequest", bl.GetAmountOfOrderToGuest(gr));
+
+            Console.WriteLine("Orders between now and 60 days from now:");
+            foreach (var i in bl.GetAllOrderInRange(60))
+            {
+                Console.WriteLine(i);
+            }
+
+            Console.WriteLine(bl.GetAllsuccessfulOrder(hu));
+
+            Console.WriteLine("Lets check if the hostingUnit is available from 25.4.2019 to 1.6.2019");
+            if (bl.CheckIfAvailable(hu.Diary, new DateTime(2017, 4, 25), new DateTime(2019, 6, 1)))
+            {
+                Console.WriteLine("It is");
+            }
+
+            else
+            {
+                Console.WriteLine("It isn't");
+            }
+
+            Console.WriteLine("Let's mark those days");
+            bool[,] meow = new bool[12, 31];
+            bl.MarkingInTheDiary(meow, new DateTime(2017, 4, 25), new DateTime(2019, 6, 1));
+
+            Console.WriteLine("Now is it marked?");
+            if (bl.CheckIfAvailable(meow, new DateTime(2017, 4, 25), new DateTime(2019, 6, 1)))
+            {
+                Console.WriteLine("It is");
+            }
+
+            else
+            {
+                Console.WriteLine("It isn't");
+            }
+
+            var areaToGR = bl.GetAllGuestByArea();
+            foreach (var i in areaToGR)
+            {
+                switch (i.Key)
+                {
+                    case Enums.Area.All:
+                        Console.WriteLine("All:");
+                        Console.WriteLine(i);
+                        break;
+                    case Enums.Area.Center:
+                        Console.WriteLine("Center:");
+                        Console.WriteLine(i);
+                        break;
+                    case Enums.Area.Jerusalem:
+                        Console.WriteLine("Jerusalem:");
+                        Console.WriteLine(i);
+                        break;
+                    case Enums.Area.North:
+                        Console.WriteLine("North:");
+                        Console.WriteLine(i);
+                        break;
+                    case Enums.Area.South:
+                        Console.WriteLine("South:");
+                        Console.WriteLine(i);
+                        break;
+                }
+            }
         }
     }
 }
