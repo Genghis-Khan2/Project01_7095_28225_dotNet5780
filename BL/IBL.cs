@@ -62,7 +62,7 @@ namespace BL
         /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
         /// <param name="key">Key of guest request to update</param>
         /// <param name="stat">Status to update guest request to</param>
-        void UpdateGuestRequest(int key, Enums.RequestStatus stat);
+        void UpdateGuestRequestStatus(int key, Enums.RequestStatus stat);
 
         #endregion
 
@@ -136,7 +136,7 @@ namespace BL
 
         #endregion
 
-        #region UpdateOrder This function updates an order
+        #region UpdateOrderStatus This function updates an order
 
         /// <summary>
         /// This function updates an order with a key of <paramref name="key"/> to a status of <paramref name="stat"/>
@@ -144,7 +144,7 @@ namespace BL
         /// <exception cref="KeyNotFoundException">Thrown when an order with the specified key is not found</exception>
         /// <param name="key">Key of Order to update the status of</param>
         /// <param name="stat">Status to update Order status to</param>
-        void UpdateOrder(int key, Enums.OrderStatus stat);
+        void UpdateOrderStatus(int key, Enums.OrderStatus stat);
 
         #endregion
 
@@ -246,7 +246,7 @@ namespace BL
 
         #endregion
 
-        #region Function to work with Dairy array
+        #region Function to work with Diary array
 
         #region CheckIfAvailable This function check if the diary available in the range
 
@@ -283,7 +283,7 @@ namespace BL
         #region GetAllGuestByArea This function return all the GuestRequest group by Area
 
         /// <summary>
-        /// The function return all the GuestRequest group by <see cref="Enums.Area"/> 
+        /// The function return all the GuestRequest group by area
         /// </summary>
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all guestRequest group by area</returns>
         IEnumerable<IGrouping<Enums.Area, GuestRequest>> GetAllGuestByArea();
@@ -296,7 +296,7 @@ namespace BL
         /// The function return all the GuestRequest group by number of Vacationers
         /// </summary>
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all guestRequest group by number of Vacationers</returns>
-        IEnumerable<IGrouping<int, GuestRequest>> GetAllGuestByNumerOfVacationers(Enums.Area area);
+        IEnumerable<IGrouping<int, GuestRequest>> GetAllGuestByNumerOfVacationers();
 
         #endregion
 
@@ -316,7 +316,7 @@ namespace BL
         /// The function return all the Hosting unit group by area
         /// </summary>
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all the Hosting unit group by area</returns>
-        IEnumerable<IGrouping<Enums.Area, HostingUnit>> GetHostingUnitByArea(Enums.Area area);
+        IEnumerable<IGrouping<Enums.Area, HostingUnit>> GetHostingUnitByArea();
 
         #endregion
 

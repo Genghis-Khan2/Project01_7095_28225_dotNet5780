@@ -80,7 +80,7 @@ namespace BL
 
         #endregion
 
-        #region UpdateGuestRequest This function updates a guest request status
+        #region UpdateGuestRequestStatus This function updates a guest request status
 
         /// <summary>
         /// This function updates a guest request of key <paramref name="key"/> to the status <paramref name="stat"/>
@@ -89,13 +89,13 @@ namespace BL
         ///<exception cref="AlreadyClosedException">Thrown when tryin to change the status of GuestRequest Whose status has already been set to "closed"</exception>
         /// <param name="key">Key of guest request to update</param>
         /// <param name="stat">Status to update guest request to</param>
-        ///<remarks>I assume that like <see cref="UpdateOrder(int, Enums.OrderStatus)"/> if the status is already close itsn't need to throw Exception</remarks>
-        public void UpdateGuestRequest(int key, Enums.RequestStatus stat)
+        ///<remarks>I assume that like <see cref="UpdateOrderStatus(int, Enums.OrderStatus)"/> if the status is already close itsn't need to throw Exception</remarks>
+        public void UpdateGuestRequestStatus(int key, Enums.RequestStatus stat)
         {
             GuestRequest gr = DalImp.GetDal().GetGuestRequest(key);
             if (IsClosed(gr.Status) && !IsClosed(stat))
                 throw new AlreadyClosedException("GuestRequest", gr.GuestRequestKey);//TODO: write all the AlreadyClosedException if's in this form
-            DalImp.GetDal().UpdateGuestRequest(key, stat);
+            DalImp.GetDal().UpdateGuestRequestStatus(key, stat);
         }
 
         #endregion
@@ -262,7 +262,7 @@ namespace BL
 
         #endregion
 
-        #region UpdateOrder This function updates an order status
+        #region UpdateOrderStatus This function updates an order status
 
         /// <summary>
         /// This function updates an order with a key of <paramref name="key"/> to a status of <paramref name="stat"/>
@@ -272,15 +272,15 @@ namespace BL
         ///<exception cref="UnauthorizedActionException">Throw when try to change the status to <see cref="Enums.OrderStatus.SentMail"/> but the <see cref="Host.CollectionClearance"/> is false</exception>
         /// <param name="key">Key of Order to update the status of</param>
         /// <param name="stat">Status to update Order status to</param>
-        public void UpdateOrder(int key, Enums.OrderStatus stat)
+        public void UpdateOrderStatus(int key, Enums.OrderStatus stat)
         {
             //TODO: write the function
             //REMARK: בעל יחידת אירוח יוכל לשלוח הזמנה ללקוח )שינוי הסטטוס ל "נשלח מייל"(, רק אם חתם על הרשאה לחיוב חשבון בנק - done
             //REMARK: לאחר שסטטוס ההזמנה השתנה לסגירת עיסקה – לא ניתן לשנות יותר את הסטטוס שלה. - done
             //REMARK: כאשר סטטוס ההזמנה משתנה בגלל סגירת עסקה – יש לבצע חישוב עמלה בגובה של 10 ₪ ליום אירוח. )עיין הערה למטה(
-            //REMARK: כאשר סטטוס ההזמנה משתנה בגלל סגירת עסקה – יש לסמן במטריצה את התאריכים הרלוונטיים.
+            //REMARK: כאשר סטטוס ההזמנה משתנה בגלל סגירת עסקה – יש לסמן במטריצה את התאריכים הרלוונטיים. - done
             //REMARK: כאשר סטטוס הזמנה משתנה עקב סגירת עסקה – יש לשנות את הסטטוס של דרישת הלקוח בהתאם, וכן לשנות את הסטטוס של כל ההזמנות האחרות של אותו לקוח.
-            //REMARK:   כאשר סטטוס ההזמנה משתנה ל"נשלח מייל" – המערכת תשלח באופן אוטומטי מייל  ללקוח עם פרטי ההזמנה. ניתן לדחות את הביצוע בפועל של שליחת המייל לשלב הבא, וכעת רק להדפיס הודעה על המסך.
+            //REMARK:   כאשר סטטוס ההזמנה משתנה ל"נשלח מייל" – המערכת תשלח באופן אוטומטי מייל  ללקוח עם פרטי ההזמנה. ניתן לדחות את הביצוע בפועל של שליחת המייל לשלב הבא, וכעת רק להדפיס הודעה על המסך. -done
             if (!CheckIfOrderExists(key))
                 throw new KeyNotFoundException("There is no order with the key specified");
 
@@ -291,10 +291,39 @@ namespace BL
             if (IsClosed(ord.Status) && !IsClosed(stat))
                 throw new AlreadyClosedException("Order", key);
 
-            if (!GetHostingUnit(ord.HostingUnitKey).Owner.CollectionClearance && stat == Enums.OrderStatus.SentMail)
-                throw new UnauthorizedAccessException("a host cannot send an email if it does not authorize an account billing authorization");
+            if (stat == Enums.OrderStatus.SentMail)
+            {
+                if (!GetHostingUnit(ord.HostingUnitKey).Owner.CollectionClearance)
+                    throw new UnauthorizedAccessException("a host cannot send an email if it does not authorize an account billing authorization");
+                Console.WriteLine("Send mail");
+                DalImp.GetDal().UpdateOrderStatus(key, Enums.OrderStatus.SentMail);
+            }
 
-            if(stat == Enums.OrderStatus.CustomerResponsiveness)//TODO: finish the get Commission here
+            //TODO: finish the get Commission here
+            if (stat == Enums.OrderStatus.ClosedByCustomerResponsiveness)
+            {
+                HostingUnit hostingUnit = GetHostingUnit(ord.HostingUnitKey);
+                GuestRequest guestRequest = GetGuestRequest(ord.GuestRequestKey);
+
+                ///<remarks>
+                ///This log check is here in addition to the check when creating the order(<see cref="AddOrder(Order)"/>)
+                ///to avoid a situation where 2 guestRequest have booked the same day and the one host send order to each of them 
+                ///and one of them approved then if the other approve and mark even though the dates are busy, he can do it
+                ///so we added another check her
+                ///</remarks>
+                if (CheckIfAvailable(hostingUnit.Diary, guestRequest.EntryDate, guestRequest.ReleaseDate))
+                {
+                    hostingUnit.Diary = MarkingInTheDiary(hostingUnit.Diary, guestRequest.EntryDate, guestRequest.ReleaseDate);
+                    UpdateHostingUnit(hostingUnit, ord.HostingUnitKey);
+                }
+                else
+                {
+                    DalImp.GetDal().UpdateOrderStatus(key, Enums.OrderStatus.ClosedByHost);
+                    throw new OccupiedDatesException(guestRequest.EntryDate.Day + "." + guestRequest.EntryDate.Month + " - " + guestRequest.ReleaseDate.Day + "." + guestRequest.ReleaseDate.Month);
+                }
+
+                UpdateGuestRequestStatus()
+            }
 
 
         }
@@ -583,7 +612,7 @@ namespace BL
 
         #endregion
 
-        #region Function to work with Dairy array
+        #region Function to work with Diary array
 
         #region CheckIfAvailable This function check if the diary available in the range
 
@@ -631,13 +660,14 @@ namespace BL
         /// <param name="enteryDate">Start date of the vaction</param>
         /// <param name="releaseDate">End date of the vaction</param>
         /// <remarks>This function assume that the range is available and dosnt check it, to check use the<see cref="CheckIfAvailable(bool[,], DateTime, DateTime)"/> function</remarks>
-        public void MarkingInTheDiary(ref bool[,] diary, DateTime enteryDate, DateTime releaseDate)
+        public bool[,] MarkingInTheDiary(bool[,] diary, DateTime enteryDate, DateTime releaseDate)
         {
             DateTime endDt = new DateTime(2020, releaseDate.Month, releaseDate.Day);
             for (DateTime dt = new DateTime(2020, enteryDate.Month, enteryDate.Day); dt < endDt; dt.AddDays(1))
             {
                 diary[dt.Month, dt.Day] = true;
             }
+            return diary;
         }
 
         #endregion
@@ -655,7 +685,7 @@ namespace BL
         /// <returns>boolean, if the status is closed or not</returns>
         public bool IsClosed(Enums.OrderStatus stat)
         {
-            if (stat == Enums.OrderStatus.CustomerResponsiveness || stat == Enums.OrderStatus.CustomerUnresponsiveness)
+            if (stat == Enums.OrderStatus.ClosedByCustomerResponsiveness || stat == Enums.OrderStatus.ClosedByCustomerUnresponsiveness || stat == Enums.OrderStatus.ClosedByHost)
                 return true;
             return false;
         }
@@ -694,8 +724,11 @@ namespace BL
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all guestRequest group by area</returns>
         public IEnumerable<IGrouping<Enums.Area, GuestRequest>> GetAllGuestByArea()
         {
-            //TODO: write the function
-            throw new NotImplementedException();
+            var allGuestRequest = GetAllGuestRequests();
+            var groupedList = from gr in allGuestRequest
+                              group gr by gr.Area into t
+                              select t;
+            return groupedList;
         }
 
         #endregion
@@ -706,11 +739,14 @@ namespace BL
         /// The function return all the GuestRequest group by number of Vacationers
         /// </summary>
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all guestRequest group by number of Vacationers</returns>
-        public IEnumerable<IGrouping<int, GuestRequest>> GetAllGuestByNumerOfVacationers(Enums.Area area)
+        public IEnumerable<IGrouping<int, GuestRequest>> GetAllGuestByNumerOfVacationers()
         {
-            //TODO: write the function
-            throw new NotImplementedException();
-        }//TODO:need to check if did all the grouping function
+            var allGuestRequest = GetAllGuestRequests();
+            var groupedList = from gr in allGuestRequest
+                              group gr by (gr.Children + gr.Adults);//TODO: check if it work
+
+            return groupedList;
+        }
 
         #endregion
 
@@ -722,8 +758,10 @@ namespace BL
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all Host group by the number of Hosting unit they have</returns>
         public IEnumerable<IGrouping<int, Host>> GetAllHostByNumberOfHostingUnits()
         {
-            //TODO: do it
-            throw new NotImplementedException();
+            var listOfAllHostingUnitGroupByHost = getHostingUnitByHost();
+            var groupedList = from item in listOfAllHostingUnitGroupByHost
+                              group item.Key by item.Count();
+            return groupedList;
         }
 
         #endregion
@@ -734,12 +772,29 @@ namespace BL
         /// The function return all the Hosting unit group by area
         /// </summary>
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all the Hosting unit group by area</returns>
-        public IEnumerable<IGrouping<Enums.Area, HostingUnit>> GetHostingUnitByArea(Enums.Area area)
+        public IEnumerable<IGrouping<Enums.Area, HostingUnit>> GetHostingUnitByArea()
         {
-            //TODO: do it
-            throw new NotImplementedException();
+            var allHostingUnit = GetAllHostingUnits();
+            var groupedList = from hu in allHostingUnit
+                              group hu by hu.Area;
+            return groupedList;
         }
 
+        #endregion
+
+        #region getHostingUnitByHost This function return all the HostingUnit group by There Host
+
+        /// <summary>
+        ///  This function return all the HostingUnit group by There Host
+        /// </summary>
+        /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all HostingUnit group by there host</returns>
+        public IEnumerable<IGrouping<Host, HostingUnit>> getHostingUnitByHost()
+        {
+            var allHostingUnit = GetAllHostingUnits();
+            var groupedList = from hu in allHostingUnit
+                              group hu by hu.Owner;
+            return groupedList;
+        }
         #endregion
 
         #endregion
