@@ -201,9 +201,9 @@ namespace BL
         /// <summary>
         /// The function return all the <see cref="Order"/> sent to <paramref name="guestRequest"/>
         /// </summary>
-        /// <param name="guestRequest">The Guest Request to check how many <see cref="Order"/> where sent to her </param>
+        /// <param name="key">The Guest Request key to check how many <see cref="Order"/> where sent to her </param>
         /// <returns>The amount of order sent to the GuestRequest</returns>
-        int GetAmountOfOrderToGuest(GuestRequest guestRequest);
+        int GetAmountOfOrderToGuest(int key);
 
         #endregion
 

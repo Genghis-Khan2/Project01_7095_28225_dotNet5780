@@ -92,6 +92,8 @@ namespace BL
         ///<remarks>I assume that like <see cref="UpdateOrderStatus(int, Enums.OrderStatus)"/> if the status is already close itsn't need to throw Exception</remarks>
         public void UpdateGuestRequestStatus(int key, Enums.RequestStatus stat)
         {
+            if (!CheckIfGuestRequestExists(key))
+                throw new KeyNotFoundException("There is no order with the key specified");
             GuestRequest gr = DalImp.GetDal().GetGuestRequest(key);
             if (IsClosed(gr.Status) && !IsClosed(stat))
                 throw new AlreadyClosedException("GuestRequest", gr.GuestRequestKey);//TODO: write all the AlreadyClosedException if's in this form
@@ -541,8 +543,10 @@ namespace BL
         /// <returns><see cref="IEnumerable{GuestRequest}"/> to go over the list of all the GuestRequest That match the condition</returns>
         public IEnumerable<GuestRequest> GetAllGuestRequestWhere(isMeetTheDefinition func)
         {
-            //TODO: write the function
-            throw new NotImplementedException();
+            var selectedList = from gr in GetAllGuestRequests()
+                               where func(gr)
+                               select gr;
+            return selectedList;
         }
 
         #endregion
@@ -552,13 +556,17 @@ namespace BL
         /// <summary>
         /// The function return all the <see cref="Order"/> sent to <paramref name="guestRequest"/>
         /// </summary>
-        /// <param name="guestRequest">The Guest Request to check how many <see cref="Order"/> where sent to her </param>
+        /// <param name="key">The Guest Request key to check how many <see cref="Order"/> where sent to her </param>
         /// <exception cref="KeyNotFoundException">Thrown when there isnt GuestRequst in data that exsist the <paramref name="key"/></exception>
         /// <returns>The amount of order sent to the GuestRequest</returns>
-        public int GetAmountOfOrderToGuest(GuestRequest guestRequest)
+        public int GetAmountOfOrderToGuest(int key)
         {
-            //TODO: write the function
-            throw new NotImplementedException();
+            if (!CheckIfGuestRequestExists(key))
+                throw new KeyNotFoundException("There is no order with the key specified");
+            var allOrderToGuest = from ord in GetAllOrders()
+                                  where ord.GuestRequestKey == key
+                                  select ord;
+            return allOrderToGuest.Count();
         }
 
         #endregion
@@ -571,10 +579,13 @@ namespace BL
         /// <param name="date">Start date</param>
         /// <param name="days">How many days</param>
         /// <returns><see cref="IEnumerable{HostingUnit}"/> to go over the list of all free hosting unit in the range</returns>
-        public IEnumerable<HostingUnit> GetAllAvailableHostingUnit(DateTime date, int days)
+        public IEnumerable<HostingUnit> GetAllAvailableHostingUnit(DateTime entryDate, int days)
         {
-            //TODO: write the function
-            throw new NotImplementedException();
+            DateTime releaseDate = entryDate.AddDays(days);
+            var list = from hostingUnit in GetAllHostingUnits()
+                       where CheckIfAvailable(hostingUnit.Diary, entryDate, releaseDate)
+                       select hostingUnit;
+            return list;
         }
 
         #endregion
@@ -586,13 +597,16 @@ namespace BL
         /// is greater or equal to <paramref name="numberOfDays"/>
         /// </summary>
         /// <param name="numberOfDays">The amount of day to check</param>
-        /// <returns>All the <see cref="Order"/>s that the amount of day from there creation\since they sent email to the client 
+        /// <returns>
+        /// All the <see cref="Order"/>s that the amount of day from there creation\since they sent email to the client 
         /// is greater or equal to <paramref name="numberOfDays"/>
         /// </returns>
         public IEnumerable<Order> GetAllOrderInRange(int numberOfDays)
         {
-            //TODO: do it
-            throw new NotImplementedException();
+            var list = from ord in GetAllOrders()
+                       where ((DateTime.Now - ord.CreateDate).TotalDays >= numberOfDays || (DateTime.Now - ord.OrderDate).TotalDays >= numberOfDays)
+                       select ord;
+            return list;
         }
 
         #endregion
@@ -603,13 +617,15 @@ namespace BL
         /// The function returns the number of orders sent\the number
         /// of successfully closed orders for <paramref name="hostingUnit"/>
         /// </summary>
-        /// <param name="hostingUnit">The hosting unit to check</param>
+        /// <param name="key">The hosting unit <paramref name="key"/> to check</param>
         /// <returns>The number of orders sent\the number  of successfully closed orders for <paramref name="hostingUnit"/>
         /// </returns>
-        public int GetAllsuccessfulOrder(HostingUnit hostingUnit)
+        public int GetAllsuccessfulOrder(int key)
         {
-            //TODO: write the function
-            throw new NotImplementedException();
+            var list = from ord in GetAllOrders()
+                       where (ord.HostingUnitKey == key && (ord.Status == Enums.OrderStatus.ClosedByCustomerResponsiveness || ord.Status == Enums.OrderStatus.SentMail))
+                       select ord;
+            return list.Count();
         }
 
         #endregion
@@ -806,7 +822,6 @@ namespace BL
 
 /*
 tasks:
-8. לבדוק שהשמות בBE תואמים לנאמר בתרגיל
 7. check that all the function in BLImp also in IBL
 6. לכתוב את הפונקציות
 7.לוודא שכל התנאים מומשו(כל הלינקיו וכו')
