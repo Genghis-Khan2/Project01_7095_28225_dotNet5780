@@ -173,8 +173,45 @@ namespace UI
                 Console.WriteLine("It isn't");
             }
 
-            var areaToGR = bl.GetAllGuestByArea();
-            foreach (var i in areaToGR)
+            foreach (var i in bl.GetAllGuestByArea())
+            {
+                switch (i.Key)
+                {
+                    case Enums.Area.All:
+                        Console.WriteLine("All:");
+                        Console.WriteLine(i);
+                        break;
+                    case Enums.Area.Center:
+                        Console.WriteLine("Center:");
+                        Console.WriteLine(i);
+                        break;
+                    case Enums.Area.Jerusalem:
+                        Console.WriteLine("Jerusalem:");
+                        Console.WriteLine(i);
+                        break;
+                    case Enums.Area.North:
+                        Console.WriteLine("North:");
+                        Console.WriteLine(i);
+                        break;
+                    case Enums.Area.South:
+                        Console.WriteLine("South:");
+                        Console.WriteLine(i);
+                        break;
+                }
+            }
+
+            foreach (var i in bl.GetAllGuestByNumerOfVacationers(Enums.Area.Jerusalem))
+            {
+                Console.WriteLine("GuestRequests with {0} vacationers", i.Key);
+                Console.WriteLine(i);
+            }
+
+            foreach (var i in bl.GetAllHostByNumberOfHostingUnits())
+            {
+                Console.WriteLine("{0} has {1} hosting units", i, i.Key);
+            }
+
+            foreach (var i in bl.GetHostingUnitByArea())
             {
                 switch (i.Key)
                 {
