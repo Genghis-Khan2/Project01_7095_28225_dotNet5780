@@ -31,6 +31,7 @@ namespace BE
                 {
                     //if the email address is invalid
                     mailAddress = "plony@almony.com";
+                    throw new FormatException("The format of the email isnt valid");
                 }
             }
         }

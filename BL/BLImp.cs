@@ -279,7 +279,7 @@ namespace BL
             //REMARK: לאחר שסטטוס ההזמנה השתנה לסגירת עיסקה – לא ניתן לשנות יותר את הסטטוס שלה. - done
             //REMARK: כאשר סטטוס ההזמנה משתנה בגלל סגירת עסקה – יש לבצע חישוב עמלה בגובה של 10 ₪ ליום אירוח. )עיין הערה למטה(
             //REMARK: כאשר סטטוס ההזמנה משתנה בגלל סגירת עסקה – יש לסמן במטריצה את התאריכים הרלוונטיים. - done
-            //REMARK: כאשר סטטוס הזמנה משתנה עקב סגירת עסקה – יש לשנות את הסטטוס של דרישת הלקוח בהתאם, וכן לשנות את הסטטוס של כל ההזמנות האחרות של אותו לקוח.
+            //REMARK: כאשר סטטוס הזמנה משתנה עקב סגירת עסקה – יש לשנות את הסטטוס של דרישת הלקוח בהתאם, וכן לשנות את הסטטוס של כל ההזמנות האחרות של אותו לקוח. - done
             //REMARK:   כאשר סטטוס ההזמנה משתנה ל"נשלח מייל" – המערכת תשלח באופן אוטומטי מייל  ללקוח עם פרטי ההזמנה. ניתן לדחות את הביצוע בפועל של שליחת המייל לשלב הבא, וכעת רק להדפיס הודעה על המסך. -done
             if (!CheckIfOrderExists(key))
                 throw new KeyNotFoundException("There is no order with the key specified");
@@ -322,7 +322,11 @@ namespace BL
                     throw new OccupiedDatesException(guestRequest.EntryDate.Day + "." + guestRequest.EntryDate.Month + " - " + guestRequest.ReleaseDate.Day + "." + guestRequest.ReleaseDate.Month);
                 }
 
-                UpdateGuestRequestStatus()
+                UpdateGuestRequestStatus(ord.GuestRequestKey, Enums.RequestStatus.ClosedWithDeal);
+                var linkedOrder = from order in GetAllOrders()
+                                  where order.GuestRequestKey == ord.GuestRequestKey
+                                  select order;
+                linkedOrder.AsParallel().ForAll((x => UpdateOrderStatus(x.OrderKey, Enums.OrderStatus.ClosedByHost)));
             }
 
 
@@ -487,8 +491,7 @@ namespace BL
         /// <returns>All the day from <paramref name="startDay"/> to now</returns>
         public int GetNumberOfDateInRange(DateTime startDay)
         {
-            //TODO: write the function
-            throw new NotImplementedException();
+            return (DateTime.Now - startDay).Days;
         }
 
         #endregion
@@ -503,8 +506,7 @@ namespace BL
         /// <returns>All the days from <paramref name="startDay"/> to <paramref name="endDay"/></returns>
         public int GetNumberOfDateInRange(DateTime startDay, DateTime endDay)
         {
-            //TODO: write the function
-            throw new NotImplementedException();
+            return (endDay - startDay).Days;
         }
 
         #endregion
