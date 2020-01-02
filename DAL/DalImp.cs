@@ -96,7 +96,7 @@ namespace DAL
 
         #endregion
 
-        #region UpdateGuestRequest This function updates a guest request
+        #region UpdateGuestRequestStatus This function updates a guest request
 
         /// <summary>
         /// This function updates a guest request of key <paramref name="key"/> to the status <paramref name="stat"/>
@@ -104,7 +104,7 @@ namespace DAL
         /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
         /// <param name="key">Key of guest request to update</param>
         /// <param name="stat">Status to update guest request to</param>
-        public void UpdateGuestRequest(int key, Enums.RequestStatus stat)
+        public void UpdateGuestRequestStatus(int key, Enums.RequestStatus stat)
         {
             int i = DataSource.guestRequestsList.FindIndex(t => t.GuestRequestKey == key);
 
@@ -327,7 +327,7 @@ namespace DAL
 
         #endregion
 
-        #region UpdateOrder This function updates an order
+        #region UpdateOrderStatus This function updates an order
 
         /// <summary>
         /// This function updates an order with a key of <paramref name="key"/> to a status of <paramref name="stat"/>
@@ -335,7 +335,7 @@ namespace DAL
         /// <exception cref="KeyNotFoundException">Thrown when an order with the specified key is not found</exception>
         /// <param name="key">Key of Order to update the status of</param>
         /// <param name="stat">Status to update Order status to</param>
-        public void UpdateOrder(int key, Enums.OrderStatus stat)
+        public void UpdateOrderStatus(int key, Enums.OrderStatus stat)
         {
             int index = DataSource.ordersList.FindIndex(new Predicate<Order>(x => x.OrderKey == key));
 
