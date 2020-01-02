@@ -1,0 +1,16 @@
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\bin\Debug\netstandard2.0\DAL.dll
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\bin\Debug\netstandard2.0\DAL.pdb
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\bin\Debug\netstandard2.0\BE.dll
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\bin\Debug\netstandard2.0\DS.dll
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\bin\Debug\netstandard2.0\Exceptions.dll
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\bin\Debug\netstandard2.0\BE.pdb
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\bin\Debug\netstandard2.0\DS.pdb
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\bin\Debug\netstandard2.0\Exceptions.pdb
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\obj\Debug\netstandard2.0\DAL.csprojAssemblyReference.cache
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\obj\Debug\netstandard2.0\DAL.csproj.CopyComplete
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\obj\Debug\netstandard2.0\DAL.dll
+Z:\Project01_7095_28225_dotNet5780-Noam\DAL\obj\Debug\netstandard2.0\DAL.pdb

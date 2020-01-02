@@ -99,23 +99,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gabik\\.nuget\\packages\\": {},
+    "C:\\Users\\benshlom\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\קורסים\\יב\\סמסטר א\\מיניפ\\Exercises (Visual Studio)\\Project01_7095_28225_dotNet5780\\UI\\UI.csproj",
+      "projectUniqueName": "Z:\\Project01_7095_28225_dotNet5780-Noam\\UI\\UI.csproj",
       "projectName": "UI",
-      "projectPath": "E:\\קורסים\\יב\\סמסטר א\\מיניפ\\Exercises (Visual Studio)\\Project01_7095_28225_dotNet5780\\UI\\UI.csproj",
-      "packagesPath": "C:\\Users\\gabik\\.nuget\\packages\\",
-      "outputPath": "E:\\קורסים\\יב\\סמסטר א\\מיניפ\\Exercises (Visual Studio)\\Project01_7095_28225_dotNet5780\\UI\\obj\\",
+      "projectPath": "Z:\\Project01_7095_28225_dotNet5780-Noam\\UI\\UI.csproj",
+      "packagesPath": "C:\\Users\\benshlom\\.nuget\\packages\\",
+      "outputPath": "Z:\\Project01_7095_28225_dotNet5780-Noam\\UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\gabik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\benshlom\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -128,8 +128,8 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "E:\\קורסים\\יב\\סמסטר א\\מיניפ\\Exercises (Visual Studio)\\Project01_7095_28225_dotNet5780\\BL\\BL.csproj": {
-              "projectPath": "E:\\קורסים\\יב\\סמסטר א\\מיניפ\\Exercises (Visual Studio)\\Project01_7095_28225_dotNet5780\\BL\\BL.csproj"
+            "Z:\\Project01_7095_28225_dotNet5780-Noam\\BL\\BL.csproj": {
+              "projectPath": "Z:\\Project01_7095_28225_dotNet5780-Noam\\BL\\BL.csproj"
             }
           }
         }
@@ -143,21 +143,10 @@
     "frameworks": {
       "netcoreapp3.0": {
         "imports": [
-          "net461",
-          "net462",
-          "net47",
-          "net471",
-          "net472",
-          "net48"
+          "net461"
         ],
         "assetTargetFallback": true,
-        "warn": true,
-        "frameworkReferences": {
-          "Microsoft.NETCore.App": {
-            "privateAssets": "all"
-          }
-        },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        "warn": true
       }
     }
   }

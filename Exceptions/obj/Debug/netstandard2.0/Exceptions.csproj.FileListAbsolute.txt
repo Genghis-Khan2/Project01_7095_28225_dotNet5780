@@ -1,0 +1,9 @@
+Z:\Project01_7095_28225_dotNet5780-Noam\Exceptions\bin\Debug\netstandard2.0\Exceptions.deps.json
+Z:\Project01_7095_28225_dotNet5780-Noam\Exceptions\bin\Debug\netstandard2.0\Exceptions.dll
+Z:\Project01_7095_28225_dotNet5780-Noam\Exceptions\bin\Debug\netstandard2.0\Exceptions.pdb
+Z:\Project01_7095_28225_dotNet5780-Noam\Exceptions\obj\Debug\netstandard2.0\Exceptions.csprojAssemblyReference.cache
+Z:\Project01_7095_28225_dotNet5780-Noam\Exceptions\obj\Debug\netstandard2.0\Exceptions.csproj.CoreCompileInputs.cache
+Z:\Project01_7095_28225_dotNet5780-Noam\Exceptions\obj\Debug\netstandard2.0\Exceptions.AssemblyInfoInputs.cache
+Z:\Project01_7095_28225_dotNet5780-Noam\Exceptions\obj\Debug\netstandard2.0\Exceptions.AssemblyInfo.cs
+Z:\Project01_7095_28225_dotNet5780-Noam\Exceptions\obj\Debug\netstandard2.0\Exceptions.dll
+Z:\Project01_7095_28225_dotNet5780-Noam\Exceptions\obj\Debug\netstandard2.0\Exceptions.pdb
