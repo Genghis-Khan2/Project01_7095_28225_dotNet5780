@@ -330,7 +330,7 @@ namespace BL
                                   select order;
                 linkedOrder.AsParallel().ForAll((x => UpdateOrderStatus(x.OrderKey, Enums.OrderStatus.ClosedByHost)));
             }
-            if (stat == Enums.OrderStatus.CustomerResponsiveness)//TODO: finish the get Commission here
+            if (stat == Enums.OrderStatus.ClosedByCustomerResponsiveness)//TODO: finish the get Commission here
 
         }
 

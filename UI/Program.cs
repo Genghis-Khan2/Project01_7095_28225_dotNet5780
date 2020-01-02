@@ -129,7 +129,7 @@ namespace UI
             }
 
             Console.WriteLine("Amount of orders to the guest:");
-            Console.WriteLine(bl.GetAmountOfOrderToGuest(gr));
+            Console.WriteLine(bl.GetAmountOfOrderToGuest(gr.GuestRequestKey));
 
             Console.WriteLine("Dates from 15.5.2019 to now");
             bl.GetNumberOfDateInRange(new DateTime(2019, 5, 15));
@@ -137,7 +137,7 @@ namespace UI
             Console.WriteLine("Dates from 25.2.2019 to 25.3.2019");
             bl.GetNumberOfDateInRange(new DateTime(2019, 2, 25), new DateTime(2019, 3, 25));
 
-            Console.WriteLine("There are {0} orders to the guestRequest", bl.GetAmountOfOrderToGuest(gr));
+            Console.WriteLine("There are {0} orders to the guestRequest", bl.GetAmountOfOrderToGuest(gr.GuestRequestKey));
 
             Console.WriteLine("Orders between now and 60 days from now:");
             foreach (var i in bl.GetAllOrderInRange(60))
@@ -200,7 +200,7 @@ namespace UI
                 }
             }
 
-            foreach (var i in bl.GetAllGuestByNumerOfVacationers(Enums.Area.Jerusalem))
+            foreach (var i in bl.GetAllGuestByNumerOfVacationers())
             {
                 Console.WriteLine("GuestRequests with {0} vacationers", i.Key);
                 Console.WriteLine(i);
