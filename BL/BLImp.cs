@@ -330,7 +330,7 @@ namespace BL
                                   select order;
                 linkedOrder.AsParallel().ForAll((x => UpdateOrderStatus(x.OrderKey, Enums.OrderStatus.ClosedByHost)));
             }
-
+            if (stat == Enums.OrderStatus.CustomerResponsiveness)//TODO: finish the get Commission here
 
         }
 
@@ -514,6 +514,8 @@ namespace BL
         #endregion
 
         #region IsLeastThenOneDay This function check if date is at least one day before the second date
+
+        //TODO: CR GK: Should this really be public?
 
         /// <summary>
         /// This function check if <paramref name="date1"/> is at least one day before the <paramref name="date2"/>
