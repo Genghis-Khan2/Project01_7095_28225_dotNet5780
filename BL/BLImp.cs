@@ -213,7 +213,6 @@ namespace BL
 
         #endregion
 
-
         #endregion
 
         #region Order These functions perform actions on Orders
@@ -330,7 +329,7 @@ namespace BL
                                   select order;
                 linkedOrder.AsParallel().ForAll((x => UpdateOrderStatus(x.OrderKey, Enums.OrderStatus.ClosedByHost)));
             }
-            if (stat == Enums.OrderStatus.ClosedByCustomerResponsiveness)//TODO: finish the get Commission here
+
 
         }
 
@@ -365,6 +364,20 @@ namespace BL
         public IEnumerable<BankBranch> GetAllBankAccounts()
         {
             return DalImp.GetDal().GetAllBankAccounts();
+        }
+
+        #endregion
+
+        #region GetBankBranch This function return BankAccount
+
+        /// <summary>
+        /// This function return BankBranch according to <paramref name="key"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">The key of the BankBranch</param>
+        public BankBranch GetBankBranch(int key)
+        {
+            return DalImp.GetDal().GetBankBranch(key);
         }
 
         #endregion
@@ -514,8 +527,6 @@ namespace BL
         #endregion
 
         #region IsLeastThenOneDay This function check if date is at least one day before the second date
-
-        //TODO: CR GK: Should this really be public?
 
         /// <summary>
         /// This function check if <paramref name="date1"/> is at least one day before the <paramref name="date2"/>
@@ -728,7 +739,6 @@ namespace BL
 
         #endregion
 
-
         #endregion
 
 
@@ -824,8 +834,6 @@ namespace BL
 
 /*
 tasks:
-7. check that all the function in BLImp also in IBL
-6. לכתוב את הפונקציות
 7.לוודא שכל התנאים מומשו(כל הלינקיו וכו')
 8. לבדוק את הפונקציות
     TODO: do auto refactor to all code

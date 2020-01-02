@@ -59,10 +59,20 @@ namespace BL
         /// <summary>
         /// This function updates a guest request of key <paramref name="key"/> to the status <paramref name="stat"/>
         /// </summary>
-        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
         /// <param name="key">Key of guest request to update</param>
         /// <param name="stat">Status to update guest request to</param>
         void UpdateGuestRequestStatus(int key, Enums.RequestStatus stat);
+
+        #endregion
+
+        #region GetGuestRequest This function return guest request
+
+        /// <summary>
+        /// This function return GuestRequest according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the GuestRequest</param>
+        /// <returns>The GuestRequest with the <paramref name="key"/></returns>
+        GuestRequest GetGuestRequest(int key);
 
         #endregion
 
@@ -112,6 +122,17 @@ namespace BL
 
         #endregion
 
+        #region GetHostingUnit This function return HostingUnit
+
+        /// <summary>
+        /// This function return HostingUnit according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the HostingUnit</param>
+        /// <returns>The HostingUnit with the <paramref name="key"/></returns>
+        HostingUnit GetHostingUnit(int key);
+
+        #endregion
+
         #endregion
 
         #region Order These functions perform actions on Orders
@@ -141,10 +162,20 @@ namespace BL
         /// <summary>
         /// This function updates an order with a key of <paramref name="key"/> to a status of <paramref name="stat"/>
         /// </summary>
-        /// <exception cref="KeyNotFoundException">Thrown when an order with the specified key is not found</exception>
         /// <param name="key">Key of Order to update the status of</param>
         /// <param name="stat">Status to update Order status to</param>
         void UpdateOrderStatus(int key, Enums.OrderStatus stat);
+
+        #endregion
+
+        #region GetOrder This function return Order
+
+        /// <summary>
+        /// This function return Order according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the Order</param>
+        /// <returns>The Order with the <paramref name="key"/></returns>
+        Order GetOrder(int key);
 
         #endregion
 
@@ -159,6 +190,100 @@ namespace BL
         /// </summary>
         /// <returns>IEnumerable to go over the list of bank accounts</returns>
         IEnumerable<BankBranch> GetAllBankAccounts();
+
+        #endregion
+
+        #region GetBankBranch This function return BankAccount
+
+        /// <summary>
+        /// This function return BankBranch according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the BankBranch</param>
+        BankBranch GetBankBranch(int key);
+
+        #endregion
+
+        #endregion
+
+        #region Host These function perform actions on Host
+
+        #region GetAllHosts This function return all the Hosts
+
+        /// <summary>
+        /// This function return all the Host 
+        /// </summary>
+        /// <returns><seealso cref="IEnumerable{Host}"/> to go over the list of all the Hosts</returns>
+        IEnumerable<Host> GetAllHosts();
+
+        #endregion
+
+        #region GetHost This function return host
+
+        /// <summary>
+        /// This function return the Host with the <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The requested <see cref="Host"/>'s KEY</param>
+        /// <returns>The Host with the  <paramref name="key"/></returns>
+        Host GetHost(int key);
+
+        #endregion
+
+        #endregion
+
+        #region IfExists These function check if object exsits in the data
+
+        #region CheckIfGuestRequestExists This function check if guestRequest exists in the data
+
+        /// <summary>
+        /// This function return if guestRequest exists in the data
+        /// </summary>
+        /// <param name="key">The key of the guestRequest</param>
+        /// <returns>boolean, if the guestRequest exists or not</returns>
+        bool CheckIfGuestRequestExists(int key);
+
+        #endregion
+
+        #region CheckIfHostingUnitExists This function check if hostingUnit exists in the data
+
+        /// <summary>
+        /// This function return if hostingUnit exists in the data
+        /// </summary>
+        /// <param name="key">The key of the hostingUnit</param>
+        /// <returns>boolean, if the hostingUnit exists or not</returns>
+        bool CheckIfHostingUnitExists(int key);
+
+        #endregion
+
+        #region CheckIfOrderExists This function check if order exists in the data
+
+        /// <summary>
+        /// This function return if order exists in the data
+        /// </summary>
+        /// <param name="key">The key of the order</param>
+        /// <returns>boolean, if the order exists or not</returns>
+        bool CheckIfOrderExists(int key);
+
+        #endregion
+
+        #region CheckIfBankAccountExists This function check if bankAccount exists in the data
+
+        /// <summary>
+        /// This function return if bankAccount exists in the data
+        /// </summary>
+        /// <param name="key">The key of the bankAccount</param>
+        /// <returns>boolean, if the bankAccount exists or not</returns>
+        bool CheckIfBankAccountExists(int key);
+
+        #endregion
+
+        #region CheckIfHostExists This function check if host exists in the data
+
+        /// <summary>
+        /// This function return if host exists in the data
+        /// </summary>
+        /// <param name="key">The key of the host</param>
+        /// <returns>boolean, if the host exists or not</returns>
+        bool CheckIfHostExists(int key);
 
         #endregion
 
@@ -180,6 +305,18 @@ namespace BL
 
         int GetNumberOfDateInRange(DateTime startDay, DateTime endDay);
 
+
+        #endregion
+
+        #region IsLeastThenOneDay This function check if date is at least one day before the second date
+
+        /// <summary>
+        /// This function check if <paramref name="date1"/> is at least one day before the <paramref name="date2"/>
+        /// </summary>
+        /// <param name="date1">First date</param>
+        /// <param name="date2">Second date</param>
+        /// <returns>Boolean, if date is at least one day before the second date</returns>
+        bool IsLeastThenOneDay(DateTime date1, DateTime date2);
 
         #endregion
 
@@ -239,10 +376,10 @@ namespace BL
         /// The function returns the number of orders sent\the number
         /// of successfully closed orders for <paramref name="hostingUnit"/>
         /// </summary>
-        /// <param name="hostingUnit">The hosting unit to check</param>
+        /// <param name="key">The hosting unit key to check</param>
         /// <returns>The number of orders sent\the number  of successfully closed orders for <paramref name="hostingUnit"/>
         /// </returns>
-        int GetAllsuccessfulOrder(HostingUnit hostingUnit);
+        int GetAllsuccessfulOrder(int key);
 
         #endregion
 
@@ -261,20 +398,33 @@ namespace BL
 
         #endregion
 
-        #region IsLeastThenOneDay This function check if date is at least one day before the second date
+        #endregion
+
+        #region Function to work with status
+
+        #region IsClosed This function return if Order is closed
 
         /// <summary>
-        /// This function check if <paramref name="date1"/> is at least one day before the <paramref name="date2"/>
+        /// This function return if Order is closed 
         /// </summary>
-        /// <param name="date1">First date</param>
-        /// <param name="date2">Second date</param>
-        /// <returns>Boolean, if date is at least one day before the second date</returns>
-        bool IsLeastThenOneDay(DateTime date1, DateTime date2);
+        /// <param name="ord">The order to check is status</param>
+        /// <returns>boolean, if the status is closed or not</returns>
+        bool IsClosed(Enums.OrderStatus stat);
+
+        #endregion
+
+        #region IsClosed This function return if GuestRequest is closed
+
+        /// <summary>
+        /// This function return if guestRequest is closed 
+        /// </summary>
+        /// <param name="ord">The guestRequest to check is status</param>
+        /// <returns>boolean, if the status is closed or not</returns>
+        bool IsClosed(Enums.RequestStatus stat);
 
         #endregion
 
         #endregion
-
 
         #endregion
 
@@ -318,6 +468,15 @@ namespace BL
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all the Hosting unit group by area</returns>
         IEnumerable<IGrouping<Enums.Area, HostingUnit>> GetHostingUnitByArea();
 
+        #endregion
+
+        #region getHostingUnitByHost This function return all the HostingUnit group by There Host
+
+        /// <summary>
+        ///  This function return all the HostingUnit group by There Host
+        /// </summary>
+        /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all HostingUnit group by there host</returns>
+        IEnumerable<IGrouping<Host, HostingUnit>> getHostingUnitByHost();
         #endregion
 
         #endregion
