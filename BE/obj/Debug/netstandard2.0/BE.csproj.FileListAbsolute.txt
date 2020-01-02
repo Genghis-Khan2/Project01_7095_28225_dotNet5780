@@ -1,0 +1,9 @@
+Z:\Project01_7095_28225_dotNet5780-Noam\BE\bin\Debug\netstandard2.0\BE.deps.json
+Z:\Project01_7095_28225_dotNet5780-Noam\BE\bin\Debug\netstandard2.0\BE.dll
+Z:\Project01_7095_28225_dotNet5780-Noam\BE\bin\Debug\netstandard2.0\BE.pdb
+Z:\Project01_7095_28225_dotNet5780-Noam\BE\obj\Debug\netstandard2.0\BE.csprojAssemblyReference.cache
+Z:\Project01_7095_28225_dotNet5780-Noam\BE\obj\Debug\netstandard2.0\BE.csproj.CoreCompileInputs.cache
+Z:\Project01_7095_28225_dotNet5780-Noam\BE\obj\Debug\netstandard2.0\BE.AssemblyInfoInputs.cache
+Z:\Project01_7095_28225_dotNet5780-Noam\BE\obj\Debug\netstandard2.0\BE.AssemblyInfo.cs
+Z:\Project01_7095_28225_dotNet5780-Noam\BE\obj\Debug\netstandard2.0\BE.dll
+Z:\Project01_7095_28225_dotNet5780-Noam\BE\obj\Debug\netstandard2.0\BE.pdb
