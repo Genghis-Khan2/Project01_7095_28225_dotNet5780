@@ -1,26 +1,12 @@
 ﻿using System;
 using BL;
 using BE;
+using Exceptions;
 
 namespace UI
 {
     class Program
     {
-
-        public static void handleGuest()
-        {
-            //TODO: Implement the 3 functions
-        }
-
-        public static void handleHost()
-        {
-
-        }
-
-        public static void handleAdmin()
-        {
-
-        }
 
         public static bool isGuestRequestWithPool(GuestRequest gr)
         {
@@ -82,7 +68,14 @@ namespace UI
                 PrivateName = "Schnorer",
             };
             hu.Owner = schnorer;
-            bl.AddHostingUnit(hu);
+            try
+            {
+                bl.AddHostingUnit(hu);
+            }
+            catch (AlreadyExistsException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             HostingUnit hu2 = new HostingUnit()
             {
@@ -97,7 +90,16 @@ namespace UI
                 Owner = schnorer,
                 Type = Enums.HostingUnitType.Hotel
             };
-            bl.AddHostingUnit(hu2);
+            try
+            {
+                bl.AddHostingUnit(hu2);
+
+            }
+            catch (AlreadyExistsException e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
 
             Order o = new Order()
             {
@@ -108,134 +110,77 @@ namespace UI
                 Status = Enums.OrderStatus.UnTreated
             };
 
-            bl.AddOrder(o);
-
-            Console.WriteLine("Available HostingUnits:");
-            foreach (var i in bl.GetAllAvailableHostingUnit(new DateTime(2019, 3, 2), 60))
+            try
             {
-                Console.WriteLine(i);
+                bl.AddOrder(o);
+
+            }
+            catch (AlreadyExistsException e)
+            {
+
+                Console.WriteLine(e.Message);
             }
 
-            Console.WriteLine("GuestRequests requiring a pool:");
+            // Now let's make it fail
+
+            try
+            {
+                bl.AddOrder(o);
+
+            }
+            catch (AlreadyExistsException e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+
+            Console.WriteLine("available hostingunits:");
+
+            try
+            {
+                foreach (var i in bl.GetAllAvailableHostingUnit(new DateTime(2019, 3, 2), 60))
+                {
+                    Console.WriteLine(i);
+                }
+            }
+            catch (ArgumentException e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+
+            Console.WriteLine("guestrequests requiring a pool:");
             foreach (var i in bl.GetAllGuestRequestWhere(isGuestRequestWithPool))
             {
                 Console.WriteLine(i);
             }
 
-            Console.WriteLine("All bank accounts:");
-            foreach (var i in bl.GetAllBankAccounts())
+            Console.WriteLine("all bank accounts:");
+
+            try
             {
-                Console.WriteLine(i);
+                foreach (var i in bl.GetAllBankAccounts())
+                {
+                    Console.WriteLine(i);
+                }
+            }
+            catch (NoItemsException e)
+            {
+
+                Console.WriteLine(e.Message);
             }
 
             Console.WriteLine("Amount of orders to the guest:");
-            Console.WriteLine(bl.GetAmountOfOrderToGuest(gr.GuestRequestKey));
 
-            Console.WriteLine("Dates from 15.5.2019 to now");
-            bl.GetNumberOfDateInRange(new DateTime(2019, 5, 15));
-
-            Console.WriteLine("Dates from 25.2.2019 to 25.3.2019");
-            bl.GetNumberOfDateInRange(new DateTime(2019, 2, 25), new DateTime(2019, 3, 25));
-
-            Console.WriteLine("There are {0} orders to the guestRequest", bl.GetAmountOfOrderToGuest(gr.GuestRequestKey));
-
-            Console.WriteLine("Orders between now and 60 days from now:");
-            foreach (var i in bl.GetAllOrderInRange(60))
+            try
             {
-                Console.WriteLine(i);
+                Console.WriteLine(bl.GetAmountOfOrderToGuest(gr.GuestRequestKey));
+
             }
-
-            Console.WriteLine(bl.GetAllsuccessfulOrder(hu.HostingUnitKey));
-
-            Console.WriteLine("Lets check if the hostingUnit is available from 25.4.2019 to 1.6.2019");
-            if (bl.CheckIfAvailable(hu.Diary, new DateTime(2017, 4, 25), new DateTime(2019, 6, 1)))
+            catch (NoItemsException e)
             {
-                Console.WriteLine("It is");
-            }
 
-            else
-            {
-                Console.WriteLine("It isn't");
-            }
-
-            Console.WriteLine("Let's mark those days");
-            bool[,] meow = new bool[12, 31];
-            bl.MarkingInTheDiary(meow, new DateTime(2017, 4, 25), new DateTime(2019, 6, 1));
-
-            Console.WriteLine("Now is it marked?");
-            if (bl.CheckIfAvailable(meow, new DateTime(2017, 4, 25), new DateTime(2019, 6, 1)))
-            {
-                Console.WriteLine("It is");
-            }
-
-            else
-            {
-                Console.WriteLine("It isn't");
-            }
-
-            foreach (var i in bl.GetAllGuestByArea())
-            {
-                switch (i.Key)
-                {
-                    case Enums.Area.All:
-                        Console.WriteLine("All:");
-                        Console.WriteLine(i);
-                        break;
-                    case Enums.Area.Center:
-                        Console.WriteLine("Center:");
-                        Console.WriteLine(i);
-                        break;
-                    case Enums.Area.Jerusalem:
-                        Console.WriteLine("Jerusalem:");
-                        Console.WriteLine(i);
-                        break;
-                    case Enums.Area.North:
-                        Console.WriteLine("North:");
-                        Console.WriteLine(i);
-                        break;
-                    case Enums.Area.South:
-                        Console.WriteLine("South:");
-                        Console.WriteLine(i);
-                        break;
-                }
-            }
-
-            foreach (var i in bl.GetAllGuestByNumerOfVacationers())
-            {
-                Console.WriteLine("GuestRequests with {0} vacationers", i.Key);
-                Console.WriteLine(i);
-            }
-
-            foreach (var i in bl.GetAllHostByNumberOfHostingUnits())
-            {
-                Console.WriteLine("{0} has {1} hosting units", i, i.Key);
-            }
-
-            foreach (var i in bl.GetHostingUnitByArea())
-            {
-                switch (i.Key)
-                {
-                    case Enums.Area.All:
-                        Console.WriteLine("All:");
-                        Console.WriteLine(i);
-                        break;
-                    case Enums.Area.Center:
-                        Console.WriteLine("Center:");
-                        Console.WriteLine(i);
-                        break;
-                    case Enums.Area.Jerusalem:
-                        Console.WriteLine("Jerusalem:");
-                        Console.WriteLine(i);
-                        break;
-                    case Enums.Area.North:
-                        Console.WriteLine("North:");
-                        Console.WriteLine(i);
-                        break;
-                    case Enums.Area.South:
-                        Console.WriteLine("South:");
-                        Console.WriteLine(i);
-                        break;
-                }
+                Console.WriteLine(e.Message);
             }
         }
     }

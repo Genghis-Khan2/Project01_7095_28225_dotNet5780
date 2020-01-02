@@ -21,7 +21,7 @@ namespace BL
     /// and all is variables are static.
     /// So, the only option we are given is to put it here and hope that our severe grime in breaking the layer model is understood
     /// </remarks>
-    public delegate bool isMeetTheDefinition(GuestRequest guestRequest);//TODO: fix the coment
+    public delegate bool isMeetTheDefinition(GuestRequest guestRequest);
 
     /// <summary>
     /// This class is the interface of the BL layer
@@ -29,7 +29,6 @@ namespace BL
     public interface IBL
     {
         ///<remarks>No need for the singletory functions to be here... They are in <see cref="DalImp"/></remarks>
-        //TODO: add all the function prototype in BLImp to here
         #region Functions used to work with the data, also exist in the DAL layer
 
         #region GuestRequest These functions perform actions on GuestRequests
@@ -395,6 +394,19 @@ namespace BL
         /// <param name="ReleaseDate">Release date of the range</param>
         /// <returns>Boolean, if the range is available</returns>
         bool CheckIfAvailable(bool[,] diary, DateTime entryDate, DateTime ReleaseDate);
+
+        #endregion
+
+        #region MarkingInTheDiary This function mark a vaction in the diary
+
+        /// <summary>
+        /// This function mark a vaction(<paramref name="enteryDate"/> - <paramref name="releaseDate"/>) in <paramref name="diary"/>
+        /// </summary>
+        /// <param name="diary">The array represent all the days in the year</param>
+        /// <param name="enteryDate">Start date of the vaction</param>
+        /// <param name="releaseDate">End date of the vaction</param>
+        /// <remarks>This function assume that the range is available and dosnt check it, to check use the<see cref="CheckIfAvailable(bool[,], DateTime, DateTime)"/> function</remarks>
+        bool[,] MarkingInTheDiary(bool[,] diary, DateTime enteryDate, DateTime releaseDate);
 
         #endregion
 
