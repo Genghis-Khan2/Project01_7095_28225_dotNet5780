@@ -294,7 +294,7 @@ namespace BL
             if (!GetHostingUnit(ord.HostingUnitKey).Owner.CollectionClearance && stat == Enums.OrderStatus.SentMail)
                 throw new UnauthorizedAccessException("a host cannot send an email if it does not authorize an account billing authorization");
 
-            if(stat == Enums.OrderStatus.CustomerResponsiveness)//TODO: finish the get Commission here
+            if (stat == Enums.OrderStatus.CustomerResponsiveness)//TODO: finish the get Commission here
 
 
         }
