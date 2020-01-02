@@ -14,3 +14,18 @@ Z:\Project01_7095_28225_dotNet5780-Noam\DAL\obj\Debug\netstandard2.0\DAL.Assembl
 Z:\Project01_7095_28225_dotNet5780-Noam\DAL\obj\Debug\netstandard2.0\DAL.csproj.CopyComplete
 Z:\Project01_7095_28225_dotNet5780-Noam\DAL\obj\Debug\netstandard2.0\DAL.dll
 Z:\Project01_7095_28225_dotNet5780-Noam\DAL\obj\Debug\netstandard2.0\DAL.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\DAL.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\DAL.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\BE.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\DS.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\Exceptions.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\BE.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\DS.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\Exceptions.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.csprojAssemblyReference.cache
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.csproj.CopyComplete
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.pdb

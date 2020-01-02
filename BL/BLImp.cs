@@ -591,7 +591,7 @@ namespace BL
         /// <summary>
         /// The function returns the list of all available hosting units starting in the <paramref name="date"/> and ending <paramref name="days"/> days later
         /// </summary>
-        /// <param name="date">Start date</param>
+        /// <param name="entryDate">Start date</param>
         /// <param name="days">How many days</param>
         /// <returns><see cref="IEnumerable{HostingUnit}"/> to go over the list of all free hosting unit in the range</returns>
         public IEnumerable<HostingUnit> GetAllAvailableHostingUnit(DateTime entryDate, int days)

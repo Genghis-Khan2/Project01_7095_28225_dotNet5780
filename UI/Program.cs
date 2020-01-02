@@ -1,26 +1,12 @@
 ﻿using System;
 using BL;
 using BE;
+using Exceptions;
 
 namespace UI
 {
     class Program
     {
-
-        public static void handleGuest()
-        {
-            //TODO: Implement the 3 functions
-        }
-
-        public static void handleHost()
-        {
-
-        }
-
-        public static void handleAdmin()
-        {
-
-        }
 
         public static bool isGuestRequestWithPool(GuestRequest gr)
         {
@@ -82,7 +68,14 @@ namespace UI
                 PrivateName = "Schnorer",
             };
             hu.Owner = schnorer;
-            bl.AddHostingUnit(hu);
+            try
+            {
+                bl.AddHostingUnit(hu);
+            }
+            catch (AlreadyExistsException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             HostingUnit hu2 = new HostingUnit()
             {
@@ -97,7 +90,16 @@ namespace UI
                 Owner = schnorer,
                 Type = Enums.HostingUnitType.Hotel
             };
-            bl.AddHostingUnit(hu2);
+            try
+            {
+                bl.AddHostingUnit(hu2);
+
+            }
+            catch (AlreadyExistsException e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
 
             Order o = new Order()
             {
@@ -108,28 +110,78 @@ namespace UI
                 Status = Enums.OrderStatus.UnTreated
             };
 
-            bl.AddOrder(o);
+            try
+            {
+                bl.AddOrder(o);
 
-            //Console.WriteLine("Available HostingUnits:");
-            //foreach (var i in bl.GetAllAvailableHostingUnit(new DateTime(2019, 3, 2), 60))
-            //{
-            //    Console.WriteLine(i);
-            //}
+            }
+            catch (AlreadyExistsException e)
+            {
 
-            //Console.WriteLine("GuestRequests requiring a pool:");
-            //foreach (var i in bl.GetAllGuestRequestWhere(isGuestRequestWithPool))
-            //{
-            //    Console.WriteLine(i);
-            //}
+                Console.WriteLine(e.Message);
+            }
 
-            //Console.WriteLine("All bank accounts:");
-            //foreach (var i in bl.GetAllBankAccounts())
-            //{
-            //    Console.WriteLine(i); ;
-            //}
+            // Now let's make it fail
+
+            try
+            {
+                bl.AddOrder(o);
+
+            }
+            catch (AlreadyExistsException e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+
+            Console.WriteLine("available hostingunits:");
+
+            try
+            {
+                foreach (var i in bl.GetAllAvailableHostingUnit(new DateTime(2019, 3, 2), 60))
+                {
+                    Console.WriteLine(i);
+                }
+            }
+            catch (ArgumentException e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+
+            Console.WriteLine("guestrequests requiring a pool:");
+            foreach (var i in bl.GetAllGuestRequestWhere(isGuestRequestWithPool))
+            {
+                Console.WriteLine(i);
+            }
+
+            Console.WriteLine("all bank accounts:");
+
+            try
+            {
+                foreach (var i in bl.GetAllBankAccounts())
+                {
+                    Console.WriteLine(i);
+                }
+            }
+            catch (NoItemsException e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
 
             Console.WriteLine("Amount of orders to the guest:");
-            Console.WriteLine(bl.GetAmountOfOrderToGuest(gr));
+
+            try
+            {
+                Console.WriteLine(bl.GetAmountOfOrderToGuest(gr.GuestRequestKey));
+
+            }
+            catch (NoItemsException e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
