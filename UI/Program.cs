@@ -145,7 +145,7 @@ namespace UI
                 Console.WriteLine(i);
             }
 
-            Console.WriteLine(bl.GetAllsuccessfulOrder(hu));
+            Console.WriteLine(bl.GetAllsuccessfulOrder(hu.HostingUnitKey));
 
             Console.WriteLine("Lets check if the hostingUnit is available from 25.4.2019 to 1.6.2019");
             if (bl.CheckIfAvailable(hu.Diary, new DateTime(2017, 4, 25), new DateTime(2019, 6, 1)))
