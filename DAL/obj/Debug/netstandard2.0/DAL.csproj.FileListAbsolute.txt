@@ -29,3 +29,19 @@ E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project0
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.csproj.CopyComplete
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.dll
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\DAL.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\DAL.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\BE.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\DS.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\Exceptions.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\BE.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\DS.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\Exceptions.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.csprojAssemblyReference.cache
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.csproj.CopyComplete
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.pdb
