@@ -127,7 +127,7 @@ namespace UI
             {
                 bl.AddOrder(o);
 
-            }
+            }w
             catch (AlreadyExistsException e)
             {
 
