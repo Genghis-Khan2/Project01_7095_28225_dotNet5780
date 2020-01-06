@@ -23,6 +23,7 @@ namespace BL
 
         private BLImp() { }
 
+        //TODO: check all the Exeption DAL level throw and check they treated
         protected static BLImp instance = null;
 
         /// <summary>
@@ -95,7 +96,7 @@ namespace BL
                 throw new KeyNotFoundException("There is no order with the key specified");
             GuestRequest gr = DalImp.GetDal().GetGuestRequest(key);
             if (IsClosed(gr.Status) && !IsClosed(stat))
-                throw new AlreadyClosedException("GuestRequest", gr.GuestRequestKey);
+                throw new AlreadyClosedException("GuestRequest", gr.GuestRequestKey);//TODO: write all the AlreadyClosedException if's in this form
             DalImp.GetDal().UpdateGuestRequestStatus(key, stat);
         }
 
@@ -274,6 +275,7 @@ namespace BL
         /// <param name="stat">Status to update Order status to</param>
         public void UpdateOrderStatus(int key, Enums.OrderStatus stat)
         {
+            //TODO: write the function
             //REMARK: בעל יחידת אירוח יוכל לשלוח הזמנה ללקוח )שינוי הסטטוס ל "נשלח מייל"(, רק אם חתם על הרשאה לחיוב חשבון בנק - done
             //REMARK: לאחר שסטטוס ההזמנה השתנה לסגירת עיסקה – לא ניתן לשנות יותר את הסטטוס שלה. - done
             //REMARK: כאשר סטטוס ההזמנה משתנה בגלל סגירת עסקה – יש לבצע חישוב עמלה בגובה של 10 ₪ ליום אירוח. )עיין הערה למטה(
@@ -298,6 +300,7 @@ namespace BL
                 DalImp.GetDal().UpdateOrderStatus(key, Enums.OrderStatus.SentMail);
             }
 
+            //TODO: finish the get Commission here
             if (stat == Enums.OrderStatus.ClosedByCustomerResponsiveness)
             {
                 HostingUnit hostingUnit = GetHostingUnit(ord.HostingUnitKey);
@@ -320,16 +323,11 @@ namespace BL
                     throw new OccupiedDatesException(guestRequest.EntryDate.Day + "." + guestRequest.EntryDate.Month + " - " + guestRequest.ReleaseDate.Day + "." + guestRequest.ReleaseDate.Month);
                 }
 
-                //close all the orders to this guestRequest
                 UpdateGuestRequestStatus(ord.GuestRequestKey, Enums.RequestStatus.ClosedWithDeal);
                 var linkedOrder = from order in GetAllOrders()
                                   where order.GuestRequestKey == ord.GuestRequestKey
                                   select order;
                 linkedOrder.AsParallel().ForAll((x => UpdateOrderStatus(x.OrderKey, Enums.OrderStatus.ClosedByHost)));
-
-                //calculate the Commission
-                hostingUnit.Commission += GetNumberOfDateInRange(guestRequest.EntryDate, guestRequest.ReleaseDate) * Configuration.Commission;
-                UpdateHostingUnit(hostingUnit, hostingUnit.HostingUnitKey);
             }
 
 
@@ -591,7 +589,7 @@ namespace BL
         /// <summary>
         /// The function returns the list of all available hosting units starting in the <paramref name="date"/> and ending <paramref name="days"/> days later
         /// </summary>
-        /// <param name="entryDate">Start date</param>
+        /// <param name="date">Start date</param>
         /// <param name="days">How many days</param>
         /// <returns><see cref="IEnumerable{HostingUnit}"/> to go over the list of all free hosting unit in the range</returns>
         public IEnumerable<HostingUnit> GetAllAvailableHostingUnit(DateTime entryDate, int days)
@@ -775,7 +773,7 @@ namespace BL
         {
             var allGuestRequest = GetAllGuestRequests();
             var groupedList = from gr in allGuestRequest
-                              group gr by (gr.Children + gr.Adults);
+                              group gr by (gr.Children + gr.Adults);//TODO: check if it work
 
             return groupedList;
         }
@@ -834,5 +832,11 @@ namespace BL
     }
 }
 
+/*
+tasks:
+7.לוודא שכל התנאים מומשו(כל הלינקיו וכו')
+8. לבדוק את הפונקציות
+    TODO: do auto refactor to all code
+     * */
 
 

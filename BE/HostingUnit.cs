@@ -39,7 +39,6 @@ namespace BE
 
         private bool[,] diary = new bool[12, 31];
 
-        public float Commission { get; set; } = 0;
         #region Properties related to the hosting conditions in the hosting unit
         public Enums.Area Area { get; set; }
         public Enums.HostingUnitType Type { get; set; }
@@ -74,7 +73,7 @@ namespace BE
             DateTime endOfYear = new DateTime(2020, 1, 1);
             while (index < endOfYear)
             {
-                res += index.ToString("MMMM") + ":\n";
+                res += index.ToString("MMMM") + ":\n";//TODO: check if it works
                 int cMonth = index.Month;
                 while (index.Month == cMonth)
                 {

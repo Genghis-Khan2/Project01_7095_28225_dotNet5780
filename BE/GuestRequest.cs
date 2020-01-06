@@ -76,7 +76,7 @@ namespace BE
             res += "Childrens Attractions: " + ChildrensAttractions + "\n";
             return res;
         }
-
+        //TODO: SubArea?
 
     }
 
