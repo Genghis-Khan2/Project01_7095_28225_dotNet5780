@@ -20,9 +20,36 @@ namespace PLWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static bool wizardIsOpen = false;
         public MainWindow()
         {
             InitializeComponent();
+            wizardIsOpen = false;
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!wizardIsOpen)
+            {
+                wizardIsOpen = true;
+                var wiz = new Window();
+                wiz.Height = 525;
+                wiz.Width = 300;
+                wiz.Show();
+                wiz.Content = new WizardPage1();
+                wiz.Closed += wizardClose;
+            }
+
+            else
+            {
+                MessageBox.Show("There can only be one wizard open at a time", "There can be only one!",
+                    MessageBoxButton.OK, MessageBoxImage.Hand);
+            }
+        }
+
+        private void wizardClose(object sender, EventArgs e)
+        {
+            wizardIsOpen = false;
         }
     }
 }

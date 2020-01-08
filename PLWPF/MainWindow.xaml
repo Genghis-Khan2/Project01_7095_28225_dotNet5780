@@ -5,8 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Login" Height="450" Width="800">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Login as a Guest" FontSize="22" FontFamily="Rockwell Extra Bold" FontWeight="ExtraBold">
+                <Button.Background>
+                    <LinearGradientBrush Opacity="0.6">
+                        <GradientStop Color="Aqua" Offset="0.01"/>
+                        <GradientStop Color="OrangeRed" Offset="0.45"/>
+                        <GradientStop Color="DarkOliveGreen" Offset="0.8"/>
+                        <GradientStop Color="Brown" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Grid.Column="1" Content="Login as a Host" FontSize="22" FontFamily="Rockwell Extra Bold" FontWeight="ExtraBold">
+                <Button.Background>
+                    <LinearGradientBrush Opacity="0.65">
+                        <GradientStop Color="Indigo" Offset="0.25"/>
+                        <GradientStop Color="RoyalBlue" Offset="0.4"/>
+                        <GradientStop Color="Crimson" Offset="0.8"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Grid.Column="2" Content="Login as the Admin" FontSize="22" FontFamily="Rockwell Extra Bold" FontWeight="ExtraBold">
+                <Button.Background>
+                    <LinearGradientBrush Opacity="0.65">
+                        <GradientStop Color="Blue" Offset="0"/>
+                        <GradientStop Color="Yellow"  Offset="0.25"/>
+                        <GradientStop Color="LimeGreen" Offset="0.5"/>
+                        <GradientStop Color="Red" Offset="0.75"/>
+                        <GradientStop Color="RosyBrown" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <TextBlock HorizontalAlignment="Center" Margin="0,30,0,0"  FontSize="28" FontWeight="Bold"
+                   Text="Hello, this is the login page! From here you will login to your account, and perform whatever actions you want!
+                   Need help? Try the wizard!" 
+                   TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="153" Margin="30,153,0,0" VerticalAlignment="Top" Source="E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\PLWPF\Wizard.jpg" MouseDown="Image_MouseDown"/>
     </Grid>
 </Window>

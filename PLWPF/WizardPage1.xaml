@@ -1,0 +1,49 @@
+﻿<Page x:Class="PLWPF.WizardPage1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PLWPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="WizardPage1">
+       
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Stretch" FontSize="20"
+                   Text="Hello and welcome to the Request system wizard! I will teach you how to use the system!
+                   First, you must start by logging in. If you are a guest, and you would like to reserve a unit to occupy during your vacation, you should log in as a guest, so you may apply for a request.
+                   If you are a host, who allows people to stay at one of your hosting units, you should log in so you can manage your units.
+                   If you are the site admin, you wrote this so you should probably know what you're doing! Just kidding! You may log in so you may view the activity on the site."
+                   TextWrapping="Wrap" VerticalAlignment="Stretch">
+            <TextBlock.Foreground>
+                <LinearGradientBrush>
+                    <GradientStop Color="Red" Offset="0.25"/>
+                    <GradientStop Color="Blue" Offset="0.5"/>
+                    <GradientStop Color="Green" Offset="0.75"/>
+                    <GradientStop Color="Aquamarine" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="&lt; Previous" Grid.Column="0"/>
+            <Button Content="Next &gt;" Grid.Column="1"/>
+        </Grid>
+
+    </Grid>
+</Page>
