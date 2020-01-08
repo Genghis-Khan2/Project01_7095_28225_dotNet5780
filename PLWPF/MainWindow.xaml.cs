@@ -32,11 +32,11 @@ namespace PLWPF
             if (!wizardIsOpen)
             {
                 wizardIsOpen = true;
-                var wiz = new Window();
+                var wiz = new WizardContainer();
+                wiz.Title = "Wizard";
                 wiz.Height = 525;
                 wiz.Width = 300;
                 wiz.Show();
-                wiz.Content = new WizardPage1();
                 wiz.Closed += wizardClose;
             }
 

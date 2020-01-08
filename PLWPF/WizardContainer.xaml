@@ -1,0 +1,29 @@
+﻿<Window x:Class="PLWPF.WizardContainer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:PLWPF"
+        mc:Ignorable="d"
+        Title="WizardContainer" Height="450" Width="800">
+    <Window.Resources>
+        <local:pageNumToBool x:Key="pageNotZero"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Frame Grid.Row="0" x:Name="ContainerFrame"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Tag="0" Visibility="Hidden" Name="pageNum"/>
+            <Button Grid.Column="0" Content="&lt; Previous" FontSize="24" FontFamily="Footlight MT Light" IsEnabled="{Binding ElementName=pageNum, Path=Tag, Converter={StaticResource pageNotZero}}"/>
+            <Button Grid.Column="1" Content="Next &gt;" FontSize="24" FontFamily="Footlight MT Light"/>
+        </Grid>
+    </Grid>
+</Window>
