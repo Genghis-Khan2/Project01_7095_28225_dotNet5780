@@ -8,10 +8,16 @@
         mc:Ignorable="d"
         Title="AddGuestRequest" Height="450" Width="800">
     <Grid>
-        <Label Content="Enter First Name:" HorizontalAlignment="Left" Margin="85,72,0,0" VerticalAlignment="Top"/>
-        <xctf:WatermarkTextBox Watermark="e.g John"  HorizontalAlignment="Left" Margin="216,74,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Enter Last Name:" HorizontalAlignment="Left" Margin="85,103,0,0" VerticalAlignment="Top"/>
-        <xctf:WatermarkTextBox Watermark="e.g Smith" HorizontalAlignment="Left" Margin="216,105,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Enter First Name:" HorizontalAlignment="Left" Margin="94,73,0,0" VerticalAlignment="Top"/>
+        <xctf:WatermarkTextBox Watermark="e.g John"  HorizontalAlignment="Left" Margin="216,74,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
+        <Label Content="Enter Last Name:" HorizontalAlignment="Left" Margin="94,104,0,0" VerticalAlignment="Top"/>
+        <xctf:WatermarkTextBox Watermark="e.g Smith" HorizontalAlignment="Left" Margin="216,105,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
+        <xctf:WatermarkTextBox Watermark="e.g johnsmith@mail.com" HorizontalAlignment="Left" Margin="216,134,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
+        <Label Content="Enter Email Address:" HorizontalAlignment="Left" Margin="94,132,0,0" VerticalAlignment="Top"/>
+        <Label Content="Enter the date you will arrive:" HorizontalAlignment="Left" Margin="94,163,0,0" VerticalAlignment="Top"/>
+        <xctf:WatermarkTextBox Watermark="dd/mm/yyyy" HorizontalAlignment="Left" Margin="262,167,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Enter the date you will leave:" HorizontalAlignment="Left" Margin="94,192,0,0" VerticalAlignment="Top"/>
+        <xctf:WatermarkTextBox Watermark="dd/mm/yyyy" HorizontalAlignment="Left" Margin="262,196,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
 
 
     </Grid>
