@@ -15,6 +15,6 @@ namespace BE
         public enum OrderStatus { UnTreated, SentMail, ClosedByCustomerUnresponsiveness, ClosedByCustomerResponsiveness, ClosedByHost }
         public enum IsInterested { Necessary, Possible, Uninterested }
 
-
+        //TODO: can do subarea in this way https://stackoverflow.com/questions/980766/how-do-i-declare-a-nested-enum
     }
 }
