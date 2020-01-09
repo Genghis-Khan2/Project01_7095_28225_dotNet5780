@@ -28,5 +28,14 @@ namespace Exceptions
         {
 
         }
+
+        /// <summary>
+        /// Constructor that creates an exception with a specific error message
+        /// </summary>
+        /// <param name="message">The specific error message</param>
+        public AlreadyExistsException(string message) : base(message)
+        {
+
+        }
     }
 }
