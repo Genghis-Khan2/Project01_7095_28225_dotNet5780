@@ -21,34 +21,8 @@ namespace PLWPF
         public WizardContainer()
         {
             InitializeComponent();
-            ContainerFrame.Content = new WizardPage1();
         }
 
-        private void Next(object sender, RoutedEventArgs e)
-        {
 
-        }
-
-        private void Next_Button_Click(object sender, RoutedEventArgs e)
-        {
-            switch (pageNum.Tag)
-            {
-                case "0":
-                    ContainerFrame.Content = new WizardPage2();
-                    pageNum.Tag = "1";
-                    break;
-            }
-        }
-
-        private void Prev_Button_Click(object sender, RoutedEventArgs e)
-        {
-            switch (pageNum.Tag)
-            {
-                case "1":
-                    ContainerFrame.Content = new WizardPage1();
-                    pageNum.Tag = "0";
-                    break;
-            }
-        }
     }
 }

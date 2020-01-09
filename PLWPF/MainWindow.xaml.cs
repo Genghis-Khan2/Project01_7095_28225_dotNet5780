@@ -34,8 +34,6 @@ namespace PLWPF
                 wizardIsOpen = true;
                 var wiz = new WizardContainer();
                 wiz.Title = "Wizard";
-                wiz.Height = 525;
-                wiz.Width = 300;
                 wiz.Show();
                 wiz.Closed += wizardClose;
             }
