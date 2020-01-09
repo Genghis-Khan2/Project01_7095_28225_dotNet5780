@@ -14,11 +14,7 @@
             <RowDefinition Height="12*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" HorizontalAlignment="Stretch" FontSize="20" FontWeight="DemiBold"
-                   Text="Hello and welcome to the Request system wizard! I will teach you how to use the system!
-                   First, you must start by logging in. If you are a guest, and you would like to reserve a unit to occupy during your vacation, you should log in as a guest, so you may apply for a request.
-                   If you are a host, who allows people to stay at one of your hosting units, you should log in so you can manage your units.
-                   If you are the site admin, you wrote this so you should probably know what you're doing! Just kidding! You may log in so you may view the activity on the site.
-                   The login screen looks like such"
+                   Text="Hello and welcome to the Request system wizard! I will teach you how to use the system. First, you must start by logging in. If you are a guest, and you would like to reserve a unit to occupy during your vacation, you should log in as a guest, so you may apply for a request. If you are a host, who allows people to stay at one of your hosting units, you should log in so you can manage your units. If you are the site admin, you wrote this so you should probably know what you're doing! Just kidding! You may log in so you may view the activity on the site. The login screen looks like such:"
                    TextWrapping="Wrap" VerticalAlignment="Stretch">
             <!--<TextBlock.Foreground>
                 <LinearGradientBrush>

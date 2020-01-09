@@ -1,0 +1,18 @@
+﻿<Window x:Class="PLWPF.AddGuestRequest"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLWPF"
+        xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="AddGuestRequest" Height="450" Width="800">
+    <Grid>
+        <Label Content="Enter First Name:" HorizontalAlignment="Left" Margin="85,72,0,0" VerticalAlignment="Top"/>
+        <xctf:WatermarkTextBox Watermark="e.g John"  HorizontalAlignment="Left" Margin="216,74,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Enter Last Name:" HorizontalAlignment="Left" Margin="85,103,0,0" VerticalAlignment="Top"/>
+        <xctf:WatermarkTextBox Watermark="e.g Smith" HorizontalAlignment="Left" Margin="216,105,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+
+    </Grid>
+</Window>

@@ -7,12 +7,12 @@ using System.Text;
 
 namespace PLWPF
 {
-    class pageNumToBool : IValueConverter
+    class NextToBool : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string intVal = (string)value;
-            if ("0" == intVal)
+            string strVal = (string)value;
+            if (strVal == "3")
             {
                 return false;
             }

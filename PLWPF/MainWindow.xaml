@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Login as a Guest" FontSize="22" FontFamily="Rockwell Extra Bold" FontWeight="ExtraBold">
+            <Button Grid.Column="0" Content="Login as a Guest" FontSize="22" FontFamily="Rockwell Extra Bold" FontWeight="ExtraBold" Name="GuestLogin" Click="GuestLogin_Click">
                 <Button.Background>
                     <LinearGradientBrush Opacity="0.6">
                         <GradientStop Color="Aqua" Offset="0.01"/>
