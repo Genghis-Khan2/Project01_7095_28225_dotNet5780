@@ -52,8 +52,10 @@ namespace PLWPF
 
         private void GuestLogin_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             var guestWin = new AddGuestRequest();
-            guestWin.ShowDialog();
+            guestWin.Closed += (s, args) => this.Show();
+            guestWin.Show();
         }
     }
 }

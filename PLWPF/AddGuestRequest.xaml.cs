@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BE;
 
 namespace PLWPF
 {
@@ -20,6 +21,7 @@ namespace PLWPF
         public AddGuestRequest()
         {
             InitializeComponent();
+            HostingUnitComboBox.DataContext = Enum.GetValues(typeof(Enums.IsInterested));
         }
     }
 }
