@@ -20,7 +20,6 @@ namespace Exceptions
         public NoItemsException()
             : base("No items exist")
         {
-
         }
 
         /// <summary>

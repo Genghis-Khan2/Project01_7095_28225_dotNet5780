@@ -60,7 +60,14 @@ namespace BL
             {
                 throw new ArgumentException("The release date must be at least one day after the entry date", "ReleaseDate");
             }
-            DalImp.GetDal().AddGuestRequest(gr);
+            try
+            {
+                DalImp.GetDal().AddGuestRequest(gr);
+            }
+            catch (AlreadyExistsException e)
+            {
+                throw new AlreadyExistsException(e.Message);
+            }
         }
 
         #endregion
@@ -74,7 +81,14 @@ namespace BL
         /// <returns><see cref="IEnumerable{GuestRequest}"/> to go over the list of guest requests</returns>
         public IEnumerable<GuestRequest> GetAllGuestRequests()
         {
-            return DalImp.GetDal().GetAllGuestRequests();
+            try
+            {
+                return DalImp.GetDal().GetAllGuestRequests();
+            }
+            catch (NoItemsException e)
+            {
+                throw new NoItemsException(e.Message);
+            }
         }
 
         #endregion
@@ -96,7 +110,14 @@ namespace BL
             GuestRequest gr = DalImp.GetDal().GetGuestRequest(key);
             if (IsClosed(gr.Status) && !IsClosed(stat))
                 throw new AlreadyClosedException("GuestRequest", gr.GuestRequestKey);
-            DalImp.GetDal().UpdateGuestRequestStatus(key, stat);
+            try
+            {
+                DalImp.GetDal().UpdateGuestRequestStatus(key, stat);
+            }
+            catch (KeyNotFoundException e)
+            {
+                throw new KeyNotFoundException(e.Message);
+            }
         }
 
         #endregion
@@ -111,7 +132,14 @@ namespace BL
         /// <returns>The GuestRequest with the <paramref name="key"/></returns>
         public GuestRequest GetGuestRequest(int key)
         {
-            return DalImp.GetDal().GetGuestRequest(key);
+            try
+            {
+                return DalImp.GetDal().GetGuestRequest(key);
+            }
+            catch (KeyNotFoundException e)
+            {
+                throw new KeyNotFoundException(e.Message);
+            }
         }
 
         #endregion
@@ -129,7 +157,14 @@ namespace BL
         /// <param name="hostingUnit">The HostingUnit to add</param>
         public void AddHostingUnit(HostingUnit hostingUnit)
         {
-            DalImp.GetDal().AddHostingUnit(hostingUnit);
+            try
+            {
+                DalImp.GetDal().AddHostingUnit(hostingUnit);
+            }
+            catch (AlreadyExistsException e)
+            {
+                throw new AlreadyExistsException(e.Message);
+            }
         }
 
         #endregion
@@ -143,7 +178,14 @@ namespace BL
         /// <returns><see cref="IEnumerable{HostingUnit}"/> to go over the list of hosting units</returns>
         public IEnumerable<HostingUnit> GetAllHostingUnits()
         {
-            return DalImp.GetDal().GetAllHostingUnits();
+            try
+            {
+                return DalImp.GetDal().GetAllHostingUnits();
+            }
+            catch (NoItemsException e)
+            {
+                throw new NoItemsException(e.Message);
+            }
         }
 
         #endregion
@@ -165,7 +207,14 @@ namespace BL
                                       select order;
             if (linkedOpenOrderList.Count() != 0)
                 throw new ChangedWhileLinkedException("delete", "HostingUnit", key, "Order", linkedOpenOrderList.First().OrderKey);
-            DalImp.GetDal().RemoveHostingUnit(key);
+            try
+            {
+                DalImp.GetDal().RemoveHostingUnit(key);
+            }
+            catch (KeyNotFoundException e)
+            {
+                throw new KeyNotFoundException(e.Message);
+            }
         }
 
         #endregion
@@ -183,7 +232,16 @@ namespace BL
         {
             //we assume that An Order considered "open" if  its status is "Enums.OrderStatus.UnTreated" and also "Enums.OrderStatus.SentMail
             //REMARK: • לא ניתן לבטל הרשאה לחיוב חשבון כאשר יש הצעה הקשורה אליה במצב פתוח.
-            var hostBeforeUpdating = DalImp.GetDal().GetHost(key);
+            Host hostBeforeUpdating;
+            try
+            {
+                hostBeforeUpdating = DalImp.GetDal().GetHost(key);
+            }
+            catch (KeyNotFoundException e)
+            {
+                throw new KeyNotFoundException(e.Message);
+            }
+
             if (!hostingUnit.Owner.CollectionClearance && hostBeforeUpdating.CollectionClearance)//If you try to cancel the account cancellation permission
             {
                 var linkedOpenOrderList = from order in DalImp.GetDal().GetAllOrders()
@@ -207,7 +265,14 @@ namespace BL
         /// <returns>The HostingUnit with the <paramref name="key"/></returns>
         public HostingUnit GetHostingUnit(int key)
         {
-            return DalImp.GetDal().GetHostingUnit(key);
+            try
+            {
+                return DalImp.GetDal().GetHostingUnit(key);
+            }
+            catch (KeyNotFoundException e)
+            {
+                throw new KeyNotFoundException(e.Message);
+            }
         }
 
         #endregion
@@ -257,7 +322,14 @@ namespace BL
         /// <returns><see cref="IEnumerable{Order}"/> to go over the list of orders</returns>
         public IEnumerable<Order> GetAllOrders()
         {
-            return DalImp.GetDal().GetAllOrders();
+            try
+            {
+                return DalImp.GetDal().GetAllOrders();
+            }
+            catch (KeyNotFoundException e)
+            {
+                throw new KeyNotFoundException(e.Message);
+            }
         }
 
         #endregion
@@ -347,7 +419,14 @@ namespace BL
         /// <returns>The Order with the <paramref name="key"/></returns>
         public Order GetOrder(int key)
         {
-            return DalImp.GetDal().GetOrder(key);
+            try
+            {
+                return DalImp.GetDal().GetOrder(key);
+            }
+            catch (KeyNotFoundException e)
+            {
+                throw new KeyNotFoundException(e.Message);
+            }
         }
 
         #endregion
@@ -365,7 +444,14 @@ namespace BL
         /// <returns><see cref="IEnumerable{BankBranch}"/> to go over the list of bank accounts</returns>
         public IEnumerable<BankBranch> GetAllBankAccounts()
         {
-            return DalImp.GetDal().GetAllBankAccounts();
+            try
+            {
+                return DalImp.GetDal().GetAllBankAccounts();
+            }
+            catch (NoItemsException e)
+            {
+                throw new NoItemsException(e.Message);
+            }
         }
 
         #endregion
@@ -379,7 +465,14 @@ namespace BL
         /// <param name="key">The key of the BankBranch</param>
         public BankBranch GetBankBranch(int key)
         {
-            return DalImp.GetDal().GetBankBranch(key);
+            try
+            {
+                return DalImp.GetDal().GetBankBranch(key);
+            }
+            catch (KeyNotFoundException e)
+            {
+                throw new KeyNotFoundException(e.Message);
+            }
         }
 
         #endregion
@@ -397,7 +490,14 @@ namespace BL
         /// <returns><seealso cref="IEnumerable{Host}"/> to go over the list of all the Hosts</returns>
         public IEnumerable<Host> GetAllHosts()
         {
-            return DalImp.GetDal().GetAllHosts();
+            try
+            {
+                return DalImp.GetDal().GetAllHosts();
+            }
+            catch (NoItemsException e)
+            {
+                throw new NoItemsException(e.Message);
+            }
         }
 
         #endregion
@@ -412,7 +512,14 @@ namespace BL
         /// <returns>The Host with the  <paramref name="key"/></returns>
         public Host GetHost(int key)
         {
-            return DalImp.GetDal().GetHost(key);
+            try
+            {
+                return DalImp.GetDal().GetHost(key);
+            }
+            catch (KeyNotFoundException e)
+            {
+                throw new KeyNotFoundException(e.Message);
+            }
         }
 
         #endregion
