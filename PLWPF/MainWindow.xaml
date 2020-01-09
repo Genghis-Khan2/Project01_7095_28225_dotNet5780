@@ -52,6 +52,6 @@
                    Text="Hello, this is the login page! From here you will login to your account, and perform whatever actions you want!
                    Need help? Try the wizard!" 
                    TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Image HorizontalAlignment="Left" Height="153" Margin="30,153,0,0" VerticalAlignment="Top" Source="E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\PLWPF\Wizard.jpg" MouseDown="Image_MouseDown"/>
+        <Image HorizontalAlignment="Left" Height="64" Margin="400,108,0,0" VerticalAlignment="Top" Source="E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\PLWPF\Wizard.jpg" MouseDown="Image_MouseDown" Width="58"/>
     </Grid>
 </Window>
