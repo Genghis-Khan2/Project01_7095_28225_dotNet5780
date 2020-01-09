@@ -15,3 +15,12 @@ E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project0
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BE\obj\Debug\netstandard2.0\BE.AssemblyInfo.cs
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BE\obj\Debug\netstandard2.0\BE.dll
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BE\obj\Debug\netstandard2.0\BE.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BE\bin\Debug\netstandard2.0\BE.deps.json
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BE\bin\Debug\netstandard2.0\BE.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BE\bin\Debug\netstandard2.0\BE.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BE\obj\Debug\netstandard2.0\BE.csprojAssemblyReference.cache
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BE\obj\Debug\netstandard2.0\BE.csproj.CoreCompileInputs.cache
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BE\obj\Debug\netstandard2.0\BE.AssemblyInfoInputs.cache
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BE\obj\Debug\netstandard2.0\BE.AssemblyInfo.cs
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BE\obj\Debug\netstandard2.0\BE.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BE\obj\Debug\netstandard2.0\BE.pdb

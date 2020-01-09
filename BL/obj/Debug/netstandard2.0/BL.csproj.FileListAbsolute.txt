@@ -33,3 +33,21 @@ E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project0
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.csproj.CopyComplete
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.dll
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BL.deps.json
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BL.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BL.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BE.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DAL.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DS.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\Exceptions.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BE.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DAL.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DS.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\Exceptions.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.csprojAssemblyReference.cache
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.csproj.CoreCompileInputs.cache
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.AssemblyInfoInputs.cache
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.AssemblyInfo.cs
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.csproj.CopyComplete
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.pdb
