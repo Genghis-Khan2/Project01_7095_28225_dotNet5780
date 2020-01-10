@@ -8,7 +8,7 @@ namespace DAL
     {
         public static IDAL GetDAL()
         {
-            return DAL_Adapter.GetDAL();
+            return Dal_XML_imp.GetDAL();
         }
     }
 }
