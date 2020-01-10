@@ -32,12 +32,12 @@ namespace PLWPF
             foreach (var item in isInterested)
             {
                 PoolComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
-                JaccuziComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
+                JacuzziComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
                 GardenComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
                 ChildrenAttractionsComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
             }
             PoolComboBox.SelectedIndex = 1;
-            JaccuziComboBox.SelectedIndex = 1;
+            JacuzziComboBox.SelectedIndex = 1;
             GardenComboBox.SelectedIndex = 1;
             ChildrenAttractionsComboBox.SelectedIndex = 1;
 
@@ -67,14 +67,14 @@ namespace PLWPF
                     PrivateName = PrivateNameBox.Text,
                     FamilyName = FamilyNameBox.Text,
                     MailAddress = MailAddressBox.Text,
-                    Area = convertStringToArea(AreaComboBox.SelectionBoxItem as string),
-                    Type = convertStringToType(HostingUnitComboBox.SelectionBoxItem as string),
+                    Area = ConvertStringToArea(AreaComboBox.SelectionBoxItem as string),
+                    Type = ConvertStringToType(HostingUnitComboBox.SelectionBoxItem as string),
                     Adults = (int)AdultSlider.Value,
                     Children = (int)ChildSlider.Value,
-                    Pool = convertStringToInterested(PoolComboBox.SelectionBoxItem as string),
-                    Jacuzzi = convertStringToInterested(JacuzziComboBox.SelectionBoxItem as string),
-                    Garden = convertStringToInterested(GardenComboBox.SelectionBoxItem as string),
-                    ChildrensAttractions = convertStringToInterested(ChildrenAttractionsComboBox.SelectionBoxItem as string),
+                    Pool = ConvertStringToInterested(PoolComboBox.SelectionBoxItem as string),
+                    Jacuzzi = ConvertStringToInterested(JacuzziComboBox.SelectionBoxItem as string),
+                    Garden = ConvertStringToInterested(GardenComboBox.SelectionBoxItem as string),
+                    ChildrensAttractions = ConvertStringToInterested(ChildrenAttractionsComboBox.SelectionBoxItem as string),
                     EntryDate = (DateTime)ArrivalDateCalendar.SelectedDate,
                     ReleaseDate = (DateTime)DepartureDateCalendar.SelectedDate,
                     RegistrationDate = DateTime.Today
@@ -88,57 +88,41 @@ namespace PLWPF
             }
         }
 
-        private Enums.IsInterested convertStringToInterested(string str)
+        private Enums.IsInterested ConvertStringToInterested(string str)
         {
-            switch (str)
+            return str switch
             {
-                case Enums.IsInterested.Necessary.ToString():
-                    return Enums.IsInterested.Necessary;
-                case Enums.IsInterested.Possible.ToString():
-                    return Enums.IsInterested.Possible;
-                case Enums.IsInterested.Uninterested.ToString():
-                    return Enums.IsInterested.Uninterested;
-                default:
-                    throw; //TODO: What does it throw
-            }
+                Enums.IsInterested.Necessary.ToString() => Enums.IsInterested.Necessary,
+                Enums.IsInterested.Possible.ToString() => Enums.IsInterested.Possible,
+                Enums.IsInterested.Uninterested.ToString() => Enums.IsInterested.Uninterested,
+                _ => Enums.IsInterested.Necessary, //TODO: What does it throw
+            };
         }
 
-        private Enums.Area convertStringToArea(string str)
+        private Enums.Area ConvertStringToArea(string str)
         {
-            switch (str)
+            return str switch
             {
-                case Enums.Area.All.ToString():
-                    return Enums.Area.All;
-                case Enums.Area.North.ToString():
-                    return Enums.Area.North;
-                case Enums.Area.South.ToString():
-                    return Enums.Area.South;
-                case Enums.Area.Center.ToString():
-                    return Enums.Area.Center;
-                case Enums.Area.Jerusalem.ToString():
-                    return Enums.Area.Jerusalem;
-                default:
-                    throw; //TODO: What does it throw
-            }
+                Enums.Area.All.ToString() => Enums.Area.All,
+                Enums.Area.North.ToString() => Enums.Area.North,
+                Enums.Area.South.ToString() => Enums.Area.South,
+                Enums.Area.Center.ToString() => Enums.Area.Center,
+                Enums.Area.Jerusalem.ToString() => Enums.Area.Jerusalem,
+                _ => Enums.Area.All, //TODO: What does it throw
+            };
         }
 
-        private Enums.HostingUnitType convertStringToType(string str)
+        private Enums.HostingUnitType ConvertStringToType(string str)
         {
-            switch (str)
+            return str switch
             {
-                case Enums.HostingUnitType.All:
-                    return Enums.HostingUnitType.All;
-                case Enums.HostingUnitType.AccommodationApartment:
-                    return Enums.HostingUnitType.AccommodationApartment;
-                case Enums.HostingUnitType.Camping:
-                    return Enums.HostingUnitType.Camping;
-                case Enums.HostingUnitType.Hotel:
-                    return Enums.HostingUnitType.Hotel;
-                case Enums.HostingUnitType.Zimmer:
-                    return Enums.HostingUnitType.Zimmer;
-                default:
-                    throw; //TODO: What does it throw
-            }
+                Enums.HostingUnitType.All.ToString() => Enums.HostingUnitType.All,
+                Enums.HostingUnitType.AccommodationApartment.ToString() => Enums.HostingUnitType.AccommodationApartment,
+                Enums.HostingUnitType.Camping.ToString() => Enums.HostingUnitType.Camping,
+                Enums.HostingUnitType.Hotel.ToString() => Enums.HostingUnitType.Hotel,
+                Enums.HostingUnitType.Zimmer.ToString() => Enums.HostingUnitType.Zimmer,
+                _ => Enums.HostingUnitType.AccommodationApartment, //TODO: What does it throw
+            };
         }
     }
 }

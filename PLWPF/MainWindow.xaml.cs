@@ -34,10 +34,12 @@ namespace PLWPF
             if (!wizardIsOpen)
             {
                 wizardIsOpen = true;
-                var wiz = new WizardContainer();
-                wiz.Title = "Wizard";
+                var wiz = new WizardContainer
+                {
+                    Title = "Wizard"
+                };
                 wiz.Show();
-                wiz.Closed += wizardClose;
+                wiz.Closed += WizardClose;
             }
 
             else
@@ -47,7 +49,7 @@ namespace PLWPF
             }
         }
 
-        private void wizardClose(object sender, EventArgs e)
+        private void WizardClose(object sender, EventArgs e)
         {
             wizardIsOpen = false;
         }
