@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<guestrequests>
+  <guestrequestkey></guestrequestkey>
+  <name>
+    <privatename></privatename>
+    <familyname></familyname>
+  </name>
+  <mailaddress></mailaddress>
+  <status></status>
+  <registrationdate>
+    <year></year>
+    <month></month>
+    <day></day>
+  </registrationdate>
+  <entrydate>
+    <year></year>
+    <month></month>
+    <day></day>
+  </entrydate>
+  <releasedate>
+    <year></year>
+    <month></month>
+    <day></day>
+  </releasedate>
+  <area></area>
+  <type></type>
+  <adults></adults>
+  <children></children>
+  <pool></pool>
+  <jacuzzi></jacuzzi>
+  <garden></garden>
+  <childrensattractions></childrensattractions>
+</guestrequests>

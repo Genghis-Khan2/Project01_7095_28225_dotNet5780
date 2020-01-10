@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BE;
+using Exceptions;
 
 namespace PLWPF
 {
@@ -95,9 +96,15 @@ namespace PLWPF
 
                 MainWindow.myBL.AddGuestRequest(gr);
             }
-            catch
+            catch (AlreadyExistsException)
             {
-
+                MessageBox.Show("This request already exists", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("The arrival date is later than the departure date", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
 
             MessageBox.Show("Your request has been received, and is beginning to be processed!", "Request Accepted", MessageBoxButton.OK, MessageBoxImage.Information);

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hostingunits>
+  <hostingunit>
+    <hostingunitkey></hostingunitkey>
+    <owner>
+      <hostkey></hostkey>
+      <name>
+        <privatename></privatename>
+        <familyname></familyname>
+      </name>
+      <phonenumber></phonenumber>
+      <mailaddress></mailaddress>
+      <bankbranchdetails>
+        <banknumber></banknumber>
+        <bankname></bankname>
+        <branchnumber></branchnumber>
+        <branchaddress></branchaddress>
+        <branchcity></branchcity>
+        <bankaccountnumber></bankaccountnumber>
+      </bankbranchdetails>
+      <bankaccountnumber></bankaccountnumber>
+      <collectionclearance></collectionclearance>
+    </owner>
+    <hostingunitname></hostingunitname>
+    <!--TODO: Diary Matrix-->
+    <commision></commision>
+  </hostingunit>
+</hostingunits>
