@@ -56,7 +56,78 @@ namespace PLWPF
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                GuestRequest gr = new GuestRequest()
+                {
 
+                    PrivateName = PrivateNameBox.Text,
+                    FamilyName = FamilyNameBox.Text,
+                    MailAddress = MailAddressBox.Text,
+                    Area = convertStringToArea(AreaComboBox.SelectionBoxItem as string),
+                    Type = convertStringToType(HostingUnitComboBox.SelectionBoxItem as string),
+                    Adults = (int)AdultSlider.Value,
+                    Children = (int)ChildSlider.Value,
+
+                };
+            }
+            catch
+            {
+
+            }
+        }
+
+        private Enums.IsInterested convertStringToInterested(string str)
+        {
+            switch (str)
+            {
+                case Enums.IsInterested.Necessary.ToString():
+                    return Enums.IsInterested.Necessary;
+                case Enums.IsInterested.Possible.ToString():
+                    return Enums.IsInterested.Possible;
+                case Enums.IsInterested.Uninterested.ToString():
+                    return Enums.IsInterested.Uninterested;
+                default:
+                    throw; //TODO: What does it throw
+            }
+        }
+
+        private Enums.Area convertStringToArea(string str)
+        {
+            switch (str)
+            {
+                case Enums.Area.All.ToString():
+                    return Enums.Area.All;
+                case Enums.Area.North.ToString():
+                    return Enums.Area.North;
+                case Enums.Area.South.ToString():
+                    return Enums.Area.South;
+                case Enums.Area.Center.ToString():
+                    return Enums.Area.Center;
+                case Enums.Area.Jerusalem.ToString():
+                    return Enums.Area.Jerusalem;
+                default:
+                    throw; //TODO: What does it throw
+            }
+        }
+
+        private Enums.HostingUnitType convertStringToType(string str)
+        {
+            switch (str)
+            {
+                case Enums.HostingUnitType.All:
+                    return Enums.HostingUnitType.All;
+                case Enums.HostingUnitType.AccommodationApartment:
+                    return Enums.HostingUnitType.AccommodationApartment;
+                case Enums.HostingUnitType.Camping:
+                    return Enums.HostingUnitType.Camping;
+                case Enums.HostingUnitType.Hotel:
+                    return Enums.HostingUnitType.Hotel;
+                case Enums.HostingUnitType.Zimmer:
+                    return Enums.HostingUnitType.Zimmer;
+                default:
+                    throw; //TODO: What does it throw
+            }
         }
     }
 }

@@ -6,17 +6,17 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="AddGuestRequest" Height="416" Width="800">
+        Title="AddGuestRequest" Height="450" Width="800">
     <Grid>
 
         <Label Content="Enter First Name:" HorizontalAlignment="Left" Margin="70,43,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <xctf:WatermarkTextBox Watermark="e.g John"  HorizontalAlignment="Left" Margin="192,44,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
+        <xctf:WatermarkTextBox x:Name="PrivateNameBox" Watermark="e.g John"  HorizontalAlignment="Left" Margin="192,44,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
         <Label Content="Enter Last Name:" HorizontalAlignment="Left" Margin="70,74,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <xctf:WatermarkTextBox Watermark="e.g Smith" HorizontalAlignment="Left" Margin="192,75,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
-        <xctf:WatermarkTextBox Watermark="e.g johnsmith@mail.com" HorizontalAlignment="Left" Margin="210,104,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
+        <xctf:WatermarkTextBox x:Name="FamilyNameBox" Watermark="e.g Smith" HorizontalAlignment="Left" Margin="192,75,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
+        <xctf:WatermarkTextBox x:Name="MailAddressBox" Watermark="e.g johnsmith@mail.com" HorizontalAlignment="Left" Margin="210,104,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
         <Label Content="Enter Email Address:" HorizontalAlignment="Left" Margin="70,102,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label Content="Enter the date you will arrive:" HorizontalAlignment="Left" Margin="601,13,0,0" VerticalAlignment="Top" Width="168" FontSize="14"/>
-        <Label Content="Enter the date you will leave:" HorizontalAlignment="Left" Margin="601,191,0,0" VerticalAlignment="Top" Width="168" FontSize="14"/>
+        <Label Content="Enter the date you will arrive:" HorizontalAlignment="Left" Margin="584,10,0,0" VerticalAlignment="Top" Width="185" FontSize="14"/>
+        <Label Content="Enter the date you will leave:" HorizontalAlignment="Left" Margin="584,189,0,0" VerticalAlignment="Top" Width="191" FontSize="14"/>
         <Calendar HorizontalAlignment="Left" Margin="601,44,0,0" VerticalAlignment="Top" Height="132" Width="168"/>
         <Calendar HorizontalAlignment="Left" Margin="596,222,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="AreaComboBox" HorizontalAlignment="Center" Margin="0,138,0,0" VerticalAlignment="Top" Width="146" IsEditable="False" IsReadOnly="false" />
