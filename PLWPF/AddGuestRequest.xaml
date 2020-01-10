@@ -17,8 +17,8 @@
         <Label Content="Enter Email Address:" HorizontalAlignment="Left" Margin="70,102,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Enter the date you will arrive:" HorizontalAlignment="Left" Margin="584,10,0,0" VerticalAlignment="Top" Width="185" FontSize="14"/>
         <Label Content="Enter the date you will leave:" HorizontalAlignment="Left" Margin="584,189,0,0" VerticalAlignment="Top" Width="191" FontSize="14"/>
-        <Calendar HorizontalAlignment="Left" Margin="601,44,0,0" VerticalAlignment="Top" Height="132" Width="168"/>
-        <Calendar HorizontalAlignment="Left" Margin="596,222,0,0" VerticalAlignment="Top"/>
+        <Calendar x:Name="ArrivalDateCalendar" HorizontalAlignment="Left" Margin="601,44,0,0" VerticalAlignment="Top" Height="132" Width="168"/>
+        <Calendar x:Name="DepartureDateCalendar" HorizontalAlignment="Left" Margin="596,222,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="AreaComboBox" HorizontalAlignment="Center" Margin="0,138,0,0" VerticalAlignment="Top" Width="146" IsEditable="False" IsReadOnly="false" />
         <Label Content="The vacation area you are interested in:" HorizontalAlignment="Left" Margin="70,131,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Slider x:Name="AdultSlider" HorizontalAlignment="Left" Margin="130,188,0,0" VerticalAlignment="Top" Width="60" Maximum="20" Minimum="1" Value="1" SmallChange="1" IsSnapToTickEnabled="True"/>
@@ -32,7 +32,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="75,163,0,0" Text="The type of hosting unit you are interested in:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="14"/>
         <ComboBox x:Name="PoolComboBox" HorizontalAlignment="Left" Margin="223,222,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="75,221,0,0" Text="Interested in the pool?" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="14"/>
-        <ComboBox x:Name="JaccuziComboBox" HorizontalAlignment="Left" Margin="223,256,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="JacuzziComboBox" HorizontalAlignment="Left" Margin="223,256,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="75,253,0,0" Text="Interested in hot tub?" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="14"/>
         <ComboBox x:Name="GardenComboBox" HorizontalAlignment="Left" Margin="242,286,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="75,283,0,0" Text="Interested in garden?" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="14"/>

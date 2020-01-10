@@ -20,6 +20,8 @@ namespace PLWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        internal static BL.IBL myBL = BL.BLImp.getBL();
+
         private static bool wizardIsOpen = false;
         public MainWindow()
         {

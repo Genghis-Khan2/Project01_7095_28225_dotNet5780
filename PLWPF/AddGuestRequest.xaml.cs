@@ -47,6 +47,9 @@ namespace PLWPF
                 HostingUnitComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
             }
             HostingUnitComboBox.SelectedIndex = 0;
+
+            ArrivalDateCalendar.SelectedDate = DateTime.Today;
+            DepartureDateCalendar.SelectedDate = DateTime.Today;
         }
 
         private void GardenComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -68,8 +71,16 @@ namespace PLWPF
                     Type = convertStringToType(HostingUnitComboBox.SelectionBoxItem as string),
                     Adults = (int)AdultSlider.Value,
                     Children = (int)ChildSlider.Value,
-
+                    Pool = convertStringToInterested(PoolComboBox.SelectionBoxItem as string),
+                    Jacuzzi = convertStringToInterested(JacuzziComboBox.SelectionBoxItem as string),
+                    Garden = convertStringToInterested(GardenComboBox.SelectionBoxItem as string),
+                    ChildrensAttractions = convertStringToInterested(ChildrenAttractionsComboBox.SelectionBoxItem as string),
+                    EntryDate = (DateTime)ArrivalDateCalendar.SelectedDate,
+                    ReleaseDate = (DateTime)DepartureDateCalendar.SelectedDate,
+                    RegistrationDate = DateTime.Today
                 };
+
+                MainWindow.myBL.AddGuestRequest(gr);
             }
             catch
             {
