@@ -13,13 +13,18 @@ using System.Windows.Shapes;
 namespace PLWPF
 {
     /// <summary>
-    /// Interaction logic for GuestWindow.xaml
+    /// Interaction logic for HostLoginPage.xaml
     /// </summary>
-    public partial class GuestWindow : Window
+    public partial class HostLoginPage : Window
     {
-        public GuestWindow()
+        public HostLoginPage()
         {
             InitializeComponent();
+        }   
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

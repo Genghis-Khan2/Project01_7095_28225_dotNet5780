@@ -62,7 +62,7 @@ namespace BL
             }
             try
             {
-                DalImp.GetDal().AddGuestRequest(gr);
+                DAL_Adapter.GetDAL().AddGuestRequest(gr);
             }
             catch (AlreadyExistsException e)
             {
@@ -83,7 +83,7 @@ namespace BL
         {
             try
             {
-                return DalImp.GetDal().GetAllGuestRequests();
+                return DAL_Adapter.GetDAL().GetAllGuestRequests();
             }
             catch (NoItemsException e)
             {
@@ -107,12 +107,12 @@ namespace BL
         {
             if (!CheckIfGuestRequestExists(key))
                 throw new KeyNotFoundException("There is no order with the key specified");
-            GuestRequest gr = DalImp.GetDal().GetGuestRequest(key);
+            GuestRequest gr = DAL_Adapter.GetDAL().GetGuestRequest(key);
             if (IsClosed(gr.Status) && !IsClosed(stat))
                 throw new AlreadyClosedException("GuestRequest", gr.GuestRequestKey);
             try
             {
-                DalImp.GetDal().UpdateGuestRequestStatus(key, stat);
+                DAL_Adapter.GetDAL().UpdateGuestRequestStatus(key, stat);
             }
             catch (KeyNotFoundException e)
             {
@@ -134,7 +134,7 @@ namespace BL
         {
             try
             {
-                return DalImp.GetDal().GetGuestRequest(key);
+                return DAL_Adapter.GetDAL().GetGuestRequest(key);
             }
             catch (KeyNotFoundException e)
             {
@@ -159,7 +159,7 @@ namespace BL
         {
             try
             {
-                DalImp.GetDal().AddHostingUnit(hostingUnit);
+                DAL_Adapter.GetDAL().AddHostingUnit(hostingUnit);
             }
             catch (AlreadyExistsException e)
             {
@@ -180,7 +180,7 @@ namespace BL
         {
             try
             {
-                return DalImp.GetDal().GetAllHostingUnits();
+                return DAL_Adapter.GetDAL().GetAllHostingUnits();
             }
             catch (NoItemsException e)
             {
@@ -202,14 +202,14 @@ namespace BL
         {
             //we assume that An Order considered "open" if  its status is "Enums.OrderStatus.UnTreated" and also "Enums.OrderStatus.SentMail"
             //REMARK לא ניתן למחוק יחידת אירוח כל עוד יש הצעה הקשורה אליה במצב פתוח.
-            var linkedOpenOrderList = from order in DalImp.GetDal().GetAllOrders()
+            var linkedOpenOrderList = from order in DAL_Adapter.GetDAL().GetAllOrders()
                                       where (order.HostingUnitKey == key && (order.Status == Enums.OrderStatus.UnTreated || order.Status == Enums.OrderStatus.SentMail))
                                       select order;
             if (linkedOpenOrderList.Count() != 0)
                 throw new ChangedWhileLinkedException("delete", "HostingUnit", key, "Order", linkedOpenOrderList.First().OrderKey);
             try
             {
-                DalImp.GetDal().RemoveHostingUnit(key);
+                DAL_Adapter.GetDAL().RemoveHostingUnit(key);
             }
             catch (KeyNotFoundException e)
             {
@@ -235,7 +235,7 @@ namespace BL
             Host hostBeforeUpdating;
             try
             {
-                hostBeforeUpdating = DalImp.GetDal().GetHost(key);
+                hostBeforeUpdating = DAL_Adapter.GetDAL().GetHost(key);
             }
             catch (KeyNotFoundException e)
             {
@@ -244,14 +244,14 @@ namespace BL
 
             if (!hostingUnit.Owner.CollectionClearance && hostBeforeUpdating.CollectionClearance)//If you try to cancel the account cancellation permission
             {
-                var linkedOpenOrderList = from order in DalImp.GetDal().GetAllOrders()
+                var linkedOpenOrderList = from order in DAL_Adapter.GetDAL().GetAllOrders()
                                           where (order.HostingUnitKey == key && (order.Status == Enums.OrderStatus.UnTreated || order.Status == Enums.OrderStatus.SentMail))
                                           select order;
                 if (linkedOpenOrderList.Count() != 0)
                     throw new ChangedWhileLinkedException("change CollectionClearance of", "HostingUnit", key, "Order", linkedOpenOrderList.First().OrderKey);
 
             }
-            DalImp.GetDal().UpdateHostingUnit(hostingUnit, key);
+            DAL_Adapter.GetDAL().UpdateHostingUnit(hostingUnit, key);
         }
         #endregion
 
@@ -267,7 +267,7 @@ namespace BL
         {
             try
             {
-                return DalImp.GetDal().GetHostingUnit(key);
+                return DAL_Adapter.GetDAL().GetHostingUnit(key);
             }
             catch (KeyNotFoundException e)
             {
@@ -305,10 +305,10 @@ namespace BL
 
             //check that the requested dates are available in the hosting unit (ie. not occupied by another), 
             //its will never throw the "KeyNotFoundException" because we already check that the HostingUnit and the GuestRequest are exists
-            if (!CheckIfAvailable(DalImp.GetDal().GetHostingUnit(ord.HostingUnitKey).Diary, DalImp.GetDal().GetGuestRequest(ord.GuestRequestKey).EntryDate, DalImp.GetDal().GetGuestRequest(ord.GuestRequestKey).ReleaseDate))
+            if (!CheckIfAvailable(DAL_Adapter.GetDAL().GetHostingUnit(ord.HostingUnitKey).Diary, DAL_Adapter.GetDAL().GetGuestRequest(ord.GuestRequestKey).EntryDate, DAL_Adapter.GetDAL().GetGuestRequest(ord.GuestRequestKey).ReleaseDate))
                 throw new OccupiedDatesException();
 
-            DalImp.GetDal().AddOrder(ord);
+            DAL_Adapter.GetDAL().AddOrder(ord);
         }
 
         #endregion
@@ -324,7 +324,7 @@ namespace BL
         {
             try
             {
-                return DalImp.GetDal().GetAllOrders();
+                return DAL_Adapter.GetDAL().GetAllOrders();
             }
             catch (KeyNotFoundException e)
             {
@@ -367,7 +367,7 @@ namespace BL
                 if (!GetHostingUnit(ord.HostingUnitKey).Owner.CollectionClearance)
                     throw new UnauthorizedAccessException("a host cannot send an email if it does not authorize an account billing authorization");
                 Console.WriteLine("Send mail");
-                DalImp.GetDal().UpdateOrderStatus(key, Enums.OrderStatus.SentMail);
+                DAL_Adapter.GetDAL().UpdateOrderStatus(key, Enums.OrderStatus.SentMail);
             }
 
             if (stat == Enums.OrderStatus.ClosedByCustomerResponsiveness)
@@ -388,7 +388,7 @@ namespace BL
                 }
                 else
                 {
-                    DalImp.GetDal().UpdateOrderStatus(key, Enums.OrderStatus.ClosedByHost);
+                    DAL_Adapter.GetDAL().UpdateOrderStatus(key, Enums.OrderStatus.ClosedByHost);
                     throw new OccupiedDatesException(guestRequest.EntryDate.Day + "." + guestRequest.EntryDate.Month + " - " + guestRequest.ReleaseDate.Day + "." + guestRequest.ReleaseDate.Month);
                 }
 
@@ -421,7 +421,7 @@ namespace BL
         {
             try
             {
-                return DalImp.GetDal().GetOrder(key);
+                return DAL_Adapter.GetDAL().GetOrder(key);
             }
             catch (KeyNotFoundException e)
             {
@@ -446,7 +446,7 @@ namespace BL
         {
             try
             {
-                return DalImp.GetDal().GetAllBankAccounts();
+                return DAL_Adapter.GetDAL().GetAllBankAccounts();
             }
             catch (NoItemsException e)
             {
@@ -467,7 +467,7 @@ namespace BL
         {
             try
             {
-                return DalImp.GetDal().GetBankBranch(key);
+                return DAL_Adapter.GetDAL().GetBankBranch(key);
             }
             catch (KeyNotFoundException e)
             {
@@ -492,7 +492,7 @@ namespace BL
         {
             try
             {
-                return DalImp.GetDal().GetAllHosts();
+                return DAL_Adapter.GetDAL().GetAllHosts();
             }
             catch (NoItemsException e)
             {
@@ -514,7 +514,7 @@ namespace BL
         {
             try
             {
-                return DalImp.GetDal().GetHost(key);
+                return DAL_Adapter.GetDAL().GetHost(key);
             }
             catch (KeyNotFoundException e)
             {
@@ -537,7 +537,7 @@ namespace BL
         /// <returns>boolean, if the guestRequest exists or not</returns>
         public bool CheckIfGuestRequestExists(int key)
         {
-            return DalImp.GetDal().CheckIfGuestRequestExists(key);
+            return DAL_Adapter.GetDAL().CheckIfGuestRequestExists(key);
         }
 
         #endregion
@@ -551,7 +551,7 @@ namespace BL
         /// <returns>boolean, if the hostingUnit exists or not</returns>
         public bool CheckIfHostingUnitExists(int key)
         {
-            return DalImp.GetDal().CheckIfHostingUnitExists(key);
+            return DAL_Adapter.GetDAL().CheckIfHostingUnitExists(key);
         }
 
         #endregion
@@ -565,7 +565,7 @@ namespace BL
         /// <returns>boolean, if the order exists or not</returns>
         public bool CheckIfOrderExists(int key)
         {
-            return DalImp.GetDal().CheckIfOrderExists(key);
+            return DAL_Adapter.GetDAL().CheckIfOrderExists(key);
         }
 
         #endregion
@@ -579,7 +579,7 @@ namespace BL
         /// <returns>boolean, if the bankAccount exists or not</returns>
         public bool CheckIfBankAccountExists(int key)
         {
-            return DalImp.GetDal().CheckIfBankAccountExists(key);
+            return DAL_Adapter.GetDAL().CheckIfBankAccountExists(key);
         }
 
         #endregion
@@ -593,7 +593,7 @@ namespace BL
         /// <returns>boolean, if the host exists or not</returns>
         public bool CheckIfHostExists(int key)
         {
-            return DalImp.GetDal().CheckIfHostExists(key);
+            return DAL_Adapter.GetDAL().CheckIfHostExists(key);
         }
 
         #endregion

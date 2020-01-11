@@ -78,7 +78,7 @@
   },
   "libraries": {
     "Microsoft.NETCore.Platforms/1.1.0": {
-      "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "sha512": "bLpT1f/SFlO1CzqXG12KnJzpZs6lv24uX2Rzi4Fmm0noJpNlnWRVryuO3yK18Ca04t/YHcO1e1Z0WDfjseqNzw==",
       "type": "package",
       "path": "microsoft.netcore.platforms/1.1.0",
       "files": [
@@ -249,39 +249,40 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\noam2_000\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\gabik\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\noam2_000\\Source\\Repos\\Project01_7095_28225_dotNet5780\\BL\\BL.csproj",
+      "projectUniqueName": "E:\\קורסים\\יב\\סמסטר א\\מיניפ\\Exercises (Visual Studio)\\Project01_7095_28225_dotNet5780\\BL\\BL.csproj",
       "projectName": "BL",
-      "projectPath": "C:\\Users\\noam2_000\\Source\\Repos\\Project01_7095_28225_dotNet5780\\BL\\BL.csproj",
-      "packagesPath": "C:\\Users\\noam2_000\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\noam2_000\\Source\\Repos\\Project01_7095_28225_dotNet5780\\BL\\obj\\",
+      "projectPath": "E:\\קורסים\\יב\\סמסטר א\\מיניפ\\Exercises (Visual Studio)\\Project01_7095_28225_dotNet5780\\BL\\BL.csproj",
+      "packagesPath": "C:\\Users\\gabik\\.nuget\\packages\\",
+      "outputPath": "E:\\קורסים\\יב\\סמסטר א\\מיניפ\\Exercises (Visual Studio)\\Project01_7095_28225_dotNet5780\\BL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\noam2_000\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\gabik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\noam2_000\\Source\\Repos\\Project01_7095_28225_dotNet5780\\BE\\BE.csproj": {
-              "projectPath": "C:\\Users\\noam2_000\\Source\\Repos\\Project01_7095_28225_dotNet5780\\BE\\BE.csproj"
+            "E:\\קורסים\\יב\\סמסטר א\\מיניפ\\Exercises (Visual Studio)\\Project01_7095_28225_dotNet5780\\BE\\BE.csproj": {
+              "projectPath": "E:\\קורסים\\יב\\סמסטר א\\מיניפ\\Exercises (Visual Studio)\\Project01_7095_28225_dotNet5780\\BE\\BE.csproj"
             },
-            "C:\\Users\\noam2_000\\Source\\Repos\\Project01_7095_28225_dotNet5780\\DAL\\DAL.csproj": {
-              "projectPath": "C:\\Users\\noam2_000\\Source\\Repos\\Project01_7095_28225_dotNet5780\\DAL\\DAL.csproj"
+            "E:\\קורסים\\יב\\סמסטר א\\מיניפ\\Exercises (Visual Studio)\\Project01_7095_28225_dotNet5780\\DAL\\DAL.csproj": {
+              "projectPath": "E:\\קורסים\\יב\\סמסטר א\\מיניפ\\Exercises (Visual Studio)\\Project01_7095_28225_dotNet5780\\DAL\\DAL.csproj"
             }
           }
         }
@@ -312,7 +313,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

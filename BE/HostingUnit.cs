@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace BE
 {
@@ -12,6 +13,27 @@ namespace BE
         public int HostingUnitKey { get; set; } = 0;
         public Host Owner { set; get; }
         public string HostingUnitName { get; set; }
+
+        [XmlArray("Diary")]
+        public bool[] DiaryDto
+        {
+            get
+            {
+                return Diary.Flatten();
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    Diary = null;
+                }
+
+                Diary = value.Expand(12);
+            }
+        }
+
+        [XmlIgnore]
         public bool[,] Diary
         {
             get
