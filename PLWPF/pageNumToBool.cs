@@ -7,7 +7,7 @@ using System.Text;
 
 namespace PLWPF
 {
-    class pageNumToBool : IValueConverter
+    class PageNumToBool : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

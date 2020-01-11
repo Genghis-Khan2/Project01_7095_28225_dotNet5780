@@ -16,13 +16,12 @@
         <branchnumber></branchnumber>
         <branchaddress></branchaddress>
         <branchcity></branchcity>
-        <bankaccountnumber></bankaccountnumber>
       </bankbranchdetails>
       <bankaccountnumber></bankaccountnumber>
       <collectionclearance></collectionclearance>
     </owner>
     <hostingunitname></hostingunitname>
     <!--TODO: Diary Matrix-->
-    <commision></commision>
+    <commission></commission>
   </hostingunit>
 </hostingunits>
