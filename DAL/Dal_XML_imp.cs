@@ -13,7 +13,7 @@ namespace DAL
     {
         #region Paths
         private readonly string hostsPath = @"Hosts.xml";
-        private readonly string hostingUnitPath = @"Hostingunit.xml";
+        private readonly string hostingUnitPath = @"HostingUnit.xml";
         private readonly string guestRequestPath = @"GuestRequest.xml";
         private readonly string orderPath = @"Order.xml";
         #endregion
@@ -45,6 +45,17 @@ namespace DAL
             return instance;
         }
         #endregion
+
+        #region Loading Functions
+
+        public static T LoadFromXML<T>(string path)
+        {
+            FileStream file = new FileStream(path, FileMode.Open);
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+            T result = (T)xmlSerializer.Deserialize(file);
+            file.Close();
+            return result;
+        }
 
         #region Loading Single Object Functions
         /// <summary>
@@ -148,7 +159,11 @@ namespace DAL
 
         #endregion
 
+        #endregion
+
         #region Saving Functions
+
+        #region Saving Object List Functions
         private void SaveGuestRequestList(List<GuestRequest> guestRequests)
         {
             //guestRequestRoot = new XElement("guestrequests",
@@ -231,11 +246,24 @@ namespace DAL
             xmlSerializer.Serialize(file, orders);
             file.Close();
         }
+
+        #endregion
+
+        #region Saving Single Objects Functions
+        private void SaveToXML<T>(T source, string path)
+        {
+
+            FileStream file = new FileStream(path, FileMode.OpenOrCreate);
+            XmlSerializer xmlSerializer = new XmlSerializer(source.GetType());
+            xmlSerializer.Serialize(file, source);
+            file.Close();
+        }
+        #endregion
         #endregion
 
         public void AddGuestRequest(GuestRequest gr)
         {
-            throw new NotImplementedException();
+            SaveToXML(gr, guestRequestPath);
         }
 
         public void AddHostingUnit(HostingUnit hu)
