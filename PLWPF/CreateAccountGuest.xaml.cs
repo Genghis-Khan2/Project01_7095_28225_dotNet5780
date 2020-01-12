@@ -106,6 +106,11 @@ namespace PLWPF
                 MessageBox.Show("The arrival date is later than the departure date", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Illegal Email address", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
 
             MessageBox.Show("Your request has been received, and is beginning to be processed!", "Request Accepted", MessageBoxButton.OK, MessageBoxImage.Information);
         }
