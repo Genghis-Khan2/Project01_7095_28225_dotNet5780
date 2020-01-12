@@ -22,9 +22,49 @@ namespace PLWPF
     {
         internal static BL.IBL myBL = BL.BLImp.getBL();
 
+
         private static bool wizardIsOpen = false;
         public MainWindow()
         {
+            BE.GuestRequest gr = new BE.GuestRequest()
+            {
+                Adults = 1,
+                Children = 0,
+                Area = BE.Enums.Area.All,
+                ChildrensAttractions = BE.Enums.IsInterested.Uninterested,
+                EntryDate = new DateTime(2019, 5, 6),
+                FamilyName = "Komet",
+                Garden = BE.Enums.IsInterested.Uninterested,
+                Jacuzzi = BE.Enums.IsInterested.Uninterested,
+                MailAddress = "a@g.c",
+                Pool = BE.Enums.IsInterested.Uninterested,
+                PrivateName = "Gabi",
+                RegistrationDate = new DateTime(2019, 4, 20),
+                ReleaseDate = new DateTime(2019, 6, 1),
+                Type = BE.Enums.HostingUnitType.Hotel
+            };
+
+            BE.GuestRequest gr2 = new BE.GuestRequest()
+            {
+                Adults = 1,
+                Children = 0,
+                Area = BE.Enums.Area.All,
+                ChildrensAttractions = BE.Enums.IsInterested.Uninterested,
+                EntryDate = new DateTime(2019, 5, 6),
+                FamilyName = "Snuggum",
+                Garden = BE.Enums.IsInterested.Uninterested,
+                Jacuzzi = BE.Enums.IsInterested.Uninterested,
+                MailAddress = "b@kfc.com",
+                Pool = BE.Enums.IsInterested.Uninterested,
+                PrivateName = "Ethan",
+                RegistrationDate = new DateTime(2019, 4, 20),
+                ReleaseDate = new DateTime(2019, 6, 1),
+                Type = BE.Enums.HostingUnitType.Hotel
+            };
+
+            myBL.AddGuestRequest(gr);
+            myBL.AddGuestRequest(gr2);
+            Application.Current.Shutdown();
             InitializeComponent();
             wizardIsOpen = false;
         }

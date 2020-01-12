@@ -12,10 +12,10 @@ namespace DAL
     public class Dal_XML_imp : IDAL
     {
         #region Paths
-        private readonly string hostsPath = @"Hosts.xml";
-        private readonly string hostingUnitPath = @"HostingUnit.xml";
-        private readonly string guestRequestPath = @"GuestRequest.xml";
-        private readonly string orderPath = @"Order.xml";
+        private readonly string hostsPath = @"..\..\..\..\Host.xml";
+        private readonly string hostingUnitPath = @"..\..\..\..\HostingUnit.xml";
+        private readonly string guestRequestPath = @"..\..\..\..\GuestRequest.xml";
+        private readonly string orderPath = @"..\..\..\..\Order.xml";
         #endregion
 
         #region Roots
@@ -252,9 +252,18 @@ namespace DAL
         #region Saving Single Objects Functions
         private void SaveToXML<T>(T source, string path)
         {
+            FileStream file = null;
+            if (File.Exists(path))
+            {
+                file = new FileStream(path, FileMode.Append);
+            }
 
-            FileStream file = new FileStream(path, FileMode.OpenOrCreate);
-            XmlSerializer xmlSerializer = new XmlSerializer(source.GetType());
+            else
+            {
+                file = new FileStream(path, FileMode.Create);
+            }
+
+            var xmlSerializer = new XmlSerializer(source.GetType(), new XmlRootAttribute("guestrequests"));
             xmlSerializer.Serialize(file, source);
             file.Close();
         }
@@ -268,7 +277,7 @@ namespace DAL
 
         public void AddHostingUnit(HostingUnit hu)
         {
-            throw new NotImplementedException();
+            SaveToXML(hu, hostingUnitPath);
         }
 
         public void AddOrder(Order ord)

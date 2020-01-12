@@ -15,11 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exceptions", "Exceptions\Ex
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLWPF", "PLWPF\PLWPF.csproj", "{796687F2-8B8F-4787-9EA8-5609FC5F0225}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XML Files", "XML Files", "{62B99C88-353F-42C8-8C88-1A989ED08F49}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XML Files", "XML Files", "{2EF430C2-9DF9-400B-8A34-19CCF3E1F3F2}"
 	ProjectSection(SolutionItems) = preProject
 		GuestRequest.xml = GuestRequest.xml
+		Host.xml = Host.xml
 		HostingUnit.xml = HostingUnit.xml
-		Hosts.xml = Hosts.xml
 		Order.xml = Order.xml
 	EndProjectSection
 EndProject
