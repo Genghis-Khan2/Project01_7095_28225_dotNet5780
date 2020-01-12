@@ -15,16 +15,19 @@ namespace PLWPF
     /// <summary>
     /// Interaction logic for HostLoginPage.xaml
     /// </summary>
-    public partial class HostLoginPage : Window
+    public partial class LoginPage : Window
     {
-        public HostLoginPage()
+        public LoginPage()
         {
             InitializeComponent();
-        }   
+        }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Hide();
+            var createWin = new CreateAccount();
+            createWin.Closed += (s, args) => this.Close();
+            createWin.Show();
         }
     }
 }

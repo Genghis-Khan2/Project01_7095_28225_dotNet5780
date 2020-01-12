@@ -15,11 +15,11 @@ using Exceptions;
 namespace PLWPF
 {
     /// <summary>
-    /// Interaction logic for AddGuestRequest.xaml
+    /// Interaction logic for CreateAccountGuest.xaml
     /// </summary>
-    public partial class AddGuestRequest : Window
+    public partial class CreateAccountGuest : Window
     {
-        public AddGuestRequest()
+        public CreateAccountGuest()
         {
             InitializeComponent();
             var AreaEnums = Enum.GetValues(typeof(Enums.Area));
@@ -94,7 +94,7 @@ namespace PLWPF
                     RegistrationDate = DateTime.Today
                 };
 
-                MainWindow.myBL.AddGuestRequest(gr);
+                CreateAccount.myBL.AddGuestRequest(gr);
             }
             catch (AlreadyExistsException)
             {
