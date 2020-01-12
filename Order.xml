@@ -1,19 +1,1 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<orders>
-  <order>
-    <hostingunitkey></hostingunitkey>
-    <guestrequestkey></guestrequestkey>
-    <orderkey></orderkey>
-    <status></status>
-    <createdate>
-      <year></year>
-      <month></month>
-      <day></day>
-    </createdate>
-    <orderdate>
-      <year></year>
-      <month></month>
-      <day></day>
-    </orderdate>
-  </order>
-</orders>
