@@ -112,7 +112,10 @@ namespace PLWPF
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            this.Hide();
+            var createWin = new CreateAccount();
+            createWin.Closed += (s, args) => this.Close();
+            createWin.Show();
         }
     }
 }

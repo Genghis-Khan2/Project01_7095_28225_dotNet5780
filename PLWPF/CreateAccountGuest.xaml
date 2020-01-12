@@ -38,6 +38,6 @@
         <TextBlock HorizontalAlignment="Left" Margin="75,283,0,0" Text="Interested in garden?" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="14"/>
         <ComboBox x:Name="ChildrenAttractionsComboBox" HorizontalAlignment="Left" Margin="302,313,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="75,310,0,0" Text="Interested in childrens Attractions?" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="14"/>
-        <Button Content="Back" x:Name="backButton" HorizontalAlignment="Left" Margin="30,10,0,0" FontSize="18" VerticalAlignment="Top" Width="66" Click="backButton_Click"/>
+        <Button Content="Back" x:Name="backButton" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="18" VerticalAlignment="Top" Width="86" Click="backButton_Click"/>
     </Grid>
 </Window>

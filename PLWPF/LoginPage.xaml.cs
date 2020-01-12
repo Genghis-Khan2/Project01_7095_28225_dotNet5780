@@ -29,5 +29,10 @@ namespace PLWPF
             createWin.Closed += (s, args) => this.Close();
             createWin.Show();
         }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
