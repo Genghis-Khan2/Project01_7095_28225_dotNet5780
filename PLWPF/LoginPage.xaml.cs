@@ -32,7 +32,8 @@ namespace PLWPF
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if(FR.FR_Imp.getFR().GuestCompareToPasswordInFile())
+            
         }
     }
 }

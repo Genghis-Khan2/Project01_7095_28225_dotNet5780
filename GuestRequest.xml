@@ -34,4 +34,22 @@
   <Jacuzzi>Uninterested</Jacuzzi>
   <Garden>Uninterested</Garden>
   <ChildrensAttractions>Uninterested</ChildrensAttractions>
+</guestrequests><?xml version="1.0"?>
+<guestrequests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GuestRequestKey>0</GuestRequestKey>
+  <PrivateName />
+  <FamilyName />
+  <MailAddress>a@g.c</MailAddress>
+  <Status>Open</Status>
+  <RegistrationDate>2020-01-13T00:00:00+02:00</RegistrationDate>
+  <EntryDate>2020-01-13T00:00:00+02:00</EntryDate>
+  <ReleaseDate>2020-01-29T00:00:00</ReleaseDate>
+  <Area>All</Area>
+  <Type>All</Type>
+  <Adults>1</Adults>
+  <Children>0</Children>
+  <Pool>Possible</Pool>
+  <Jacuzzi>Possible</Jacuzzi>
+  <Garden>Possible</Garden>
+  <ChildrensAttractions>Possible</ChildrensAttractions>
 </guestrequests>

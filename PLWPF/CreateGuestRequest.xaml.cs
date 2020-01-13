@@ -109,6 +109,7 @@ namespace PLWPF
             catch (FormatException)
             {
                 MessageBox.Show("Illegal Email address", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
 
             }
 

@@ -28,7 +28,7 @@ namespace DAL
         /// This is the factory method of DalImp
         /// </summary>
         /// <returns>The <see cref="instance"/> of the singleton factory (singletory)</returns>
-        public static IDAL GetDal()
+        public static IDAL GetDAL()
         {
             if (instance == null)
             {
