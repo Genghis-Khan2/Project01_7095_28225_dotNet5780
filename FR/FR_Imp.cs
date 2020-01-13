@@ -39,6 +39,12 @@ namespace FR
             using (StreamReader sr = new StreamReader(guestPath))
             {
                 string line = sr.ReadLine();
+
+                if (line == null)
+                {
+                    return false;
+                }
+
                 if (line.Contains(username))
                 {
                     string bytes = line.Substring(line.IndexOf(" ") + 1);
@@ -92,6 +98,11 @@ namespace FR
 
         public bool AdminCompareToPasswordInFile(string username, string password)
         {
+            if (username != "admin")
+            {
+                return false;
+            }
+
             using (SHA256 sha = SHA256.Create())
             {
                 var hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));

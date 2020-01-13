@@ -1,0 +1,40 @@
+﻿<Window x:Class="PLWPF.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLWPF"
+        mc:Ignorable="d"
+        Title="AdminWindow" Height="450" Width="800">
+    <Grid>
+        <!--It may seem arbitrary but 100 makes sense. Otherwise it would be too much-->
+        <Slider HorizontalAlignment="Left" TickFrequency="1" IsSnapToTickEnabled="True" x:Name="TaxValueSlider" Value="50" Margin="52,87,0,0" VerticalAlignment="Top" Width="120" Minimum="0" Maximum="100"/>
+        <Label Content="Value of tax" HorizontalAlignment="Left" Margin="76,56,0,0" VerticalAlignment="Top"/>
+        <TabControl Margin="218,0,0,10">
+            <TabItem Header="Guest Requests">
+                <ScrollViewer>
+                    <Grid ShowGridLines="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="Key" Width="*"/>
+                            <ColumnDefinition x:Name="Name" Width="*"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Hosts">
+                <ScrollViewer/>
+            </TabItem>
+            <TabItem Header="Hosting Units">
+                <ScrollViewer/>
+            </TabItem>
+            <TabItem Header="Orders">
+                <ScrollViewer/>
+            </TabItem>
+            <TabItem Header="Guests">
+                <ScrollViewer/>
+            </TabItem>
+        </TabControl>
+        <TextBlock Text="{Binding ElementName=TaxValueSlider, Path=Value, Mode=TwoWay}" HorizontalAlignment="Left" Margin="93,113,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

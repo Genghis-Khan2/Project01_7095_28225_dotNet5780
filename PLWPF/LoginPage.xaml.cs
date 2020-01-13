@@ -40,6 +40,14 @@ namespace PLWPF
                 createWin.Show();
             }
 
+            if (FR.FR_Imp.getFR().AdminCompareToPasswordInFile(UserTextBox.Text, PassBox.Password))
+            {
+                this.Hide();
+                var createWin = new AdminWindow();
+                createWin.Closed += (s, args) => this.Close();
+                createWin.Show();
+            }
+
 
         }
     }
