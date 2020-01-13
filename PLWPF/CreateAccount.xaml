@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
         Title="Create account" Height="400" Width="500">
-    <Grid ShowGridLines="True">
+    <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="3*" />

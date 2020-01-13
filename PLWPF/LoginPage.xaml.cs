@@ -32,20 +32,24 @@ namespace PLWPF
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            if (FR.FR_Imp.getFR().GuestCompareToPasswordInFile(UserTextBox.Text, PassBox.Password))
+            if (FR.FR_Imp.getFR().GuestCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
             {
                 this.Hide();
                 var createWin = new GuestMenu();
                 createWin.Closed += (s, args) => this.Close();
                 createWin.Show();
             }
-
-            if (FR.FR_Imp.getFR().AdminCompareToPasswordInFile(UserTextBox.Text, PassBox.Password))
+            else if (FR.FR_Imp.getFR().AdminCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
             {
                 this.Hide();
                 var createWin = new AdminWindow();
                 createWin.Closed += (s, args) => this.Close();
                 createWin.Show();
+            }
+            else
+            {
+                System.Media.SystemSounds.Hand.Play();
+                WrongLabel.Visibility = Visibility.Visible;
             }
 
 

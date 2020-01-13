@@ -6,12 +6,27 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Login page" Height="450" Width="800">
-    <Grid>
-        <xctf:WatermarkTextBox x:Name="UserTextBox" FontSize="24" Watermark="Username" HorizontalAlignment="Left" Margin="263,174,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
-        <xctf:WatermarkPasswordBox x:Name="PassBox" Watermark="Password" PasswordChar="*" FontSize="24" HorizontalAlignment="Left" Margin="263,239,0,0" VerticalAlignment="Top" Width="216" Height="40"/>
-        <Label Content="Login to User:" FontFamily="Baskerville Old Face" FontSize="36" HorizontalAlignment="Left" Margin="263,64,0,0" VerticalAlignment="Top"/>
-        <Button Content="Login" FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="281,299,0,0" VerticalAlignment="Top" x:Name="LoginButton" Height="37" Width="181" Click="LoginButton_Click">
+        Title="Login page" Height="450" Width="600">
+
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <xctf:WatermarkTextBox Grid.Row="2" Grid.Column="1" x:Name="UserTextBox" FontSize="24" Watermark="Username" HorizontalAlignment="Center" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="40" Width="230"/>
+        <xctf:WatermarkPasswordBox Grid.Row="3" Grid.Column="1" x:Name="PassBox" Watermark="Password" PasswordChar="*" FontSize="24" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="40" Width="230"/>
+        <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Content="Login to User:" FontFamily="Baskerville Old Face" FontSize="36" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        <Label x:Name="WrongLabel" Grid.Row="1" Grid.Column="1" Content="Username or password are incorrect" FontFamily="Baskerville Old Face" FontSize="14" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="#FFE80E0E" Visibility="Hidden"/>
+        <Button Grid.Row="4" Grid.Column="1" Content="Login" FontSize="22" FontWeight="DemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="LoginButton" Height="40" Width="200" Click="LoginButton_Click">
             <Button.Style>
                 <Style>
                     <Style.Triggers>
@@ -25,7 +40,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Content="Create new user" FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="281,355,0,0" VerticalAlignment="Top" x:Name="CreateAccountButton" Height="37" Width="181" Click="CreateAccountButton_Click"/>
+        <Button Grid.Row="5" Grid.Column="1" Content="Create new user" FontSize="22" FontWeight="DemiBold" HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="CreateAccountButton" Height="40" Width="200" Click="CreateAccountButton_Click" />
 
     </Grid>
 </Window>
