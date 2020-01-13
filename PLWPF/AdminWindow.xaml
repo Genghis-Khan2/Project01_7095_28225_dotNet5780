@@ -34,7 +34,7 @@
                 <ScrollViewer/>
             </TabItem>
         </TabControl>
-        <TextBlock Text="{Binding ElementName=TaxValueSlider, Path=Value, Mode=TwoWay}" HorizontalAlignment="Left" Margin="93,113,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding ElementName=TaxValueSlider, Path=Value}" HorizontalAlignment="Left" Margin="105,110,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
