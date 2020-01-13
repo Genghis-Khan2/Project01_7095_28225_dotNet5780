@@ -8,10 +8,23 @@
         mc:Ignorable="d"
         Title="Login page" Height="450" Width="800">
     <Grid>
-        <xctf:WatermarkTextBox FontSize="24" Watermark="Username" HorizontalAlignment="Left" Margin="263,174,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
-        <xctf:WatermarkPasswordBox Watermark="Password" PasswordChar="*" FontSize="24" HorizontalAlignment="Left" Margin="263,239,0,0" VerticalAlignment="Top" Width="216" Height="40"/>
+        <xctf:WatermarkTextBox x:Name="UserTextBox" FontSize="24" Watermark="Username" HorizontalAlignment="Left" Margin="263,174,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
+        <xctf:WatermarkPasswordBox x:Name="PassBox" Watermark="Password" PasswordChar="*" FontSize="24" HorizontalAlignment="Left" Margin="263,239,0,0" VerticalAlignment="Top" Width="216" Height="40"/>
         <Label Content="Login to User:" FontFamily="Baskerville Old Face" FontSize="36" HorizontalAlignment="Left" Margin="263,64,0,0" VerticalAlignment="Top"/>
-        <Button Content="Login" FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="281,299,0,0" VerticalAlignment="Top" x:Name="LoginButton" Height="37" Width="181" Click="LoginButton_Click"/>
+        <Button Content="Login" FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="281,299,0,0" VerticalAlignment="Top" x:Name="LoginButton" Height="37" Width="181" Click="LoginButton_Click">
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=UserTextBox, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=PassBox, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button Content="Create new user" FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="281,355,0,0" VerticalAlignment="Top" x:Name="CreateAccountButton" Height="37" Width="181" Click="CreateAccountButton_Click"/>
 
     </Grid>

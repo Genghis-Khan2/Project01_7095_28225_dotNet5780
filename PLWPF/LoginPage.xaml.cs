@@ -25,15 +25,22 @@ namespace PLWPF
         private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            var createWin = new CreateAccount();
+            var createWin = new CreateGuestAccount();
             createWin.Closed += (s, args) => this.Close();
             createWin.Show();
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            if(FR.FR_Imp.getFR().GuestCompareToPasswordInFile())
-            
+            if (FR.FR_Imp.getFR().GuestCompareToPasswordInFile(UserTextBox.Text, PassBox.Password))
+            {
+                this.Hide();
+                var createWin = new GuestMenu();
+                createWin.Closed += (s, args) => this.Close();
+                createWin.Show();
+            }
+
+
         }
     }
 }

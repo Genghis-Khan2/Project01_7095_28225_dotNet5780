@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace PLWPF
+{
+    /// <summary>
+    /// Interaction logic for GuestMenu.xaml
+    /// </summary>
+    public partial class GuestMenu : Window
+    {
+        public GuestMenu()
+        {
+            InitializeComponent();
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var AddGuest = new CreateGuestRequest();
+            AddGuest.ShowDialog();
+        }
+    }
+}

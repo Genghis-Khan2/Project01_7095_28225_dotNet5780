@@ -17,9 +17,9 @@ namespace PLWPF
     /// <summary>
     /// Interaction logic for CreateAccountGuest.xaml
     /// </summary>
-    public partial class CreateAccountGuest : Window
+    public partial class CreateGuestRequest : Window
     {
-        public CreateAccountGuest()
+        public CreateGuestRequest()
         {
             InitializeComponent();
             var AreaEnums = Enum.GetValues(typeof(Enums.Area));

@@ -29,6 +29,10 @@ namespace PLWPF
             {
                 FR_Imp.getFR().WriteGuestToFile(User.Text, Pass.Password);
                 MessageBox.Show("You have been registered!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Hide();
+                var createWin = new GuestMenu();
+                createWin.Closed += (s, args) => this.Close();
+                createWin.Show();
                 return;
             }
 
