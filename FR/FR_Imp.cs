@@ -7,13 +7,27 @@ using System.Linq;
 
 namespace FR
 {
+    /// <summary>
+    /// This class represents a file reader and writer (FR = File Reader)
+    /// It's used to store information about accounts
+    /// </summary>
     public class FR_Imp
     {
         #region Singletory Factory Methods
+        /// <summary>
+        /// Private constructor so no instances can be created
+        /// </summary>
         private FR_Imp() { }
 
+        /// <summary>
+        /// The only instance that can exist
+        /// </summary>
         static public FR_Imp instance = null;
 
+        /// <summary>
+        /// Get the only FR instance
+        /// </summary>
+        /// <returns>The only FR instance</returns>
         static public FR_Imp GetFR()
         {
             if (instance == null)
@@ -27,13 +41,28 @@ namespace FR
 
         #region Paths
 
+        /// <summary>
+        /// The path where the guest account information is stored
+        /// </summary>
         private static readonly string guestPath = @"..\..\..\..\guest.data";
+
+        /// <summary>
+        /// The path where the host account information is stored
+        /// </summary>
         private static readonly string hostPath = @"..\..\..\..\host.data";
 
         #endregion
 
         #region Compare Functions
 
+        /// <summary>
+        /// This function checks if the <paramref name="username"/> and <paramref name="password"/>
+        /// exist in the guest account file
+        /// </summary>
+        /// <param name="username">The username to search for in the file</param>
+        /// <param name="password">The password to search the has for in the file</param>
+        /// <returns>If the <paramref name="username"/> and <paramref name="password"/>
+        /// exist in the guest account file</returns>
         public bool GuestCompareToPasswordInFile(string username, string password)
         {
             using (StreamReader sr = new StreamReader(guestPath))
@@ -68,6 +97,14 @@ namespace FR
             return false;
         }
 
+        /// <summary>
+        /// This function checks if the <paramref name="username"/> and <paramref name="password"/>
+        /// exist in the host account file
+        /// </summary>
+        /// <param name="username">The username to search for in the file</param>
+        /// <param name="password">The password to search the has for in the file</param>
+        /// <returns>If the <paramref name="username"/> and <paramref name="password"/>
+        /// exist in the host account file</returns>
         public bool HostCompareToPasswordInFile(string username, string password)
         {
             using (StreamReader sr = new StreamReader(hostPath))
@@ -96,6 +133,14 @@ namespace FR
             }
         }
 
+        /// <summary>
+        /// This function checks if the <paramref name="username"/> and <paramref name="password"/>
+        /// are the correct admin username and password
+        /// </summary>
+        /// <param name="username">The username to check</param>
+        /// <param name="password">The password to check</param>
+        /// <returns>If the <paramref name="username"/> and <paramref name="password"/>
+        /// are the correct admin credentials</returns>
         public bool AdminCompareToPasswordInFile(string username, string password)
         {
             if (username.ToLower() != "admin")
@@ -115,6 +160,11 @@ namespace FR
 
         #region Add Line
 
+        /// <summary>
+        /// Add a guest account in the proper format
+        /// </summary>
+        /// <param name="username">Username of the account to be added</param>
+        /// <param name="password">Password of the account to be added</param>
         public void WriteGuestToFile(string username, string password)
         {
             using (SHA256 sha = SHA256.Create())
@@ -133,6 +183,11 @@ namespace FR
             }
         }
 
+        /// <summary>
+        /// Add a host account in the proper format
+        /// </summary>
+        /// <param name="username">Username of the account to be added</param>
+        /// <param name="password">Password of the account to be added</param>
         public void WriteHostToFile(string username, string password)
         {
             using (SHA256 sha = SHA256.Create())
