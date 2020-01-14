@@ -14,7 +14,7 @@ namespace FR
 
         static public FR_Imp instance = null;
 
-        static public FR_Imp getFR()
+        static public FR_Imp GetFR()
         {
             if (instance == null)
             {
@@ -45,7 +45,7 @@ namespace FR
                     return false;
                 }
 
-                if (line.Contains(username))
+                if (line.StartsWith(username.ToLower().Replace(" ", "_")))
                 {
                     string bytes = line.Substring(line.IndexOf(" ") + 1);
                     var byteArray = bytes.Split(' ');
@@ -73,7 +73,7 @@ namespace FR
             using (StreamReader sr = new StreamReader(hostPath))
             {
                 string line = sr.ReadLine();
-                if (line.Contains(username))
+                if (line.StartsWith(username.ToLower().Replace(" ", "_")))
                 {
                     string bytes = line.Substring(line.IndexOf(" ") + 1);
                     var byteArray = bytes.Split(' ');
@@ -98,7 +98,7 @@ namespace FR
 
         public bool AdminCompareToPasswordInFile(string username, string password)
         {
-            if (username != "admin")
+            if (username.ToLower() != "admin")
             {
                 return false;
             }
@@ -121,7 +121,7 @@ namespace FR
             {
                 using (StreamWriter sw = new StreamWriter(guestPath))
                 {
-                    sw.Write(username + " ");
+                    sw.Write(username.ToLower().Replace(" ", "_") + " ");
                     var hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
                     foreach (var i in hash)
                     {
@@ -139,10 +139,11 @@ namespace FR
             {
                 using (StreamWriter sw = new StreamWriter(hostPath))
                 {
+                    sw.Write(username.ToLower().Replace(" ", "_") + " ");
                     var hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
                     foreach (var i in hash)
                     {
-                        sw.Write(i.ToString());
+                        sw.Write(i.ToString() + " ");
                     }
 
                     sw.WriteLine();

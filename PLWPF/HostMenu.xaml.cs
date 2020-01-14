@@ -13,19 +13,19 @@ using System.Windows.Shapes;
 namespace PLWPF
 {
     /// <summary>
-    /// Interaction logic for GuestMenu.xaml
+    /// Interaction logic for HostMenu.xaml
     /// </summary>
-    public partial class GuestMenu : Window
+    public partial class HostMenu : Window
     {
-        public GuestMenu()
+        public HostMenu()
         {
             InitializeComponent();
-        }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            var AddGuest = new CreateGuestRequest();
-            AddGuest.ShowDialog();
+            var li = from i in CreateAccount.myBL.GetAllHostingUnits()
+                     where i + 
+                     select i;
+
+            foreach ()
         }
     }
 }

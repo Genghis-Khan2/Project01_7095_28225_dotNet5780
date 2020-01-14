@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace PLWPF
 {
@@ -17,6 +7,8 @@ namespace PLWPF
     /// </summary>
     public partial class LoginPage : Window
     {
+        internal static string Username;
+
         public LoginPage()
         {
             InitializeComponent();
@@ -32,16 +24,26 @@ namespace PLWPF
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            if (FR.FR_Imp.getFR().GuestCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
+            if (FR.FR_Imp.GetFR().GuestCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
             {
                 this.Hide();
                 var createWin = new GuestMenu();
                 createWin.Closed += (s, args) => this.Close();
                 createWin.Show();
             }
-            else if (FR.FR_Imp.getFR().AdminCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
+
+            else if (FR.FR_Imp.GetFR().HostCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
             {
-                this.Hide();
+                Username =
+                Hide();
+                var createWin = new HostMenu();
+                createWin.Closed += (s, args) => Close();
+                createWin.Show();
+            }
+
+            else if (FR.FR_Imp.GetFR().AdminCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
+            {
+                Hide();
                 var createWin = new AdminWindow();
                 createWin.Closed += (s, args) => this.Close();
                 createWin.Show();
