@@ -72,26 +72,28 @@ namespace FR
                 do
                 {
                     line = sr.ReadLine();
+
+                    if (line.StartsWith(username.ToLower()))
+                    {
+                        string bytes = line.Substring(line.IndexOf(" ") + 1);
+                        var byteArray = bytes.Split(' ');
+                        byte[] actualBytes = new byte[32];
+
+                        for (int i = 0; i < 32; i++)
+                        {
+                            actualBytes[i] = byte.Parse(byteArray[i]);
+                        }
+
+                        using (SHA256 sha = SHA256.Create())
+                        {
+                            var hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
+
+                            return hash.SequenceEqual(actualBytes);
+                        }
+                    }
                 } while (line != null);
 
-                if (line.StartsWith(username.ToLower()))
-                {
-                    string bytes = line.Substring(line.IndexOf(" ") + 1);
-                    var byteArray = bytes.Split(' ');
-                    byte[] actualBytes = new byte[32];
 
-                    for (int i = 0; i < 32; i++)
-                    {
-                        actualBytes[i] = byte.Parse(byteArray[i]);
-                    }
-
-                    using (SHA256 sha = SHA256.Create())
-                    {
-                        var hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
-
-                        return hash.SequenceEqual(actualBytes);
-                    }
-                }
             }
 
             return false;
@@ -114,26 +116,26 @@ namespace FR
                 do
                 {
                     line = sr.ReadLine();
+
+                    if (line.StartsWith(username.ToLower()))
+                    {
+                        string bytes = line.Substring(line.IndexOf(" ") + 1);
+                        var byteArray = bytes.Split(' ');
+                        byte[] actualBytes = new byte[32];
+
+                        for (int i = 0; i < 32; i++)
+                        {
+                            actualBytes[i] = byte.Parse(byteArray[i]);
+                        }
+
+                        using (SHA256 sha = SHA256.Create())
+                        {
+                            var hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
+
+                            return hash.SequenceEqual(actualBytes);
+                        }
+                    }
                 } while (line != null);
-
-                if (line.StartsWith(username.ToLower()))
-                {
-                    string bytes = line.Substring(line.IndexOf(" ") + 1);
-                    var byteArray = bytes.Split(' ');
-                    byte[] actualBytes = new byte[32];
-
-                    for (int i = 0; i < 32; i++)
-                    {
-                        actualBytes[i] = byte.Parse(byteArray[i]);
-                    }
-
-                    using (SHA256 sha = SHA256.Create())
-                    {
-                        var hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
-
-                        return hash.SequenceEqual(actualBytes);
-                    }
-                }
 
                 return false;
             }
