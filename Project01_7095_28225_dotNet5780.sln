@@ -25,11 +25,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XML Files", "XML Files", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Files", "Data Files", "{E9477238-FA38-4EA6-944D-AED7C40DDE8A}"
 	ProjectSection(SolutionItems) = preProject
+		conf.data = conf.data
+		Docs For Configuration File.txt = Docs For Configuration File.txt
 		guest.data = guest.data
 		host.data = host.data
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FR", "FR\FR.csproj", "{767C1973-F5AB-447A-9DA4-4C85BD2E7957}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FR", "FR\FR.csproj", "{767C1973-F5AB-447A-9DA4-4C85BD2E7957}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

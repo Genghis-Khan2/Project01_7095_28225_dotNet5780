@@ -43,11 +43,14 @@ namespace PLWPF.Host_Windows
                 IsThereJacuzzi = (bool)HasJacuzzi.IsChecked,
                 IsThereGarden = (bool)HasGarden.IsChecked,
                 IsThereChildrensAttractions = (bool)HasChildrenAttractions.IsChecked,
-                Diary = null
+                Diary = null,
+                Owner = new BE.Host()
+                {
+                     HostKey=FR.FR_Imp.GetFR().GetHostKey(LoginPage.Username)
+                }
             };
 
             CreateAccount.myBL.AddHostingUnit(unit);
         }
     }
 }
-

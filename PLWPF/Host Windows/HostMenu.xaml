@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="HostMenu" Height="450" Width="800">
     <Grid>
-        <Button Content="Add a hosting unit" HorizontalAlignment="Left" Margin="32,31,0,0" VerticalAlignment="Top"/>
+        <Button Content="Add a hosting unit" HorizontalAlignment="Left" Margin="32,31,0,0" x:Name="AddUnit" VerticalAlignment="Top" Click="AddUnit_Click"/>
         <TabControl Margin="261,0,0,0">
             <TabItem Header="Guest Requests">
                 <Grid Background="White">
@@ -20,6 +20,7 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
+        <Button Content="Refresh" HorizontalAlignment="Left" x:Name="Refresh" Margin="206,21,0,0" VerticalAlignment="Top" Click="Refresh_Click"/>
 
 
     </Grid>

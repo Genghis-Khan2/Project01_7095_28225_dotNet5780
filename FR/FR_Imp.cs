@@ -51,6 +51,8 @@ namespace FR
         /// </summary>
         private static readonly string hostPath = @"..\..\..\..\host.data";
 
+        private static readonly string confPath = @"..\..\..\..\conf.data";
+
         #endregion
 
         #region Compare Functions
@@ -310,6 +312,98 @@ namespace FR
         }
 
         #endregion
+
+        #region Get Config Value
+
+        public int GetGuestRequestKey()
+        {
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                return int.Parse(sr.ReadLine());
+            }
+        }
+
+        public int GetHostKey()
+        {
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                sr.ReadLine();
+                return int.Parse(sr.ReadLine());
+            }
+        }
+
+        public int GetHostingUnitKey()
+        {
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                sr.ReadLine();
+                sr.ReadLine();
+                return int.Parse(sr.ReadLine());
+            }
+        }
+
+        public int GetOrderKey()
+        {
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
+                return int.Parse(sr.ReadLine());
+            }
+        }
+
+        public int GetCommission()
+        {
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
+                return int.Parse(sr.ReadLine());
+            }
+        }
+
+        public int GetNumberOfDaysUntilExpired()
+        {
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
+                return int.Parse(sr.ReadLine());
+            }
+        }
+
+        public int GetGuestKey()
+        {
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
+                return int.Parse(sr.ReadLine());
+            }
+        }
+
+        #endregion
+
+        #region Set Config Value
+
+        public void SetGuestRequestKey(int key)
+        {
+
+        }
+
+        #endregion
+
+        //TODO: Create functions that read configuration settings such as GuestKey and HostKey and stuff
     }
 }
 
