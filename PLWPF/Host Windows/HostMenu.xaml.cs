@@ -22,17 +22,23 @@ namespace PLWPF
         public HostMenu()
         {
             InitializeComponent();
-
-            var li = from i in CreateAccount.myBL.getHostingUnitByHost()
-                     where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.Username)
-                     select new { Hostingunits = i };
-
-            foreach (var i in li)
+            try
             {
-                foreach (var item in i.Hostingunits)
+                var li = from i in CreateAccount.myBL.getHostingUnitByHost()
+                         where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.Username)
+                         select new { Hostingunits = i };
+
+                foreach (var i in li)
                 {
-                    GuestRequestStack.Children.Add(new HostingUnitUC(item.HostingUnitName, item.HostingUnitKey, item.Commission));
+                    foreach (var item in i.Hostingunits)
+                    {
+                        GuestRequestStack.Children.Add(new HostingUnitUC(item.HostingUnitName, item.HostingUnitKey, item.Commission));
+                    }
                 }
+            }
+            catch (Exceptions.NoItemsException)
+            {
+                return;
             }
         }
     }

@@ -23,8 +23,10 @@ namespace PLWPF.Guest_Windows.User_Controls
             InitializeComponent();
             this.DataContext = this;
         }
-        public string Date { get { return Key; } set { Key = String.Format("Dates: {0}", value); } }
-        public string Key { get { return Key; } set { Key = String.Format("Key: {0}",value); } }
+        public string Date { get { return date; } set { date = String.Format("Dates: {0}", value); } }
+        private string date = null;
+        public string Key { get { return key; } set { key = String.Format("Key: {0}", value); } }
+        private string key = null;
         public string ImagePath { get; set; } = @"..\..\..\PLWPF\Images\NoImageFound.png";
     }
 }
