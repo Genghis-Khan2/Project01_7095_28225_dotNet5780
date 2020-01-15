@@ -25,11 +25,14 @@ namespace PLWPF
 
             var li = from i in CreateAccount.myBL.getHostingUnitByHost()
                      where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.Username)
-                     select new { Hostingunit = i. };
+                     select new { Hostingunits = i };
 
             foreach (var i in li)
             {
-
+                foreach (var item in i.Hostingunits)
+                {
+                    GuestRequestStack.Children.Add(new HostingUnitUC(item.HostingUnitName, item.HostingUnitKey, item.Commission));
+                }
             }
         }
     }
