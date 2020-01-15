@@ -7,22 +7,24 @@
         mc:Ignorable="d"
         Title="GuestMenu" Height="450" Width="800">
     <Grid>
-        <ScrollViewer Margin="207,67,0,0"/>
-        <Button Content="Add Guest Request" x:Name="AddButton" HorizontalAlignment="Left" Margin="42,173,0,0" VerticalAlignment="Top" Click="AddButton_Click"/>
-        <Border VerticalAlignment="Top" BorderThickness="1" BorderBrush="Black">
-            <Grid ShowGridLines="True" Height="30">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*" />
-                    <ColumnDefinition Width="5*" />
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" FontSize="20" Text="UserName: " TextWrapping="Wrap"/>
-                <TextBlock Grid.Column="1" FontSize="20" Text="Key: " TextWrapping="Wrap"/>
-                <TextBlock Grid.Column="2" FontSize="20" Text="Status: " TextWrapping="Wrap"/>
-                <Image Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-            </Grid>
-        </Border>
+        <Grid ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" FontSize="20" Text="UserName: " TextWrapping="Wrap"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" FontSize="20" Text="Key: " TextWrapping="Wrap"/>
+            <Button Grid.Column="0" Grid.Row="1" Content="Add Guest Request" x:Name="AddButton" HorizontalAlignment="Center" VerticalAlignment="Center" Click="AddButton_Click" Height="110" Width="244"/>
+            <Button Grid.Column="0" Grid.Row="2" Content="Edit User" x:Name="EditUserButton" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="110" Width="244"/>
+            <Button Grid.Column="0" Grid.Row="3" Content="DeleteUser" x:Name="DeleteUserButton" HorizontalAlignment="Center" VerticalAlignment="Center" Height="110" Width="244"/>
+            <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Grid>
 
     </Grid>
 </Window>
