@@ -693,7 +693,7 @@ namespace BL
 
         #endregion
 
-        #region GetAllAvailableHostingUnit This function return all the Available Hosting unit int range
+        #region GetAllAvailableHostingUnit This function return all the Available Hosting unit in range
 
         /// <summary>
         /// The function returns the list of all available hosting units starting in the <paramref name="date"/> and ending <paramref name="days"/> days later

@@ -17,7 +17,7 @@ namespace PLWPF
         private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            var createWin = new CreateGuestAccount();
+            var createWin = new CreateAccount();
             createWin.Closed += (s, args) => this.Close();
             createWin.Show();
         }
@@ -26,7 +26,8 @@ namespace PLWPF
         {
             if (FR.FR_Imp.GetFR().GuestCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
             {
-                this.Hide();
+                Username = UserTextBox.Text;
+                Hide();
                 var createWin = new GuestMenu();
                 createWin.Closed += (s, args) => this.Close();
                 createWin.Show();
@@ -34,7 +35,7 @@ namespace PLWPF
 
             else if (FR.FR_Imp.GetFR().HostCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
             {
-                Username =
+                Username = UserTextBox.Text;
                 Hide();
                 var createWin = new HostMenu();
                 createWin.Closed += (s, args) => Close();
@@ -43,6 +44,7 @@ namespace PLWPF
 
             else if (FR.FR_Imp.GetFR().AdminCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
             {
+                Username = "admin";
                 Hide();
                 var createWin = new AdminWindow();
                 createWin.Closed += (s, args) => this.Close();

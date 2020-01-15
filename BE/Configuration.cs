@@ -159,5 +159,32 @@ namespace BE
         public static int NumberOfDaysUntilExpired { get; set; } = 14;
 
         #endregion
+
+        #region GuestKey
+
+        /// <summary>
+        /// This variable represents the key of the guest that applies for a request
+        /// see the comments up
+        /// </summary>
+        private static bool IsInitializedGuestKey = false;
+        public static int GuestKey
+        {
+            get
+            {
+                if (!IsInitializedGuestKey)
+                {
+                    IsInitializedGuestKey = true;
+                    guestKey = 1;
+                }
+                return guestKey++;
+            }
+
+            private set { guestKey = value; }
+        }
+
+        private static int guestKey;
+
+
+        #endregion
     }
 }

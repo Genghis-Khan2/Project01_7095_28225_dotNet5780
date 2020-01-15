@@ -67,14 +67,14 @@ namespace FR
         {
             using (StreamReader sr = new StreamReader(guestPath))
             {
-                string line = sr.ReadLine();
+                string line = null;
 
-                if (line == null)
+                do
                 {
-                    return false;
-                }
+                    line = sr.ReadLine();
+                } while (line != null);
 
-                if (line.StartsWith(username.ToLower().Replace(" ", "_")))
+                if (line.StartsWith(username.ToLower()))
                 {
                     string bytes = line.Substring(line.IndexOf(" ") + 1);
                     var byteArray = bytes.Split(' ');
@@ -109,8 +109,14 @@ namespace FR
         {
             using (StreamReader sr = new StreamReader(hostPath))
             {
-                string line = sr.ReadLine();
-                if (line.StartsWith(username.ToLower().Replace(" ", "_")))
+                string line = null;
+
+                do
+                {
+                    line = sr.ReadLine();
+                } while (line != null);
+
+                if (line.StartsWith(username.ToLower()))
                 {
                     string bytes = line.Substring(line.IndexOf(" ") + 1);
                     var byteArray = bytes.Split(' ');
@@ -165,20 +171,21 @@ namespace FR
         /// </summary>
         /// <param name="username">Username of the account to be added</param>
         /// <param name="password">Password of the account to be added</param>
-        public void WriteGuestToFile(string username, string password)
+        /// <param name="guestKey">Key of the guest to be added</param>
+        public void WriteGuestToFile(string username, string password, int guestKey)
         {
             using (SHA256 sha = SHA256.Create())
             {
                 using (StreamWriter sw = new StreamWriter(guestPath))
                 {
-                    sw.Write(username.ToLower().Replace(" ", "_") + " ");
+                    sw.Write(username.ToLower() + " ");
                     var hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
                     foreach (var i in hash)
                     {
                         sw.Write(i.ToString() + " ");
                     }
 
-                    sw.WriteLine();
+                    sw.WriteLine(" " + guestKey.ToString());
                 }
             }
         }
@@ -188,22 +195,110 @@ namespace FR
         /// </summary>
         /// <param name="username">Username of the account to be added</param>
         /// <param name="password">Password of the account to be added</param>
-        public void WriteHostToFile(string username, string password)
+        /// <param name="hostKey">Key of the host to be added</param>
+        public void WriteHostToFile(string username, string password, int hostKey)
         {
             using (SHA256 sha = SHA256.Create())
             {
                 using (StreamWriter sw = new StreamWriter(hostPath))
                 {
-                    sw.Write(username.ToLower().Replace(" ", "_") + " ");
+                    sw.Write(username.ToLower() + " ");
                     var hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
                     foreach (var i in hash)
                     {
                         sw.Write(i.ToString() + " ");
                     }
 
-                    sw.WriteLine();
+                    sw.WriteLine(" " + hostKey.ToString());
                 }
             }
+        }
+
+        #endregion
+
+        #region Get Key
+
+        public int GetGuestKey(string username)
+        {
+            using (StreamReader sr = new StreamReader(guestPath))
+            {
+
+                string line = null;
+                do
+                {
+                    line = sr.ReadLine();
+                    if (line.StartsWith(username.ToLower()))
+                    {
+                        var strings = line.Split(' ');
+                        return int.Parse(strings[2]);
+                    }
+                } while (line != null);
+
+            }
+
+            return -1;
+        }
+
+        public int GetHostKey(string username)
+        {
+            using (StreamReader sr = new StreamReader(hostPath))
+            {
+                string line = null;
+                do
+                {
+                    line = sr.ReadLine();
+                    if (line.StartsWith(username.ToLower()))
+                    {
+                        var strings = line.Split(' ');
+                        return int.Parse(strings[2]);
+                    }
+                } while (line != null);
+
+            }
+
+            return -1;
+        }
+
+        #endregion
+
+        #region Check If Username Exists
+
+        public bool CheckIfGuestExists(string username)
+        {
+            using (StreamReader sr = new StreamReader(guestPath))
+            {
+                string line = null;
+
+                do
+                {
+                    line = sr.ReadLine();
+                    if (line.StartsWith(username.ToLower()))
+                    {
+                        return true;
+                    }
+                } while (line != null);
+            }
+
+            return false;
+        }
+
+        public bool CheckIfHostExists(string username)
+        {
+            using (StreamReader sr = new StreamReader(hostPath))
+            {
+                string line = null;
+
+                do
+                {
+                    line = sr.ReadLine();
+                    if (line.StartsWith(username.ToLower()))
+                    {
+                        return true;
+                    }
+                } while (line != null);
+            }
+
+            return false;
         }
 
         #endregion
