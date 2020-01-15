@@ -21,5 +21,33 @@ namespace PLWPF.Host_Windows
         {
             InitializeComponent();
         }
+
+        private void CreateButton_Click(object sender, RoutedEventArgs e)
+        {
+            float commission;
+            bool isNum = float.TryParse(Commission.Text, out commission);
+            if (!isNum)
+            {
+                MessageBox.Show("Commission must be a decimal point number!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            BE.HostingUnit unit = new BE.HostingUnit()
+            {
+                Commission = commission,
+                Area = (BE.Enums.Area)Enum.Parse(typeof(BE.Enums.Area), Area.SelectedItem as string),
+                Type = (BE.Enums.HostingUnitType)Enum.Parse(typeof(BE.Enums.HostingUnitType), TypeOfUnit.SelectedItem as string),
+                HostingUnitName = NameOfUnit.Text,
+                NumberOfPlacesForAdults = (int)AmountOfAdults.Value,
+                NumberOfPlacesForChildren = (int)AmountOfChildren.Value,
+                IsTherePool = (bool)HasPool.IsChecked,
+                IsThereJacuzzi = (bool)HasJacuzzi.IsChecked,
+                IsThereGarden = (bool)HasGarden.IsChecked,
+                IsThereChildrensAttractions = (bool)HasChildrenAttractions.IsChecked,
+                Diary = null
+            };
+
+            CreateAccount.myBL.AddHostingUnit(unit);
+        }
     }
 }
+
