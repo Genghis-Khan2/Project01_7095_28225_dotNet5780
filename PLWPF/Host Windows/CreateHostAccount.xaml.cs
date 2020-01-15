@@ -27,11 +27,12 @@ namespace PLWPF
             if (Pass.Password == ConfPass.Password)
             {
                 //TODO: Needs to be a check if the user exists
-                if (!(FR.FR_Imp.GetFR().CheckIfGuestExists(User.Text) ||
+                if (FR.FR_Imp.GetFR().CheckIfGuestExists(User.Text) ||
                     FR.FR_Imp.GetFR().CheckIfHostExists(User.Text) ||
-                    User.Text.ToLower() == "admin"))
+                    User.Text.ToLower() == "admin")
                 {
                     MessageBox.Show("There is already an account by that name!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
 
                 FR.FR_Imp.GetFR().WriteHostToFile(User.Text, Pass.Password, BE.Configuration.HostKey);

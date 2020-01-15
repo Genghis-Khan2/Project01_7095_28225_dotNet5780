@@ -20,7 +20,7 @@ namespace PLWPF
         {
             this.Hide();
             var createWin = new CreateAccount();
-            createWin.Closed += (s, args) => this.Close();
+            createWin.Closed += (s, args) => this.Show();
             createWin.Show();
         }
 
@@ -31,7 +31,7 @@ namespace PLWPF
                 Username = UserTextBox.Text;
                 Hide();
                 var createWin = new GuestMenu();
-                createWin.Closed += (s, args) => this.Close();
+                createWin.Closed += (s, args) => this.Show();
                 createWin.Show();
             }
 
@@ -40,7 +40,7 @@ namespace PLWPF
                 Username = UserTextBox.Text;
                 Hide();
                 var createWin = new HostMenu();
-                createWin.Closed += (s, args) => Close();
+                createWin.Closed += (s, args) => Show();
                 createWin.Show();
             }
 
@@ -49,7 +49,7 @@ namespace PLWPF
                 Username = "admin";
                 Hide();
                 var createWin = new AdminWindow();
-                createWin.Closed += (s, args) => this.Close();
+                createWin.Closed += (s, args) => this.Show();
                 createWin.Show();
             }
             else
@@ -59,6 +59,12 @@ namespace PLWPF
             }
 
 
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserTextBox.Text = "";
+            PassBox.Password = "";
         }
     }
 }

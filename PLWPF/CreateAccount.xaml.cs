@@ -31,7 +31,7 @@ namespace PLWPF
         {
             this.Hide();
             var guestWin = new CreateGuestAccount();
-            guestWin.Closed += (s, args) => this.Close();
+            guestWin.Closed += (s, args) => this.Show();
             guestWin.Show();
         }
 
@@ -39,7 +39,7 @@ namespace PLWPF
         {
             Hide();
             var guestWin = new CreateHostAccount();
-            guestWin.Closed += (s, args) => this.Close();
+            guestWin.Closed += (s, args) => this.Show();
             guestWin.Show();
         }
     }
