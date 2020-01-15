@@ -9,6 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Linq;
+using FR;
 
 namespace PLWPF
 {
@@ -21,11 +23,14 @@ namespace PLWPF
         {
             InitializeComponent();
 
-            var li = from i in CreateAccount.myBL.GetAllHostingUnits()
-                     where i + 
+            var li = from i in CreateAccount.myBL.getHostingUnitByHost()
+                     where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.Username)
                      select i;
 
-            foreach ()
+            foreach (var i in li)
+            {
+
+            }
         }
     }
 }

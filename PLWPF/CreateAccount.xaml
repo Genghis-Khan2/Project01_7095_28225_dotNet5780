@@ -24,7 +24,7 @@
             Content="Guest" FontSize="50" Click="CreateGuestButton_Click" />
         <Button x:Name="CreateHostButton" Grid.Row="3"
             Grid.Column="1"
-            Content="Host" FontSize="50"/>
+            Content="Host" FontSize="50" Click="CreateHostButton_Click"/>
     </Grid>
     
 </Window>

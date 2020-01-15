@@ -9,6 +9,7 @@ namespace BE
     /// </summary>
     public class GuestRequest
     {
+        public int GuestKey { get; set; }
         public int GuestRequestKey { get; set; } = 0;//No need to change, determined when creating the object
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
