@@ -656,6 +656,17 @@ namespace BL
 
         #endregion
 
+        #region Function help to work with GuestRequest
+
+        #region GetAllGuestRequestToGuest This function return all the GuestRequest send from user
+
+        public IEnumerable<GuestRequest> GetAllGuestRequestToGuest(int key)
+        {
+            return GetAllGuestRequestWhere((x) => ((GuestRequest)x).GuestKey == key);
+        }
+
+        #endregion
+
         #region GetAllGuestRequestWhere This function return all the GuestRequest that match condition
 
         /// <summary>
@@ -690,6 +701,8 @@ namespace BL
                                   select ord;
             return allOrderToGuest.Count();
         }
+
+        #endregion
 
         #endregion
 
