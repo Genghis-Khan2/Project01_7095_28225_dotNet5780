@@ -67,9 +67,9 @@ namespace FR
         {
             using (StreamReader sr = new StreamReader(guestPath))
             {
-                string line = null;
+                string line = "a"; // Arbitrary value
 
-                do
+                while (line != null)
                 {
                     line = sr.ReadLine();
 
@@ -91,7 +91,7 @@ namespace FR
                             return hash.SequenceEqual(actualBytes);
                         }
                     }
-                } while (line != null);
+                }
 
 
             }
@@ -111,9 +111,9 @@ namespace FR
         {
             using (StreamReader sr = new StreamReader(hostPath))
             {
-                string line = null;
+                string line = "a";
 
-                do
+                while (line != null)
                 {
                     line = sr.ReadLine();
 
@@ -135,7 +135,7 @@ namespace FR
                             return hash.SequenceEqual(actualBytes);
                         }
                     }
-                } while (line != null);
+                }
 
                 return false;
             }
@@ -225,8 +225,9 @@ namespace FR
             using (StreamReader sr = new StreamReader(guestPath))
             {
 
-                string line = null;
-                do
+                string line = "a";
+
+                while (line != null)
                 {
                     line = sr.ReadLine();
                     if (line.StartsWith(username.ToLower()))
@@ -234,7 +235,7 @@ namespace FR
                         var strings = line.Split(' ');
                         return int.Parse(strings[2]);
                     }
-                } while (line != null);
+                }
 
             }
 
@@ -245,8 +246,8 @@ namespace FR
         {
             using (StreamReader sr = new StreamReader(hostPath))
             {
-                string line = null;
-                do
+                string line = "a";
+                while (line != null)
                 {
                     line = sr.ReadLine();
                     if (line.StartsWith(username.ToLower()))
@@ -254,7 +255,7 @@ namespace FR
                         var strings = line.Split(' ');
                         return int.Parse(strings[2]);
                     }
-                } while (line != null);
+                }
 
             }
 
@@ -269,16 +270,16 @@ namespace FR
         {
             using (StreamReader sr = new StreamReader(guestPath))
             {
-                string line = null;
+                string line = "a";
 
-                do
+                while (line != null)
                 {
                     line = sr.ReadLine();
                     if (line.StartsWith(username.ToLower()))
                     {
                         return true;
                     }
-                } while (line != null);
+                }
             }
 
             return false;
@@ -288,16 +289,16 @@ namespace FR
         {
             using (StreamReader sr = new StreamReader(hostPath))
             {
-                string line = null;
+                string line = "a";
 
-                do
+                while (line != null)
                 {
                     line = sr.ReadLine();
                     if (line.StartsWith(username.ToLower()))
                     {
                         return true;
                     }
-                } while (line != null);
+                }
             }
 
             return false;
