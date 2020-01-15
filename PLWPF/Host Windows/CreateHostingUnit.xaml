@@ -4,10 +4,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF.Host_Windows"
+        xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="CreateHostingUnit" Height="450" Width="800">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="104,61,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <xctf:WatermarkTextBox Watermark="e.g. Sleepy Palms" HorizontalAlignment="Left" Margin="154,55,0,0" Text="" x:Name="NameOfUnit" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <Label Content="Enter Unit name:" HorizontalAlignment="Left" Margin="43,53,0,0" VerticalAlignment="Top"/>
+        <Label Content="Enter commission for unit:" HorizontalAlignment="Left" Margin="43,107,0,0" VerticalAlignment="Top" Width="153"/>
+        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="Commission" Watermark="e.g. 10.5" Margin="201,108,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Create Hosting Unit" FontSize="22" FontWeight="DemiBold" x:Name="CreateButton" HorizontalAlignment="Left" Margin="444,286,0,0" VerticalAlignment="Top" Width="233" Click="CreateButton_Click" Height="49"/>
+        <ComboBox HorizontalAlignment="Left" x:Name="Area" Margin="154,165,0,0" VerticalAlignment="Top" Width="120" SelectedItem="All">
+            <ComboBoxItem Content="All"/>
+            <ComboBoxItem Content="North"/>
+            <ComboBoxItem Content="South"/>
+            <ComboBoxItem Content="Center"/>
+            <ComboBoxItem Content="Jerusalem"/>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" x:Name="TypeOfUnit" Margin="154,217,0,0" VerticalAlignment="Top" Width="120" SelectedItem="All">
+            <ComboBoxItem Content="All"/>
+            <ComboBoxItem Content="Zimmer"/>
+            <ComboBoxItem Content="AccommodationApartment"/>
+            <ComboBoxItem Content="Hotel"/>
+            <ComboBoxItem Content="Camping"/>
+        </ComboBox>
+        <Slider HorizontalAlignment="Left" Minimum="1" TickFrequency="1" IsSnapToTickEnabled="True" x:Name="AmountOfAdults" Margin="154,277,0,0" VerticalAlignment="Top" Width="120"/>
+        <Slider HorizontalAlignment="Left" x:Name="AmountOfChildren" TickFrequency="1" IsSnapToTickEnabled="True" Margin="154,317,0,0" VerticalAlignment="Top" Width="120"/>
+        <CheckBox Content="Pool?" HorizontalAlignment="Left" FontSize="22" x:Name="HasPool" Margin="444,67,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Jacuzzi" HorizontalAlignment="Left" FontSize="22" x:Name="HasJacuzzi" Margin="444,108,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Garden?" HorizontalAlignment="Left" FontSize="22" x:Name="HasGarden" Margin="444,153,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Children Attractions??" HorizontalAlignment="Left" FontSize="22" x:Name="HasChildrenAttractions" Margin="444,202,0,0" VerticalAlignment="Top"/>
+        <Label Content="Area:" HorizontalAlignment="Left" Margin="104,158,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.163,0.66"/>
+        <Label Content="Type:" HorizontalAlignment="Left" Margin="102,215,0,0" VerticalAlignment="Top"/>
+        <Label Content="Amount of adults:" HorizontalAlignment="Left" Margin="36,273,0,0" VerticalAlignment="Top"/>
+        <Label Content="Amount of children:" HorizontalAlignment="Left" Margin="26,313,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

@@ -252,7 +252,7 @@ namespace DAL
         #region Saving Single Objects Functions
         private void SaveToXML<T>(T source, string path)
         {
-            FileStream file = null;
+            FileStream file;
             if (File.Exists(path))
             {
                 file = new FileStream(path, FileMode.Append);
