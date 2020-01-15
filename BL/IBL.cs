@@ -21,7 +21,7 @@ namespace BL
     /// and all is variables are static.
     /// So, the only option we are given is to put it here and hope that our severe grime in breaking the layer model is understood
     /// </remarks>
-    public delegate bool isMeetTheDefinition(GuestRequest guestRequest);
+    public delegate bool isMeetTheDefinition(Object obj);
 
     /// <summary>
     /// This class is the interface of the BL layer
@@ -321,6 +321,8 @@ namespace BL
 
         #endregion
 
+        #region Function to work with GuestRequest
+
         #region GetAllGuestRequestWhere This function return all the GuestRequest that match condition
 
         /// <summary>
@@ -340,6 +342,12 @@ namespace BL
         /// <param name="key">The Guest Request key to check how many <see cref="Order"/> where sent to her </param>
         /// <returns>The amount of order sent to the GuestRequest</returns>
         int GetAmountOfOrderToGuest(int key);
+
+        #endregion
+
+        #region GetAllGuestRequestToGuest This function return all the GuestRequest send from user
+
+        IEnumerable<GuestRequest> GetAllGuestRequestToGuest(int key);
 
         #endregion
 
