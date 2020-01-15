@@ -348,6 +348,8 @@ namespace BL
         #region GetAllGuestRequestToGuest This function return all the GuestRequest send from user
 
         IEnumerable<GuestRequest> GetAllGuestRequestToGuest(int key);
+        
+        #endregion
 
         #endregion
 

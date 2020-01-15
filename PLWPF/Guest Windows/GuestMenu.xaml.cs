@@ -13,7 +13,7 @@ using System.Linq;
 using BL;
 using BE;
 using PLWPF.Guest_Windows.User_Controls;
-
+using Exceptions;
 namespace PLWPF
 {
     /// <summary>
@@ -32,22 +32,35 @@ namespace PLWPF
             InitializeComponent();
             this.UserName = userName;
             this.Key = key;
+            InitScrollViewer(Key);
         }
         private void InitScrollViewer(int key)
         {
-            var allGuestRequest = BLImp.getBL().GetAllGuestRequestToGuest(key);
-            foreach (var item in allGuestRequest)
+            //var allGuestRequest = BLImp.getBL().GetAllGuestRequestToGuest(key);
+
+            try
             {
-                Border b = new Border();
-                b.Background = Brushes.LightGray;
-                b.BorderBrush = Brushes.Black;
-                b.BorderThickness = new Thickness(1);
-                GuestRequestScrollViewerItem uc = new GuestRequestScrollViewerItem()
+                var allGuestRequest = BLImp.getBL().GetAllGuestRequests();
+                foreach (var item in allGuestRequest)
                 {
-                    Date = String.Format(item.EntryDate " - ");
-                };
+                    Border b = new Border();
+                    b.Background = Brushes.LightGray;
+                    b.BorderBrush = Brushes.Black;
+                    b.BorderThickness = new Thickness(1);
+                    GuestRequestScrollViewerItem uc = new GuestRequestScrollViewerItem()
+                    {
+                        Date = String.Format(item.EntryDate.Day + "." + item.EntryDate.Month + " - " + item.ReleaseDate.Day + "." + item.ReleaseDate.Month),
+                        Key = item.GuestRequestKey,
+                    };
+                    b.Child = uc;
+                    UCStackPanel.Children.Add(b);
+                }
+            }
+            catch(NoItemsException)
+            {
 
             }
+           
         }
     }
 }

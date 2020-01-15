@@ -31,7 +31,7 @@
             <Button Grid.Column="0" Grid.Row="2" Content="Edit User" x:Name="EditUserButton" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="110" Width="244"/>
             <Button Grid.Column="0" Grid.Row="3" Content="DeleteUser" x:Name="DeleteUserButton" HorizontalAlignment="Center" VerticalAlignment="Center" Height="110" Width="244"/>
             <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible">
-                <StackPanel>
+                <StackPanel x:Name="UCStackPanel">
                 </StackPanel>
             </ScrollViewer>
         </Grid>

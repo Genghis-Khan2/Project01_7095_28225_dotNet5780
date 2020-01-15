@@ -12,7 +12,7 @@ namespace PLWPF
         public LoginPage()
         {
             InitializeComponent();
-            GuestMenu g = new GuestMenu();
+            GuestMenu g = new GuestMenu("Noam", 123);
             g.Show();
         }
 
