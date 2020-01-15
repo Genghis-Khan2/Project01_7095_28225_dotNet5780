@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
+        xmlns:uc="clr-namespace:PLWPF.Guest_Windows.User_Controls"
         mc:Ignorable="d"
         Title="GuestMenu" Height="450" Width="800">
     <Grid>
@@ -23,8 +24,11 @@
             <Button Grid.Column="0" Grid.Row="1" Content="Add Guest Request" x:Name="AddButton" HorizontalAlignment="Center" VerticalAlignment="Center" Click="AddButton_Click" Height="110" Width="244"/>
             <Button Grid.Column="0" Grid.Row="2" Content="Edit User" x:Name="EditUserButton" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="110" Width="244"/>
             <Button Grid.Column="0" Grid.Row="3" Content="DeleteUser" x:Name="DeleteUserButton" HorizontalAlignment="Center" VerticalAlignment="Center" Height="110" Width="244"/>
-            <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <uc:GuestRequestScrollViewerItem GuestName="noam" Key="23423" ImagePath="..\..\..\PLWPF\Images\NoImageFound.png"/>
+            </ScrollViewer>
         </Grid>
 
     </Grid>
 </Window>
+

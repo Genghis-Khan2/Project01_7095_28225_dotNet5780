@@ -30,7 +30,7 @@ namespace PLWPF.Guest_Windows.User_Controls
             this.Key = key;
             this.ImagePath = path;
         }
-        public string GuestName { get; set; } = "";
+        public string GuestName { get; set; } = "~";
         public int Key { get; set; } = -1;
         public string ImagePath { get; set; } = @"..\..\..\PLWPF\Images\NoImageFound.png";
     }
