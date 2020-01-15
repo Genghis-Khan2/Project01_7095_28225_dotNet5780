@@ -23,14 +23,14 @@ namespace PLWPF
         {
             InitializeComponent();
 
-            var li = from i in CreateAccount.myBL.getHostingUnitByHost()
-                     where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.Username)
-                     select new { Hostingunit = i. };
+            //var li = from i in CreateAccount.myBL.getHostingUnitByHost()
+            //         where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.Username)
+            //         select new { Hostingunit = i. };
 
-            foreach (var i in li)
-            {
+            //foreach (var i in li)
+            //{
 
-            }
+            //}
         }
     }
 }

@@ -23,15 +23,8 @@ namespace PLWPF.Guest_Windows.User_Controls
             InitializeComponent();
             this.DataContext = this;
         }
-        public GuestRequestScrollViewerItem(string name, int key, string path)
-        {
-            InitializeComponent();
-            this.GuestName = name;
-            this.Key = key;
-            this.ImagePath = path;
-        }
-        public string GuestName { get; set; } = "~";
-        public int Key { get; set; } = -1;
+        public string Date { get { return Key; } set { Key = String.Format("Dates: {0}", value); } }
+        public string Key { get { return Key; } set { Key = String.Format("Key: {0}",value); } }
         public string ImagePath { get; set; } = @"..\..\..\PLWPF\Images\NoImageFound.png";
     }
 }

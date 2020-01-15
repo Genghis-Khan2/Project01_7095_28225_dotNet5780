@@ -12,6 +12,8 @@ namespace PLWPF
         public LoginPage()
         {
             InitializeComponent();
+            GuestMenu g = new GuestMenu();
+            g.Show();
         }
 
         private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
