@@ -353,37 +353,10 @@ namespace FR
             }
         }
 
-        public int GetCommission()
-        {
-            using (StreamReader sr = new StreamReader(confPath))
-            {
-                sr.ReadLine();
-                sr.ReadLine();
-                sr.ReadLine();
-                sr.ReadLine();
-                return int.Parse(sr.ReadLine());
-            }
-        }
-
-        public int GetNumberOfDaysUntilExpired()
-        {
-            using (StreamReader sr = new StreamReader(confPath))
-            {
-                sr.ReadLine();
-                sr.ReadLine();
-                sr.ReadLine();
-                sr.ReadLine();
-                sr.ReadLine();
-                return int.Parse(sr.ReadLine());
-            }
-        }
-
         public int GetGuestKey()
         {
             using (StreamReader sr = new StreamReader(confPath))
             {
-                sr.ReadLine();
-                sr.ReadLine();
                 sr.ReadLine();
                 sr.ReadLine();
                 sr.ReadLine();
@@ -398,12 +371,143 @@ namespace FR
 
         public void SetGuestRequestKey(int key)
         {
+            int GuestRequestKey;
+            int HostKey;
+            int HostingUnitKey;
+            int OrderKey;
+            int GuestKey;
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                GuestRequestKey = int.Parse(sr.ReadLine());
+                HostKey = int.Parse(sr.ReadLine());
+                HostingUnitKey = int.Parse(sr.ReadLine());
+                OrderKey = int.Parse(sr.ReadLine());
+                GuestKey = int.Parse(sr.ReadLine());
+            }
+
+            using (StreamWriter sw = new StreamWriter(confPath, false))
+            {
+                sw.WriteLine(key);
+                sw.WriteLine(HostKey);
+                sw.WriteLine(HostingUnitKey);
+                sw.WriteLine(OrderKey);
+                sw.WriteLine(GuestKey);
+            }
+
+        }
+
+        public void SetHostKey(int key)
+        {
+            int GuestRequestKey;
+            int HostKey;
+            int HostingUnitKey;
+            int OrderKey;
+            int GuestKey;
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                GuestRequestKey = int.Parse(sr.ReadLine());
+                HostKey = int.Parse(sr.ReadLine());
+                HostingUnitKey = int.Parse(sr.ReadLine());
+                OrderKey = int.Parse(sr.ReadLine());
+                GuestKey = int.Parse(sr.ReadLine());
+            }
+
+            using (StreamWriter sw = new StreamWriter(confPath, false))
+            {
+                sw.WriteLine(GuestRequestKey);
+                sw.WriteLine(key);
+                sw.WriteLine(HostKey);
+                sw.WriteLine(HostingUnitKey);
+                sw.WriteLine(OrderKey);
+                sw.WriteLine(GuestKey);
+            }
+
+        }
+
+        public void SetHostingUnitKey(int key)
+        {
+            int GuestRequestKey;
+            int HostKey;
+            int HostingUnitKey;
+            int OrderKey;
+            int GuestKey;
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                GuestRequestKey = int.Parse(sr.ReadLine());
+                HostKey = int.Parse(sr.ReadLine());
+                HostingUnitKey = int.Parse(sr.ReadLine());
+                OrderKey = int.Parse(sr.ReadLine());
+                GuestKey = int.Parse(sr.ReadLine());
+            }
+
+            using (StreamWriter sw = new StreamWriter(confPath, false))
+            {
+                sw.WriteLine(GuestRequestKey);
+                sw.WriteLine(HostKey);
+                sw.WriteLine(key);
+                sw.WriteLine(OrderKey);
+                sw.WriteLine(GuestKey);
+            }
+
+        }
+
+        public void SetOrderKey(int key)
+        {
+            int GuestRequestKey;
+            int HostKey;
+            int HostingUnitKey;
+            int OrderKey;
+            int GuestKey;
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                GuestRequestKey = int.Parse(sr.ReadLine());
+                HostKey = int.Parse(sr.ReadLine());
+                HostingUnitKey = int.Parse(sr.ReadLine());
+                OrderKey = int.Parse(sr.ReadLine());
+                GuestKey = int.Parse(sr.ReadLine());
+            }
+
+            using (StreamWriter sw = new StreamWriter(confPath, false))
+            {
+                sw.WriteLine(GuestRequestKey);
+                sw.WriteLine(HostKey);
+                sw.WriteLine(HostingUnitKey);
+                sw.WriteLine(key);
+                sw.WriteLine(GuestKey);
+            }
+
+        }
+
+
+        public void SetGuestKey(int key)
+        {
+            int GuestRequestKey;
+            int HostKey;
+            int HostingUnitKey;
+            int OrderKey;
+            int GuestKey;
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                GuestRequestKey = int.Parse(sr.ReadLine());
+                HostKey = int.Parse(sr.ReadLine());
+                HostingUnitKey = int.Parse(sr.ReadLine());
+                OrderKey = int.Parse(sr.ReadLine());
+                GuestKey = int.Parse(sr.ReadLine());
+            }
+
+            using (StreamWriter sw = new StreamWriter(confPath, false))
+            {
+                sw.WriteLine(GuestRequestKey);
+                sw.WriteLine(HostKey);
+                sw.WriteLine(HostingUnitKey);
+                sw.WriteLine(OrderKey);
+                sw.WriteLine(key);
+            }
 
         }
 
         #endregion
 
-        //TODO: Create functions that read configuration settings such as GuestKey and HostKey and stuff
     }
 }
 

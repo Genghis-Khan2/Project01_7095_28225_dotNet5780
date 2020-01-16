@@ -31,26 +31,33 @@ namespace PLWPF.Host_Windows
                 MessageBox.Show("Commission must be a decimal point number!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            BE.HostingUnit unit = new BE.HostingUnit()
+            BE.HostingUnit unit = new BE.HostingUnit();
+
+            unit.Commission = commission;
+            unit.Area = (BE.Enums.Area)Enum.Parse(typeof(BE.Enums.Area), Area.SelectionBoxItem as string);
+            unit.Type = (BE.Enums.HostingUnitType)Enum.Parse(typeof(BE.Enums.HostingUnitType), TypeOfUnit.SelectionBoxItem as string);
+            unit.HostingUnitName = NameOfUnit.Text;
+            unit.NumberOfPlacesForAdults = (int)AmountOfAdults.Value;
+            unit.NumberOfPlacesForChildren = (int)AmountOfChildren.Value;
+            unit.IsTherePool = (bool)HasPool.IsChecked;
+            unit.IsThereJacuzzi = (bool)HasJacuzzi.IsChecked;
+            unit.IsThereGarden = (bool)HasGarden.IsChecked;
+            unit.IsThereChildrensAttractions = (bool)HasChildrenAttractions.IsChecked;
+            unit.Diary = null;
+            unit.Owner = new BE.Host()
             {
-                Commission = commission,
-                Area = (BE.Enums.Area)Enum.Parse(typeof(BE.Enums.Area), Area.SelectedItem as string),
-                Type = (BE.Enums.HostingUnitType)Enum.Parse(typeof(BE.Enums.HostingUnitType), TypeOfUnit.SelectedItem as string),
-                HostingUnitName = NameOfUnit.Text,
-                NumberOfPlacesForAdults = (int)AmountOfAdults.Value,
-                NumberOfPlacesForChildren = (int)AmountOfChildren.Value,
-                IsTherePool = (bool)HasPool.IsChecked,
-                IsThereJacuzzi = (bool)HasJacuzzi.IsChecked,
-                IsThereGarden = (bool)HasGarden.IsChecked,
-                IsThereChildrensAttractions = (bool)HasChildrenAttractions.IsChecked,
-                Diary = null,
-                Owner = new BE.Host()
-                {
-                     HostKey=FR.FR_Imp.GetFR().GetHostKey(LoginPage.Username)
-                }
+                HostKey = FR.FR_Imp.GetFR().GetHostKey(LoginPage.Username),
+                BankBranchDetails = new BE.BankBranch()
             };
 
-            CreateAccount.myBL.AddHostingUnit(unit);
+            try
+            {
+                CreateAccount.myBL.AddHostingUnit(unit);
+            }
+            catch
+            {
+                FR.FR_Imp.GetFR().SetHostingUnitKey(FR.FR_Imp.GetFR().GetHostingUnitKey() - 1);
+            }
         }
     }
 }

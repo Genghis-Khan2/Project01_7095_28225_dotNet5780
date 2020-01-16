@@ -23,8 +23,16 @@
         }
       },
       "BE/1.0.0": {
+        "dependencies": {
+          "FR": "1.0.0"
+        },
         "runtime": {
           "BE.dll": {}
+        }
+      },
+      "FR/1.0.0": {
+        "runtime": {
+          "FR.dll": {}
         }
       }
     }
@@ -50,6 +58,11 @@
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
     },
     "BE/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FR/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

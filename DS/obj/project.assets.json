@@ -29,11 +29,24 @@
       "BE/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "FR": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/BE.dll": {}
         },
         "runtime": {
           "bin/placeholder/BE.dll": {}
+        }
+      },
+      "FR/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/FR.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FR.dll": {}
         }
       }
     }
@@ -186,6 +199,11 @@
       "type": "project",
       "path": "../BE/BE.csproj",
       "msbuildProject": "../BE/BE.csproj"
+    },
+    "FR/1.0.0": {
+      "type": "project",
+      "path": "../FR/FR.csproj",
+      "msbuildProject": "../FR/FR.csproj"
     }
   },
   "projectFileDependencyGroups": {

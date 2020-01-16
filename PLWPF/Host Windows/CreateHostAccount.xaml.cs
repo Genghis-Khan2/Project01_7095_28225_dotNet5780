@@ -43,6 +43,11 @@ namespace PLWPF
                 createWin.Show();
                 return;
             }
+
+            else
+            {
+                MessageBox.Show("Passwords do not match!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

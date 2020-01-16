@@ -45,3 +45,5 @@ C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\obj\Debug\ne
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.csproj.CopyComplete
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.dll
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\FR.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\FR.pdb

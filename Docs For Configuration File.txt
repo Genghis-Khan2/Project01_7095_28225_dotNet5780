@@ -5,6 +5,4 @@ GuestRequestKey
 HostKey
 HostingUnitKey
 OrderKey
-Commission
-NumberOfDaysUntilExpired
 GuestKey
