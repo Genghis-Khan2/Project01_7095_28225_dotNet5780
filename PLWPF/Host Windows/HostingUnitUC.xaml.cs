@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using BE;
 namespace PLWPF
 {
     /// <summary>
@@ -20,7 +20,7 @@ namespace PLWPF
     public partial class HostingUnitUC : UserControl
     {
         private HostMenu caller;
-        private BE.HostingUnit hu;
+        private HostingUnit hu;
         public HostingUnitUC(HostMenu caller, BE.HostingUnit hu)
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace PLWPF
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            caller.RemoveHostingUnit(int.Parse(Key.Content as string));
+            caller.RemoveHostingUnit(hu.HostingUnitKey);
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

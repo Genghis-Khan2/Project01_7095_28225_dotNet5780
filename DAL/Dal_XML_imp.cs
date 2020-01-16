@@ -379,5 +379,10 @@ namespace DAL
         {
             throw new NotImplementedException();
         }
+
+        public void RemoveGuestRequest(int key)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

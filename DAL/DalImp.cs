@@ -96,6 +96,32 @@ namespace DAL
 
         #endregion
 
+        #region RemoveGuestRequest This function removes a guest request
+
+        /// <summary>
+        /// This function removes a guest request from the data
+        /// </summary>
+        /// Important Note: It will not compare all fields. It will only compare the key 
+        /// <exception cref="KeyNotFoundException">Thrown if no guest request in the data match the guest request with the <paramref name="key"/></exception>
+        public void RemoveGuestRequest(int key)
+        {
+            var res = from item in DataSource.guestRequestsList.Clone()
+                      let temp = key
+                      where temp == item.GuestRequestKey
+                      select item;
+            if (res.Count() == 0)
+            {
+                throw new KeyNotFoundException("No guest request with key specified");
+            }
+
+            foreach (var it in res)
+            {
+                int index = DataSource.guestRequestsList.FindIndex(x => x.GuestRequestKey == it.GuestRequestKey);
+                DataSource.guestRequestsList.RemoveAt(index);
+            }
+        }
+        #endregion
+
         #region UpdateGuestRequestStatus This function updates a guest request
 
         /// <summary>

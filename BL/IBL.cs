@@ -53,6 +53,18 @@ namespace BL
 
         #endregion
 
+        #region RemoveGuestRequest This function removes a guest request
+
+        /// <summary>
+        /// This function removes a guest request from the data
+        /// </summary>
+        /// Important Note: It will not compare all fields. It will only compare the key 
+        /// <exception cref="KeyNotFoundException">Thrown if no guest request in the data match the guest request with the <paramref name="key"/></exception>
+        ///<exception cref="ChangedWhileLinkedException">Thrown if there is any open <see cref="Order"/> linked to the guest request with the <paramref name="key"/> and you try to delete it</exception>        /// <param name="key">Key to remove the guest request of</param>
+        void RemoveGuestRequest(int key);
+
+        #endregion
+
         #region UpdateGuestRequest This function updates a guest request
 
         /// <summary>

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PLWPF.Guest_Windows.User_Controls"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="500">
-    <Grid ShowGridLines="True">
+    <Grid ShowGridLines="True" MouseLeftButtonDown="Grid_MouseLeftButtonDown" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="4*"/>
@@ -14,13 +14,13 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Orientation="Horizontal">
             <TextBlock Text="Key: " FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Text="{Binding Key}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock x:Name="KeyTextBlock" Text="-1" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Orientation="Horizontal">
             <TextBlock Text="Date: " FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Text="{Binding Date}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock x:Name="DateTextBlock" Text="0.0 - 0.0" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
-        <Image Grid.Column="2" x:Name="StatusIconImage" Source="{Binding ImagePath}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <Image x:Name="StatusIconImage" Grid.Column="2" Source="/Images/NotSetIcon.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
     </Grid>
     <UserControl.ContextMenu>
         <ContextMenu>

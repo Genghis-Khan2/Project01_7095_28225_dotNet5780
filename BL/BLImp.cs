@@ -93,6 +93,47 @@ namespace BL
 
         #endregion
 
+        #region RemoveGuestRequest This function removes a guest request
+
+        /// <summary>
+        /// This function removes a guest request from the data
+        /// </summary>
+        /// Important Note: It will not compare all fields. It will only compare the key 
+        /// <exception cref="KeyNotFoundException">Thrown if no guest request in the data match the guest request with the <paramref name="key"/></exception>
+        ///<exception cref="ChangedWhileLinkedException">Thrown if there is any open <see cref="Order"/> linked to the guest request with the <paramref name="key"/> and you try to delete it</exception>        /// <param name="key">Key to remove the guest request of</param>
+        public void RemoveGuestRequest(int key)
+        {
+            //TODO:do it
+            //we assume that An Order considered "open" if  its status is "Enums.OrderStatus.UnTreated" and also "Enums.OrderStatus.SentMail"
+            bool isEmpty = false;
+            try // We do this since if we want to delete a hosting unit before an order is made
+            {
+                DAL_Adapter.GetDAL().GetAllOrders();
+            }
+            catch (NoItemsException)
+            {
+                isEmpty = true;
+            }
+            if (!isEmpty)
+            {
+                var linkedOpenOrderList = from order in DAL_Adapter.GetDAL().GetAllOrders()
+                                          where order.GuestRequestKey == key && (!IsClosed(order.Status))
+                                          select order;
+                if (linkedOpenOrderList.Count() != 0)
+                    throw new ChangedWhileLinkedException("delete", "GuestRequest", key, "Order", linkedOpenOrderList.First().OrderKey);
+            }
+            try
+            {
+                DAL_Adapter.GetDAL().RemoveGuestRequest(key);
+            }
+            catch (KeyNotFoundException e)
+            {
+                throw new KeyNotFoundException(e.Message);
+            }
+        }
+
+        #endregion
+
         #region UpdateGuestRequestStatus This function updates a guest request status
 
         /// <summary>
@@ -214,7 +255,7 @@ namespace BL
             if (!isEmpty)
             {
                 var linkedOpenOrderList = from order in DAL_Adapter.GetDAL().GetAllOrders()
-                                          where order.HostingUnitKey == key && (order.Status == Enums.OrderStatus.UnTreated || order.Status == Enums.OrderStatus.SentMail)
+                                          where order.HostingUnitKey == key && (!IsClosed(order.Status))
                                           select order;
                 if (linkedOpenOrderList.Count() != 0)
                     throw new ChangedWhileLinkedException("delete", "HostingUnit", key, "Order", linkedOpenOrderList.First().OrderKey);
