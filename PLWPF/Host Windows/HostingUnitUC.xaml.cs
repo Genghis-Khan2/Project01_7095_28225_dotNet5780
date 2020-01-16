@@ -18,9 +18,11 @@ namespace PLWPF
     /// </summary>
     public partial class HostingUnitUC : UserControl
     {
-        public HostingUnitUC(string name, int key, float commission)
+        private HostMenu caller;
+        public HostingUnitUC(HostMenu caller, string name, int key, float commission)
         {
             InitializeComponent();
+            this.caller = caller;
             Name.Content = name;
             Key.Content = key.ToString();
             Commission.Content = commission.ToString();
@@ -28,7 +30,7 @@ namespace PLWPF
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            caller.RemoveHostingUnit(int.Parse(Key.Content as string));
         }
     }
 }

@@ -206,7 +206,7 @@ namespace DAL
         /// <param name="key">Key to remove the hosting unit of</param>
         public void RemoveHostingUnit(int key)
         {
-            var res = from item in DataSource.hostingUnitsList
+            var res = from item in DataSource.hostingUnitsList.Clone()
                       let temp = key
                       where temp == item.HostingUnitKey
                       select item;
@@ -217,7 +217,8 @@ namespace DAL
 
             foreach (var it in res)
             {
-                DataSource.hostingUnitsList.Remove(it);
+                int index = DataSource.hostingUnitsList.FindIndex(x => x.HostingUnitKey == it.HostingUnitKey);
+                DataSource.hostingUnitsList.RemoveAt(index);
             }
         }
 
