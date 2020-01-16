@@ -18,11 +18,43 @@ namespace PLWPF.Host_Windows
     /// </summary>
     public partial class HostingUnitInfo : Window
     {
+        private HostingUnit hu;
         public HostingUnitInfo(HostingUnit hu)
         {
             InitializeComponent();
-            KeyLab.Content = hu.HostingUnitKey.ToString();
-
+            this.hu = hu;
+            LoadData(hu);
+            //TODO: Create a Calendar Window
         }
+
+        internal void LoadData(HostingUnit hu)
+        {
+            KeyLab.Content = hu.HostingUnitKey.ToString();
+            OwnerLab.Content = hu.Owner.PrivateName + " " + hu.Owner.FamilyName;
+            HostingUnitNameLab.Content = hu.HostingUnitName;
+            AreaLab.Content = hu.Area.ToString();
+            TypeLab.Content = hu.Type.ToString();
+            AdultsLab.Content = hu.NumberOfPlacesForAdults;
+            ChildrenLab.Content = hu.NumberOfPlacesForChildren;
+
+            IsPool.Content = hu.IsTherePool;
+            IsJacuzzi.Content = hu.IsThereJacuzzi;
+            IsGarden.Content = hu.IsThereGarden;
+            IsChildAttract.Content = hu.IsThereChildrensAttractions;
+        }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            var updateWin = new CreateHostingUnit(hu.Owner, true, hu);
+            updateWin.Title = "Update Hosting Unit";
+            updateWin.Closing += (s, args) =>
+           {
+               LoadData(updateWin.GetHostingUnit());
+               hu = updateWin.GetHostingUnit();
+           };
+            updateWin.ShowDialog();
+        }
+
+
     }
 }

@@ -28,32 +28,39 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Key" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="Owner" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="HostingUnitName" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="3" Grid.Column="0" Content="Diary" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="4" Grid.Column="0" Content="Area" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="5" Grid.Column="0" Content="Type" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="6" Grid.Column="0" Content="# of Adults" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="7" Grid.Column="0" Content="# of Children" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="8" Grid.Column="0" Content="Pool" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="9" Grid.Column="0" Content="Jacuzzi" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="10" Grid.Column="0" Content="Garden" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="11" Grid.Column="0" Content="Kid Attractions" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="Key" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Owner" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="HostingUnitName" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Diary" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Area" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Type" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="# of Adults" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="7" Grid.Column="0" Content="# of Children" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="8" Grid.Column="0" Content="Pool" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="9" Grid.Column="0" Content="Jacuzzi" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="10" Grid.Column="0" Content="Garden" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="11" Grid.Column="0" Content="Kid Attractions" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold"/>
 
 
-        <Label Grid.Row="0" Grid.Column="1" x:Name="KeyLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="1" Grid.Column="1" x:Name="OwnerLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="2" Grid.Column="1" x:Name="HostingUnitNameLab" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="3" Grid.Column="1" x:Name="Diarylab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="4" Grid.Column="1" x:Name="AreaLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="5" Grid.Column="1" x:Name="TypeLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="6" Grid.Column="1" x:Name="AdultsLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="7" Grid.Column="1" x:Name="ChildrenLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="8" Grid.Column="1" x:Name="PoolLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="9" Grid.Column="1" x:Name="JacuzziLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="10" Grid.Column="1" x:Name="GardenLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="11" Grid.Column="1" x:Name="KidsAttractionsLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
+        <Label Grid.Row="0" Grid.Column="1" x:Name="KeyLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="1" Grid.Column="1" x:Name="OwnerLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="2" Grid.Column="1" x:Name="HostingUnitNameLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="3" Grid.Column="1" x:Name="Diarylab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="4" Grid.Column="1" x:Name="AreaLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="5" Grid.Column="1" x:Name="TypeLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="6" Grid.Column="1" x:Name="AdultsLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="7" Grid.Column="1" x:Name="ChildrenLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="8" Grid.Column="1" x:Name="PoolLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold" Content="{Binding ElementName=IsPool, Path=Content, Converter={StaticResource isOrNotConverter}}"/>
+        <Label Grid.Row="9" Grid.Column="1" x:Name="JacuzziLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold" Content="{Binding ElementName=IsJacuzzi, Path=Content, Converter={StaticResource isOrNotConverter}}"/>
+        <Label Grid.Row="10" Grid.Column="1" x:Name="GardenLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold" Content="{Binding ElementName=IsGarden, Path=Content, Converter={StaticResource isOrNotConverter}}"/>
+        <Label Grid.Row="11" Grid.Column="1" x:Name="KidsAttractionsLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold" Content="{Binding ElementName=IsChildAttract, Path=Content, Converter={StaticResource isOrNotConverter}}"/>
+        <Button Grid.Row="12" Grid.ColumnSpan="2" x:Name="UpdateButton" Content="Update Hosting Unit" FontSize="22" FontWeight="ExtraBold" Click="UpdateButton_Click"/>
+
+        <Label Visibility="Hidden" x:Name="IsPool"/>
+        <Label Visibility="Hidden" x:Name="IsJacuzzi"/>
+        <Label Visibility="Hidden" x:Name="IsGarden"/>
+        <Label Visibility="Hidden" x:Name="IsChildAttract"/>
     </Grid>
 </Window>

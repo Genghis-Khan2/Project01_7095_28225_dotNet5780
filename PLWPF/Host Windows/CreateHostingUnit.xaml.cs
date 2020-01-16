@@ -17,25 +17,36 @@ namespace PLWPF.Host_Windows
     /// </summary>
     public partial class CreateHostingUnit : Window
     {
-        BE.Host host;
-        public CreateHostingUnit(BE.Host host)
+        private BE.Host host;
+
+        private bool updating;
+
+        private BE.HostingUnit hu;
+        public CreateHostingUnit(BE.Host host, bool update = false, BE.HostingUnit hu = null)
         {
             InitializeComponent();
             this.host = host;
+            updating = update;
+            this.hu = hu;
+            if (update)
+            {
+                NameOfUnit.Text = hu.HostingUnitName;
+                Area.SelectedItem = hu.Area;
+                TypeOfUnit.SelectedItem = hu.Type;
+                AmountOfAdults.Value = hu.NumberOfPlacesForAdults;
+                AmountOfChildren.Value = hu.NumberOfPlacesForChildren;
+                HasPool.IsChecked = hu.IsTherePool;
+                HasJacuzzi.IsChecked = hu.IsThereJacuzzi;
+                HasGarden.IsChecked = hu.IsThereGarden;
+                HasChildrenAttractions.IsChecked = hu.IsThereChildrensAttractions;
+                CreateButton.Content = "Update Hosting Unit";
+            }
         }
 
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
-            float commission;
-            bool isNum = float.TryParse(Commission.Text, out commission);
-            if (!isNum)
-            {
-                MessageBox.Show("Commission must be a decimal point number!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
             BE.HostingUnit unit = new BE.HostingUnit
             {
-                Commission = commission,
                 Area = (BE.Enums.Area)Enum.Parse(typeof(BE.Enums.Area), Area.SelectionBoxItem as string),
                 Type = (BE.Enums.HostingUnitType)Enum.Parse(typeof(BE.Enums.HostingUnitType), TypeOfUnit.SelectionBoxItem as string),
                 HostingUnitName = NameOfUnit.Text,
@@ -49,8 +60,17 @@ namespace PLWPF.Host_Windows
                 Owner = host
             };
 
+            if (updating)
+            {
+                unit.HostingUnitKey = hu.HostingUnitKey;
+            }
+
             try
             {
+                if (updating)
+                {
+                    CreateAccount.myBL.RemoveHostingUnit(hu.HostingUnitKey);
+                }
                 CreateAccount.myBL.AddHostingUnit(unit);
             }
             catch
@@ -59,9 +79,25 @@ namespace PLWPF.Host_Windows
                 MessageBox.Show("Error with one or more of your fields", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            if (updating)
+            {
+                MessageBox.Show("You have updated a hosting unit successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            MessageBox.Show("You have registered a hosting unit successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            else
+            {
+                MessageBox.Show("You have registered a hosting unit successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            hu = unit;
+
             Close();
+        }
+
+        internal BE.HostingUnit GetHostingUnit()
+        {
+            return hu;
         }
     }
 }

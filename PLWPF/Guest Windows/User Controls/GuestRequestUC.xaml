@@ -24,8 +24,8 @@
     </Grid>
     <UserControl.ContextMenu>
         <ContextMenu>
-            <MenuItem Header="Remove" x:Name="RemoveButtonUC" Click="RemoveButtonUC_Click"/>
-            <MenuItem Header="Edit" x:Name="EditButtonUC" Click="EditButtonUC_Click"/>
+            <!--<MenuItem Header="Remove" x:Name="RemoveButtonUC" Click="RemoveButtonUC_Click"/>
+            <MenuItem Header="Edit" x:Name="EditButtonUC" Click="EditButtonUC_Click"/>-->
         </ContextMenu>
     </UserControl.ContextMenu>
 </UserControl>

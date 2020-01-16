@@ -38,29 +38,29 @@ namespace PLWPF
         {
             //var allGuestRequest = BLImp.getBL().GetAllGuestRequestToGuest(key);
 
-            try
-            {
-                var allGuestRequest = BLImp.getBL().GetAllGuestRequests();
-                foreach (var item in allGuestRequest)
-                {
-                    Border b = new Border();
-                    b.Background = Brushes.LightGray;
-                    b.BorderBrush = Brushes.Black;
-                    b.BorderThickness = new Thickness(1);
-                    GuestRequestUC uc = new GuestRequestUC()
-                    {
-                        Date = String.Format(item.EntryDate.Day + "." + item.EntryDate.Month + " - " + item.ReleaseDate.Day + "." + item.ReleaseDate.Month),
-                        Key = item.GuestRequestKey,
-                    };
-                    b.Child = uc;
-                    UCStackPanel.Children.Add(b);
-                }
-            }
-            catch(NoItemsException)
-            {
+            //try
+            //{
+            //    var allGuestRequest = BLImp.getBL().GetAllGuestRequests();
+            //    foreach (var item in allGuestRequest)
+            //    {
+            //        Border b = new Border();
+            //        b.Background = Brushes.LightGray;
+            //        b.BorderBrush = Brushes.Black;
+            //        b.BorderThickness = new Thickness(1);
+            //        GuestRequestUC uc = new GuestRequestUC()
+            //        {
+            //            Date = String.Format(item.EntryDate.Day + "." + item.EntryDate.Month + " - " + item.ReleaseDate.Day + "." + item.ReleaseDate.Month),
+            //            Key = item.GuestRequestKey,
+            //        };
+            //        b.Child = uc;
+            //        UCStackPanel.Children.Add(b);
+            //    }
+            //}
+            //catch (NoItemsException)
+            //{
 
-            }
-           
+            //}
+
         }
     }
 }
