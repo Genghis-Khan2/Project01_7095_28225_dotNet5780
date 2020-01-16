@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BE;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -14,17 +15,26 @@ using System.Windows.Shapes;
 namespace PLWPF.Guest_Windows.User_Controls
 {
     /// <summary>
-    /// Interaction logic for GuestRequestScrollViewerItem.xaml
+    /// Interaction logic for GuestRequestUC.xaml
     /// </summary>
-    public partial class GuestRequestScrollViewerItem : UserControl
+    public partial class GuestRequestUC : UserControl
     {
-        public GuestRequestScrollViewerItem()
+        private GuestMenu caller;
+        public GuestRequestUC(GuestMenu caller, string date, int key, Enums.RequestStatus requestStatus)
         {
             InitializeComponent();
             this.DataContext = this;
         }
-        public string Date { get; set; } = "0.0 - 0.0";
-        public int Key { get; set; } = -1;
-        public string ImagePath { get; set; } = @"..\..\..\PLWPF\Images\NoImageFound.png";
+        private string StatusToImagePath(Enums.RequestStatus requestStatus)
+        {
+            // Open, ClosedWithDeal, CloseWithExpired 
+            switch (requestStatus)
+            {
+                case Enums.RequestStatus.Open:
+                    return "/Images/NoImageFound.png";
+                default:
+                    return "/Images/NoImageFound.png";
+            }
+        }
     }
 }

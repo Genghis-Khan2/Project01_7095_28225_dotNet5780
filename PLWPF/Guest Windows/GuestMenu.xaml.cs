@@ -47,7 +47,7 @@ namespace PLWPF
                     b.Background = Brushes.LightGray;
                     b.BorderBrush = Brushes.Black;
                     b.BorderThickness = new Thickness(1);
-                    GuestRequestScrollViewerItem uc = new GuestRequestScrollViewerItem()
+                    GuestRequestUC uc = new GuestRequestUC()
                     {
                         Date = String.Format(item.EntryDate.Day + "." + item.EntryDate.Month + " - " + item.ReleaseDate.Day + "." + item.ReleaseDate.Month),
                         Key = item.GuestRequestKey,

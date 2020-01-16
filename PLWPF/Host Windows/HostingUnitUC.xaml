@@ -4,17 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PLWPF"
-             mc:Ignorable="d" d:DesignWidth="800" Height="54">
+             mc:Ignorable="d" d:DesignWidth="800" Height="40">
     <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Column="0" x:Name="Name" HorizontalAlignment="Center"/>
-        <Label Grid.Column="1" x:Name="Key" HorizontalAlignment="Center"/>
-        <Label Grid.Column="2" x:Name="Commission" HorizontalAlignment="Center"/>
-
+        <Label Grid.Column="0" x:Name="Name" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Column="1" x:Name="Key" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Column="2" x:Name="Commission" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
     <UserControl.ContextMenu>
         <ContextMenu>

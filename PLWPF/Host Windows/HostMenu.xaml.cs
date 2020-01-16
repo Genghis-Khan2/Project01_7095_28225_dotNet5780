@@ -73,8 +73,13 @@ namespace PLWPF
 
         internal void RemoveHostingUnit(int key)
         {
-            CreateAccount.myBL.RemoveHostingUnit(key);
-            Refresh();
+            var dialogResult = MessageBox.Show("Are you sure you want to delete the hosting unit?\nNote! This will permanently delete the hosting unit and all related Orders!", "Alert!", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                CreateAccount.myBL.RemoveHostingUnit(key);
+                Refresh();
+            }
+            System.Media.SystemSounds.Hand.Play();
         }
     }
 }

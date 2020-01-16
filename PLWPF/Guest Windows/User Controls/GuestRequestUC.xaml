@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PLWPF.Guest_Windows.User_Controls.GuestRequestScrollViewerItem"
+﻿<UserControl x:Class="PLWPF.Guest_Windows.User_Controls.GuestRequestUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -22,4 +22,10 @@
         </StackPanel>
         <Image Grid.Column="2" x:Name="StatusIconImage" Source="{Binding ImagePath}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
     </Grid>
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Remove" x:Name="RemoveButtonUC" Click="RemoveButtonUC_Click"/>
+            <MenuItem Header="Edit" x:Name="EditButtonUC" Click="EditButtonUC_Click"/>
+        </ContextMenu>
+    </UserControl.ContextMenu>
 </UserControl>

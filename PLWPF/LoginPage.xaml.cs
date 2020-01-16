@@ -32,7 +32,7 @@ namespace PLWPF
                 Username = UserTextBox.Text;
                 Hide();
                 var createWin = new GuestMenu();
-                createWin.Closed += (s, args) => this.Show();
+                createWin.Closed += (s, args) => this.Close();
                 createWin.Show();
             }
 
@@ -49,7 +49,7 @@ namespace PLWPF
                     HostKey = FR.FR_Imp.GetFR().GetHostKey(Username),
                     BankBranchDetails = new BE.BankBranch()
                 });
-                createWin.Closed += (s, args) => Show();
+                createWin.Closed += (s, args) => Close();
                 createWin.Show();
             }
 
@@ -58,7 +58,7 @@ namespace PLWPF
                 Username = "admin";
                 Hide();
                 var createWin = new AdminWindow();
-                createWin.Closed += (s, args) => this.Show();
+                createWin.Closed += (s, args) => this.Close();
                 createWin.Show();
             }
             else
