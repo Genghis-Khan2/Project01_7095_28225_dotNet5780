@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FR;
 
 namespace BE
 {
@@ -27,15 +28,19 @@ namespace BE
         {
             get
             {
-                if (!IsInitializedGuestRequestKey)
-                {
-                    IsInitializedGuestRequestKey = true;
-                    guestRequestKey = 1;
-                }
-                return guestRequestKey++;
+                //if (!IsInitializedGuestRequestKey)
+                //{
+                //    IsInitializedGuestRequestKey = true;
+                //    guestRequestKey = 1;
+                //}
+                //return guestRequestKey++;
+                //TODO: See if necessary
+                int ret = FR_Imp.GetFR().GetGuestRequestKey();
+                FR_Imp.GetFR().SetGuestRequestKey(ret + 1);
+                return ret;
             }
 
-            private set { guestRequestKey = value; }
+            private set { FR_Imp.GetFR().SetGuestRequestKey(value); }
         }
 
         private static int guestRequestKey;
@@ -78,14 +83,18 @@ namespace BE
         {
             get
             {
-                if (!IsInitializedHostKey)
-                {
-                    IsInitializedHostKey = true;
-                    hostKey = 1;
-                }
-                return hostKey++;
+                //if (!IsInitializedHostKey)
+                //{
+                //    IsInitializedHostKey = true;
+                //    hostKey = 1;
+                //}
+                //return hostKey++;
+
+                int ret = FR_Imp.GetFR().GetHostKey();
+                FR_Imp.GetFR().SetHostKey(ret + 1);
+                return ret;
             }
-            private set { hostKey = value; }
+            private set { FR_Imp.GetFR().SetHostKey(value); }
         }
 
         private static int hostKey;
@@ -103,14 +112,18 @@ namespace BE
         {
             get
             {
-                if (!IsInitializedHostingUnitKey)
-                {
-                    IsInitializedHostingUnitKey = true;
-                    hostingUnitKey = 1;
-                }
-                return hostingUnitKey++;
+                //    if (!IsInitializedHostingUnitKey)
+                //    {
+                //        IsInitializedHostingUnitKey = true;
+                //        hostingUnitKey = 1;
+                //    }
+                //    return hostingUnitKey++;
+
+                int ret = FR_Imp.GetFR().GetHostingUnitKey();
+                FR_Imp.GetFR().SetHostingUnitKey(ret + 1);
+                return ret;
             }
-            private set { hostingUnitKey = value; }
+            private set { FR_Imp.GetFR().SetHostingUnitKey(value); }
         }
 
         private static int hostingUnitKey;
@@ -128,14 +141,18 @@ namespace BE
         {
             get
             {
-                if (!IsInitializedOrderKey)
-                {
-                    IsInitializedOrderKey = true;
-                    orderKey = 1;
-                }
-                return orderKey++;
+                //if (!IsInitializedOrderKey)
+                //{
+                //    IsInitializedOrderKey = true;
+                //    orderKey = 1;
+                //}
+                //return orderKey++;
+
+                int ret = FR_Imp.GetFR().GetOrderKey();
+                FR_Imp.GetFR().SetOrderKey(ret + 1);
+                return ret;
             }
-            private set { orderKey = value; }
+            private set { FR_Imp.GetFR().SetOrderKey(value); }
         }
 
         private static int orderKey;
@@ -171,15 +188,19 @@ namespace BE
         {
             get
             {
-                if (!IsInitializedGuestKey)
-                {
-                    IsInitializedGuestKey = true;
-                    guestKey = 1;
-                }
-                return guestKey++;
+                //if (!IsInitializedGuestKey)
+                //{
+                //    IsInitializedGuestKey = true;
+                //    guestKey = 1;
+                //}
+                //return guestKey++;
+
+                int ret = FR_Imp.GetFR().GetGuestKey();
+                FR_Imp.GetFR().SetGuestKey(ret + 1);
+                return ret;
             }
 
-            private set { guestKey = value; }
+            private set { FR_Imp.GetFR().SetGuestKey(value); }
         }
 
         private static int guestKey;

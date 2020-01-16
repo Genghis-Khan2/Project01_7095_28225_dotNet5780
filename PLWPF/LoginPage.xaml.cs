@@ -31,7 +31,7 @@ namespace PLWPF
                 Username = UserTextBox.Text;
                 Hide();
                 var createWin = new GuestMenu();
-                createWin.Closed += (s, args) => this.Close();
+                createWin.Closed += (s, args) => this.Show();
                 createWin.Show();
             }
 
@@ -39,8 +39,16 @@ namespace PLWPF
             {
                 Username = UserTextBox.Text;
                 Hide();
-                var createWin = new HostMenu();
-                createWin.Closed += (s, args) => Close();
+                var createWin = new HostMenu(new BE.Host()
+                {
+                    PhoneNumber = FR.FR_Imp.GetFR().GetHostPhoneNumber(Username),
+                    PrivateName = FR.FR_Imp.GetFR().GetHostPrivateName(Username),
+                    FamilyName = FR.FR_Imp.GetFR().GetHostFamilyName(Username),
+                    MailAddress = FR.FR_Imp.GetFR().GetHostMailAddress(Username),
+                    HostKey = FR.FR_Imp.GetFR().GetHostKey(Username),
+                    BankBranchDetails = new BE.BankBranch()
+                });
+                createWin.Closed += (s, args) => Show();
                 createWin.Show();
             }
 
@@ -49,7 +57,7 @@ namespace PLWPF
                 Username = "admin";
                 Hide();
                 var createWin = new AdminWindow();
-                createWin.Closed += (s, args) => this.Close();
+                createWin.Closed += (s, args) => this.Show();
                 createWin.Show();
             }
             else

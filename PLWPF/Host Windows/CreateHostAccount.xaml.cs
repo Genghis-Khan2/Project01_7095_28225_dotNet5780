@@ -35,13 +35,28 @@ namespace PLWPF
                     return;
                 }
 
-                FR.FR_Imp.GetFR().WriteHostToFile(User.Text, Pass.Password, BE.Configuration.HostKey);
+                FR.FR_Imp.GetFR().WriteHostToFile(User.Text, Pass.Password, BE.Configuration.HostKey, MailAddressBox.Text, PrivateNameBox.Text, FamilyNameBox.Text, PhoneNumberBox.Text);
                 MessageBox.Show("You have been registered!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Hide();
-                var createWin = new HostMenu();
+                Hide();
+                var createWin = new HostMenu(new BE.Host()
+                {
+                    MailAddress = MailAddressBox.Text,
+                    PrivateName = PrivateNameBox.Text,
+                    FamilyName = FamilyNameBox.Text,
+                    BankAccountNumber = 0,
+                    HostKey = FR.FR_Imp.GetFR().GetHostKey(User.Text),
+                    PhoneNumber = PhoneNumberBox.Text,
+                    BankBranchDetails = new BE.BankBranch()
+                }
+                );
                 createWin.Closed += (s, args) => this.Close();
                 createWin.Show();
                 return;
+            }
+
+            else
+            {
+                MessageBox.Show("Passwords do not match!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -13,6 +13,11 @@ namespace FR
     /// </summary>
     public class FR_Imp
     {
+
+        // Structure Of A Host Line:
+        // Username Password bytes
+
+
         #region Singletory Factory Methods
         /// <summary>
         /// Private constructor so no instances can be created
@@ -50,6 +55,8 @@ namespace FR
         /// The path where the host account information is stored
         /// </summary>
         private static readonly string hostPath = @"..\..\..\..\host.data";
+
+        private static readonly string confPath = @"..\..\..\..\conf.data";
 
         #endregion
 
@@ -199,7 +206,7 @@ namespace FR
         /// <param name="username">Username of the account to be added</param>
         /// <param name="password">Password of the account to be added</param>
         /// <param name="hostKey">Key of the host to be added</param>
-        public void WriteHostToFile(string username, string password, int hostKey)
+        public void WriteHostToFile(string username, string password, int hostKey, string mail, string firstName, string lastName, string phoneNumber)
         {
             using (SHA256 sha = SHA256.Create())
             {
@@ -212,7 +219,7 @@ namespace FR
                         sw.Write(i.ToString() + " ");
                     }
 
-                    sw.WriteLine(" " + hostKey.ToString());
+                    sw.WriteLine(hostKey.ToString() + mail + " " + firstName + " " + lastName + " " + phoneNumber);
                 }
             }
         }
@@ -232,7 +239,7 @@ namespace FR
                     if (line.StartsWith(username.ToLower()))
                     {
                         var strings = line.Split(' ');
-                        return int.Parse(strings[2]);
+                        return int.Parse(strings[32]);
                     }
 
                     line = sr.ReadLine();
@@ -254,7 +261,7 @@ namespace FR
                     if (line.StartsWith(username.ToLower()))
                     {
                         var strings = line.Split(' ');
-                        return int.Parse(strings[2]);
+                        return int.Parse(strings[32]);
                     }
 
                     line = sr.ReadLine();
@@ -310,6 +317,290 @@ namespace FR
         }
 
         #endregion
+
+        #region Get Config Value
+
+        public int GetGuestRequestKey()
+        {
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                return int.Parse(sr.ReadLine());
+            }
+        }
+
+        public int GetHostKey()
+        {
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                sr.ReadLine();
+                return int.Parse(sr.ReadLine());
+            }
+        }
+
+        public int GetHostingUnitKey()
+        {
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                sr.ReadLine();
+                sr.ReadLine();
+                return int.Parse(sr.ReadLine());
+            }
+        }
+
+        public int GetOrderKey()
+        {
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
+                return int.Parse(sr.ReadLine());
+            }
+        }
+
+        public int GetGuestKey()
+        {
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
+                sr.ReadLine();
+                return int.Parse(sr.ReadLine());
+            }
+        }
+
+        #endregion
+
+        #region Set Config Value
+
+        public void SetGuestRequestKey(int key)
+        {
+            int GuestRequestKey;
+            int HostKey;
+            int HostingUnitKey;
+            int OrderKey;
+            int GuestKey;
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                GuestRequestKey = int.Parse(sr.ReadLine());
+                HostKey = int.Parse(sr.ReadLine());
+                HostingUnitKey = int.Parse(sr.ReadLine());
+                OrderKey = int.Parse(sr.ReadLine());
+                GuestKey = int.Parse(sr.ReadLine());
+            }
+
+            using (StreamWriter sw = new StreamWriter(confPath, false))
+            {
+                sw.WriteLine(key);
+                sw.WriteLine(HostKey);
+                sw.WriteLine(HostingUnitKey);
+                sw.WriteLine(OrderKey);
+                sw.WriteLine(GuestKey);
+            }
+
+        }
+
+        public void SetHostKey(int key)
+        {
+            int GuestRequestKey;
+            int HostKey;
+            int HostingUnitKey;
+            int OrderKey;
+            int GuestKey;
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                GuestRequestKey = int.Parse(sr.ReadLine());
+                HostKey = int.Parse(sr.ReadLine());
+                HostingUnitKey = int.Parse(sr.ReadLine());
+                OrderKey = int.Parse(sr.ReadLine());
+                GuestKey = int.Parse(sr.ReadLine());
+            }
+
+            using (StreamWriter sw = new StreamWriter(confPath, false))
+            {
+                sw.WriteLine(GuestRequestKey);
+                sw.WriteLine(key);
+                sw.WriteLine(HostKey);
+                sw.WriteLine(HostingUnitKey);
+                sw.WriteLine(OrderKey);
+                sw.WriteLine(GuestKey);
+            }
+
+        }
+
+        public void SetHostingUnitKey(int key)
+        {
+            int GuestRequestKey;
+            int HostKey;
+            int HostingUnitKey;
+            int OrderKey;
+            int GuestKey;
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                GuestRequestKey = int.Parse(sr.ReadLine());
+                HostKey = int.Parse(sr.ReadLine());
+                HostingUnitKey = int.Parse(sr.ReadLine());
+                OrderKey = int.Parse(sr.ReadLine());
+                GuestKey = int.Parse(sr.ReadLine());
+            }
+
+            using (StreamWriter sw = new StreamWriter(confPath, false))
+            {
+                sw.WriteLine(GuestRequestKey);
+                sw.WriteLine(HostKey);
+                sw.WriteLine(key);
+                sw.WriteLine(OrderKey);
+                sw.WriteLine(GuestKey);
+            }
+
+        }
+
+        public void SetOrderKey(int key)
+        {
+            int GuestRequestKey;
+            int HostKey;
+            int HostingUnitKey;
+            int OrderKey;
+            int GuestKey;
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                GuestRequestKey = int.Parse(sr.ReadLine());
+                HostKey = int.Parse(sr.ReadLine());
+                HostingUnitKey = int.Parse(sr.ReadLine());
+                OrderKey = int.Parse(sr.ReadLine());
+                GuestKey = int.Parse(sr.ReadLine());
+            }
+
+            using (StreamWriter sw = new StreamWriter(confPath, false))
+            {
+                sw.WriteLine(GuestRequestKey);
+                sw.WriteLine(HostKey);
+                sw.WriteLine(HostingUnitKey);
+                sw.WriteLine(key);
+                sw.WriteLine(GuestKey);
+            }
+
+        }
+
+
+        public void SetGuestKey(int key)
+        {
+            int GuestRequestKey;
+            int HostKey;
+            int HostingUnitKey;
+            int OrderKey;
+            int GuestKey;
+            using (StreamReader sr = new StreamReader(confPath))
+            {
+                GuestRequestKey = int.Parse(sr.ReadLine());
+                HostKey = int.Parse(sr.ReadLine());
+                HostingUnitKey = int.Parse(sr.ReadLine());
+                OrderKey = int.Parse(sr.ReadLine());
+                GuestKey = int.Parse(sr.ReadLine());
+            }
+
+            using (StreamWriter sw = new StreamWriter(confPath, false))
+            {
+                sw.WriteLine(GuestRequestKey);
+                sw.WriteLine(HostKey);
+                sw.WriteLine(HostingUnitKey);
+                sw.WriteLine(OrderKey);
+                sw.WriteLine(key);
+            }
+
+        }
+
+        #endregion
+
+        #region Get Info
+
+        public string GetHostMailAddress(string username)
+        {
+            using (StreamReader sr = new StreamReader(hostPath))
+            {
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    if (line.StartsWith(username.ToLower()))
+                    {
+                        var strings = line.Split(' ');
+                        return strings[33];
+                    }
+
+                    line = sr.ReadLine();
+                }
+
+            }
+
+            return null;
+        }
+
+        public string GetHostPrivateName(string username)
+        {
+            using (StreamReader sr = new StreamReader(hostPath))
+            {
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    if (line.StartsWith(username.ToLower()))
+                    {
+                        var strings = line.Split(' ');
+                        return strings[34];
+                    }
+
+                    line = sr.ReadLine();
+                }
+
+            }
+
+            return null;
+        }
+
+        public string GetHostFamilyName(string username)
+        {
+            using (StreamReader sr = new StreamReader(hostPath))
+            {
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    if (line.StartsWith(username.ToLower()))
+                    {
+                        var strings = line.Split(' ');
+                        return strings[35];
+                    }
+
+                    line = sr.ReadLine();
+                }
+
+            }
+
+            return null;
+        }
+
+        public string GetHostPhoneNumber(string username)
+        {
+            using (StreamReader sr = new StreamReader(hostPath))
+            {
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    if (line.StartsWith(username.ToLower()))
+                    {
+                        var strings = line.Split(' ');
+                        return strings[36];
+                    }
+
+                    line = sr.ReadLine();
+                }
+
+            }
+
+            return null;
+        }
+
+        #endregion
+
     }
 }
 

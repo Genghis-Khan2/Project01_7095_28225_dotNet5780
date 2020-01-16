@@ -107,7 +107,16 @@ namespace DAL
                 Diary = original.Diary.Clone() as bool[,],
                 HostingUnitKey = original.HostingUnitKey,
                 HostingUnitName = original.HostingUnitName.Clone() as string,
-                Owner = original.Owner.Clone() as Host
+                Owner = original.Owner.Clone() as Host,
+                Area = original.Area,
+                Type = original.Type,
+                NumberOfPlacesForAdults = original.NumberOfPlacesForAdults,
+                NumberOfPlacesForChildren = original.NumberOfPlacesForChildren,
+                IsTherePool = original.IsTherePool,
+                IsThereJacuzzi = original.IsThereJacuzzi,
+                IsThereGarden = original.IsThereGarden,
+                IsThereChildrensAttractions = original.IsThereChildrensAttractions,
+                Commission = original.Commission
             };
 
             return ret;

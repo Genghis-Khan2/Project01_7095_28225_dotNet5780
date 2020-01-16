@@ -17,9 +17,11 @@ namespace PLWPF.Host_Windows
     /// </summary>
     public partial class CreateHostingUnit : Window
     {
-        public CreateHostingUnit()
+        BE.Host host;
+        public CreateHostingUnit(BE.Host host)
         {
             InitializeComponent();
+            this.host = host;
         }
 
         private void CreateButton_Click(object sender, RoutedEventArgs e)
@@ -31,11 +33,11 @@ namespace PLWPF.Host_Windows
                 MessageBox.Show("Commission must be a decimal point number!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            BE.HostingUnit unit = new BE.HostingUnit()
+            BE.HostingUnit unit = new BE.HostingUnit
             {
                 Commission = commission,
-                Area = (BE.Enums.Area)Enum.Parse(typeof(BE.Enums.Area), Area.SelectedItem as string),
-                Type = (BE.Enums.HostingUnitType)Enum.Parse(typeof(BE.Enums.HostingUnitType), TypeOfUnit.SelectedItem as string),
+                Area = (BE.Enums.Area)Enum.Parse(typeof(BE.Enums.Area), Area.SelectionBoxItem as string),
+                Type = (BE.Enums.HostingUnitType)Enum.Parse(typeof(BE.Enums.HostingUnitType), TypeOfUnit.SelectionBoxItem as string),
                 HostingUnitName = NameOfUnit.Text,
                 NumberOfPlacesForAdults = (int)AmountOfAdults.Value,
                 NumberOfPlacesForChildren = (int)AmountOfChildren.Value,
@@ -43,11 +45,23 @@ namespace PLWPF.Host_Windows
                 IsThereJacuzzi = (bool)HasJacuzzi.IsChecked,
                 IsThereGarden = (bool)HasGarden.IsChecked,
                 IsThereChildrensAttractions = (bool)HasChildrenAttractions.IsChecked,
-                Diary = null
+                Diary = null,
+                Owner = host
             };
 
-            CreateAccount.myBL.AddHostingUnit(unit);
+            try
+            {
+                CreateAccount.myBL.AddHostingUnit(unit);
+            }
+            catch
+            {
+                FR.FR_Imp.GetFR().SetHostingUnitKey(FR.FR_Imp.GetFR().GetHostingUnitKey() - 1);
+                MessageBox.Show("Error with one or more of your fields", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            MessageBox.Show("You have registered a hosting unit successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+            Close();
         }
     }
 }
-

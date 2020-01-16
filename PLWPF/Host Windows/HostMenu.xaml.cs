@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Linq;
 using FR;
+using PLWPF.Host_Windows;
 
 namespace PLWPF
 {
@@ -19,9 +20,11 @@ namespace PLWPF
     /// </summary>
     public partial class HostMenu : Window
     {
-        public HostMenu()
+        BE.Host host;
+        public HostMenu(BE.Host host)
         {
             InitializeComponent();
+            this.host = host;
             try
             {
                 var li = from i in CreateAccount.myBL.getHostingUnitByHost()
@@ -40,6 +43,48 @@ namespace PLWPF
             {
                 return;
             }
+        }
+
+        private void AddUnit_Click(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            var win = new CreateHostingUnit(host);
+            win.Show();
+            win.Closed += Refresh_On_Close;
+        }
+
+        private void Refresh_On_Close(object sender, EventArgs e)
+        {
+            Show();
+            Refresh();
+        }
+
+        private void Refresh()
+        {
+            GuestRequestStack.Children.Clear();
+            try
+            {
+                var li = from i in CreateAccount.myBL.getHostingUnitByHost()
+                         where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.Username)
+                         select new { Hostingunits = i };
+
+                foreach (var i in li)
+                {
+                    foreach (var item in i.Hostingunits)
+                    {
+                        GuestRequestStack.Children.Add(new HostingUnitUC(item.HostingUnitName, item.HostingUnitKey, item.Commission));
+                    }
+                }
+            }
+            catch (Exceptions.NoItemsException)
+            {
+                return;
+            }
+        }
+
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            Refresh();
         }
     }
 }

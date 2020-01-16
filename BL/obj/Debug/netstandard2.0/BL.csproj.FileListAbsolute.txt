@@ -51,3 +51,5 @@ C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\net
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.csproj.CopyComplete
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.dll
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\FR.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\FR.pdb
