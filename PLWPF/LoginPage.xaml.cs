@@ -39,7 +39,15 @@ namespace PLWPF
             {
                 Username = UserTextBox.Text;
                 Hide();
-                var createWin = new HostMenu();
+                var createWin = new HostMenu(new BE.Host()
+                {
+                    PhoneNumber = FR.FR_Imp.GetFR().GetHostPhoneNumber(Username),
+                    PrivateName = FR.FR_Imp.GetFR().GetHostPrivateName(Username),
+                    FamilyName = FR.FR_Imp.GetFR().GetHostFamilyName(Username),
+                    MailAddress = FR.FR_Imp.GetFR().GetHostMailAddress(Username),
+                    HostKey = FR.FR_Imp.GetFR().GetHostKey(Username),
+                    BankBranchDetails = new BE.BankBranch()
+                });
                 createWin.Closed += (s, args) => Show();
                 createWin.Show();
             }

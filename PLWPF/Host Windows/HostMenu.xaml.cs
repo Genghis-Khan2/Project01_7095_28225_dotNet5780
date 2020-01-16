@@ -20,9 +20,11 @@ namespace PLWPF
     /// </summary>
     public partial class HostMenu : Window
     {
-        public HostMenu()
+        BE.Host host;
+        public HostMenu(BE.Host host)
         {
             InitializeComponent();
+            this.host = host;
             try
             {
                 var li = from i in CreateAccount.myBL.getHostingUnitByHost()
@@ -46,7 +48,7 @@ namespace PLWPF
         private void AddUnit_Click(object sender, RoutedEventArgs e)
         {
             Hide();
-            var win = new CreateHostingUnit();
+            var win = new CreateHostingUnit(host);
             win.Show();
             win.Closed += (s, args) => Show();
             Refresh_Click(sender, e);

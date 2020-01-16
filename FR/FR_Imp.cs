@@ -13,6 +13,11 @@ namespace FR
     /// </summary>
     public class FR_Imp
     {
+
+        // Structure Of A Host Line:
+        // Username Password bytes
+
+
         #region Singletory Factory Methods
         /// <summary>
         /// Private constructor so no instances can be created
@@ -201,7 +206,7 @@ namespace FR
         /// <param name="username">Username of the account to be added</param>
         /// <param name="password">Password of the account to be added</param>
         /// <param name="hostKey">Key of the host to be added</param>
-        public void WriteHostToFile(string username, string password, int hostKey)
+        public void WriteHostToFile(string username, string password, int hostKey, string mail, string firstName, string lastName, string phoneNumber)
         {
             using (SHA256 sha = SHA256.Create())
             {
@@ -214,7 +219,7 @@ namespace FR
                         sw.Write(i.ToString() + " ");
                     }
 
-                    sw.WriteLine(" " + hostKey.ToString());
+                    sw.WriteLine(hostKey.ToString() + mail + " " + firstName + " " + lastName + " " + phoneNumber);
                 }
             }
         }
@@ -234,7 +239,7 @@ namespace FR
                     if (line.StartsWith(username.ToLower()))
                     {
                         var strings = line.Split(' ');
-                        return int.Parse(strings[2]);
+                        return int.Parse(strings[32]);
                     }
 
                     line = sr.ReadLine();
@@ -256,7 +261,7 @@ namespace FR
                     if (line.StartsWith(username.ToLower()))
                     {
                         var strings = line.Split(' ');
-                        return int.Parse(strings[2]);
+                        return int.Parse(strings[32]);
                     }
 
                     line = sr.ReadLine();
@@ -504,6 +509,94 @@ namespace FR
                 sw.WriteLine(key);
             }
 
+        }
+
+        #endregion
+
+        #region Get Info
+
+        public string GetHostMailAddress(string username)
+        {
+            using (StreamReader sr = new StreamReader(hostPath))
+            {
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    if (line.StartsWith(username.ToLower()))
+                    {
+                        var strings = line.Split(' ');
+                        return strings[33];
+                    }
+
+                    line = sr.ReadLine();
+                }
+
+            }
+
+            return null;
+        }
+
+        public string GetHostPrivateName(string username)
+        {
+            using (StreamReader sr = new StreamReader(hostPath))
+            {
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    if (line.StartsWith(username.ToLower()))
+                    {
+                        var strings = line.Split(' ');
+                        return strings[34];
+                    }
+
+                    line = sr.ReadLine();
+                }
+
+            }
+
+            return null;
+        }
+
+        public string GetHostFamilyName(string username)
+        {
+            using (StreamReader sr = new StreamReader(hostPath))
+            {
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    if (line.StartsWith(username.ToLower()))
+                    {
+                        var strings = line.Split(' ');
+                        return strings[35];
+                    }
+
+                    line = sr.ReadLine();
+                }
+
+            }
+
+            return null;
+        }
+
+        public string GetHostPhoneNumber(string username)
+        {
+            using (StreamReader sr = new StreamReader(hostPath))
+            {
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    if (line.StartsWith(username.ToLower()))
+                    {
+                        var strings = line.Split(' ');
+                        return strings[36];
+                    }
+
+                    line = sr.ReadLine();
+                }
+
+            }
+
+            return null;
         }
 
         #endregion

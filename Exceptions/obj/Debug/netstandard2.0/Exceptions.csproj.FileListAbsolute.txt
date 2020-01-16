@@ -23,3 +23,4 @@ C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\Exceptions\obj\D
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.AssemblyInfo.cs
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.dll
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.csprojAssemblyReference.cache
