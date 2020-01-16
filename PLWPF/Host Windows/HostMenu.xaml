@@ -20,7 +20,7 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
-        <Button Content="Refresh" HorizontalAlignment="Left" x:Name="Refresh" Margin="206,21,0,0" VerticalAlignment="Top" Click="Refresh_Click"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" x:Name="RefreshButton" Margin="206,21,0,0" VerticalAlignment="Top" Click="Refresh_Click"/>
 
 
     </Grid>

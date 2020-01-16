@@ -50,12 +50,18 @@ namespace PLWPF
             Hide();
             var win = new CreateHostingUnit(host);
             win.Show();
-            win.Closed += (s, args) => Show();
-            Refresh_Click(sender, e);
+            win.Closed += Refresh_On_Close;
         }
 
-        private void Refresh_Click(object sender, RoutedEventArgs e)
+        private void Refresh_On_Close(object sender, EventArgs e)
         {
+            Show();
+            Refresh();
+        }
+
+        private void Refresh()
+        {
+            GuestRequestStack.Children.Clear();
             try
             {
                 var li = from i in CreateAccount.myBL.getHostingUnitByHost()
@@ -74,6 +80,11 @@ namespace PLWPF
             {
                 return;
             }
+        }
+
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            Refresh();
         }
     }
 }
