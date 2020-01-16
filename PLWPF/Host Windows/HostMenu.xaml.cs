@@ -56,7 +56,7 @@ namespace PLWPF
                 {
                     foreach (var item in i.Hostingunits)
                     {
-                        HostingUnitStack.Children.Add(new HostingUnitUC(item.HostingUnitName, item.HostingUnitKey, item.Commission));
+                        HostingUnitStack.Children.Add(new HostingUnitUC(this, item.HostingUnitName, item.HostingUnitKey, item.Commission));
                     }
                 }
             }
@@ -71,9 +71,10 @@ namespace PLWPF
             Refresh();
         }
 
-        internal static void RemoveHostingUnit()
+        internal void RemoveHostingUnit(int key)
         {
-
+            CreateAccount.myBL.RemoveHostingUnit(key);
+            Refresh();
         }
     }
 }

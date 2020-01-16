@@ -202,11 +202,23 @@ namespace BL
         {
             //we assume that An Order considered "open" if  its status is "Enums.OrderStatus.UnTreated" and also "Enums.OrderStatus.SentMail"
             //REMARK לא ניתן למחוק יחידת אירוח כל עוד יש הצעה הקשורה אליה במצב פתוח.
-            var linkedOpenOrderList = from order in DAL_Adapter.GetDAL().GetAllOrders()
-                                      where (order.HostingUnitKey == key && (order.Status == Enums.OrderStatus.UnTreated || order.Status == Enums.OrderStatus.SentMail))
-                                      select order;
-            if (linkedOpenOrderList.Count() != 0)
-                throw new ChangedWhileLinkedException("delete", "HostingUnit", key, "Order", linkedOpenOrderList.First().OrderKey);
+            bool isEmpty = false;
+            try // We do this since if we want to delete a hosting unit before an order is made
+            {
+                DAL_Adapter.GetDAL().GetAllOrders();
+            }
+            catch (NoItemsException)
+            {
+                isEmpty = true;
+            }
+            if (!isEmpty)
+            {
+                var linkedOpenOrderList = from order in DAL_Adapter.GetDAL().GetAllOrders()
+                                          where order.HostingUnitKey == key && (order.Status == Enums.OrderStatus.UnTreated || order.Status == Enums.OrderStatus.SentMail)
+                                          select order;
+                if (linkedOpenOrderList.Count() != 0)
+                    throw new ChangedWhileLinkedException("delete", "HostingUnit", key, "Order", linkedOpenOrderList.First().OrderKey);
+            }
             try
             {
                 DAL_Adapter.GetDAL().RemoveHostingUnit(key);
