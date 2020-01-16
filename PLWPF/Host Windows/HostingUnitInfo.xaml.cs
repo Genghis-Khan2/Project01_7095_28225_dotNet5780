@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BE;
 
 namespace PLWPF.Host_Windows
 {
@@ -17,9 +18,11 @@ namespace PLWPF.Host_Windows
     /// </summary>
     public partial class HostingUnitInfo : Window
     {
-        public HostingUnitInfo()
+        public HostingUnitInfo(HostingUnit hu)
         {
             InitializeComponent();
+            KeyLab.Content = hu.HostingUnitKey.ToString();
+
         }
     }
 }

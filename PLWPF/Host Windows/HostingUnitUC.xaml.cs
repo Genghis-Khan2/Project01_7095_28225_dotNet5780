@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PLWPF.Host_Windows;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -19,18 +20,26 @@ namespace PLWPF
     public partial class HostingUnitUC : UserControl
     {
         private HostMenu caller;
-        public HostingUnitUC(HostMenu caller, string name, int key, float commission)
+        private BE.HostingUnit hu;
+        public HostingUnitUC(HostMenu caller, BE.HostingUnit hu)
         {
             InitializeComponent();
+            this.hu = hu;
             this.caller = caller;
-            Name.Content = name;
-            Key.Content = key.ToString();
-            Commission.Content = commission.ToString();
+            Name.Content = hu.HostingUnitName;
+            Key.Content = hu.HostingUnitKey.ToString();
+            Commission.Content = hu.Commission.ToString();
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
             caller.RemoveHostingUnit(int.Parse(Key.Content as string));
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var infoWin = new HostingUnitInfo(hu);
+            infoWin.ShowDialog();
         }
     }
 }

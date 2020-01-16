@@ -56,7 +56,7 @@ namespace PLWPF
                 {
                     foreach (var item in i.Hostingunits)
                     {
-                        HostingUnitStack.Children.Add(new HostingUnitUC(this, item.HostingUnitName, item.HostingUnitKey, item.Commission));
+                        HostingUnitStack.Children.Add(new HostingUnitUC(this, item));
                     }
                 }
             }

@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Data;
 using System.Globalization;
 using System.Text;
+using System.Windows.Data;
 
 namespace PLWPF
 {
-    class PageNumToBool : IValueConverter
+    public class IsOrNotToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string intVal = (string)value;
-            if ("0" == intVal)
+            bool isValue = (bool)value;
+
+            if (isValue)
             {
-                return false;
+                return "Has";
             }
 
-            return true;
+            return "Doesn't Have";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
