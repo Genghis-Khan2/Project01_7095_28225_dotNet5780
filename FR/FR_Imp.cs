@@ -186,7 +186,7 @@ namespace FR
         {
             using (SHA256 sha = SHA256.Create())
             {
-                using (StreamWriter sw = new StreamWriter(guestPath))
+                using (StreamWriter sw = new StreamWriter(guestPath, true))
                 {
                     sw.Write(username.ToLower() + " ");
                     var hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
@@ -210,7 +210,7 @@ namespace FR
         {
             using (SHA256 sha = SHA256.Create())
             {
-                using (StreamWriter sw = new StreamWriter(hostPath))
+                using (StreamWriter sw = new StreamWriter(hostPath, true))
                 {
                     sw.Write(username.ToLower() + " ");
                     var hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
