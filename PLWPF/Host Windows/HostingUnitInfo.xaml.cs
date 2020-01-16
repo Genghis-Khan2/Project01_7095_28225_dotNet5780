@@ -55,6 +55,10 @@ namespace PLWPF.Host_Windows
             updateWin.ShowDialog();
         }
 
-
+        private void Diarylab_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var win = new CalendarView(hu);
+            win.Show();
+        }
     }
 }

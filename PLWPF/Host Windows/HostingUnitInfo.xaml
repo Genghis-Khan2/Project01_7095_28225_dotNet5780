@@ -47,7 +47,7 @@
         <Label Grid.Row="0" Grid.Column="1" x:Name="KeyLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
         <Label Grid.Row="1" Grid.Column="1" x:Name="OwnerLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
         <Label Grid.Row="2" Grid.Column="1" x:Name="HostingUnitNameLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
-        <Label Grid.Row="3" Grid.Column="1" x:Name="Diarylab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
+        <Label Grid.Row="3" Grid.Column="1" x:Name="Diarylab" Content="Click Here To View Calendar" Foreground="Blue" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold" MouseLeftButtonDown="Diarylab_MouseLeftButtonDown"/>
         <Label Grid.Row="4" Grid.Column="1" x:Name="AreaLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
         <Label Grid.Row="5" Grid.Column="1" x:Name="TypeLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
         <Label Grid.Row="6" Grid.Column="1" x:Name="AdultsLab" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="17" FontWeight="DemiBold"/>
