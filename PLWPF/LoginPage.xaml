@@ -22,8 +22,8 @@
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <xctf:WatermarkTextBox Grid.Row="2" Grid.Column="1" x:Name="UserTextBox" FontSize="24" Watermark="Username" HorizontalAlignment="Center" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="40" Width="230"/>
-        <xctf:WatermarkPasswordBox Grid.Row="3" Grid.Column="1" x:Name="PassBox" Watermark="Password" PasswordChar="*" FontSize="24" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="40" Width="230"/>
+        <xctf:WatermarkTextBox Grid.Row="2" Grid.Column="1" x:Name="UserTextBox" FontSize="24" Watermark="Username" HorizontalAlignment="Center" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="40" Width="230" KeyDown="UserTextBox_KeyDown"/>
+        <xctf:WatermarkPasswordBox Grid.Row="3" Grid.Column="1" x:Name="PassBox" Watermark="Password" PasswordChar="*" FontSize="24" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="40" Width="230" KeyDown="PassBox_KeyDown"/>
         <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Content="Login to User:" FontFamily="Baskerville Old Face" FontSize="36" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
         <Label x:Name="WrongLabel" Grid.Row="1" Grid.Column="1" Content="Username or password are incorrect" FontFamily="Baskerville Old Face" FontSize="14" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="#FFE80E0E" Visibility="Hidden"/>
         <Button Grid.Row="4" Grid.Column="1" Content="Login" FontSize="22" FontWeight="DemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="LoginButton" Height="40" Width="200" Click="LoginButton_Click">
