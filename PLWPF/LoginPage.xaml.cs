@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace PLWPF
 {
@@ -20,7 +21,7 @@ namespace PLWPF
         {
             this.Hide();
             var createWin = new CreateAccount();
-            createWin.Closed += (s, args) => this.Show();
+            createWin.Closed += (s, args) => this.Close();
             createWin.Show();
         }
 
@@ -73,6 +74,21 @@ namespace PLWPF
         {
             UserTextBox.Text = "";
             PassBox.Password = "";
+        }
+
+        private void PassBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                LoginButton_Click(sender, new RoutedEventArgs());
+        }
+
+        private void UserTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                PassBox.Focus();
+                e.Handled=true;
+            }
         }
     }
 }
