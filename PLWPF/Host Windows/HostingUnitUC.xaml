@@ -11,9 +11,14 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Column="0" x:Name="Name"/>
-        <Label Grid.Column="1" x:Name="Key"/>
-        <Label Grid.Column="2" x:Name="Commission"/>
+        <Label Grid.Column="0" x:Name="Name" HorizontalAlignment="Center"/>
+        <Label Grid.Column="1" x:Name="Key" HorizontalAlignment="Center"/>
+        <Label Grid.Column="2" x:Name="Commission" HorizontalAlignment="Center"/>
 
     </Grid>
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Remove" x:Name="RemoveButton" Click="RemoveButton_Click"/>
+        </ContextMenu>
+    </UserControl.ContextMenu>
 </UserControl>

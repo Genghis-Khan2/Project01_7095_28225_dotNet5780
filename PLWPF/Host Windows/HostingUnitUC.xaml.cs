@@ -25,5 +25,10 @@ namespace PLWPF
             Key.Content = key.ToString();
             Commission.Content = commission.ToString();
         }
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -25,24 +25,7 @@ namespace PLWPF
         {
             InitializeComponent();
             this.host = host;
-            try
-            {
-                var li = from i in CreateAccount.myBL.getHostingUnitByHost()
-                         where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.Username)
-                         select new { Hostingunits = i };
-
-                foreach (var i in li)
-                {
-                    foreach (var item in i.Hostingunits)
-                    {
-                        GuestRequestStack.Children.Add(new HostingUnitUC(item.HostingUnitName, item.HostingUnitKey, item.Commission));
-                    }
-                }
-            }
-            catch (Exceptions.NoItemsException)
-            {
-                return;
-            }
+            Refresh();
         }
 
         private void AddUnit_Click(object sender, RoutedEventArgs e)
@@ -61,7 +44,8 @@ namespace PLWPF
 
         private void Refresh()
         {
-            GuestRequestStack.Children.Clear();
+            HostingUnitStack.Children.Clear();
+            HostingUnitStack.Children.Add(Resources["TitlesBar"] as Grid);
             try
             {
                 var li = from i in CreateAccount.myBL.getHostingUnitByHost()
@@ -72,7 +56,7 @@ namespace PLWPF
                 {
                     foreach (var item in i.Hostingunits)
                     {
-                        GuestRequestStack.Children.Add(new HostingUnitUC(item.HostingUnitName, item.HostingUnitKey, item.Commission));
+                        HostingUnitStack.Children.Add(new HostingUnitUC(item.HostingUnitName, item.HostingUnitKey, item.Commission));
                     }
                 }
             }
@@ -85,6 +69,11 @@ namespace PLWPF
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
             Refresh();
+        }
+
+        internal static void RemoveHostingUnit()
+        {
+
         }
     }
 }
