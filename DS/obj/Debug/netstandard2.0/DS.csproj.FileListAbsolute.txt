@@ -35,3 +35,5 @@ C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DS\obj\Debug\net
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DS\obj\Debug\netstandard2.0\DS.pdb
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DS\bin\Debug\netstandard2.0\FR.dll
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DS\bin\Debug\netstandard2.0\FR.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DS\bin\Debug\netstandard2.0\FR.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DS\bin\Debug\netstandard2.0\FR.pdb
