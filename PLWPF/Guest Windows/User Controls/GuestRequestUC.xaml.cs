@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using BL;
 namespace PLWPF.Guest_Windows.User_Controls
 {
     /// <summary>
@@ -20,10 +20,15 @@ namespace PLWPF.Guest_Windows.User_Controls
     public partial class GuestRequestUC : UserControl
     {
         private GuestMenu caller;
-        public GuestRequestUC(GuestMenu caller, string date, int key, Enums.RequestStatus requestStatus)
+        private GuestRequest gr;
+        public GuestRequestUC(GuestMenu caller, GuestRequest guestRequest)
         {
             InitializeComponent();
-            this.DataContext = this;
+            this.caller = caller;
+            this.gr = guestRequest;
+            this.KeyTextBlock.Text = gr.GuestRequestKey.ToString();
+            this.DateTextBlock.Text = String.Format("{0}.{1} - {2}.{3}", guestRequest.EntryDate.Day, guestRequest.EntryDate.Month, guestRequest.ReleaseDate.Day, guestRequest.ReleaseDate.Month);
+            this.StatusIconImage.Source = new BitmapImage(new Uri(StatusToImagePath(guestRequest.Status)));
         }
         private string StatusToImagePath(Enums.RequestStatus requestStatus)
         {
@@ -31,10 +36,28 @@ namespace PLWPF.Guest_Windows.User_Controls
             switch (requestStatus)
             {
                 case Enums.RequestStatus.Open:
-                    return "/Images/NoImageFound.png";
-                default:
-                    return "/Images/NoImageFound.png";
+                    return "/Images/InProgressIcon.png";
+                case Enums.RequestStatus.ClosedWithDeal:
+                    return "/Images/ViIcon.png";
+                case Enums.RequestStatus.CloseWithExpired:
+                    return "/Images/NoIcon.png";
             }
+            return "/Images/NoImageFound.png";
+        }
+        private void RemoveButtonUC_Click(object sender, RoutedEventArgs e)
+        {
+            caller.RemoveGuestRequest(gr.GuestRequestKey);
+            //TODO:do it
+        }
+
+        private void EditButtonUC_Click(object sender, RoutedEventArgs e)
+        {
+            caller.EditGuestRequest(gr.GuestRequestKey);
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //TODO: זה כאשר הוא לוחץ על בקשת אורח מסויימת, אמור לפתוח חלון חדש
         }
     }
 }

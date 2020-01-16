@@ -32,6 +32,17 @@ namespace DAL
 
         #endregion
 
+        #region RemoveGuestRequest This function removes a guest request
+
+        /// <summary>
+        /// This function removes a guest request from the data
+        /// </summary>
+        /// Important Note: It will not compare all fields. It will only compare the key 
+        /// <exception cref="KeyNotFoundException">Thrown if no guest request in the data match the guest request with the <paramref name="key"/></exception>
+        void RemoveGuestRequest(int key);
+
+        #endregion
+
         #region UpdateGuestRequestStatus This function updates a guest request
 
         /// <summary>

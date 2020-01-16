@@ -32,15 +32,14 @@ namespace PLWPF
             InitializeComponent();
             this.UserName = userName;
             this.Key = key;
-            InitScrollViewer(Key);
+            Refresh();
         }
-        private void InitScrollViewer(int key)
+        private void Refresh()
         {
-            //var allGuestRequest = BLImp.getBL().GetAllGuestRequestToGuest(key);
-
+            //TODO:do it
             //try
             //{
-            //    var allGuestRequest = BLImp.getBL().GetAllGuestRequests();
+            //    var allGuestRequest = CreateAccount.myBL.GetAllGuestRequests();
             //    foreach (var item in allGuestRequest)
             //    {
             //        Border b = new Border();
@@ -61,6 +60,21 @@ namespace PLWPF
 
             //}
 
+        }
+
+        internal void RemoveGuestRequest(int key)
+        {
+            System.Media.SystemSounds.Hand.Play();
+            var dialogResult = MessageBox.Show("Are you sure you want to delete the request?\nNote! This will permanently delete the request and all related Orders!", "Alert!", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                CreateAccount.myBL.RemoveGuestRequest(key);
+                Refresh();
+            }
+        }
+        internal void EditGuestRequest(int key)
+        {
+            //TODO:do it
         }
     }
 }
