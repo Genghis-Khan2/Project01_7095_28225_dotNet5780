@@ -30,10 +30,8 @@ namespace PLWPF
 
         private void AddUnit_Click(object sender, RoutedEventArgs e)
         {
-            Hide();
             var win = new CreateHostingUnit(host);
             win.Show();
-            win.Closed += Refresh_On_Close;
         }
 
         private void Refresh_On_Close(object sender, EventArgs e)

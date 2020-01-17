@@ -25,6 +25,7 @@ namespace PLWPF
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
+            //TODO:fix it
             if (Pass.Password == ConfPass.Password)
             {
                 //TODO: Needs to be a check if the user exists
@@ -43,7 +44,7 @@ namespace PLWPF
                 createWin.Show();
                 return;
             }
-
+            //TODO: לעשות שאי שיוון בי הטקסטבוקסים יותרע בתווית
             MessageBox.Show("Password and confirmation must match!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
 
         }

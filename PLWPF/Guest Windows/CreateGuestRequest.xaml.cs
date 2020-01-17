@@ -22,13 +22,17 @@ namespace PLWPF
         public CreateGuestRequest()
         {
             InitializeComponent();
+
+            //set the value of the Area combo box using the items in the enum
             var AreaEnums = Enum.GetValues(typeof(Enums.Area));
             foreach (var item in AreaEnums)
             {
                 AreaComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
             }
+            //set the selected item to the first item
             AreaComboBox.SelectedIndex = 0;
 
+            //set the value of the is interested combo box using the items in the enum
             var isInterested = Enum.GetValues(typeof(Enums.IsInterested));
             foreach (var item in isInterested)
             {
@@ -37,16 +41,19 @@ namespace PLWPF
                 GardenComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
                 ChildrenAttractionsComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
             }
+            //set the selected item to the first item
             PoolComboBox.SelectedIndex = 1;
             JacuzziComboBox.SelectedIndex = 1;
             GardenComboBox.SelectedIndex = 1;
             ChildrenAttractionsComboBox.SelectedIndex = 1;
 
+            //set the value of the hosting unit type combo box using the items in the enum
             var hostingUnitType = Enum.GetValues(typeof(Enums.HostingUnitType));
             foreach (var item in hostingUnitType)
             {
                 HostingUnitComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
             }
+            //set the selected item to the first item
             HostingUnitComboBox.SelectedIndex = 0;
 
             ArrivalDateCalendar.SelectedDate = DateTime.Today;

@@ -76,5 +76,11 @@ namespace PLWPF
         {
             //TODO:do it
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            CreateGuestRequest cgr = new CreateGuestRequest();
+            cgr.Show();
+        }
     }
 }
