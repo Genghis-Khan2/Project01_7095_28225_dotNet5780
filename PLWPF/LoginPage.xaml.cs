@@ -10,6 +10,8 @@ namespace PLWPF
     {
         internal static string Username;
 
+        //TODO: Thread idea is that we create a thread that will purge any expired guest requests
+
         public LoginPage()
         {
             InitializeComponent();
@@ -87,7 +89,7 @@ namespace PLWPF
             if (e.Key == Key.Enter)
             {
                 PassBox.Focus();
-                e.Handled=true;
+                e.Handled = true;
             }
         }
     }

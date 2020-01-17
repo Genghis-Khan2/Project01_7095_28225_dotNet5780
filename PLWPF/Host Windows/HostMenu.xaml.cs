@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using System.Linq;
 using FR;
 using PLWPF.Host_Windows;
+using PLWPF.Host_Windows.User_Controls;
 
 namespace PLWPF
 {
@@ -26,12 +27,34 @@ namespace PLWPF
             InitializeComponent();
             this.host = host;
             Refresh();
+            LoadGuestRequests(); // TODO: Check if this function works by sadding hardcoded guest request into list
         }
 
         private void AddUnit_Click(object sender, RoutedEventArgs e)
         {
             var win = new CreateHostingUnit(host);
             win.Show();
+            win.Closing += (s, args) => Refresh();
+        }
+
+        private void LoadGuestRequests()
+        {
+            List<BE.GuestRequest> list = new List<BE.GuestRequest>();
+            var li = from i in CreateAccount.myBL.getHostingUnitByHost()
+                     where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.Username)
+                     select new { Hostingunits = i };
+            foreach (var i in li)
+            {
+                foreach (var stuff in i.Hostingunits)
+                {
+                    list.AddRange(CreateAccount.myBL.GetMatchingGuestRequests(stuff));
+                }
+            }
+
+            foreach (var i in list)
+            {
+                GuestRequestStack.Children.Add(new HostsGuestRequestUC(i));
+            }
         }
 
         private void Refresh_On_Close(object sender, EventArgs e)
