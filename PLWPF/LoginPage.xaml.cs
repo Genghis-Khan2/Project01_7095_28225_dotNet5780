@@ -13,8 +13,6 @@ namespace PLWPF
         public LoginPage()
         {
             InitializeComponent();
-            GuestMenu g = new GuestMenu("Noam", 123);
-            g.Show();
         }
 
         private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
@@ -31,7 +29,7 @@ namespace PLWPF
             {
                 Username = UserTextBox.Text;
                 Hide();
-                var createWin = new GuestMenu();
+                var createWin = new GuestMenu(Username, FR.FR_Imp.GetFR().GetGuestKey() );
                 createWin.Closed += (s, args) => this.Close();
                 createWin.Show();
             }
@@ -87,7 +85,7 @@ namespace PLWPF
             if (e.Key == Key.Enter)
             {
                 PassBox.Focus();
-                e.Handled=true;
+                e.Handled = true;
             }
         }
     }

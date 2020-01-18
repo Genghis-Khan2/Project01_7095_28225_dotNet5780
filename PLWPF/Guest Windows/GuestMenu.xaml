@@ -23,10 +23,6 @@
                 <TextBlock FontSize="22" Text="UserName: " TextWrapping="Wrap"/>
                 <TextBlock FontSize="22" Text="{Binding UserName}" TextWrapping="Wrap"/>
             </StackPanel>
-            <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
-                <TextBlock  FontSize="22" Text="Key: " TextWrapping="Wrap"/>
-                <TextBlock  FontSize="22" Text="{Binding Key}" TextWrapping="Wrap"/>
-            </StackPanel>
             <Button Grid.Column="0" FontSize="20" Grid.Row="1" Content="Add Guest Request" x:Name="AddButton" HorizontalAlignment="Center" VerticalAlignment="Center" Height="110" Width="244" Click="AddButton_Click"/>
             <Button Grid.Column="0" FontSize="20" Grid.Row="2" Content="Edit User" x:Name="EditUserButton" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="110" Width="244"/>
             <Button Grid.Column="0" FontSize="20" Grid.Row="3" Content="Log off" x:Name="DeleteUserButton" HorizontalAlignment="Center" VerticalAlignment="Center" Height="110" Width="244"/>

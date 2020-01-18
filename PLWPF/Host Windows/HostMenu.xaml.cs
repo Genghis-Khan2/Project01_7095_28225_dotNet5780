@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using System.Linq;
 using FR;
 using PLWPF.Host_Windows;
+using BE;
 
 namespace PLWPF
 {
@@ -20,8 +21,8 @@ namespace PLWPF
     /// </summary>
     public partial class HostMenu : Window
     {
-        BE.Host host;
-        public HostMenu(BE.Host host)
+        Host host;
+        public HostMenu(Host host)
         {
             InitializeComponent();
             this.host = host;
