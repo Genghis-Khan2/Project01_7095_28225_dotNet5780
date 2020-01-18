@@ -33,9 +33,32 @@ namespace PLWPF
                     MessageBox.Show("There is already an account by that name!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+
                 if (User.Text.ToLower() == "admin")
                 {
                     MessageBox.Show("Invalid username!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (!PhoneNumberBox.Text.StartsWith("05") || PhoneNumberBox.Text.Length != 10)
+                {
+                    MessageBox.Show("Invalid phone number! Maybe you accidentally hyphenated...", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                try
+                {
+                    System.Net.Mail.MailAddress ma = new System.Net.Mail.MailAddress(MailAddressBox.Text);
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Invalid mail address format!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (User.Text.IndexOf(" ") != -1)
+                {
+                    MessageBox.Show("Invalid username! No spaces!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -46,8 +69,8 @@ namespace PLWPF
                 var createWin = new HostMenu(new BE.Host()
                 {
                     MailAddress = MailAddressBox.Text,
-                    PrivateName = PrivateNameBox.Text,
-                    FamilyName = FamilyNameBox.Text,
+                    PrivateName = PrivateNameBox.Text.Substring(0, 1).ToUpper() + PrivateNameBox.Text.Substring(1),
+                    FamilyName = FamilyNameBox.Text.Substring(0, 1).ToUpper() + FamilyNameBox.Text.Substring(1),
                     BankAccountNumber = 0,
                     HostKey = FR.FR_Imp.GetFR().GetHostKey(User.Text),
                     PhoneNumber = PhoneNumberBox.Text,
