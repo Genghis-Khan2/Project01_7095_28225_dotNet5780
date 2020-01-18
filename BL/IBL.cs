@@ -404,6 +404,12 @@ namespace BL
 
         #endregion
 
+        #region GetMatchingGuestRequests This function gets a list of the GuestRequests whose requirement are fulfilled by the HostingUnit
+
+        List<GuestRequest> GetMatchingGuestRequests(HostingUnit hu);
+
+        #endregion
+
         #region Function to work with Diary array
 
         #region CheckIfAvailable This function check if the diary available in the range

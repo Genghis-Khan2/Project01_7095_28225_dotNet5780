@@ -25,15 +25,17 @@
                 <Grid Background="White">
                     <ScrollViewer>
                         <StackPanel x:Name="HostingUnitStack">
-                            <StackPanel.Children>
-
-                            </StackPanel.Children>
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
             </TabItem>
             <TabItem Header="Guest Requests">
-                <Grid Background="White"/>
+                <Grid Background="White">
+                    <ScrollViewer>
+                        <StackPanel x:Name="GuestRequestStack">
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
             </TabItem>
         </TabControl>
         <Button Content="Refresh" HorizontalAlignment="Left" x:Name="RefreshButton" Margin="206,21,0,0" VerticalAlignment="Top" Click="Refresh_Click"/>

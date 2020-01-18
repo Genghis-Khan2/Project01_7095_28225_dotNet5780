@@ -818,6 +818,36 @@ namespace BL
 
         #endregion
 
+        #region GetMatchingGuestRequests This function gets a list of the GuestRequests whose requirement are fulfilled by the HostingUnit
+
+        public List<GuestRequest> GetMatchingGuestRequests(HostingUnit hu)
+        {
+            var linq = from i in DAL_Adapter.GetDAL().GetAllGuestRequests()
+                       where i.Adults <= hu.NumberOfPlacesForAdults &&
+                       i.Children <= hu.NumberOfPlacesForChildren &&
+                       CheckIfAvailable(hu.Diary, i.EntryDate, i.ReleaseDate) &&
+                       IsRelevant(i.ChildrensAttractions, hu.IsThereChildrensAttractions) &&
+                       IsRelevant(i.Garden, hu.IsThereGarden) &&
+                       IsRelevant(i.Jacuzzi, hu.IsThereJacuzzi) &&
+                       IsRelevant(i.Pool, hu.IsTherePool) &&
+                       IsRelevant(i.Area, hu.Area) &&
+                       IsRelevant(i.Type, hu.Type) &&
+                       i.Status == Enums.RequestStatus.Open
+
+                       select i;
+
+            List<GuestRequest> ret = new List<GuestRequest>();
+            foreach (var i in linq)
+            {
+                ret.Add(i);
+            }
+
+            return ret;
+        }
+
+        #endregion
+
+
         #region Function to work with Diary array
 
         #region CheckIfAvailable This function check if the diary available in the range
@@ -1000,7 +1030,47 @@ namespace BL
                               group hu by hu.Owner;
             return groupedList;
         }
+
         #endregion
+
+        #endregion
+
+        #region Just a Few Help Functions
+
+        private bool IsRelevant(Enums.IsInterested desired, bool has)
+        {
+            switch (desired)
+            {
+                case Enums.IsInterested.Necessary:
+                    return has == true;
+                case Enums.IsInterested.Possible:
+                    return true;
+                default:
+                    return has == false;
+            }
+        }
+
+        private bool IsRelevant(Enums.Area desired, Enums.Area area)
+        {
+            if (desired == Enums.Area.All)
+            {
+                return true;
+            }
+
+            return desired == area;
+        }
+
+        private bool IsRelevant(Enums.HostingUnitType desired, Enums.HostingUnitType area)
+        {
+            if (desired == Enums.HostingUnitType.All)
+            {
+                return true;
+            }
+
+            return desired == area;
+        }
+
+
 
         #endregion
 
