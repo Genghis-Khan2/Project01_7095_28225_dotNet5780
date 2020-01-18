@@ -121,6 +121,7 @@ namespace PLWPF
             }
 
             MessageBox.Show("Your request has been received, and is beginning to be processed!", "Request Accepted", MessageBoxButton.OK, MessageBoxImage.Information);
+            Close();
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)

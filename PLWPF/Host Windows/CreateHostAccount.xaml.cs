@@ -28,17 +28,21 @@ namespace PLWPF
             {
                 //TODO: Needs to be a check if the user exists
                 if (FR.FR_Imp.GetFR().CheckIfGuestExists(User.Text) ||
-                    FR.FR_Imp.GetFR().CheckIfHostExists(User.Text) ||
-                    User.Text.ToLower() == "admin")
+                    FR.FR_Imp.GetFR().CheckIfHostExists(User.Text))
                 {
                     MessageBox.Show("There is already an account by that name!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                if (User.Text.ToLower() == "admin")
+                {
+                    MessageBox.Show("Invalid username!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
                 FR.FR_Imp.GetFR().WriteHostToFile(User.Text, Pass.Password, BE.Configuration.HostKey, MailAddressBox.Text, PrivateNameBox.Text, FamilyNameBox.Text, PhoneNumberBox.Text);
                 MessageBox.Show("You have been registered!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                 Hide();
-                LoginPage.Username = User.Text;
+                LoginPage.UserName = User.Text;
                 var createWin = new HostMenu(new BE.Host()
                 {
                     MailAddress = MailAddressBox.Text,

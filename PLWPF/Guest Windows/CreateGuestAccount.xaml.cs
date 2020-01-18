@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BE;
 using FR;
 
 namespace PLWPF
@@ -28,18 +29,23 @@ namespace PLWPF
             //TODO:fix it
             if (Pass.Password == ConfPass.Password)
             {
-                //TODO: Needs to be a check if the user exists
-                if (!(FR.FR_Imp.GetFR().GuestCompareToPasswordInFile(User.Text, Pass.Password) ||
-                    FR.FR_Imp.GetFR().HostCompareToPasswordInFile(User.Text, Pass.Password) ||
-                    FR.FR_Imp.GetFR().AdminCompareToPasswordInFile(User.Text, Pass.Password)))
+
+                if (FR.FR_Imp.GetFR().CheckIfGuestExists(User.Text) ||
+                    FR.FR_Imp.GetFR().CheckIfHostExists(User.Text))
                 {
                     MessageBox.Show("There is already an account by that name!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
-
-                FR_Imp.GetFR().WriteGuestToFile(User.Text, Pass.Password, BE.Configuration.GuestKey);
+                if (User.Text.ToLower() == "admin")
+                {
+                    MessageBox.Show("Invalid username!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                int key = Configuration.GuestKey;
+                FR_Imp.GetFR().WriteGuestToFile(User.Text, Pass.Password,key);
                 MessageBox.Show("You have been registered!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Hide();
-                var createWin = new GuestMenu();
+                var createWin = new GuestMenu(User.Text, key);
                 createWin.Closed += (s, args) => this.Close();
                 createWin.Show();
                 return;
