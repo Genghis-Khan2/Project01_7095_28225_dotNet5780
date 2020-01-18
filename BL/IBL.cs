@@ -410,6 +410,8 @@ namespace BL
 
         #endregion
 
+        List<HostingUnit> GetMatchingHostingUnits(GuestRequest gr, Host host);
+
         #region Function to work with Diary array
 
         #region CheckIfAvailable This function check if the diary available in the range

@@ -847,6 +847,32 @@ namespace BL
 
         #endregion
 
+        public List<HostingUnit> GetMatchingHostingUnits(GuestRequest gr, Host host)
+        {
+            var linq = from i in DAL_Adapter.GetDAL().GetAllHostingUnits()
+                       where gr.Adults <= i.NumberOfPlacesForAdults &&
+                       gr.Children <= i.NumberOfPlacesForChildren &&
+                       CheckIfAvailable(i.Diary, gr.EntryDate, gr.ReleaseDate) &&
+                       IsRelevant(gr.ChildrensAttractions, i.IsThereChildrensAttractions) &&
+                       IsRelevant(gr.Garden, i.IsThereGarden) &&
+                       IsRelevant(gr.Jacuzzi, i.IsThereJacuzzi) &&
+                       IsRelevant(gr.Pool, i.IsTherePool) &&
+                       IsRelevant(gr.Area, i.Area) &&
+                       IsRelevant(gr.Type, i.Type) &&
+                       gr.Status == Enums.RequestStatus.Open &&
+                       i.Owner.HostKey == host.HostKey
+
+                       select i;
+
+            List<HostingUnit> ret = new List<HostingUnit>();
+            foreach (var i in linq)
+            {
+                ret.Add(i);
+            }
+
+            return ret;
+        }
+
 
         #region Function to work with Diary array
 

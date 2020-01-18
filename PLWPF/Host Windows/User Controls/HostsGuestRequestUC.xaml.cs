@@ -18,13 +18,23 @@ namespace PLWPF.Host_Windows.User_Controls
     /// </summary>
     public partial class HostsGuestRequestUC : UserControl
     {
-        public HostsGuestRequestUC(BE.GuestRequest guestRequest)
+        private BE.GuestRequest gr;
+        private BE.Host host;
+        public HostsGuestRequestUC(BE.GuestRequest guestRequest, BE.Host host)
         {
             InitializeComponent();
             Name.Content = guestRequest.PrivateName + " " + guestRequest.FamilyName;
             Duration.Content = string.Format("{0}.{2} - {1}.{3}", guestRequest.EntryDate.Day, guestRequest.ReleaseDate.Day,
                 guestRequest.EntryDate.Month, guestRequest.ReleaseDate.Month);
             MailAddress.Content = guestRequest.MailAddress;
+            gr = guestRequest;
+            this.host = host;
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var window = new GuestRequestInfo(gr, host);
+            window.Show();
         }
     }
 }
