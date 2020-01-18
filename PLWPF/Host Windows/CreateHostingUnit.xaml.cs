@@ -31,8 +31,8 @@ namespace PLWPF.Host_Windows
             if (update)
             {
                 NameOfUnit.Text = hu.HostingUnitName;
-                Area.SelectedItem = hu.Area;
-                TypeOfUnit.SelectedItem = hu.Type;
+                Area.SelectedIndex = GetIndex(hu.Area);
+                TypeOfUnit.SelectedIndex = GetIndex(hu.Type);
                 AmountOfAdults.Value = hu.NumberOfPlacesForAdults;
                 AmountOfChildren.Value = hu.NumberOfPlacesForChildren;
                 HasPool.IsChecked = hu.IsTherePool;
@@ -40,6 +40,44 @@ namespace PLWPF.Host_Windows
                 HasGarden.IsChecked = hu.IsThereGarden;
                 HasChildrenAttractions.IsChecked = hu.IsThereChildrensAttractions;
                 CreateButton.Content = "Update Hosting Unit";
+            }
+        }
+
+        private int GetIndex(BE.Enums.Area area)
+        {
+            switch (area)
+            {
+                case BE.Enums.Area.All:
+                    return 0;
+                case BE.Enums.Area.North:
+                    return 1;
+                case BE.Enums.Area.South:
+                    return 2;
+                case BE.Enums.Area.Center:
+                    return 3;
+                case BE.Enums.Area.Jerusalem:
+                    return 4;
+                default:
+                    return 5;
+            }
+        }
+
+        private int GetIndex(BE.Enums.HostingUnitType type)
+        {
+            switch (type)
+            {
+                case BE.Enums.HostingUnitType.All:
+                    return 0;
+                case BE.Enums.HostingUnitType.Zimmer:
+                    return 1;
+                case BE.Enums.HostingUnitType.AccommodationApartment:
+                    return 2;
+                case BE.Enums.HostingUnitType.Hotel:
+                    return 3;
+                case BE.Enums.HostingUnitType.Camping:
+                    return 4;
+                default:
+                    return 5;
             }
         }
 

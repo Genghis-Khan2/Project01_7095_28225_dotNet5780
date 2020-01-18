@@ -45,20 +45,25 @@ namespace PLWPF.Host_Windows
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            var updateWin = new CreateHostingUnit(hu.Owner, true, hu);
-            updateWin.Title = "Update Hosting Unit";
-            updateWin.Closing += (s, args) =>
-           {
-               LoadData(updateWin.GetHostingUnit());
-               hu = updateWin.GetHostingUnit();
-           };
-            updateWin.ShowDialog();
+            ActivateUpdate();
         }
 
         private void Diarylab_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var win = new CalendarView(hu);
             win.Show();
+        }
+
+        internal void ActivateUpdate()
+        {
+            var updateWin = new CreateHostingUnit(hu.Owner, true, hu);
+            updateWin.Title = "Update Hosting Unit";
+            updateWin.Closing += (s, args) =>
+            {
+                LoadData(updateWin.GetHostingUnit());
+                hu = updateWin.GetHostingUnit();
+            };
+            updateWin.ShowDialog();
         }
     }
 }

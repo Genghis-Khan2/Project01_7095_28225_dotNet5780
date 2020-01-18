@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
+using BE;
 
 namespace PLWPF
 {
@@ -15,6 +17,29 @@ namespace PLWPF
         public LoginPage()
         {
             InitializeComponent();
+
+            CreateAccount.myBL.AddGuestRequest(new GuestRequest()
+            {
+                Adults = 2,
+                Area = Enums.Area.Jerusalem,
+                Children = 0,
+                ChildrensAttractions = Enums.IsInterested.Uninterested,
+                EntryDate = new DateTime(2019, 2, 12),
+                FamilyName = "Komet",
+                Garden = Enums.IsInterested.Possible,
+                Jacuzzi = Enums.IsInterested.Necessary,
+                MailAddress = "Snotnose@gmail.com",
+                Pool = Enums.IsInterested.Necessary,
+                PrivateName = "Nibba",
+                RegistrationDate = DateTime.Today,
+                ReleaseDate = new DateTime(2020, 2, 19),
+                Status = Enums.RequestStatus.Open,
+                Type = Enums.HostingUnitType.Hotel
+            });
+
+
+            GuestMenu g = new GuestMenu("Noam", 123);
+            g.Show();
         }
 
         private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
@@ -31,7 +56,7 @@ namespace PLWPF
             {
                 Username = UserTextBox.Text;
                 Hide();
-                var createWin = new GuestMenu(Username, FR.FR_Imp.GetFR().GetGuestKey() );
+                var createWin = new GuestMenu();
                 createWin.Closed += (s, args) => this.Close();
                 createWin.Show();
             }

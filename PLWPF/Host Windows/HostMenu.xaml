@@ -17,10 +17,20 @@
             <Label Grid.Column="1" Content="Key" HorizontalAlignment="Center" FontWeight="Bold"/>
             <Label Grid.Column="2" Content="Commission" HorizontalAlignment="Center" FontWeight="Bold"/>
         </Grid>
+        <Grid x:Key="GuestTitlesBar">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Name" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <Label Grid.Column="1" Content="Mail Address" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <Label Grid.Column="2" Content="Dates to stay" HorizontalAlignment="Center" FontWeight="Bold"/>
+        </Grid>
     </Window.Resources>
     <Grid>
         <Button Content="Add a hosting unit" HorizontalAlignment="Left" Margin="32,31,0,0" x:Name="AddUnit" VerticalAlignment="Top" Click="AddUnit_Click"/>
-        <TabControl Margin="261,0,0,0">
+        <TabControl Margin="261,0,0,0" x:Name="Tabs">
             <TabItem Header="Hosting Units">
                 <Grid Background="White">
                     <ScrollViewer>

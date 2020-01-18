@@ -41,5 +41,17 @@ namespace PLWPF
             var infoWin = new HostingUnitInfo(hu);
             infoWin.ShowDialog();
         }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            var updatewin = new HostingUnitInfo(hu);
+            updatewin.Show();
+            updatewin.ActivateUpdate();
+        }
+
+        private void MatchesButton_Click(object sender, RoutedEventArgs e)
+        {
+            caller.LoadMatchesForHU(hu);
+        }
     }
 }
