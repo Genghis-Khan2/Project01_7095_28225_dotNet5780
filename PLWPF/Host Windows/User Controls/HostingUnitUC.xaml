@@ -19,6 +19,9 @@
     <UserControl.ContextMenu>
         <ContextMenu>
             <MenuItem Header="Remove" x:Name="RemoveButton" Click="RemoveButton_Click"/>
+            <MenuItem Header="Edit" x:Name="EditButton" Click="EditButton_Click"/>
+            <Separator/>
+            <MenuItem Header="Check Matches" x:Name="MatchesButton" Click="MatchesButton_Click"/>
         </ContextMenu>
     </UserControl.ContextMenu>
 </UserControl>

@@ -223,9 +223,9 @@ namespace BL
             {
                 return DAL_Adapter.GetDAL().GetAllHostingUnits();
             }
-            catch (NoItemsException e)
+            catch (NoItemsException)
             {
-                throw new NoItemsException(e.Message);
+                throw;
             }
         }
 
@@ -1052,7 +1052,7 @@ namespace BL
 
         private bool IsRelevant(Enums.Area desired, Enums.Area area)
         {
-            if (desired == Enums.Area.All)
+            if (area == Enums.Area.All)
             {
                 return true;
             }
@@ -1060,14 +1060,14 @@ namespace BL
             return desired == area;
         }
 
-        private bool IsRelevant(Enums.HostingUnitType desired, Enums.HostingUnitType area)
+        private bool IsRelevant(Enums.HostingUnitType desired, Enums.HostingUnitType type)
         {
-            if (desired == Enums.HostingUnitType.All)
+            if (type == Enums.HostingUnitType.All)
             {
                 return true;
             }
 
-            return desired == area;
+            return desired == type;
         }
 
 
