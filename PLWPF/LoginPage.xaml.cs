@@ -10,7 +10,7 @@ namespace PLWPF
     /// </summary>
     public partial class LoginPage : Window
     {
-        internal static string Username;
+        internal static string UserName;
 
         //TODO: Thread idea is that we create a thread that will purge any expired guest requests
 
@@ -38,8 +38,8 @@ namespace PLWPF
             });
 
 
-            GuestMenu g = new GuestMenu("Noam", 123);
-            g.Show();
+            //GuestMenu g = new GuestMenu("Noam", 123);
+            //g.Show();
         }
 
         private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
@@ -54,24 +54,24 @@ namespace PLWPF
         {
             if (FR.FR_Imp.GetFR().GuestCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
             {
-                Username = UserTextBox.Text;
+                UserName = UserTextBox.Text;
                 Hide();
-                var createWin = new GuestMenu();
+                var createWin = new GuestMenu(UserName,FR.FR_Imp.GetFR().GetGuestKey(UserName));
                 createWin.Closed += (s, args) => this.Close();
                 createWin.Show();
             }
 
             else if (FR.FR_Imp.GetFR().HostCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
             {
-                Username = UserTextBox.Text;
+                UserName = UserTextBox.Text;
                 Hide();
                 var createWin = new HostMenu(new BE.Host()
                 {
-                    PhoneNumber = FR.FR_Imp.GetFR().GetHostPhoneNumber(Username),
-                    PrivateName = FR.FR_Imp.GetFR().GetHostPrivateName(Username),
-                    FamilyName = FR.FR_Imp.GetFR().GetHostFamilyName(Username),
-                    MailAddress = FR.FR_Imp.GetFR().GetHostMailAddress(Username),
-                    HostKey = FR.FR_Imp.GetFR().GetHostKey(Username),
+                    PhoneNumber = FR.FR_Imp.GetFR().GetHostPhoneNumber(UserName),
+                    PrivateName = FR.FR_Imp.GetFR().GetHostPrivateName(UserName),
+                    FamilyName = FR.FR_Imp.GetFR().GetHostFamilyName(UserName),
+                    MailAddress = FR.FR_Imp.GetFR().GetHostMailAddress(UserName),
+                    HostKey = FR.FR_Imp.GetFR().GetHostKey(UserName),
                     BankBranchDetails = new BE.BankBranch()
                 });
                 createWin.Closed += (s, args) => Close();
@@ -80,7 +80,7 @@ namespace PLWPF
 
             else if (FR.FR_Imp.GetFR().AdminCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
             {
-                Username = "admin";
+                UserName = "admin";
                 Hide();
                 var createWin = new AdminWindow();
                 createWin.Closed += (s, args) => this.Close();

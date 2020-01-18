@@ -28,7 +28,7 @@ namespace PLWPF.Guest_Windows.User_Controls
             this.gr = guestRequest;
             this.KeyTextBlock.Text = gr.GuestRequestKey.ToString();
             this.DateTextBlock.Text = String.Format("{0}.{1} - {2}.{3}", guestRequest.EntryDate.Day, guestRequest.EntryDate.Month, guestRequest.ReleaseDate.Day, guestRequest.ReleaseDate.Month);
-            this.StatusIconImage.Source = new BitmapImage(new Uri(StatusToImagePath(guestRequest.Status)));
+            this.StatusIconImage.Source = new BitmapImage(new Uri(StatusToImagePath(guestRequest.Status), UriKind.Relative));
         }
 
         private string StatusToImagePath(Enums.RequestStatus requestStatus)

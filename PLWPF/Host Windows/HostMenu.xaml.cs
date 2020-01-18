@@ -50,7 +50,7 @@ namespace PLWPF
             try
             {
                 var li = from i in CreateAccount.myBL.getHostingUnitByHost()
-                         where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.Username)
+                         where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.UserName)
                          select new { Hostingunits = i };
                 foreach (var i in li)
                 {
@@ -82,7 +82,7 @@ namespace PLWPF
             try
             {
                 var li = from i in CreateAccount.myBL.getHostingUnitByHost()
-                         where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.Username)
+                         where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.UserName)
                          select new { Hostingunits = i };
 
                 foreach (var i in li)

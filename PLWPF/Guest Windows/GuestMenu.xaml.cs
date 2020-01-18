@@ -34,7 +34,7 @@ namespace PLWPF
         }
         private void Refresh()
         {
-            TODO: do it
+            UCStackPanel.Children.Clear();
             try
             {
                 var allGuestRequest = CreateAccount.myBL.GetAllGuestRequests();
@@ -44,18 +44,16 @@ namespace PLWPF
                     b.Background = Brushes.LightGray;
                     b.BorderBrush = Brushes.Black;
                     b.BorderThickness = new Thickness(1);
-                    GuestRequestUC uc = new GuestRequestUC()
-                    {
-                        Date = String.Format(item.EntryDate.Day + "." + item.EntryDate.Month + " - " + item.ReleaseDate.Day + "." + item.ReleaseDate.Month),
-                        Key = item.GuestRequestKey,
-                    };
+                    GuestRequestUC uc = new GuestRequestUC(this, item);
                     b.Child = uc;
                     UCStackPanel.Children.Add(b);
                 }
             }
             catch (NoItemsException)
             {
-
+                TextBlock tb = new TextBlock();
+                tb.Text = "No request is associated with this user";
+                UCStackPanel.Children.Add(tb);
             }
 
         }
@@ -79,7 +77,12 @@ namespace PLWPF
         {
             CreateGuestRequest cgr = new CreateGuestRequest();
             cgr.Show();
-            Close();
+
+        }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            Refresh();
         }
     }
 }
