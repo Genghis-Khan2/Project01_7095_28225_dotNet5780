@@ -28,6 +28,7 @@ namespace DAL
                 EntryDate = original.EntryDate,
                 FamilyName = original.FamilyName.Clone() as string,
                 Garden = original.Garden,
+                GuestKey = original.GuestKey,
                 GuestRequestKey = original.GuestRequestKey,
                 Jacuzzi = original.Jacuzzi,
                 MailAddress = original.MailAddress.Clone() as string,

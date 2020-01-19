@@ -37,9 +37,13 @@ namespace PLWPF
             UCStackPanel.Children.Clear();
             try
             {
-                var allGuestRequest = from i in CreateAccount.myBL.GetAllGuestRequests()
-                                      where i.GuestKey == FR.FR_Imp.GetFR().GetGuestKey(UserName)
-                                      select i;
+                var t1 = CreateAccount.myBL.GetAllGuestRequests().ToArray();
+                var allGuestRequest = from item in CreateAccount.myBL.GetAllGuestRequests()
+                                      where item.GuestKey == Key
+                                      select item;
+                //var allGuestRequest = CreateAccount.myBL.GetAllGuestRequestWhere((x) => ((GuestRequest)x).GuestKey == Key);
+
+                var t = allGuestRequest.ToArray();
                 foreach (var item in allGuestRequest)
                 {
                     Border b = new Border();
@@ -77,7 +81,7 @@ namespace PLWPF
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            CreateGuestRequest cgr = new CreateGuestRequest();
+            CreateGuestRequest cgr = new CreateGuestRequest(this.Key);
             cgr.Show();
             cgr.Closing += (s, args) => Refresh();
 

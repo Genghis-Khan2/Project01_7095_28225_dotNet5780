@@ -28,7 +28,7 @@ namespace BE
                 }
                 catch
                 {
-                    mailAddress = "plony@almony.com";
+                    mailAddress = "plony@almony.com";//TODO:check it
                 }
             }
         }
