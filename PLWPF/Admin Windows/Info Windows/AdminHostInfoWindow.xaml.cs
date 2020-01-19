@@ -25,12 +25,9 @@ namespace PLWPF.Admin_Windows.Info_Windows
 
         private void LoadData(BE.Host host)
         {
-            Key.Content = host.HostKey;
             Name.Content = host.PrivateName + " " + host.FamilyName;
-            PhoneNum.Content = host.PhoneNumber;
-            MailAddress.Content = host.MailAddress;
-            BankAccount.Content = host.BankAccountNumber;
-            HiddenLab.Content = host.CollectionClearance;
+
+            MainGrid.DataContext = host;
         }
     }
 }

@@ -10,7 +10,7 @@
     <Window.Resources>
         <local1:ConvertClearanceToString x:Key="ClearanceToString"/>
     </Window.Resources>
-    <Grid ShowGridLines="True">
+    <Grid ShowGridLines="True" x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -31,14 +31,12 @@
         <Label Grid.Row="4" Content="Bank Acc. #" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontWeight="DemiBold"/>
         <Label Grid.Row="5" Content="Clear to Collect?" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
 
-        <Label Grid.Row="0" Grid.Column="1" x:Name="Key" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontWeight="DemiBold"/>
+        <Label Grid.Row="0" Grid.Column="1" x:Name="Key" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontWeight="DemiBold" Content="{Binding Path=HostKey}"/>
         <Label Grid.Row="1" Grid.Column="1" x:Name="Name" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontWeight="DemiBold"/>
-        <Label Grid.Row="2" Grid.Column="1" x:Name="PhoneNum" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontWeight="DemiBold"/>
-        <Label Grid.Row="3" Grid.Column="1" x:Name="MailAddress" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontWeight="DemiBold"/>
-        <Label Grid.Row="4" Grid.Column="1" x:Name="BankAccount" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontWeight="DemiBold"/>
-        <Label Grid.Row="5" Grid.Column="1" x:Name="Clearance" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold" Content="{Binding ElementName=HiddenLab, Path=Content, Converter={StaticResource ClearanceToString}}"/>
-        <Label Visibility="Hidden" x:Name="HiddenLab"/>
-
+        <Label Grid.Row="2" Grid.Column="1" x:Name="PhoneNum" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontWeight="DemiBold" Content="{Binding Path=PhoneNumber}"/>
+        <Label Grid.Row="3" Grid.Column="1" x:Name="MailAddress" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontWeight="DemiBold" Content="{Binding Path=MailAddress}"/>
+        <Label Grid.Row="4" Grid.Column="1" x:Name="BankAccount" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontWeight="DemiBold" Content="{Binding Path=BankAccountNumber}"/>
+        <Label Grid.Row="5" Grid.Column="1" x:Name="Clearance" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold" Content="{ Binding Path=CollectionClearance, Converter={StaticResource ClearanceToString}}"/>
 
     </Grid>
 </Window>
