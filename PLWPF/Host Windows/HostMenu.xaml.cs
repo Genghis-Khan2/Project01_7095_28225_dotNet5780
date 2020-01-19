@@ -142,5 +142,9 @@ namespace PLWPF
             }
         }
 
+        private void LogOffButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

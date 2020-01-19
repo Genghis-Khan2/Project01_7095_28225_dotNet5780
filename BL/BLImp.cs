@@ -436,7 +436,7 @@ namespace BL
                 ///</remarks>
                 if (CheckIfAvailable(hostingUnit.Diary, guestRequest.EntryDate, guestRequest.ReleaseDate))
                 {
-                    hostingUnit.Diary = MarkingInTheDiary(hostingUnit.Diary, guestRequest.EntryDate, guestRequest.ReleaseDate);
+                    hostingUnit.Diary = MarkingInTheDiary(hostingUnit, guestRequest.EntryDate, guestRequest.ReleaseDate);
                     UpdateHostingUnit(hostingUnit, ord.HostingUnitKey);
                 }
                 else
@@ -922,14 +922,14 @@ namespace BL
         /// <param name="enteryDate">Start date of the vaction</param>
         /// <param name="releaseDate">End date of the vaction</param>
         /// <remarks>This function assume that the range is available and dosnt check it, to check use the<see cref="CheckIfAvailable(bool[,], DateTime, DateTime)"/> function</remarks>
-        public bool[,] MarkingInTheDiary(bool[,] diary, DateTime enteryDate, DateTime releaseDate)
+        public bool[,] MarkingInTheDiary(HostingUnit hu, DateTime enteryDate, DateTime releaseDate)
         {
             DateTime endDt = new DateTime(2020, releaseDate.Month, releaseDate.Day);
-            for (DateTime dt = new DateTime(2020, enteryDate.Month, enteryDate.Day); dt < endDt; dt.AddDays(1))
+            for (DateTime dt = new DateTime(2020, enteryDate.Month, enteryDate.Day); dt < endDt; dt = dt.AddDays(1))
             {
-                diary[dt.Month, dt.Day] = true;
+                hu.Diary[dt.Month - 1, dt.Day - 1] = true;
             }
-            return diary;
+            return hu.Diary;
         }
 
         #endregion

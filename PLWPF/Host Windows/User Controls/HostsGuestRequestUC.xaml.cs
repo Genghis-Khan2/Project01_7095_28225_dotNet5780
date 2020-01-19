@@ -18,8 +18,8 @@ namespace PLWPF.Host_Windows.User_Controls
     /// </summary>
     public partial class HostsGuestRequestUC : UserControl
     {
-        private BE.GuestRequest gr;
-        private BE.Host host;
+        private readonly BE.GuestRequest gr;
+        private readonly BE.Host host;
         public HostsGuestRequestUC(BE.GuestRequest guestRequest, BE.Host host)
         {
             InitializeComponent();
@@ -35,6 +35,12 @@ namespace PLWPF.Host_Windows.User_Controls
         {
             var window = new GuestRequestInfo(gr, host);
             window.Show();
+            BE.HostingUnit hu = null;
+            window.Closing += (s, args) => hu = window.GetHostingUnit();
+            if (hu != null)
+            {
+                CreateAccount.myBL.UpdateHostingUnit(hu, hu.HostingUnitKey);
+            }
         }
     }
 }

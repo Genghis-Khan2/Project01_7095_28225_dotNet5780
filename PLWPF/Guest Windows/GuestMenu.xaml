@@ -28,7 +28,7 @@
             <Button Grid.Column="0" FontSize="20" Grid.Row="2" Content="Edit User" x:Name="EditUserButton" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="110" Width="244"/>
             <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <Button Grid.Column="0" FontSize="20" Content="Refresh" x:Name="RefreshButton" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" Width="200" Margin="2" Click="RefreshButton_Click"/>
-                <Button Grid.Column="0" FontSize="20" Content="Log off" x:Name="LogOffButton" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" Width="200" Margin="2"/>
+                <Button Grid.Column="0" FontSize="20" Content="Log off" x:Name="LogOffButton" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" Width="200" Margin="2" Click="LogOffButton_Click"/>
             </StackPanel>
             <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible">
                 <StackPanel x:Name="UCStackPanel">

@@ -19,6 +19,7 @@ namespace PLWPF.Host_Windows.User_Controls
     {
         private BE.GuestRequest gr;
         private BE.Host host;
+        private BE.HostingUnit huOrderedTo = null;
         public GuestRequestInfo(BE.GuestRequest gr, BE.Host host)
         {
             InitializeComponent();
@@ -64,13 +65,22 @@ namespace PLWPF.Host_Windows.User_Controls
                     };
 
                     CreateAccount.myBL.AddOrder(ord);
+                    hu.Diary = CreateAccount.myBL.MarkingInTheDiary(hu, gr.EntryDate, gr.ReleaseDate);
                 }
                 catch (Exceptions.NoItemsException)
                 {
                     throw;
                 }
 
+                huOrderedTo = hu;
+
             }
         }
+
+        internal BE.HostingUnit GetHostingUnit()
+        {
+            return huOrderedTo;
+        }
+
     }
 }

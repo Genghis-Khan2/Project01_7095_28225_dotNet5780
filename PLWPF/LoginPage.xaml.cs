@@ -46,7 +46,7 @@ namespace PLWPF
         {
             this.Hide();
             var createWin = new CreateAccount();
-            createWin.Closed += (s, args) => this.Close();
+            createWin.Closed += (s, args) => Show();
             createWin.Show();
         }
 
@@ -57,7 +57,11 @@ namespace PLWPF
                 UserName = UserTextBox.Text;
                 Hide();
                 var createWin = new GuestMenu(UserName, FR.FR_Imp.GetFR().GetGuestKey(UserName));
-                createWin.Closed += (s, args) => this.Close();
+                createWin.Closed += (s, args) =>
+                {
+                    ClearButton_Click(null, null);
+                    Show();
+                };
                 createWin.Show();
             }
 
@@ -74,7 +78,11 @@ namespace PLWPF
                     HostKey = FR.FR_Imp.GetFR().GetHostKey(UserName),
                     BankBranchDetails = new BE.BankBranch()
                 });
-                createWin.Closed += (s, args) => Close();
+                createWin.Closed += (s, args) =>
+                {
+                    ClearButton_Click(null, null);
+                    Show();
+                };
                 createWin.Show();
             }
 
@@ -83,7 +91,11 @@ namespace PLWPF
                 UserName = "admin";
                 Hide();
                 var createWin = new AdminWindow();
-                createWin.Closed += (s, args) => this.Close();
+                createWin.Closed += (s, args) =>
+                {
+                    ClearButton_Click(null, null);
+                    Show();
+                };
                 createWin.Show();
             }
             else

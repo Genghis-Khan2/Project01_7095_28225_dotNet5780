@@ -30,7 +30,7 @@ namespace PLWPF.Host_Windows
                 {
                     try
                     {
-                        DateTime tmp = new DateTime(DateTime.Today.Year, i, j);
+                        DateTime tmp = new DateTime(DateTime.Today.Year, i + 1, j + 1);
                     }
 
                     catch

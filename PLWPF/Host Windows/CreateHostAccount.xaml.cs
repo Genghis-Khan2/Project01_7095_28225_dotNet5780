@@ -77,7 +77,7 @@ namespace PLWPF
                     BankBranchDetails = new BE.BankBranch()
                 }
                                 );
-                createWin.Closed += (s, args) => this.Close();
+                createWin.Closed += (s, args) => Show();
                 createWin.Show();
                 return;
             }

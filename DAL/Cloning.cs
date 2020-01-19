@@ -36,6 +36,7 @@ namespace DAL
                 RegistrationDate = original.RegistrationDate,
                 ReleaseDate = original.ReleaseDate,
                 Status = original.Status,
+                Type = original.Type
             };
 
             return ret;
