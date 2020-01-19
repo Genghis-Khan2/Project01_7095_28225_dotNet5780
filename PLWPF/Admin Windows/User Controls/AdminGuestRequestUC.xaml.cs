@@ -18,6 +18,7 @@ namespace PLWPF.Admin_Windows
     /// </summary>
     public partial class AdminGuestRequestUC : UserControl
     {
+        private BE.GuestRequest gr;
         public AdminGuestRequestUC(BE.GuestRequest guestRequest)
         {
             InitializeComponent();
@@ -25,6 +26,13 @@ namespace PLWPF.Admin_Windows
             Duration.Content = string.Format("{0}.{2} - {1}.{3}", guestRequest.EntryDate.Day, guestRequest.ReleaseDate.Day,
                 guestRequest.EntryDate.Month, guestRequest.ReleaseDate.Month);
             MailAddress.Content = guestRequest.MailAddress;
+            gr = guestRequest;
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var window = new AdminGRInfoWindow(gr);
+            window.ShowDialog();
         }
     }
 }
