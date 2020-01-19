@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BE;
+using BL;
 using Exceptions;
 
 namespace PLWPF
@@ -19,48 +20,14 @@ namespace PLWPF
     /// </summary>
     public partial class CreateGuestRequest : Window
     {
-        int GuestKey { get; set; }
+        public enum Type { Edit, Create };
+        int GuestKey;
+       
         public CreateGuestRequest(int guestKey)
         {
-            InitializeComponent();
-
-            //set the value of the Area combo box using the items in the enum
-            var AreaEnums = Enum.GetValues(typeof(Enums.Area));
-            foreach (var item in AreaEnums)
-            {
-                AreaComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
-            }
-            //set the selected item to the first item
-            AreaComboBox.SelectedIndex = 0;
-
-            //set the value of the is interested combo box using the items in the enum
-            var isInterested = Enum.GetValues(typeof(Enums.IsInterested));
-            foreach (var item in isInterested)
-            {
-                PoolComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
-                JacuzziComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
-                GardenComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
-                ChildrenAttractionsComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
-            }
-            //set the selected item to the first item
-            PoolComboBox.SelectedIndex = 1;
-            JacuzziComboBox.SelectedIndex = 1;
-            GardenComboBox.SelectedIndex = 1;
-            ChildrenAttractionsComboBox.SelectedIndex = 1;
-
-            //set the value of the hosting unit type combo box using the items in the enum
-            var hostingUnitType = Enum.GetValues(typeof(Enums.HostingUnitType));
-            foreach (var item in hostingUnitType)
-            {
-                HostingUnitComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
-            }
-            //set the selected item to the first item
-            HostingUnitComboBox.SelectedIndex = 0;
-
-            ArrivalDateCalendar.SelectedDate = DateTime.Today;
-            DepartureDateCalendar.SelectedDate = DateTime.Today;
-
             this.GuestKey = guestKey;
+            InitializeComponent();
+            setDefaultValueToFields();
         }
 
         private void GardenComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -105,7 +72,7 @@ namespace PLWPF
 
                     GuestKey = this.GuestKey
 
-                 
+
                 };
 
                 CreateAccount.myBL.AddGuestRequest(gr);
@@ -134,6 +101,44 @@ namespace PLWPF
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+        private void setDefaultValueToFields()
+        {
+            //set the value of the Area combo box using the items in the enum
+            var AreaEnums = Enum.GetValues(typeof(Enums.Area));
+            foreach (var item in AreaEnums)
+            {
+                AreaComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
+            }
+            //set the selected item to the first item
+            AreaComboBox.SelectedIndex = 0;
+
+            //set the value of the is interested combo box using the items in the enum
+            var isInterested = Enum.GetValues(typeof(Enums.IsInterested));
+            foreach (var item in isInterested)
+            {
+                PoolComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
+                JacuzziComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
+                GardenComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
+                ChildrenAttractionsComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
+            }
+            //set the selected item to the first item
+            PoolComboBox.SelectedIndex = 1;
+            JacuzziComboBox.SelectedIndex = 1;
+            GardenComboBox.SelectedIndex = 1;
+            ChildrenAttractionsComboBox.SelectedIndex = 1;
+
+            //set the value of the hosting unit type combo box using the items in the enum
+            var hostingUnitType = Enum.GetValues(typeof(Enums.HostingUnitType));
+            foreach (var item in hostingUnitType)
+            {
+                HostingUnitComboBox.Items.Add(new ComboBoxItem() { Content = item.ToString() });
+            }
+            //set the selected item to the first item
+            HostingUnitComboBox.SelectedIndex = 0;
+
+            ArrivalDateCalendar.SelectedDate = DateTime.Today;
+            DepartureDateCalendar.SelectedDate = DateTime.Today;
         }
     }
 }
