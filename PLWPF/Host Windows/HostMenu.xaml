@@ -27,6 +27,16 @@
             <Label Grid.Column="1" Content="Mail Address" HorizontalAlignment="Center" FontWeight="Bold"/>
             <Label Grid.Column="2" Content="Dates to stay" HorizontalAlignment="Center" FontWeight="Bold"/>
         </Grid>
+        <Grid x:Key="OrderTitlesBar">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="HU Key" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <Label Grid.Column="1" Content="GR Key" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <Label Grid.Column="2" Content="Status" HorizontalAlignment="Center" FontWeight="Bold"/>
+        </Grid>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -52,6 +62,14 @@
                 <Grid Background="White">
                     <ScrollViewer>
                         <StackPanel x:Name="GuestRequestStack">
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Orders">
+                <Grid Background="White">
+                    <ScrollViewer>
+                        <StackPanel x:Name="OrderStack">
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>

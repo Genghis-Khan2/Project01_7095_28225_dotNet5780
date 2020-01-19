@@ -50,4 +50,27 @@ namespace BE
             return obj.GuestRequestKey.GetHashCode();
         }
     }
+
+    public class OrderComparer : IEqualityComparer<Order>
+    {
+        public bool Equals(Order a, Order b)
+        {
+            if (ReferenceEquals(a, b))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(a, null) || Object.ReferenceEquals(b, null))
+            {
+                return false;
+            }
+
+            return a.OrderKey == b.OrderKey;
+        }
+
+        public int GetHashCode(Order obj)
+        {
+            return obj.OrderKey.GetHashCode();
+        }
+    }
 }
