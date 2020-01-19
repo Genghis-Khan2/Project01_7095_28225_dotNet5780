@@ -436,7 +436,7 @@ namespace BL
                 ///</remarks>
                 if (CheckIfAvailable(hostingUnit.Diary, guestRequest.EntryDate, guestRequest.ReleaseDate))
                 {
-                    hostingUnit.Diary = MarkingInTheDiary(hostingUnit.Diary, guestRequest.EntryDate, guestRequest.ReleaseDate);
+                    hostingUnit.Diary = MarkingInTheDiary(hostingUnit, guestRequest.EntryDate, guestRequest.ReleaseDate);
                     UpdateHostingUnit(hostingUnit, ord.HostingUnitKey);
                 }
                 else
@@ -847,6 +847,32 @@ namespace BL
 
         #endregion
 
+        public List<HostingUnit> GetMatchingHostingUnits(GuestRequest gr, Host host)
+        {
+            var linq = from i in DAL_Adapter.GetDAL().GetAllHostingUnits()
+                       where gr.Adults <= i.NumberOfPlacesForAdults &&
+                       gr.Children <= i.NumberOfPlacesForChildren &&
+                       CheckIfAvailable(i.Diary, gr.EntryDate, gr.ReleaseDate) &&
+                       IsRelevant(gr.ChildrensAttractions, i.IsThereChildrensAttractions) &&
+                       IsRelevant(gr.Garden, i.IsThereGarden) &&
+                       IsRelevant(gr.Jacuzzi, i.IsThereJacuzzi) &&
+                       IsRelevant(gr.Pool, i.IsTherePool) &&
+                       IsRelevant(gr.Area, i.Area) &&
+                       IsRelevant(gr.Type, i.Type) &&
+                       gr.Status == Enums.RequestStatus.Open &&
+                       i.Owner.HostKey == host.HostKey
+
+                       select i;
+
+            List<HostingUnit> ret = new List<HostingUnit>();
+            foreach (var i in linq)
+            {
+                ret.Add(i);
+            }
+
+            return ret;
+        }
+
 
         #region Function to work with Diary array
 
@@ -896,14 +922,14 @@ namespace BL
         /// <param name="enteryDate">Start date of the vaction</param>
         /// <param name="releaseDate">End date of the vaction</param>
         /// <remarks>This function assume that the range is available and dosnt check it, to check use the<see cref="CheckIfAvailable(bool[,], DateTime, DateTime)"/> function</remarks>
-        public bool[,] MarkingInTheDiary(bool[,] diary, DateTime enteryDate, DateTime releaseDate)
+        public bool[,] MarkingInTheDiary(HostingUnit hu, DateTime enteryDate, DateTime releaseDate)
         {
             DateTime endDt = new DateTime(2020, releaseDate.Month, releaseDate.Day);
-            for (DateTime dt = new DateTime(2020, enteryDate.Month, enteryDate.Day); dt < endDt; dt.AddDays(1))
+            for (DateTime dt = new DateTime(2020, enteryDate.Month, enteryDate.Day); dt < endDt; dt = dt.AddDays(1))
             {
-                diary[dt.Month, dt.Day] = true;
+                hu.Diary[dt.Month - 1, dt.Day - 1] = true;
             }
-            return diary;
+            return hu.Diary;
         }
 
         #endregion

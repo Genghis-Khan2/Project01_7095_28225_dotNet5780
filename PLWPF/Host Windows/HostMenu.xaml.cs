@@ -67,7 +67,7 @@ namespace PLWPF
 
                 foreach (var i in list)
                 {
-                    GuestRequestStack.Children.Add(new HostsGuestRequestUC(i));
+                    GuestRequestStack.Children.Add(new HostsGuestRequestUC(i, host));
                 }
             }
             catch (Exceptions.NoItemsException)
@@ -135,12 +135,16 @@ namespace PLWPF
 
             foreach (var i in list)
             {
-                var s = new HostsGuestRequestUC(i);
+                var s = new HostsGuestRequestUC(i, host);
                 s.ToolTip = "Click refresh to load all guest requests";
                 GuestRequestStack.Children.Add(s);
 
             }
         }
 
+        private void LogOffButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

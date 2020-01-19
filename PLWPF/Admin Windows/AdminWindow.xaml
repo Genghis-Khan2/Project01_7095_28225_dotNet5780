@@ -13,25 +13,26 @@
         <TabControl Margin="218,0,0,10">
             <TabItem Header="Guest Requests">
                 <ScrollViewer>
-                    <Grid ShowGridLines="True">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition x:Name="Key" Width="*"/>
-                            <ColumnDefinition x:Name="Name" Width="*"/>
-                        </Grid.ColumnDefinitions>
-                    </Grid>
+                    <StackPanel x:Name="GRStack">
+                        
+                    </StackPanel>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="Hosts">
-                <ScrollViewer/>
+                <ScrollViewer>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Hosting Units">
-                <ScrollViewer/>
+                <ScrollViewer>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Orders">
-                <ScrollViewer/>
+                <ScrollViewer>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Guests">
-                <ScrollViewer/>
+                <ScrollViewer>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
         <Label Content="{Binding ElementName=TaxValueSlider, Path=Value}" HorizontalAlignment="Left" Margin="105,110,0,0" VerticalAlignment="Top"/>

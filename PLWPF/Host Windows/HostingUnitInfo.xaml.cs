@@ -24,7 +24,6 @@ namespace PLWPF.Host_Windows
             InitializeComponent();
             this.hu = hu;
             LoadData(hu);
-            //TODO: Create a Calendar Window
         }
 
         internal void LoadData(HostingUnit hu)

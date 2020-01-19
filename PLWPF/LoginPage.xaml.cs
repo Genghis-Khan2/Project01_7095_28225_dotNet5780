@@ -18,24 +18,24 @@ namespace PLWPF
         {
             InitializeComponent();
 
-            CreateAccount.myBL.AddGuestRequest(new GuestRequest()
-            {
-                Adults = 2,
-                Area = Enums.Area.Jerusalem,
-                Children = 0,
-                ChildrensAttractions = Enums.IsInterested.Uninterested,
-                EntryDate = new DateTime(2019, 2, 12),
-                FamilyName = "Komet",
-                Garden = Enums.IsInterested.Possible,
-                Jacuzzi = Enums.IsInterested.Necessary,
-                MailAddress = "Snotnose@gmail.com",
-                Pool = Enums.IsInterested.Necessary,
-                PrivateName = "Nibba",
-                RegistrationDate = DateTime.Today,
-                ReleaseDate = new DateTime(2020, 2, 19),
-                Status = Enums.RequestStatus.Open,
-                Type = Enums.HostingUnitType.Hotel
-            });
+            //CreateAccount.myBL.AddGuestRequest(new GuestRequest()
+            //{
+            //    Adults = 2,
+            //    Area = Enums.Area.Jerusalem,
+            //    Children = 0,
+            //    ChildrensAttractions = Enums.IsInterested.Uninterested,
+            //    EntryDate = new DateTime(2019, 2, 12),
+            //    FamilyName = "Komet",
+            //    Garden = Enums.IsInterested.Possible,
+            //    Jacuzzi = Enums.IsInterested.Necessary,
+            //    MailAddress = "Snotnose@gmail.com",
+            //    Pool = Enums.IsInterested.Necessary,
+            //    PrivateName = "Nibba",
+            //    RegistrationDate = DateTime.Today,
+            //    ReleaseDate = new DateTime(2020, 2, 19),
+            //    Status = Enums.RequestStatus.Open,
+            //    Type = Enums.HostingUnitType.Hotel
+            //});
 
 
             //GuestMenu g = new GuestMenu("Noam", 123);
@@ -46,7 +46,7 @@ namespace PLWPF
         {
             this.Hide();
             var createWin = new CreateAccount();
-            createWin.Closed += (s, args) => this.Close();
+            createWin.Closed += (s, args) => Show();
             createWin.Show();
         }
 
@@ -56,8 +56,12 @@ namespace PLWPF
             {
                 UserName = UserTextBox.Text;
                 Hide();
-                var createWin = new GuestMenu(UserName,FR.FR_Imp.GetFR().GetGuestKey(UserName));
-                createWin.Closed += (s, args) => this.Close();
+                var createWin = new GuestMenu(UserName, FR.FR_Imp.GetFR().GetGuestKey(UserName));
+                createWin.Closed += (s, args) =>
+                {
+                    ClearButton_Click(null, null);
+                    Show();
+                };
                 createWin.Show();
             }
 
@@ -74,7 +78,11 @@ namespace PLWPF
                     HostKey = FR.FR_Imp.GetFR().GetHostKey(UserName),
                     BankBranchDetails = new BE.BankBranch()
                 });
-                createWin.Closed += (s, args) => Close();
+                createWin.Closed += (s, args) =>
+                {
+                    ClearButton_Click(null, null);
+                    Show();
+                };
                 createWin.Show();
             }
 
@@ -83,7 +91,11 @@ namespace PLWPF
                 UserName = "admin";
                 Hide();
                 var createWin = new AdminWindow();
-                createWin.Closed += (s, args) => this.Close();
+                createWin.Closed += (s, args) =>
+                {
+                    ClearButton_Click(null, null);
+                    Show();
+                };
                 createWin.Show();
             }
             else

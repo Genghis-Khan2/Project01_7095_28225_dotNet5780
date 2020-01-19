@@ -410,6 +410,8 @@ namespace BL
 
         #endregion
 
+        List<HostingUnit> GetMatchingHostingUnits(GuestRequest gr, Host host);
+
         #region Function to work with Diary array
 
         #region CheckIfAvailable This function check if the diary available in the range
@@ -434,7 +436,7 @@ namespace BL
         /// <param name="enteryDate">Start date of the vaction</param>
         /// <param name="releaseDate">End date of the vaction</param>
         /// <remarks>This function assume that the range is available and dosnt check it, to check use the<see cref="CheckIfAvailable(bool[,], DateTime, DateTime)"/> function</remarks>
-        bool[,] MarkingInTheDiary(bool[,] diary, DateTime enteryDate, DateTime releaseDate);
+        bool[,] MarkingInTheDiary(HostingUnit hu, DateTime enteryDate, DateTime releaseDate);
 
         #endregion
 
