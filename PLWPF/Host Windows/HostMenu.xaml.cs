@@ -86,7 +86,7 @@ namespace PLWPF
             {
 
                 var imp = from i in CreateAccount.myBL.getHostingUnitByHost()
-                          where i.Key.HostKey == FR_Imp.GetFR().GetHostKey()
+                          where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.UserName)
                           select i;
                 IEnumerable<BE.Order> ppp = new List<BE.Order>();
 

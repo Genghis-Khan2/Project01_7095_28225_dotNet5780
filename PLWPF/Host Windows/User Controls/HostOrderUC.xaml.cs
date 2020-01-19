@@ -33,5 +33,11 @@ namespace PLWPF.Host_Windows.User_Controls
         {
             CreateAccount.myBL.UpdateOrderStatus(ord.OrderKey, BE.Enums.OrderStatus.ClosedByHost);
         }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var window = new HostOrderInfo(ord);
+            window.Show();
+        }
     }
 }

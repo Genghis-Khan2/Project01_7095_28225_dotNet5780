@@ -36,10 +36,7 @@ namespace PLWPF.Host_Windows
             AdultsLab.Content = hu.NumberOfPlacesForAdults;
             ChildrenLab.Content = hu.NumberOfPlacesForChildren;
 
-            IsPool.Content = hu.IsTherePool;
-            IsJacuzzi.Content = hu.IsThereJacuzzi;
-            IsGarden.Content = hu.IsThereGarden;
-            IsChildAttract.Content = hu.IsThereChildrensAttractions;
+            MainGrid.DataContext = hu;
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
