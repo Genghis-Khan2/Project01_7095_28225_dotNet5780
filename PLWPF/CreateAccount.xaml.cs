@@ -29,7 +29,7 @@ namespace PLWPF
 
         private void CreateGuestButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            Hide();
             var guestWin = new CreateGuestAccount();
             guestWin.Closed += (s, args) => Close();
             guestWin.Show();
