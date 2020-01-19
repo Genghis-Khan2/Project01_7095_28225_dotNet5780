@@ -34,7 +34,7 @@ namespace PLWPF
         }
         private void Refresh()
         {
-            UCStackPanel.Children.Clear();
+            RequestListBox.Items.Clear();
             try
             {
                 var t1 = CreateAccount.myBL.GetAllGuestRequests().ToArray();
@@ -46,20 +46,21 @@ namespace PLWPF
                 var t = allGuestRequest.ToArray();
                 foreach (var item in allGuestRequest)
                 {
-                    Border b = new Border();
-                    b.Background = Brushes.LightGray;
-                    b.BorderBrush = Brushes.Black;
-                    b.BorderThickness = new Thickness(1);
-                    GuestRequestUC uc = new GuestRequestUC(this, item);
-                    b.Child = uc;
-                    UCStackPanel.Children.Add(b);
+                    //Border b = new Border();
+                    //b.Background = Brushes.LightGray;
+                    //b.BorderBrush = Brushes.Black;
+                    //b.BorderThickness = new Thickness(1);
+                    //GuestRequestUC uc = new GuestRequestUC(this, item);
+                    //b.Child = uc;
+                    //UCStackPanel.Children.Add(b);
+                    RequestListBox.Items.Add(item);
                 }
             }
             catch (NoItemsException)
             {
-                TextBlock tb = new TextBlock();
-                tb.Text = "No request is associated with this user";
-                UCStackPanel.Children.Add(tb);
+                //TextBlock tb = new TextBlock();
+                //tb.Text = "No request is associated with this user";
+                //RequestListBox.Items.Add(tb);
             }
 
         }

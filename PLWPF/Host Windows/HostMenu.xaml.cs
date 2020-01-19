@@ -103,7 +103,6 @@ namespace PLWPF
         {
             Complete_Refresh();
         }
-
         internal void RemoveHostingUnit(int key)
         {
             System.Media.SystemSounds.Hand.Play();

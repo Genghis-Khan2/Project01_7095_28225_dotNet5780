@@ -4,36 +4,86 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
+        xmlns:be ="clr-namespace:BE;assembly=BE"
         xmlns:uc="clr-namespace:PLWPF.Guest_Windows.User_Controls"
         mc:Ignorable="d"
-        Title="GuestMenu" Height="450" Width="800">
+        Title="GuestMenu" Height="400" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="RequestTemplate" DataType="be:GuestRequest">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <TextBlock Text="Key: " />
+                    <TextBlock Text="{Binding Path=GuestRequestKey}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                    <TextBlock Text="Date of vacation: " />
+                    <TextBlock Text="{Binding Path=EntryDate.Day}"/>
+                    <TextBlock Text="." />
+                    <TextBlock Text="{Binding Path=EntryDate.Month}"/>
+                    <TextBlock Text=" - "/>
+                    <TextBlock Text="{Binding Path=ReleaseDate.Day}"/>
+                    <TextBlock Text="." />
+                    <TextBlock Text="{Binding Path=ReleaseDate.Month}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="2">
+                    <TextBlock Text="Status: " />
+                    <TextBlock Text="{Binding Path=Status}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid ShowGridLines="False">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="10*" />
-                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="4*"/>
-                <RowDefinition Height="4*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" >
                 <TextBlock FontSize="22" Text="UserName: " TextWrapping="Wrap"/>
                 <TextBlock FontSize="22" Text="{Binding UserName}" TextWrapping="Wrap"/>
             </StackPanel>
-            <Button Grid.Column="0" FontSize="20" Grid.Row="1" Content="Add Guest Request" x:Name="AddButton" HorizontalAlignment="Center" VerticalAlignment="Center" Height="110" Width="244" Click="AddButton_Click"/>
-            <Button Grid.Column="0" FontSize="20" Grid.Row="2" Content="Edit User" x:Name="EditUserButton" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="110" Width="244"/>
-            <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                <Button Grid.Column="0" FontSize="20" Content="Refresh" x:Name="RefreshButton" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" Width="200" Margin="2" Click="RefreshButton_Click"/>
-                <Button Grid.Column="0" FontSize="20" Content="Log off" x:Name="LogOffButton" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" Width="200" Margin="2" Click="LogOffButton_Click"/>
-            </StackPanel>
-            <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible">
-                <StackPanel x:Name="UCStackPanel">
-                </StackPanel>
-            </ScrollViewer>
+            <Button Grid.Column="0" FontSize="20" Grid.Row="1" Content="Add Guest Request" x:Name="AddButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="110" Margin="10" Click="AddButton_Click"/>
+            <Button Grid.Column="0" FontSize="20" Grid.Row="2" Content="Edit User" x:Name="EditUserButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10"/>
+            <ListBox ItemTemplate="{StaticResource RequestTemplate}" HorizontalContentAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" x:Name="RequestListBox" Background="LightGray"/>
+            <Button Grid.Column="1" Grid.Row="4" FontSize="20" Content="Refresh" x:Name="RefreshButton" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2" Width="100" Click="RefreshButton_Click"/>
+            <Button Grid.Column="1" Grid.Row="4" FontSize="20" Content="Edit" x:Name="EditRequestButton" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2" Width="100">
+                <Button.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=RequestListBox, Path=SelectedItem}" Value="{x:Null}">
+                                <Setter Property="Button.IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Grid.Column="1" Grid.Row="4" FontSize="20" Content="Delete" x:Name="DeleteRequestButton" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="2" Width="100">
+                <Button.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=RequestListBox, Path=SelectedItem}" Value="{x:Null}">
+                                <Setter Property="Button.IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Grid.Column="2" FontSize="20" Content="Log off" x:Name="LogOffButton" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="2" Click="LogOffButton_Click"/>
+
         </Grid>
 
     </Grid>
