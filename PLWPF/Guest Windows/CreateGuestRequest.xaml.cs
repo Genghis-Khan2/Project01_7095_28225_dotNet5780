@@ -19,7 +19,8 @@ namespace PLWPF
     /// </summary>
     public partial class CreateGuestRequest : Window
     {
-        public CreateGuestRequest()
+        int GuestKey { get; set; }
+        public CreateGuestRequest(int guestKey)
         {
             InitializeComponent();
 
@@ -58,6 +59,8 @@ namespace PLWPF
 
             ArrivalDateCalendar.SelectedDate = DateTime.Today;
             DepartureDateCalendar.SelectedDate = DateTime.Today;
+
+            this.GuestKey = guestKey;
         }
 
         private void GardenComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -98,7 +101,11 @@ namespace PLWPF
 
                     EntryDate = (DateTime)ArrivalDateCalendar.SelectedDate,
                     ReleaseDate = (DateTime)DepartureDateCalendar.SelectedDate,
-                    RegistrationDate = DateTime.Today
+                    RegistrationDate = DateTime.Today,
+
+                    GuestKey = this.GuestKey
+
+                 
                 };
 
                 CreateAccount.myBL.AddGuestRequest(gr);

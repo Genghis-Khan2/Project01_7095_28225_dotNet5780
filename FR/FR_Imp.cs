@@ -239,7 +239,7 @@ namespace FR
                     if (line.StartsWith(username.ToLower()))
                     {
                         var strings = line.Split(' ');
-                        return int.Parse(strings[32]);
+                        return int.Parse(strings[34]);
                     }
 
                     line = sr.ReadLine();
