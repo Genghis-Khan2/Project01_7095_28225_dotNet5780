@@ -63,11 +63,49 @@ namespace PLWPF
 
                 var toRemDup = from j in list
                                select j;
-                list = toRemDup.Distinct().ToList();
+                list = toRemDup.Distinct(new BE.GuestRequestComparer()).ToList();
 
                 foreach (var i in list)
                 {
                     GuestRequestStack.Children.Add(new HostsGuestRequestUC(i, host));
+                }
+            }
+            catch (Exceptions.NoItemsException)
+            {
+            }
+        }
+
+        private void LoadOrders()
+        {
+            OrderStack.Children.Clear();
+            OrderStack.Children.Add(Resources["OrderTitlesBar"] as Grid);
+
+            List<BE.Order> list = new List<BE.Order>();
+
+            try
+            {
+
+                var imp = from i in CreateAccount.myBL.getHostingUnitByHost()
+                          where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.UserName)
+                          select i;
+                IEnumerable<BE.Order> ppp = new List<BE.Order>();
+
+                foreach (var i in imp)
+                {
+                    foreach (var li in i)
+                    {
+                        ppp = from j in CreateAccount.myBL.GetAllOrders()
+                              where li.HostingUnitKey == j.HostingUnitKey
+                              select j;
+                    }
+                }
+
+
+                list = ppp.Distinct(new BE.OrderComparer()).ToList();
+
+                foreach (var i in list)
+                {
+                    OrderStack.Children.Add(new HostOrderUC(i));
                 }
             }
             catch (Exceptions.NoItemsException)
@@ -118,6 +156,7 @@ namespace PLWPF
         {
             Refresh();
             LoadGuestRequests();
+            LoadOrders();
         }
 
         internal void LoadMatchesForHU(BE.HostingUnit hu)

@@ -288,7 +288,7 @@ namespace BL
             Host hostBeforeUpdating;
             try
             {
-                hostBeforeUpdating = DAL_Adapter.GetDAL().GetHost(key);
+                hostBeforeUpdating = DAL_Adapter.GetDAL().GetHostingUnit(key).Owner;
             }
             catch (KeyNotFoundException e)
             {
@@ -298,7 +298,7 @@ namespace BL
             if (!hostingUnit.Owner.CollectionClearance && hostBeforeUpdating.CollectionClearance)//If you try to cancel the account cancellation permission
             {
                 var linkedOpenOrderList = from order in DAL_Adapter.GetDAL().GetAllOrders()
-                                          where (order.HostingUnitKey == key && (order.Status == Enums.OrderStatus.UnTreated || order.Status == Enums.OrderStatus.SentMail))
+                                          where order.HostingUnitKey == key && (order.Status == Enums.OrderStatus.UnTreated || order.Status == Enums.OrderStatus.SentMail)
                                           select order;
                 if (linkedOpenOrderList.Count() != 0)
                     throw new ChangedWhileLinkedException("change CollectionClearance of", "HostingUnit", key, "Order", linkedOpenOrderList.First().OrderKey);

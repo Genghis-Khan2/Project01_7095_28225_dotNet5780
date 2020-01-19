@@ -58,6 +58,8 @@ namespace FR
 
         private static readonly string confPath = @"..\..\..\..\conf.data";
 
+        private static readonly string tmpPath = @"..\..\..\..\tmp.data";
+
         #endregion
 
         #region Compare Functions
@@ -219,7 +221,7 @@ namespace FR
                         sw.Write(i.ToString() + " ");
                     }
 
-                    sw.WriteLine(hostKey.ToString() + mail + " " + firstName + " " + lastName + " " + phoneNumber);
+                    sw.WriteLine(hostKey.ToString() + " " + mail + " " + firstName + " " + lastName + " " + phoneNumber);
                 }
             }
         }
@@ -525,7 +527,7 @@ namespace FR
                     if (line.StartsWith(username.ToLower()))
                     {
                         var strings = line.Split(' ');
-                        return strings[33];
+                        return strings[34];
                     }
 
                     line = sr.ReadLine();
@@ -546,7 +548,7 @@ namespace FR
                     if (line.StartsWith(username.ToLower()))
                     {
                         var strings = line.Split(' ');
-                        return strings[34];
+                        return strings[35];
                     }
 
                     line = sr.ReadLine();
@@ -567,7 +569,7 @@ namespace FR
                     if (line.StartsWith(username.ToLower()))
                     {
                         var strings = line.Split(' ');
-                        return strings[35];
+                        return strings[36];
                     }
 
                     line = sr.ReadLine();
@@ -588,7 +590,7 @@ namespace FR
                     if (line.StartsWith(username.ToLower()))
                     {
                         var strings = line.Split(' ');
-                        return strings[36];
+                        return strings[37];
                     }
 
                     line = sr.ReadLine();
@@ -598,6 +600,45 @@ namespace FR
 
             return null;
         }
+
+        #endregion
+
+        #region Remove Functions
+
+        public void RemoveHostFromFile(int key)
+        {
+            using (StreamReader sr = new StreamReader(hostPath))
+            {
+                string line = sr.ReadLine();
+
+                while (line != null)
+                {
+                    if (int.Parse(line.Split(' ')[33]) == key)
+                    {
+                        continue;
+                    }
+
+                    using (StreamWriter sw = new StreamWriter(tmpPath, false))
+                    {
+                        sw.WriteLine(line);
+                    }
+                }
+            }
+
+            using (StreamReader sr = new StreamReader(tmpPath))
+            {
+                string line = sr.ReadLine();
+
+                while (line != null)
+                {
+                    using (StreamWriter sw = new StreamWriter(hostPath, false))
+                    {
+                        sw.WriteLine(line);
+                    }
+                }
+            }
+        }
+
 
         #endregion
 

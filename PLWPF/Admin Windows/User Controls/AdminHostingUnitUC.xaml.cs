@@ -35,5 +35,10 @@ namespace PLWPF.Admin_Windows.User_Controls
             var window = new AdminHUInfoWindow(hu);
             window.ShowDialog();
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            CreateAccount.myBL.RemoveHostingUnit(hu.HostingUnitKey);
+        }
     }
 }

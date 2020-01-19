@@ -36,11 +36,14 @@ namespace PLWPF.Host_Windows.User_Controls
             var window = new GuestRequestInfo(gr, host);
             window.Show();
             BE.HostingUnit hu = null;
-            window.Closing += (s, args) => hu = window.GetHostingUnit();
-            if (hu != null)
+            window.Closing += (s, args) =>
             {
-                CreateAccount.myBL.UpdateHostingUnit(hu, hu.HostingUnitKey);
-            }
+                hu = window.GetHostingUnit();
+                if (hu != null)
+                {
+                    CreateAccount.myBL.UpdateHostingUnit(hu, hu.HostingUnitKey);
+                }
+            };
         }
     }
 }

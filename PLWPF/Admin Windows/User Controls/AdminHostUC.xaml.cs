@@ -34,5 +34,10 @@ namespace PLWPF.Admin_Windows.User_Controls
             var window = new AdminHostInfoWindow(host);
             window.ShowDialog();
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            FR.FR_Imp.GetFR().RemoveHostFromFile(host.HostKey);
+        }
     }
 }

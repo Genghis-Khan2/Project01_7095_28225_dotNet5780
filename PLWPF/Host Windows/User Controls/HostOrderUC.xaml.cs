@@ -11,15 +11,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PLWPF.Admin_Windows.User_Controls
+namespace PLWPF.Host_Windows.User_Controls
 {
     /// <summary>
-    /// Interaction logic for AdminOrderUC.xaml
+    /// Interaction logic for HostOrderUC.xaml
     /// </summary>
-    public partial class AdminOrderUC : UserControl
+    public partial class HostOrderUC : UserControl
     {
-        private BE.Order ord;
-        public AdminOrderUC(BE.Order ord)
+        private readonly BE.Order ord;
+        public HostOrderUC(BE.Order ord)
         {
             InitializeComponent();
             HUKey.Content = ord.HostingUnitKey;
@@ -32,6 +32,12 @@ namespace PLWPF.Admin_Windows.User_Controls
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             CreateAccount.myBL.UpdateOrderStatus(ord.OrderKey, BE.Enums.OrderStatus.ClosedByHost);
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var window = new HostOrderInfo(ord);
+            window.Show();
         }
     }
 }
