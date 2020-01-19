@@ -24,11 +24,11 @@ namespace BE
                 try
                 {
                     new System.Net.Mail.MailAddress(value);
-                    this.mailAddress = value;
+                    mailAddress = value;
                 }
                 catch
                 {
-                    mailAddress = "plony@almony.com";//TODO:check it
+                    mailAddress = "plony@almony.com";
                 }
             }
         }
