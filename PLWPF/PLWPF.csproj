@@ -17,8 +17,4 @@
     <ProjectReference Include="..\FR\FR.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Admin Windows\" />
-  </ItemGroup>
-
 </Project>
