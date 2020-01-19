@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace PLWPF.Host_Windows
 {
@@ -40,6 +41,9 @@ namespace PLWPF.Host_Windows
                 HasGarden.IsChecked = hu.IsThereGarden;
                 HasChildrenAttractions.IsChecked = hu.IsThereChildrensAttractions;
                 CreateButton.Content = "Update Hosting Unit";
+
+                KeyTextBox.Visibility = Visibility.Visible;
+                Closing += (s, args) => KeyTextBox.Visibility = Visibility.Hidden;
             }
         }
 
@@ -83,6 +87,14 @@ namespace PLWPF.Host_Windows
 
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
+            Regex propHUName = new Regex(@"^(?:[A-Z][a-z]+\s?)+$");
+
+            if (!propHUName.IsMatch(NameOfUnit.Text))
+            {
+                MessageBox.Show("Invalid format of name! Name must be title case!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             BE.HostingUnit unit = new BE.HostingUnit
             {
                 Area = (BE.Enums.Area)Enum.Parse(typeof(BE.Enums.Area), Area.SelectionBoxItem as string),

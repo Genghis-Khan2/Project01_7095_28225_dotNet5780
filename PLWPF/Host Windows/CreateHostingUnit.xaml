@@ -37,6 +37,7 @@
         <Label Content="Amount of children:" HorizontalAlignment="Left" Margin="60,290,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding ElementName=AmountOfAdults, Path=Value}" HorizontalAlignment="Left" Margin="230,268,0,0" VerticalAlignment="Top" Width="18"/>
         <Label Content="{Binding ElementName=AmountOfChildren, Path=Value}" HorizontalAlignment="Left" Margin="231,326,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.619,0.71"/>
+        <TextBox HorizontalAlignment="Left" Visibility="Hidden" IsReadOnly="True" x:Name="KeyTextBox" Margin="92,368,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

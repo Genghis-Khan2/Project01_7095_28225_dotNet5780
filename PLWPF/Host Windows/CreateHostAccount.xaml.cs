@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace PLWPF
 {
@@ -24,6 +25,12 @@ namespace PLWPF
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
+            Regex propPhoneNumber = new Regex("^05[0-9]{8}$");
+            Regex propUserName = new Regex("^[a-z]*$");
+            Regex propPassWord = new Regex("^[A-Za-z0-9]*$");
+            Regex propPrivateName = new Regex("^[A-Z][a-z]*$");
+            Regex propFamilyName = new Regex("^[A-Z][a-z]*$");
+
             if (Pass.Password == ConfPass.Password)
             {
                 //TODO: Needs to be a check if the user exists
@@ -40,7 +47,7 @@ namespace PLWPF
                     return;
                 }
 
-                if (!PhoneNumberBox.Text.StartsWith("05") || PhoneNumberBox.Text.Length != 10)
+                if (!propPhoneNumber.IsMatch(PhoneNumberBox.Text))
                 {
                     MessageBox.Show("Invalid phone number! Maybe you accidentally hyphenated...", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -56,9 +63,27 @@ namespace PLWPF
                     return;
                 }
 
-                if (User.Text.IndexOf(" ") != -1)
+                if (!propUserName.IsMatch(User.Text))
                 {
-                    MessageBox.Show("Invalid username! No spaces!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Invalid username format!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (!propPassWord.IsMatch(Pass.Password))
+                {
+                    MessageBox.Show("Invalid password format! Password should only contain alphanumeric characters", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (!propPrivateName.IsMatch(PrivateNameBox.Text))
+                {
+                    MessageBox.Show("Invalid private name format! Make sure to capitalize!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (!propFamilyName.IsMatch(FamilyNameBox.Text))
+                {
+                    MessageBox.Show("Invalid family name format! Make sure to capitalize!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 

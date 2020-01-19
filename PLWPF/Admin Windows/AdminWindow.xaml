@@ -14,24 +14,29 @@
             <TabItem Header="Guest Requests">
                 <ScrollViewer>
                     <StackPanel x:Name="GRStack">
-                        
+
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="Hosts">
                 <ScrollViewer>
+                    <StackPanel x:Name="HostStack">
+
+                    </StackPanel>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="Hosting Units">
                 <ScrollViewer>
+                    <StackPanel x:Name="HUStack">
+
+                    </StackPanel>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="Orders">
                 <ScrollViewer>
-                </ScrollViewer>
-            </TabItem>
-            <TabItem Header="Guests">
-                <ScrollViewer>
+                    <StackPanel x:Name="OrderStack">
+
+                    </StackPanel>
                 </ScrollViewer>
             </TabItem>
         </TabControl>
