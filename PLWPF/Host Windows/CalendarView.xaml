@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="CalendarView" Height="450" Width="800">
     <Grid>
-        <Calendar Width="800"  x:Name="DisplayCalendar" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+        <Calendar Width="800" SelectionMode="None" x:Name="DisplayCalendar" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
