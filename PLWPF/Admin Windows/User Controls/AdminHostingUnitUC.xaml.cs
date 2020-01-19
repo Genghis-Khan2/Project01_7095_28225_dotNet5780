@@ -19,18 +19,16 @@ namespace PLWPF.Admin_Windows.User_Controls
     /// </summary>
     public partial class AdminHostingUnitUC : UserControl
     {
+        private BE.HostingUnit hu;
         public AdminHostingUnitUC(BE.HostingUnit hu)
         {
             InitializeComponent();
-            LoadData(hu);
-        }
-
-        private void LoadData(BE.HostingUnit hu)
-        {
             Name.Content = hu.HostingUnitName;
             Owner.Content = hu.Owner.PrivateName + " " + hu.Owner.FamilyName;
             Key.Content = hu.HostingUnitKey;
+            this.hu = hu;
         }
+
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
