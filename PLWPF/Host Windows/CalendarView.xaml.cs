@@ -40,7 +40,7 @@ namespace PLWPF.Host_Windows
 
                     if (hu.Diary[i, j])
                     {
-                        DisplayCalendar.BlackoutDates.Add(new CalendarDateRange(new DateTime(DateTime.Today.Year, i - 1, j - 1), new DateTime(DateTime.Today.Year, i - 1, j - 1)));
+                        DisplayCalendar.BlackoutDates.Add(new CalendarDateRange(new DateTime(DateTime.Today.Year, i + 1, j + 1), new DateTime(DateTime.Today.Year, i + 1, j + 1)));
                     }
                 }
 
