@@ -27,7 +27,7 @@ namespace PLWPF
         {
             InitializeComponent();
             this.host = host;
-            Complete_Refresh(); // TODO: Check if this function works by adding hardcoded guest request into list
+            Complete_Refresh();
         }
 
         private void AddUnit_Click(object sender, RoutedEventArgs e)

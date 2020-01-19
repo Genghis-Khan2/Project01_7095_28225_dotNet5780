@@ -28,13 +28,6 @@ namespace BE
         {
             get
             {
-                //if (!IsInitializedGuestRequestKey)
-                //{
-                //    IsInitializedGuestRequestKey = true;
-                //    guestRequestKey = 1;
-                //}
-                //return guestRequestKey++;
-                //TODO: See if necessary
                 int ret = FR_Imp.GetFR().GetGuestRequestKey();
                 FR_Imp.GetFR().SetGuestRequestKey(ret + 1);
                 return ret;
