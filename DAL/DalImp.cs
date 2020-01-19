@@ -506,7 +506,7 @@ namespace DAL
                                  select item.Owner;
             if (listOfAllHosts.Count() == 0)
                 throw new NoItemsException("Host");
-            return listOfAllHosts.Distinct().ToList().Clone();
+            return listOfAllHosts.Distinct(new HostComparer()).ToList().Clone();
         }
 
         #endregion

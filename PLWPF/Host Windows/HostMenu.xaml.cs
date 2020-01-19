@@ -63,7 +63,7 @@ namespace PLWPF
 
                 var toRemDup = from j in list
                                select j;
-                list = toRemDup.Distinct().ToList();
+                list = toRemDup.Distinct(new BE.GuestRequestComparer()).ToList();
 
                 foreach (var i in list)
                 {

@@ -57,5 +57,18 @@ namespace BE
             return res;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null || !(obj is Host))
+            {
+                return false;
+            }
+
+            var hostObj = obj as Host;
+            return HostKey == hostObj.HostKey;
+        }
+
+
+
     }
 }

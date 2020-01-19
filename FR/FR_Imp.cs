@@ -219,7 +219,7 @@ namespace FR
                         sw.Write(i.ToString() + " ");
                     }
 
-                    sw.WriteLine(hostKey.ToString() + mail + " " + firstName + " " + lastName + " " + phoneNumber);
+                    sw.WriteLine(hostKey.ToString() + " " + mail + " " + firstName + " " + lastName + " " + phoneNumber);
                 }
             }
         }
@@ -525,7 +525,7 @@ namespace FR
                     if (line.StartsWith(username.ToLower()))
                     {
                         var strings = line.Split(' ');
-                        return strings[33];
+                        return strings[34];
                     }
 
                     line = sr.ReadLine();
@@ -546,7 +546,7 @@ namespace FR
                     if (line.StartsWith(username.ToLower()))
                     {
                         var strings = line.Split(' ');
-                        return strings[34];
+                        return strings[35];
                     }
 
                     line = sr.ReadLine();
@@ -567,7 +567,7 @@ namespace FR
                     if (line.StartsWith(username.ToLower()))
                     {
                         var strings = line.Split(' ');
-                        return strings[35];
+                        return strings[36];
                     }
 
                     line = sr.ReadLine();
@@ -588,7 +588,7 @@ namespace FR
                     if (line.StartsWith(username.ToLower()))
                     {
                         var strings = line.Split(' ');
-                        return strings[36];
+                        return strings[37];
                     }
 
                     line = sr.ReadLine();

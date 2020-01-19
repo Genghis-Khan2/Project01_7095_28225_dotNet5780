@@ -16,23 +16,6 @@ Z:\Project01_7095_28225_dotNet5780-Noam\BL\obj\Debug\netstandard2.0\BL.AssemblyI
 Z:\Project01_7095_28225_dotNet5780-Noam\BL\obj\Debug\netstandard2.0\BL.csproj.CopyComplete
 Z:\Project01_7095_28225_dotNet5780-Noam\BL\obj\Debug\netstandard2.0\BL.dll
 Z:\Project01_7095_28225_dotNet5780-Noam\BL\obj\Debug\netstandard2.0\BL.pdb
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BL.deps.json
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BL.dll
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BL.pdb
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BE.dll
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DAL.dll
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DS.dll
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\Exceptions.dll
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BE.pdb
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DAL.pdb
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DS.pdb
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\Exceptions.pdb
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.csprojAssemblyReference.cache
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.AssemblyInfoInputs.cache
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.AssemblyInfo.cs
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.csproj.CopyComplete
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.dll
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.pdb
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BL.deps.json
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BL.dll
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BL.pdb
@@ -51,7 +34,24 @@ C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\net
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.csproj.CopyComplete
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.dll
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.pdb
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\FR.dll
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\FR.pdb
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\FR.dll
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\FR.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BL.deps.json
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BL.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BL.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BE.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DAL.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DS.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\Exceptions.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\FR.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BE.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DAL.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DS.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\Exceptions.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\FR.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.csprojAssemblyReference.cache
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.AssemblyInfoInputs.cache
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.AssemblyInfo.cs
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.csproj.CopyComplete
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.pdb
