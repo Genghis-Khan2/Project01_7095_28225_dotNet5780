@@ -21,7 +21,7 @@
 
     <UserControl.ContextMenu>
         <ContextMenu>
-            <MenuItem Header="Remove"/>
+            <MenuItem Header="Remove" Click="MenuItem_Click"/>
         </ContextMenu>
     </UserControl.ContextMenu>
 

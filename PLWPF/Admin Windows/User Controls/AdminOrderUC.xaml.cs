@@ -18,12 +18,20 @@ namespace PLWPF.Admin_Windows.User_Controls
     /// </summary>
     public partial class AdminOrderUC : UserControl
     {
+        private BE.Order ord;
         public AdminOrderUC(BE.Order ord)
         {
             InitializeComponent();
             HUKey.Content = ord.HostingUnitKey;
             GRKey.Content = ord.GuestRequestKey;
             Status.Content = ord.Status;
+
+            this.ord = ord;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            CreateAccount.myBL.UpdateOrderStatus(ord.OrderKey, BE.Enums.OrderStatus.ClosedByHost);
         }
     }
 }

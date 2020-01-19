@@ -34,5 +34,10 @@ namespace PLWPF.Admin_Windows
             var window = new AdminGRInfoWindow(gr);
             window.ShowDialog();
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            CreateAccount.myBL.RemoveGuestRequest(gr.GuestRequestKey);
+        }
     }
 }

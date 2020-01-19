@@ -17,4 +17,9 @@
         <Label Grid.Column="1" x:Name="GRKey" HorizontalAlignment="Center"/>
         <Label Grid.Column="2" x:Name="Status" HorizontalAlignment="Center"/>
     </Grid>
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Remove" Click="MenuItem_Click"/>
+        </ContextMenu>
+    </UserControl.ContextMenu>
 </UserControl>

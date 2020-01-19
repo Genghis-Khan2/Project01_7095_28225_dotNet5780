@@ -21,9 +21,7 @@ namespace PLWPF
     /// </summary>
     public partial class AdminWindow : Window
     {
-        //TODO: Add information window for each type
         // TODO: Add remove option
-        // TODO: Add grid for each one with titles of columns
 
         public AdminWindow()
         {
@@ -110,6 +108,11 @@ namespace PLWPF
             Refresh_Hosts();
             Refresh_HostingUnits();
             Refresh_Orders();
+        }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            Complete_Refresh();
         }
     }
 }
