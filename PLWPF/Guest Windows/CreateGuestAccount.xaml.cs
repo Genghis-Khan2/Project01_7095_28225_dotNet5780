@@ -46,7 +46,7 @@ namespace PLWPF
                 MessageBox.Show("You have been registered!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Hide();
                 var createWin = new GuestMenu(User.Text, key);
-                createWin.Closed += (s, args) => Show();
+                createWin.Closed += (s, args) => Close();
                 createWin.Show();
                 return;
             }

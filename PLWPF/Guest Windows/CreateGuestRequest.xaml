@@ -7,10 +7,10 @@
         xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Create Guest user" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="grid">
 
         <Label Content="Enter First Name:" HorizontalAlignment="Left" Margin="70,43,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <xctf:WatermarkTextBox x:Name="PrivateNameBox" Watermark="e.g John"  HorizontalAlignment="Left" Margin="192,44,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
+        <xctf:WatermarkTextBox x:Name="PrivateNameBox" Watermark="e.g John" HorizontalAlignment="Left" Margin="192,44,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
         <Label Content="Enter Last Name:" HorizontalAlignment="Left" Margin="70,74,0,0" VerticalAlignment="Top" FontSize="14"/>
         <xctf:WatermarkTextBox x:Name="FamilyNameBox" Watermark="e.g Smith" HorizontalAlignment="Left" Margin="192,75,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
         <xctf:WatermarkTextBox x:Name="MailAddressBox" Watermark="e.g johnsmith@mail.com" HorizontalAlignment="Left" Margin="210,104,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>

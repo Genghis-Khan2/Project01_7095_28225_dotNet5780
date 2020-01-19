@@ -12,8 +12,9 @@ using System.Windows.Shapes;
 using System.Linq;
 using BL;
 using BE;
-using PLWPF.Guest_Windows.User_Controls;
 using Exceptions;
+using PLWPF.Guest_Windows;
+
 namespace PLWPF
 {
     /// <summary>
@@ -65,21 +66,6 @@ namespace PLWPF
 
         }
 
-        internal void RemoveGuestRequest(int key)
-        {
-            System.Media.SystemSounds.Hand.Play();
-            var dialogResult = MessageBox.Show("Are you sure you want to delete the request?\nNote! This will permanently delete the request and all related Orders!", "Alert!", MessageBoxButton.YesNo);
-            if (dialogResult == MessageBoxResult.Yes)
-            {
-                CreateAccount.myBL.RemoveGuestRequest(key);
-                Refresh();
-            }
-        }
-        internal void EditGuestRequest(int key)
-        {
-            //TODO:do it
-        }
-
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             CreateGuestRequest cgr = new CreateGuestRequest(this.Key);
@@ -96,6 +82,38 @@ namespace PLWPF
         private void LogOffButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void DeleteRequestButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Media.SystemSounds.Hand.Play();
+            var dialogResult = MessageBox.Show("Are you sure you want to delete the request?\nNote! This will permanently delete the request and all related Orders!", "Alert!", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                if (RequestListBox.SelectedItem == null)
+                    return;
+                try
+                {
+                    BLImp.getBL().RemoveGuestRequest(((GuestRequest)RequestListBox.SelectedItem).GuestRequestKey);
+                    Refresh();
+                }
+                catch (KeyNotFoundException)
+                {
+                    MessageBox.Show("Please select the request from the list and try again", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (ChangedWhileLinkedException)
+                {
+                    MessageBox.Show("This request cannot be deleted because there are orders linked to it,\n accept/reject offers and try again", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void ShowRequestButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (RequestListBox.SelectedItem == null)
+                return;
+            GuestRequestInfo gri = new GuestRequestInfo(((GuestRequest)RequestListBox.SelectedItem));
+            gri.Show();
         }
     }
 }
