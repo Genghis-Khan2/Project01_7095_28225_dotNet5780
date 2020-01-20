@@ -4,13 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
+        xmlns:local1="clr-namespace:PLWPF.User_Control"
         mc:Ignorable="d"
         Title="AdminWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="109*"/>
+            <ColumnDefinition Width="291*"/>
+        </Grid.ColumnDefinitions>
+
         <!--It may seem arbitrary but 100 makes sense. Otherwise it would be too much-->
-        <Slider HorizontalAlignment="Left" TickFrequency="1" IsSnapToTickEnabled="True" x:Name="TaxValueSlider" Value="50" Margin="52,87,0,0" VerticalAlignment="Top" Width="120" Minimum="0" Maximum="100"/>
-        <Label Content="Value of tax" HorizontalAlignment="Left" Margin="76,56,0,0" VerticalAlignment="Top"/>
-        <TabControl Margin="218,0,0,10">
+        <Label Content="Value of tax" HorizontalAlignment="Center" Margin="0,56,0,0" VerticalAlignment="Top" Height="26" Width="72"/>
+        <local1:UpDownTextBox x:Name="UpDownControl" Margin="73,93,62,317"/>
+        <TabControl Grid.Column="1">
             <TabItem Header="Guest Requests">
                 <ScrollViewer>
                     <StackPanel x:Name="GRStack">
@@ -47,8 +53,8 @@
                 </ScrollViewer>
             </TabItem>
         </TabControl>
-        <Label Content="{Binding ElementName=TaxValueSlider, Path=Value}" HorizontalAlignment="Left" Margin="105,110,0,0" VerticalAlignment="Top"/>
-        <Button Content="Refresh" FontSize="55" FontWeight="Bold" x:Name="RefreshButton" HorizontalAlignment="Left" Margin="0,212,0,0" VerticalAlignment="Top" Height="222" Width="218" Click="RefreshButton_Click"/>
+        <Label Content="{Binding ElementName=UpDownControl, Path=Value}" HorizontalAlignment="Center" Margin="0,127,0,0" VerticalAlignment="Top" Height="10" Width="22"/>
+        <Button Content="Refresh" FontSize="55" FontWeight="Bold" x:Name="RefreshButton" HorizontalAlignment="Center" Margin="0,212,0,0" VerticalAlignment="Top" Height="222" Width="218" Click="RefreshButton_Click"/>
 
     </Grid>
 </Window>

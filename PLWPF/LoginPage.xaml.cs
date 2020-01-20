@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Threading;
 using BE;
 using System.Linq;
+using System.ComponentModel;
 
 namespace PLWPF
 {
@@ -14,7 +15,7 @@ namespace PLWPF
     {
         internal static string UserName;
 
-        private void KillExpiredGRs()
+        private void KillExpiredGRs(object sender, DoWorkEventArgs de)
         {
             var li = from i in CreateAccount.myBL.GetAllGuestRequests()
                      where i.Status == Enums.RequestStatus.CloseWithExpired
@@ -24,8 +25,6 @@ namespace PLWPF
             {
                 CreateAccount.myBL.RemoveGuestRequest(i.GuestRequestKey);
             }
-
-            Thread.Sleep(10000);
         }
 
         //TODO: Thread idea is that we create a thread that will purge any expired guest requests
@@ -33,6 +32,11 @@ namespace PLWPF
         public LoginPage()
         {
             InitializeComponent();
+            var bw = new BackgroundWorker();
+            bw.DoWork += KillExpiredGRs;
+            bw.WorkerReportsProgress = false;
+            bw.RunWorkerCompleted += (s, args) => Thread.Sleep(10000);
+            bw.RunWorkerAsync();
         }
 
         private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
