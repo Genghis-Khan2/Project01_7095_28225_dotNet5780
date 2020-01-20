@@ -65,9 +65,23 @@ namespace PLWPF
                                select j;
                 list = toRemDup.Distinct(new BE.GuestRequestComparer()).ToList();
 
+
+                try
+                {
+                    var order = from i in CreateAccount.myBL.GetAllOrders()
+                                select i;
+                    foreach (var i in order)
+                    {
+                        list.RemoveAll(s => s.GuestRequestKey == i.GuestRequestKey);
+                    }
+                }
+                catch (Exceptions.NoItemsException)
+                {
+                }
+
                 foreach (var i in list)
                 {
-                    GuestRequestStack.Children.Add(new HostsGuestRequestUC(i, host));
+                    GuestRequestStack.Children.Add(new HostsGuestRequestUC(this, i, host));
                 }
             }
             catch (Exceptions.NoItemsException)
@@ -141,6 +155,7 @@ namespace PLWPF
         {
             Complete_Refresh();
         }
+
         internal void RemoveHostingUnit(int key)
         {
             System.Media.SystemSounds.Hand.Play();
@@ -152,7 +167,7 @@ namespace PLWPF
             }
         }
 
-        private void Complete_Refresh()
+        internal void Complete_Refresh()
         {
             Refresh();
             LoadGuestRequests();
@@ -173,7 +188,7 @@ namespace PLWPF
 
             foreach (var i in list)
             {
-                var s = new HostsGuestRequestUC(i, host);
+                var s = new HostsGuestRequestUC(this, i, host);
                 s.ToolTip = "Click refresh to load all guest requests";
                 GuestRequestStack.Children.Add(s);
 

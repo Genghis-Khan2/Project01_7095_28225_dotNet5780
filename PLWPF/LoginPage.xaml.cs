@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Threading;
 using BE;
 using System.Linq;
+using System.ComponentModel;
 
 namespace PLWPF
 {
@@ -14,15 +15,22 @@ namespace PLWPF
     {
         internal static string UserName;
 
-        private void KillExpiredGRs()
+        private void KillExpiredGRs(object sender, DoWorkEventArgs de)
         {
-            var li = from i in CreateAccount.myBL.GetAllGuestRequests()
-                     where i.Status == Enums.RequestStatus.CloseWithExpired
-                     select i;
-
-            foreach (var i in li)
+            try
             {
-                CreateAccount.myBL.RemoveGuestRequest(i.GuestRequestKey);
+                var li = from i in CreateAccount.myBL.GetAllGuestRequests()
+                         where i.Status == Enums.RequestStatus.CloseWithExpired
+                         select i;
+
+                foreach (var i in li)
+                {
+                    CreateAccount.myBL.RemoveGuestRequest(i.GuestRequestKey);
+                }
+            }
+            catch (Exceptions.NoItemsException)
+            {
+                return;
             }
 
             Thread.Sleep(10000);
@@ -33,13 +41,21 @@ namespace PLWPF
         public LoginPage()
         {
             InitializeComponent();
+            var bw = new BackgroundWorker();
+            bw.DoWork += KillExpiredGRs;
+            bw.WorkerReportsProgress = false;
+            bw.RunWorkerAsync();
         }
 
         private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
             var createWin = new CreateAccount();
-            createWin.Closed += (s, args) => Show();
+            createWin.Closed += (s, args) =>
+            {
+                Show();
+                ClearButton_Click(sender, e);
+            };
             createWin.Show();
         }
 

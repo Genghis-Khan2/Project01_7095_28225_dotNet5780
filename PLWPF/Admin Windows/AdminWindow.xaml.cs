@@ -56,7 +56,7 @@ namespace PLWPF
                          select i;
                 foreach (var i in li)
                 {
-                    HostStack.Children.Add(new AdminHostUC(i));
+                    HostStack.Children.Add(new AdminHostUC(this, i));
                 }
             }
             catch (Exceptions.NoItemsException)
@@ -102,17 +102,33 @@ namespace PLWPF
             }
         }
 
-        private void Complete_Refresh()
+        private void Refresh_Guests()
+        {
+            GuestStack.Children.Clear();
+            var list = FR.FR_Imp.GetFR().GetListOfGuestNames();
+            foreach (var i in list)
+            {
+                GuestStack.Children.Add(new AdminGuestUC(i));
+            }
+        }
+
+        internal void Complete_Refresh()
         {
             Refresh_GuestRequests();
             Refresh_Hosts();
             Refresh_HostingUnits();
             Refresh_Orders();
+            Refresh_Guests();
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             Complete_Refresh();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

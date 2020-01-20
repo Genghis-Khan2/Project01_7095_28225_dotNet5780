@@ -18,9 +18,10 @@ namespace PLWPF.Host_Windows.User_Controls
     /// </summary>
     public partial class HostsGuestRequestUC : UserControl
     {
+        private readonly HostMenu caller;
         private readonly BE.GuestRequest gr;
         private readonly BE.Host host;
-        public HostsGuestRequestUC(BE.GuestRequest guestRequest, BE.Host host)
+        public HostsGuestRequestUC(HostMenu caller, BE.GuestRequest guestRequest, BE.Host host)
         {
             InitializeComponent();
             Name.Content = guestRequest.PrivateName + " " + guestRequest.FamilyName;
@@ -43,6 +44,7 @@ namespace PLWPF.Host_Windows.User_Controls
                 {
                     CreateAccount.myBL.UpdateHostingUnit(hu, hu.HostingUnitKey);
                 }
+                caller.Complete_Refresh();
             };
         }
     }
