@@ -116,9 +116,5 @@ namespace PLWPF
             gri.Show();
         }
 
-        private void EditUserButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
