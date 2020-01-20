@@ -17,13 +17,20 @@ namespace PLWPF
 
         private void KillExpiredGRs(object sender, DoWorkEventArgs de)
         {
-            var li = from i in CreateAccount.myBL.GetAllGuestRequests()
-                     where i.Status == Enums.RequestStatus.CloseWithExpired
-                     select i;
-
-            foreach (var i in li)
+            try
             {
-                CreateAccount.myBL.RemoveGuestRequest(i.GuestRequestKey);
+                var li = from i in CreateAccount.myBL.GetAllGuestRequests()
+                         where i.Status == Enums.RequestStatus.CloseWithExpired
+                         select i;
+
+                foreach (var i in li)
+                {
+                    CreateAccount.myBL.RemoveGuestRequest(i.GuestRequestKey);
+                }
+            }
+            catch (Exceptions.NoItemsException)
+            {
+                return;
             }
         }
 
@@ -43,7 +50,11 @@ namespace PLWPF
         {
             this.Hide();
             var createWin = new CreateAccount();
-            createWin.Closed += (s, args) => Show();
+            createWin.Closed += (s, args) =>
+            {
+                Show();
+                ClearButton_Click(sender, e);
+            };
             createWin.Show();
         }
 

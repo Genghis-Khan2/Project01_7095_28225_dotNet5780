@@ -15,7 +15,7 @@
 
         <!--It may seem arbitrary but 100 makes sense. Otherwise it would be too much-->
         <Label Content="Value of tax" HorizontalAlignment="Center" Margin="0,56,0,0" VerticalAlignment="Top" Height="26" Width="72"/>
-        <local1:UpDownTextBox x:Name="UpDownControl" Margin="73,93,62,317"/>
+        <local1:UpDownTextBox x:Name="UpDownControl" Margin="73,93,62,297"/>
         <TabControl Grid.Column="1">
             <TabItem Header="Guest Requests">
                 <ScrollViewer>
@@ -53,8 +53,8 @@
                 </ScrollViewer>
             </TabItem>
         </TabControl>
-        <Label Content="{Binding ElementName=UpDownControl, Path=Value}" HorizontalAlignment="Center" Margin="0,127,0,0" VerticalAlignment="Top" Height="10" Width="22"/>
         <Button Content="Refresh" FontSize="55" FontWeight="Bold" x:Name="RefreshButton" HorizontalAlignment="Center" Margin="0,212,0,0" VerticalAlignment="Top" Height="222" Width="218" Click="RefreshButton_Click"/>
+        <Button Content="Log Out" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,163,0,0" VerticalAlignment="Top" Height="54" Width="218" Click="Button_Click"/>
 
     </Grid>
 </Window>

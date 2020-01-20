@@ -41,7 +41,7 @@ namespace PLWPF.Host_Windows.User_Controls
             PoolLab.Content = gr.Pool.ToString();
             JacuzziLab.Content = gr.Jacuzzi.ToString();
             GardenLab.Content = gr.Garden.ToString();
-            ChildAttractLab.Content = gr.Children.ToString();
+            ChildAttractLab.Content = gr.ChildrensAttractions.ToString();
         }
 
         private void OrderButton_Click(object sender, RoutedEventArgs e)

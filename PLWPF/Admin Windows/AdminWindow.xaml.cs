@@ -114,5 +114,10 @@ namespace PLWPF
         {
             Complete_Refresh();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
