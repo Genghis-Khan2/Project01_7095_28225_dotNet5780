@@ -584,16 +584,6 @@ namespace BL
 
         #endregion
 
-
-        #region Just a Few Help Functions
-
-        bool IsRelevant(Enums.IsInterested desired, bool has);
-
-        bool IsRelevant(Enums.Area desired, Enums.Area area);
-
-        bool IsRelevant(Enums.HostingUnitType desired, Enums.HostingUnitType type);
-
-        #endregion
     }
 
 }
