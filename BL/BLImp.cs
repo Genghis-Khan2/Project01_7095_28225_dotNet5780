@@ -360,8 +360,14 @@ namespace BL
             //its will never throw the "KeyNotFoundException" because we already check that the HostingUnit and the GuestRequest are exists
             if (!CheckIfAvailable(DAL_Adapter.GetDAL().GetHostingUnit(ord.HostingUnitKey).Diary, DAL_Adapter.GetDAL().GetGuestRequest(ord.GuestRequestKey).EntryDate, DAL_Adapter.GetDAL().GetGuestRequest(ord.GuestRequestKey).ReleaseDate))
                 throw new OccupiedDatesException();
-
-            DAL_Adapter.GetDAL().AddOrder(ord);
+            try
+            {
+                DAL_Adapter.GetDAL().AddOrder(ord);
+            }
+            catch (AlreadyExistsException e)
+            {
+                throw new AlreadyExistsException(e.Message);
+            }
         }
 
         #endregion
@@ -713,6 +719,12 @@ namespace BL
 
         #region GetAllGuestRequestToGuest This function return all the GuestRequest send from user
 
+        //TODO:check!
+        /// <summary>
+        /// This function return all the guest Request asociation to specific guest
+        /// </summary>
+        /// <param name="key">The guest key to check</param>
+        /// <returns><see cref="IEnumerable{GuestRequest}"/>All guest request the specific guest have</returns>
         public IEnumerable<GuestRequest> GetAllGuestRequestToGuest(int key)
         {
             return GetAllGuestRequestWhere((x) => ((GuestRequest)x).GuestKey == key);
@@ -820,33 +832,53 @@ namespace BL
 
         #region GetMatchingGuestRequests This function gets a list of the GuestRequests whose requirement are fulfilled by the HostingUnit
 
+        /// <summary>
+        /// This function return all the GuestRequest match the <paramref name="hu"/>
+        /// </summary>
+        /// <param name="hu">The hostingUnit to return all the guestRequest match him</param>
+        /// <exception cref="NoItemsException">Thrown when there isnt any guestRequest in the data</exception>
+        /// <returns><see cref="List{GuestRequest}"/> of all the GuestRequest match <paramref name="hu"/></returns>
         public List<GuestRequest> GetMatchingGuestRequests(HostingUnit hu)
         {
-            var linq = from i in DAL_Adapter.GetDAL().GetAllGuestRequests()
-                       where i.Adults <= hu.NumberOfPlacesForAdults &&
-                       i.Children <= hu.NumberOfPlacesForChildren &&
-                       CheckIfAvailable(hu.Diary, i.EntryDate, i.ReleaseDate) &&
-                       IsRelevant(i.ChildrensAttractions, hu.IsThereChildrensAttractions) &&
-                       IsRelevant(i.Garden, hu.IsThereGarden) &&
-                       IsRelevant(i.Jacuzzi, hu.IsThereJacuzzi) &&
-                       IsRelevant(i.Pool, hu.IsTherePool) &&
-                       IsRelevant(i.Area, hu.Area) &&
-                       IsRelevant(i.Type, hu.Type) &&
-                       i.Status == Enums.RequestStatus.Open
-
-                       select i;
-
-            List<GuestRequest> ret = new List<GuestRequest>();
-            foreach (var i in linq)
+            try
             {
-                ret.Add(i);
-            }
+                var linq = from i in DAL_Adapter.GetDAL().GetAllGuestRequests()
+                           where i.Adults <= hu.NumberOfPlacesForAdults &&
+                           i.Children <= hu.NumberOfPlacesForChildren &&
+                           CheckIfAvailable(hu.Diary, i.EntryDate, i.ReleaseDate) &&
+                           IsRelevant(i.ChildrensAttractions, hu.IsThereChildrensAttractions) &&
+                           IsRelevant(i.Garden, hu.IsThereGarden) &&
+                           IsRelevant(i.Jacuzzi, hu.IsThereJacuzzi) &&
+                           IsRelevant(i.Pool, hu.IsTherePool) &&
+                           IsRelevant(i.Area, hu.Area) &&
+                           IsRelevant(i.Type, hu.Type) &&
+                           i.Status == Enums.RequestStatus.Open
 
-            return ret;
+                           select i;
+
+                List<GuestRequest> ret = new List<GuestRequest>();
+                foreach (var i in linq)
+                {
+                    ret.Add(i);
+                }
+
+                return ret;
+            }
+            catch (NoItemsException e)
+            {
+                throw;
+            }
         }
 
         #endregion
 
+        /// <summary>
+        /// This function return all the HostingUnit match the <paramref name="gr"/> and belong to <paramref name="host"/>
+        /// </summary>
+        /// <param name="gr">The guestRequest to return all the guestRequest match him</param>
+        ///<param name="host">The Host that all the hostingUnit in the result must belong to him</param>
+        /// <exception cref="NoItemsException">Thrown when there are no HostingUnit in the list</exception>
+        /// <returns><see cref="List{Hos}"/> of all the HostingUnit match <paramref name="gr"/> and belong to<paramref name="host"/></returns>
         public List<HostingUnit> GetMatchingHostingUnits(GuestRequest gr, Host host)
         {
             var linq = from i in DAL_Adapter.GetDAL().GetAllHostingUnits()
@@ -918,7 +950,7 @@ namespace BL
         /// <summary>
         /// This function mark a vaction(<paramref name="enteryDate"/> - <paramref name="releaseDate"/>) in <paramref name="diary"/>
         /// </summary>
-        /// <param name="diary">The array represent all the days in the year</param>
+        /// <param name="hu">The Hosting unit whose array represent all the days in the year</param>
         /// <param name="enteryDate">Start date of the vaction</param>
         /// <param name="releaseDate">End date of the vaction</param>
         /// <remarks>This function assume that the range is available and dosnt check it, to check use the<see cref="CheckIfAvailable(bool[,], DateTime, DateTime)"/> function</remarks>
@@ -982,14 +1014,22 @@ namespace BL
         /// <summary>
         /// The function return all the GuestRequest group by <see cref="Enums.Area"/> 
         /// </summary>
+        /// <exception cref="NoItemsException">Thrown when there are no GuestRequest in the list</exception>
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all guestRequest group by area</returns>
         public IEnumerable<IGrouping<Enums.Area, GuestRequest>> GetAllGuestByArea()
         {
-            var allGuestRequest = GetAllGuestRequests();
-            var groupedList = from gr in allGuestRequest
-                              group gr by gr.Area into t
-                              select t;
-            return groupedList;
+            try
+            {
+                var allGuestRequest = GetAllGuestRequests();
+                var groupedList = from gr in allGuestRequest
+                                  group gr by gr.Area into t
+                                  select t;
+                return groupedList;
+            }
+            catch (NoItemsException)
+            {
+                throw;
+            }
         }
 
         #endregion
@@ -999,14 +1039,22 @@ namespace BL
         /// <summary>
         /// The function return all the GuestRequest group by number of Vacationers
         /// </summary>
+        /// <exception cref="NoItemsException">Thrown when there are no bank accounts in the list</exception>
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all guestRequest group by number of Vacationers</returns>
         public IEnumerable<IGrouping<int, GuestRequest>> GetAllGuestByNumerOfVacationers()
         {
-            var allGuestRequest = GetAllGuestRequests();
-            var groupedList = from gr in allGuestRequest
-                              group gr by (gr.Children + gr.Adults);
+            try
+            {
+                var allGuestRequest = GetAllGuestRequests();
+                var groupedList = from gr in allGuestRequest
+                                  group gr by (gr.Children + gr.Adults);
 
-            return groupedList;
+                return groupedList;
+            }
+            catch (NoItemsException)
+            {
+                throw;
+            }
         }
 
         #endregion
