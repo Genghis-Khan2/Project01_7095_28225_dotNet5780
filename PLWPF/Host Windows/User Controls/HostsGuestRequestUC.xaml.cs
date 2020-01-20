@@ -30,6 +30,7 @@ namespace PLWPF.Host_Windows.User_Controls
             MailAddress.Content = guestRequest.MailAddress;
             gr = guestRequest;
             this.host = host;
+            this.caller = caller;
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -43,8 +44,8 @@ namespace PLWPF.Host_Windows.User_Controls
                 if (hu != null)
                 {
                     CreateAccount.myBL.UpdateHostingUnit(hu, hu.HostingUnitKey);
+                    caller.Complete_Refresh();
                 }
-                caller.Complete_Refresh();
             };
         }
     }
