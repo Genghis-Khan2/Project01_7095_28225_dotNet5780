@@ -32,6 +32,8 @@ namespace PLWPF
             {
                 return;
             }
+
+            Thread.Sleep(10000);
         }
 
         //TODO: Thread idea is that we create a thread that will purge any expired guest requests
@@ -42,7 +44,6 @@ namespace PLWPF
             var bw = new BackgroundWorker();
             bw.DoWork += KillExpiredGRs;
             bw.WorkerReportsProgress = false;
-            bw.RunWorkerCompleted += (s, args) => Thread.Sleep(10000);
             bw.RunWorkerAsync();
         }
 

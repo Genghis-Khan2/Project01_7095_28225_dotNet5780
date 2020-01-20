@@ -37,7 +37,7 @@ namespace PLWPF.Admin_Windows.User_Controls
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            FR.FR_Imp.GetFR().RemoveHostFromFile(host.HostKey);
+            FR.FR_Imp.GetFR().RemoveHostFromFile(FR.FR_Imp.GetFR().GetHostUserNameFromKey(host.HostKey));
         }
     }
 }

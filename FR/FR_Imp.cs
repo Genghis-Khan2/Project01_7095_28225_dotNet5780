@@ -276,6 +276,27 @@ namespace FR
 
         #endregion
 
+        #region Get Username
+
+        public string GetHostUserNameFromKey(int key)
+        {
+            using (StreamReader sr = new StreamReader(hostPath))
+            {
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    if (int.Parse(line.Split(' ')[34]) == key)
+                    {
+                        return line.Split(' ')[0];
+                    }
+                }
+
+                return null;
+            }
+        }
+
+        #endregion
+
         #region Check If Username Exists
 
         public bool CheckIfGuestExists(string username)
@@ -605,16 +626,18 @@ namespace FR
 
         #region Remove Functions
 
-        public void RemoveHostFromFile(int key)
+        public void RemoveHostFromFile(string username)
         {
+            using (StreamWriter sw = new StreamWriter(tmpPath, false)) { }
             using (StreamReader sr = new StreamReader(hostPath))
             {
                 string line = sr.ReadLine();
 
                 while (line != null)
                 {
-                    if (int.Parse(line.Split(' ')[33]) == key)
+                    if (line.StartsWith(username))
                     {
+                        line = sr.ReadLine();
                         continue;
                     }
 
@@ -622,9 +645,12 @@ namespace FR
                     {
                         sw.WriteLine(line);
                     }
+
+                    line = sr.ReadLine();
                 }
             }
 
+            using (StreamWriter sw = new StreamWriter(hostPath, false)) { }
             using (StreamReader sr = new StreamReader(tmpPath))
             {
                 string line = sr.ReadLine();
@@ -635,7 +661,70 @@ namespace FR
                     {
                         sw.WriteLine(line);
                     }
+
+                    line = sr.ReadLine();
                 }
+            }
+        }
+
+        public void RemoveGuestFromFile(string username)
+        {
+            using (StreamWriter sw = new StreamWriter(tmpPath, false)) { }
+            using (StreamReader sr = new StreamReader(guestPath))
+            {
+                string line = sr.ReadLine();
+
+                while (line != null)
+                {
+                    if (line.StartsWith(username))
+                    {
+                        line = sr.ReadLine();
+                        continue;
+                    }
+
+                    using (StreamWriter sw = new StreamWriter(tmpPath, false))
+                    {
+                        sw.WriteLine(line);
+                    }
+
+                    line = sr.ReadLine();
+                }
+            }
+
+            using (StreamWriter sw = new StreamWriter(guestPath, false)) { }
+            using (StreamReader sr = new StreamReader(tmpPath))
+            {
+                string line = sr.ReadLine();
+
+                while (line != null)
+                {
+                    using (StreamWriter sw = new StreamWriter(guestPath, false))
+                    {
+                        sw.WriteLine(line);
+                    }
+
+                    line = sr.ReadLine();
+                }
+            }
+        }
+
+        #endregion
+
+        #region Return List of Guests
+
+        public List<string> GetListOfGuestNames()
+        {
+            using (StreamReader sr = new StreamReader(guestPath))
+            {
+                List<string> list = new List<string>();
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    list.Add(line.Split(' ')[0]);
+                    line = sr.ReadLine();
+                }
+
+                return list;
             }
         }
 
@@ -644,4 +733,3 @@ namespace FR
 
     }
 }
-

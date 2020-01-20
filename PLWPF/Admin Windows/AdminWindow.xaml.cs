@@ -102,12 +102,23 @@ namespace PLWPF
             }
         }
 
+        private void Refresh_Guests()
+        {
+            GuestStack.Children.Clear();
+            var list = FR.FR_Imp.GetFR().GetListOfGuestNames();
+            foreach (var i in list)
+            {
+                GuestStack.Children.Add(new AdminGuestUC(i));
+            }
+        }
+
         private void Complete_Refresh()
         {
             Refresh_GuestRequests();
             Refresh_Hosts();
             Refresh_HostingUnits();
             Refresh_Orders();
+            Refresh_Guests();
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
