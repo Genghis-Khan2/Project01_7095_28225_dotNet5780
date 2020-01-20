@@ -56,7 +56,7 @@ namespace PLWPF
                          select i;
                 foreach (var i in li)
                 {
-                    HostStack.Children.Add(new AdminHostUC(i));
+                    HostStack.Children.Add(new AdminHostUC(this, i));
                 }
             }
             catch (Exceptions.NoItemsException)
@@ -112,7 +112,7 @@ namespace PLWPF
             }
         }
 
-        private void Complete_Refresh()
+        internal void Complete_Refresh()
         {
             Refresh_GuestRequests();
             Refresh_Hosts();

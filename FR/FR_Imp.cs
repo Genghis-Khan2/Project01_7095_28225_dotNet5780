@@ -285,7 +285,7 @@ namespace FR
                 string line = sr.ReadLine();
                 while (line != null)
                 {
-                    if (int.Parse(line.Split(' ')[34]) == key)
+                    if (int.Parse(line.Split(' ')[32]) == key)
                     {
                         return line.Split(' ')[0];
                     }
@@ -710,7 +710,7 @@ namespace FR
 
         #endregion
 
-        #region Return List of Guests
+        #region Return List of Users
 
         public List<string> GetListOfGuestNames()
         {
