@@ -115,5 +115,10 @@ namespace PLWPF
             GuestRequestInfo gri = new GuestRequestInfo(((GuestRequest)RequestListBox.SelectedItem));
             gri.Show();
         }
+
+        private void EditUserButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

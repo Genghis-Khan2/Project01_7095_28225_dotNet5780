@@ -42,7 +42,7 @@
     <Grid>
         <Grid ShowGridLines="False">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="4*" />
                 <ColumnDefinition Width="10*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -56,7 +56,6 @@
                 <TextBlock FontSize="22" Text="{Binding UserName}" TextWrapping="Wrap"/>
             </StackPanel>
             <Button Grid.Column="0" FontSize="20" Grid.Row="1" Content="Add Guest Request" x:Name="AddButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="110" Margin="10" Click="AddButton_Click"/>
-            <Button Grid.Column="0" FontSize="20" Grid.Row="2" Content="Edit User" x:Name="EditUserButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10"/>
             <ListBox ItemTemplate="{StaticResource RequestTemplate}" HorizontalContentAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" x:Name="RequestListBox" Background="LightGray"/>
             <Button Grid.Column="1" Grid.Row="4" FontSize="20" Content="Refresh" x:Name="RefreshButton" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2" Width="100" Click="RefreshButton_Click"/>
             <Button Grid.Column="1" Grid.Row="3" FontSize="20" Content="Delete" x:Name="DeleteRequestButton" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,2.04" Width="100" Click="DeleteRequestButton_Click" Height="34">
