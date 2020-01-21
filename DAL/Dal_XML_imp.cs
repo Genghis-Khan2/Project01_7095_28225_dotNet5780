@@ -6,6 +6,7 @@ using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using BE;
+using Exceptions;
 
 namespace DAL
 {
@@ -48,52 +49,54 @@ namespace DAL
 
         #region Loading Functions
 
-        public static T LoadFromXML<T>(string path)
+        #region Loading Object List Functions
+        private List<HostingUnit> LoadHostingUnitList()
         {
-            FileStream file = new FileStream(path, FileMode.Open);
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-            T result = (T)xmlSerializer.Deserialize(file);
-            file.Close();
-            return result;
+            using (StreamReader sr = new StreamReader(hostingUnitPath))
+            {
+                if (sr.Peek() != -1)
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<HostingUnit>));
+                    List<HostingUnit> list = (List<HostingUnit>)xmlSerializer.Deserialize(sr);
+                    return list;
+                }
+            }
+
+            return new List<HostingUnit>();
         }
 
-        #region Loading Single Object Functions
-        /// <summary>
-        /// Loads the guest requests XML file into the root object
-        /// </summary>
-        /// <exception cref="UnknownException">The exception thrown is unclear</exception>
-        private void LoadGuestRequests()
+        private List<Host> LoadHostList()
         {
-            try
+            using (StreamReader sr = new StreamReader(hostsPath))
             {
-                guestRequestRoot = XElement.Load(guestRequestPath);
+                if (sr.Peek() != -1)
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Host>));
+                    List<Host> list = (List<Host>)xmlSerializer.Deserialize(sr);
+                    return list;
+                }
             }
-            catch
-            {
 
-                throw;
-            }
+            return new List<Host>();
+
         }
-        /// <summary>
-        /// Loads the hosting units XML file into the root object
-        /// </summary>
-        /// <exception cref="UnknownException">The exception thrown is unclear</exception>
-        /// <summary>
-        /// Loads the orders XML file into the root object
-        /// </summary>
-        /// <exception cref="UnknownException">The exception thrown is unclear</exception>
-        private void LoadHostingUnits()
+
+        private List<GuestRequest> LoadGuestRequestList()
         {
-            try
+            using (StreamReader sr = new StreamReader(guestRequestPath))
             {
-                hostingUnitRoot = XElement.Load(hostingUnitPath);
+                if (sr.Peek() != -1)
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<GuestRequest>));
+                    List<GuestRequest> list = (List<GuestRequest>)xmlSerializer.Deserialize(sr);
+                    return list;
+                }
             }
-            catch
-            {
-                throw;
-            }
+
+            return new List<GuestRequest>();
         }
-        private void LoadOrders()
+
+        private void LoadOrderData()
         {
             try
             {
@@ -101,60 +104,47 @@ namespace DAL
             }
             catch
             {
-
-                throw;
+                throw new Exception("File loading problem");
             }
         }
-        /// <summary>
-        /// Loads the hosts XML file into the root object
-        /// </summary>
-        /// <exception cref="UnknownException">The exception thrown is unclear</exception>
-        private void LoadHosts()
-        {
-            try
-            {
-                hostRoot = XElement.Load(hostsPath);
-            }
-            catch
-            {
 
-                throw;
-            }
-        }
-        #endregion
-
-        #region Loading Object List Functions
-        private List<HostingUnit> LoadHostingUnitList()
-        {
-            FileStream file = new FileStream(hostingUnitPath, FileMode.Open);
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<HostingUnit>));
-            List<HostingUnit> list = (List<HostingUnit>)xmlSerializer.Deserialize(file);
-            file.Close();
-            return list;
-        }
-        private List<Host> LoadHostList()
-        {
-            FileStream file = new FileStream(hostsPath, FileMode.Open);
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Host>));
-            List<Host> list = (List<Host>)xmlSerializer.Deserialize(file);
-            file.Close();
-            return list;
-        }
-        private List<GuestRequest> LoadGuestRequestList()
-        {
-            FileStream file = new FileStream(guestRequestPath, FileMode.Open);
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<GuestRequest>));
-            List<GuestRequest> list = (List<GuestRequest>)xmlSerializer.Deserialize(file);
-            file.Close();
-            return list;
-        }
         private List<Order> LoadOrderList()
         {
-            FileStream file = new FileStream(orderPath, FileMode.Open);
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Order>));
-            List<Order> list = (List<Order>)xmlSerializer.Deserialize(file);
-            file.Close();
-            return list;
+            LoadOrderData();
+            List<Order> orders;
+            try
+            {
+                orders = (from ord in orderRoot.Elements("order")
+                          select new Order()
+                          {
+                              CreateDate = new DateTime
+                              (
+                                  int.Parse(ord.Element("createdate").Element("year").Value),
+                                  int.Parse(ord.Element("createdate").Element("month").Value),
+                                  int.Parse(ord.Element("createdate").Element("day").Value)
+                              ),
+
+                              OrderDate = new DateTime
+                              (
+                                  int.Parse(ord.Element("orderdate").Element("year").Value),
+                                  int.Parse(ord.Element("orderdate").Element("month").Value),
+                                  int.Parse(ord.Element("orderdate").Element("day").Value)
+                              ),
+
+                              GuestRequestKey = int.Parse(ord.Element("guestrequestkey").Value),
+                              HostingUnitKey = int.Parse(ord.Element("hostingunitkey").Value),
+                              OrderKey = int.Parse(ord.Element("orderkey").Value),
+                              Status = (Enums.OrderStatus)Enum.Parse(typeof(Enums.OrderStatus), ord.Element("status").Value)
+                          }
+            ).ToList();
+            }
+
+            catch
+            {
+                orders = new List<Order>();
+            }
+
+            return orders;
         }
 
         #endregion
@@ -163,8 +153,30 @@ namespace DAL
 
         #region Saving Functions
 
-        #region Saving Object List Functions
-        private void SaveGuestRequestList(List<GuestRequest> guestRequests)
+        private void SaveOrders(List<Order> list)
+        {
+            orderRoot = new XElement("orders",
+                         from order in list
+                         select new XElement("order",
+                            new XElement("hostingunitkey", order.HostingUnitKey),
+                            new XElement("guestrequestkey", order.GuestRequestKey),
+                            new XElement("order", order.OrderKey),
+                            new XElement("status", order.Status),
+                            new XElement("createdate",
+                                new XElement("year", order.CreateDate.Year),
+                                new XElement("month", order.CreateDate.Month),
+                                new XElement("year", order.CreateDate.Day)),
+                            new XElement("orderdate",
+                                new XElement("year", order.OrderDate.Year),
+                                new XElement("month", order.OrderDate.Month),
+                                new XElement("year", order.OrderDate.Day))));
+
+            orderRoot.Save(orderPath);
+
+        }
+
+        #region Saving Object List Function
+        private void SaveObjectList<T>(List<T> objects, string path)
         {
             //guestRequestRoot = new XElement("guestrequests",
             //                    from g in guestRequests
@@ -198,91 +210,88 @@ namespace DAL
             //    );
 
             //guestRequestRoot.Save(guestRequestPath);
-
-            FileStream file = new FileStream(guestRequestPath, FileMode.Create);
-            XmlSerializer xmlSerializer = new XmlSerializer(guestRequests.GetType());
-            xmlSerializer.Serialize(file, guestRequests);
-            file.Close();
-        }
-
-        private void SaveHostingUnitList(List<HostingUnit> hostingUnits)
-        {
-            FileStream file = new FileStream(hostingUnitPath, FileMode.Create);
-            XmlSerializer xmlser = new XmlSerializer(typeof(HostingUnit));
-            xmlser.Serialize(file, hostingUnits);
-            file.Close();
-        }
-
-        private void SaveHostList(List<Host> hosts)
-        {
-            //hostRoot = new XElement("hosts",
-            //                from h in hosts
-            //                select new XElement("host",
-            //                        new XElement("name",
-            //                            new XElement("privatename", h.PrivateName),
-            //                            new XElement("familyname", h.FamilyName)),
-            //                        new XElement("phonenumber", h.PhoneNumber),
-            //                        new XElement("mailaddress", h.MailAddress),
-            //                        new XElement("brankbranchdetails",
-            //                            new XElement("banknumber", h.BankBranchDetails.BankNumber),
-            //                            new XElement("bankname", h.BankBranchDetails.BankName),
-            //                            new XElement("branchnumber", h.BankBranchDetails.BranchNumber),
-            //                            new XElement("branchaddress", h.BankBranchDetails.BranchAddress),
-            //                            new XElement("branchcity", h.BankBranchDetails.BranchCity)),
-            //                        new XElement("bankaccountnumber", h.BankAccountNumber),
-            //                        new XElement("collectionclearance", h.CollectionClearance)));
-            //hostRoot.Save(hostsPath);
-
-            FileStream file = new FileStream(hostsPath, FileMode.Create);
-            XmlSerializer xmlSerializer = new XmlSerializer(hosts.GetType());
-            xmlSerializer.Serialize(file, hosts);
-            file.Close();
-        }
-
-        private void SaveOrderList(List<Order> orders)
-        {
-            FileStream file = new FileStream(orderPath, FileMode.Create);
-            XmlSerializer xmlSerializer = new XmlSerializer(orders.GetType());
-            xmlSerializer.Serialize(file, orders);
-            file.Close();
-        }
-
-        #endregion
-
-        #region Saving Single Objects Functions
-        private void SaveToXML<T>(T source, string path)
-        {
-            FileStream file;
-            if (File.Exists(path))
+            using (StreamWriter sw = new StreamWriter(path, false))
             {
-                file = new FileStream(path, FileMode.Append);
+                XmlSerializer xmlSerializer = new XmlSerializer(objects.GetType());
+                xmlSerializer.Serialize(sw, objects);
             }
-
-            else
-            {
-                file = new FileStream(path, FileMode.Create);
-            }
-
-            var xmlSerializer = new XmlSerializer(source.GetType(), new XmlRootAttribute("guestrequests"));
-            xmlSerializer.Serialize(file, source);
-            file.Close();
         }
+
         #endregion
         #endregion
 
         public void AddGuestRequest(GuestRequest gr)
         {
-            SaveToXML(gr, guestRequestPath);
+            if (gr.GuestRequestKey == 0)
+            {
+                gr.GuestRequestKey = Configuration.GuestRequestKey;
+            }
+            var list = LoadGuestRequestList();
+            if (list.Exists(s => s.GuestRequestKey == gr.GuestRequestKey))
+            {
+                throw new AlreadyExistsException(gr.GuestRequestKey, "GuestRequest");
+            }
+
+            list.Add(gr);
+
+            SaveObjectList(list, guestRequestPath);
         }
 
         public void AddHostingUnit(HostingUnit hu)
         {
-            SaveToXML(hu, hostingUnitPath);
+            if (hu.HostingUnitKey == 0)
+            {
+                hu.HostingUnitKey = Configuration.HostingUnitKey;
+            }
+
+            var list = LoadHostingUnitList();
+
+            if (list.Exists(s => s.HostingUnitKey == hu.HostingUnitKey))
+            {
+                throw new AlreadyExistsException(hu.HostingUnitKey, "HostingUnit");
+            }
+
+            list.Add(hu);
+
+            SaveObjectList(list, hostingUnitPath);
+        }
+
+        public void AddHost(Host host)
+        {
+            if (host.HostKey == 0)
+            {
+                host.HostKey = Configuration.HostKey;
+            }
+
+            var list = LoadHostList();
+
+            if (list.Exists(s => s.HostKey == host.HostKey))
+            {
+                throw new AlreadyExistsException(host.HostKey, "Host");
+            }
+
+            list.Add(host);
+
+            SaveObjectList(list, hostsPath);
         }
 
         public void AddOrder(Order ord)
         {
-            throw new NotImplementedException();
+            if (ord.OrderKey == 0)
+            {
+                ord.OrderKey = Configuration.OrderKey;
+            }
+
+            var list = LoadOrderList();
+
+            if (list.Exists(s => s.OrderKey == ord.OrderKey))
+            {
+                throw new AlreadyExistsException(ord.OrderKey, "Order");
+            }
+
+            list.Add(ord);
+
+            SaveOrders(list);
         }
 
         public bool CheckIfBankAccountExists(int key)

@@ -28,9 +28,9 @@ namespace BE
             int length = arr.GetLength(0);
             int columns = length / rows;
             T[,] arrExpanded = new T[rows, columns];
-            for (int j = 0; j < rows; j++)
+            for (int i = 0; i < rows - 1; i++)
             {
-                for (int i = 0; i < columns; i++)
+                for (int j = 0; j < columns - 1; j++)
                 {
                     arrExpanded[i, j] = arr[i + j * rows];
                 }
