@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="PLWPF.HostingUnitUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PLWPF"
+             mc:Ignorable="d" d:DesignWidth="800" Height="54">
+    <Grid ShowGridLines="True" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" x:Name="Name" HorizontalAlignment="Center"/>
+        <Label Grid.Column="1" x:Name="Key" HorizontalAlignment="Center"/>
+        <Label Grid.Column="2" x:Name="Commission" HorizontalAlignment="Center"/>
+
+    </Grid>
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Remove" x:Name="RemoveButton" Click="RemoveButton_Click"/>
+            <MenuItem Header="Edit" x:Name="EditButton" Click="EditButton_Click"/>
+            <Separator/>
+            <MenuItem Header="Check Matches" x:Name="MatchesButton" Click="MatchesButton_Click"/>
+        </ContextMenu>
+    </UserControl.ContextMenu>
+</UserControl>

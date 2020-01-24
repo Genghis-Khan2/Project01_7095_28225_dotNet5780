@@ -1,0 +1,47 @@
+﻿<Window x:Class="PLWPF.LoginPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLWPF"
+        xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Login page" Height="450" Width="600">
+
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <xctf:WatermarkTextBox Grid.Row="2" Grid.Column="1" x:Name="UserTextBox" FontSize="24" Watermark="Username" HorizontalAlignment="Center" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="40" Width="230" KeyDown="UserTextBox_KeyDown"/>
+        <xctf:WatermarkPasswordBox Grid.Row="3" Grid.Column="1" x:Name="PassBox" Watermark="Password" PasswordChar="*" FontSize="24" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="40" Width="230" KeyDown="PassBox_KeyDown"/>
+        <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Content="Login to User:" FontFamily="Baskerville Old Face" FontSize="36" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        <Label x:Name="WrongLabel" Grid.Row="1" Grid.Column="1" Content="Username or password are incorrect" FontFamily="Baskerville Old Face" FontSize="14" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="#FFE80E0E" Visibility="Hidden"/>
+        <Button Grid.Row="4" Grid.Column="1" Content="Login" FontSize="22" FontWeight="DemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="LoginButton" Height="40" Width="200" Click="LoginButton_Click">
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=UserTextBox, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=PassBox, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Grid.Row="5" Grid.Column="1" Content="Create new user" FontSize="22" FontWeight="DemiBold" HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="CreateAccountButton" Height="40" Width="200" Click="CreateAccountButton_Click" />
+        <Button Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Clear" FontSize="22" FontWeight="DemiBold" x:Name="ClearButton" Height="40" Width="100" Click="ClearButton_Click"/>
+
+    </Grid>
+</Window>

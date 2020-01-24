@@ -1,0 +1,60 @@
+﻿<Window x:Class="PLWPF.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLWPF"
+        xmlns:local1="clr-namespace:PLWPF.User_Control"
+        mc:Ignorable="d"
+        Title="AdminWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="109*"/>
+            <ColumnDefinition Width="291*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--It may seem arbitrary but 100 makes sense. Otherwise it would be too much-->
+        <Label Content="Value of tax" HorizontalAlignment="Center" Margin="0,56,0,0" VerticalAlignment="Top" Height="26" Width="72"/>
+        <local1:UpDownTextBox x:Name="UpDownControl" Margin="73,93,62,297"/>
+        <TabControl Grid.Column="1">
+            <TabItem Header="Guest Requests">
+                <ScrollViewer>
+                    <StackPanel x:Name="GRStack">
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Hosts">
+                <ScrollViewer>
+                    <StackPanel x:Name="HostStack">
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Hosting Units">
+                <ScrollViewer>
+                    <StackPanel x:Name="HUStack">
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Orders">
+                <ScrollViewer>
+                    <StackPanel x:Name="OrderStack">
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Guests">
+                <ScrollViewer>
+                    <StackPanel x:Name="GuestStack">
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+        <Button Content="Refresh" FontSize="55" FontWeight="Bold" x:Name="RefreshButton" HorizontalAlignment="Center" Margin="0,212,0,0" VerticalAlignment="Top" Height="222" Width="218" Click="RefreshButton_Click"/>
+        <Button Content="Log Out" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,163,0,0" VerticalAlignment="Top" Height="54" Width="218" Click="Button_Click"/>
+
+    </Grid>
+</Window>
