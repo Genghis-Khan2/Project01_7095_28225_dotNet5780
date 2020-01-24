@@ -899,6 +899,31 @@ namespace DAL
             configRoot.Save(configPath);
         }
 
+        public void AddGuest(Guest g)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckIfGuestExists(int key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Guest> GetAllGuests()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Guest GetGuest(int key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveGuest(int key)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #endregion

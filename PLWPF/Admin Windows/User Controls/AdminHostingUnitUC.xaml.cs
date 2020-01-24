@@ -38,7 +38,7 @@ namespace PLWPF.Admin_Windows.User_Controls
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            CreateAccount.myBL.RemoveHostingUnit(hu.HostingUnitKey);
+            GlobalVars.myBL.RemoveHostingUnit(hu.HostingUnitKey);
         }
     }
 }

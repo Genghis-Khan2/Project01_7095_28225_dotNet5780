@@ -30,7 +30,7 @@ namespace PLWPF
             if (Pass.Password == ConfPass.Password)
             {
 
-                if (FR.FR_Imp.GetFR().CheckIfGuestExists(User.Text) ||
+                if (GlobalVars.myBL.CheckIfGuestExists(User.Text) ||
                     FR.FR_Imp.GetFR().CheckIfHostExists(User.Text))
                 {
                     MessageBox.Show("There is already an account by that name!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -41,7 +41,7 @@ namespace PLWPF
                     MessageBox.Show("Invalid username!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                int key = Configuration.GuestKey;
+                int key = GlobalVars.myBL.Get;
                 FR_Imp.GetFR().WriteGuestToFile(User.Text, Pass.Password, key);
                 MessageBox.Show("You have been registered!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Hide();

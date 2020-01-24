@@ -30,7 +30,7 @@ namespace PLWPF.Host_Windows.User_Controls
 
         private void AddRadioButtons()
         {
-            foreach (var i in CreateAccount.myBL.GetMatchingHostingUnits(gr, host))
+            foreach (var i in GlobalVars.myBL.GetMatchingHostingUnits(gr, host))
             {
                 RadioButton rb = new RadioButton();
                 rb.Content = i.HostingUnitName;
@@ -47,7 +47,7 @@ namespace PLWPF.Host_Windows.User_Controls
                     RadioButton rb = i as RadioButton;
                     if ((bool)rb.IsChecked)
                     {
-                        return CreateAccount.myBL.GetMatchingHostingUnits(gr, host)[RadioButtons.Children.IndexOf(rb)];
+                        return GlobalVars.myBL.GetMatchingHostingUnits(gr, host)[RadioButtons.Children.IndexOf(rb)];
                     }
                 }
             }

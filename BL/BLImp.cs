@@ -204,6 +204,7 @@ namespace BL
             }
             catch (AlreadyExistsException e)
             {
+
                 throw new AlreadyExistsException(e.Message);
             }
         }
@@ -459,7 +460,7 @@ namespace BL
                 linkedOrder.AsParallel().ForAll((x => UpdateOrderStatus(x.OrderKey, Enums.OrderStatus.ClosedByHost)));
 
                 //calculate the Commission
-                hostingUnit.Commission += GetNumberOfDateInRange(guestRequest.EntryDate, guestRequest.ReleaseDate) * Configuration.Commission;
+                hostingUnit.Commission += GetNumberOfDateInRange(guestRequest.EntryDate, guestRequest.ReleaseDate) * DAL_Adapter.GetDAL().GetCommission();
                 UpdateHostingUnit(hostingUnit, hostingUnit.HostingUnitKey);
             }
 
@@ -582,6 +583,21 @@ namespace BL
         }
 
         #endregion
+
+        #endregion
+
+        #region Guest
+
+        public IEnumerable<Guest> GetAllGuests()
+        {
+            return DAL_Adapter.GetDAL().GetAllGuests();
+        }
+
+        public Guest GetGuest(int key)
+        {
+            return DAL_Adapter.GetDAL().GetGuest(key);
+        }
+
 
         #endregion
 
@@ -727,7 +743,7 @@ namespace BL
         /// <returns><see cref="IEnumerable{GuestRequest}"/>All guest request the specific guest have</returns>
         public IEnumerable<GuestRequest> GetAllGuestRequestToGuest(int key)
         {
-            return GetAllGuestRequestWhere((x) => ((GuestRequest)x).GuestKey == key);
+            return GetGuest(key).guestRequests;
         }
 
         #endregion

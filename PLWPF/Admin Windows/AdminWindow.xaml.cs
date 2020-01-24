@@ -34,7 +34,7 @@ namespace PLWPF
             GRStack.Children.Clear();
             try
             {
-                var li = from i in CreateAccount.myBL.GetAllGuestRequests()
+                var li = from i in GlobalVars.myBL.GetAllGuestRequests()
                          select i;
                 foreach (var i in li)
                 {
@@ -52,7 +52,7 @@ namespace PLWPF
             HostStack.Children.Clear();
             try
             {
-                var li = from i in CreateAccount.myBL.GetAllHosts()
+                var li = from i in GlobalVars.myBL.GetAllHosts()
                          select i;
                 foreach (var i in li)
                 {
@@ -70,7 +70,7 @@ namespace PLWPF
             HUStack.Children.Clear();
             try
             {
-                var li = from i in CreateAccount.myBL.GetAllHostingUnits()
+                var li = from i in GlobalVars.myBL.GetAllHostingUnits()
                          select i;
                 foreach (var i in li)
                 {
@@ -89,7 +89,7 @@ namespace PLWPF
 
             try
             {
-                var li = from i in CreateAccount.myBL.GetAllOrders()
+                var li = from i in GlobalVars.myBL.GetAllOrders()
                          select i;
                 foreach (var i in li)
                 {

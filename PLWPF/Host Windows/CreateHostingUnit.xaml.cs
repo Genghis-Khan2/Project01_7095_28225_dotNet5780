@@ -119,20 +119,18 @@ namespace PLWPF.Host_Windows
             {
                 if (updating)
                 {
-                    CreateAccount.myBL.RemoveHostingUnit(hu.HostingUnitKey);
+                    GlobalVars.myBL.RemoveHostingUnit(hu.HostingUnitKey);
                 }
-                CreateAccount.myBL.AddHostingUnit(unit);
+                GlobalVars.myBL.AddHostingUnit(unit);
             }
-            catch
+            catch (Exceptions.AlreadyExistsException)
             {
-                FR.FR_Imp.GetFR().SetHostingUnitKey(FR.FR_Imp.GetFR().GetHostingUnitKey() - 1);
-                MessageBox.Show("Error with one or more of your fields", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("This unit already exists", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (updating)
             {
                 MessageBox.Show("You have updated a hosting unit successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
-
             }
 
             else

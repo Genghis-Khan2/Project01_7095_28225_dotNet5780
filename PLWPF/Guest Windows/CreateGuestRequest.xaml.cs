@@ -21,11 +21,11 @@ namespace PLWPF
     public partial class CreateGuestRequest : Window
     {
         public enum Type { Edit, Create };
-        int GuestKey;
-       
-        public CreateGuestRequest(int guestKey)
+        Guest Guest;
+
+        public CreateGuestRequest(Guest guest)
         {
-            this.GuestKey = guestKey;
+            Guest = guest;
             InitializeComponent();
             setDefaultValueToFields();
         }
@@ -41,10 +41,7 @@ namespace PLWPF
             {
                 GuestRequest gr = new GuestRequest()
                 {
-
-                    PrivateName = PrivateNameBox.Text,
-                    FamilyName = FamilyNameBox.Text,
-                    MailAddress = MailAddressBox.Text,
+                    //TODO: Replan this part
                     Area = (Enums.Area)Enum.Parse(typeof(Enums.Area),
                     AreaComboBox.SelectionBoxItem as string),
 
@@ -70,12 +67,10 @@ namespace PLWPF
                     ReleaseDate = (DateTime)DepartureDateCalendar.SelectedDate,
                     RegistrationDate = DateTime.Today,
 
-                    GuestKey = this.GuestKey
-
-
+                    Requester = Guest
                 };
 
-                CreateAccount.myBL.AddGuestRequest(gr);
+                GlobalVars.myBL.AddGuestRequest(gr);
             }
             catch (AlreadyExistsException)
             {

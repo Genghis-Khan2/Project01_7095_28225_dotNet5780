@@ -49,14 +49,14 @@ namespace PLWPF
 
             try
             {
-                var li = from i in CreateAccount.myBL.getHostingUnitByHost()
-                         where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.UserName)
+                var li = from i in GlobalVars.myBL.getHostingUnitByHost()
+                         where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(GlobalVars.UserName)
                          select new { Hostingunits = i };
                 foreach (var i in li)
                 {
                     foreach (var stuff in i.Hostingunits)
                     {
-                        list.AddRange(CreateAccount.myBL.GetMatchingGuestRequests(stuff));
+                        list.AddRange(GlobalVars.myBL.GetMatchingGuestRequests(stuff));
 
                     }
                 }
@@ -68,7 +68,7 @@ namespace PLWPF
 
                 try
                 {
-                    var order = from i in CreateAccount.myBL.GetAllOrders()
+                    var order = from i in GlobalVars.myBL.GetAllOrders()
                                 select i;
                     foreach (var i in order)
                     {
@@ -99,8 +99,8 @@ namespace PLWPF
             try
             {
 
-                var imp = from i in CreateAccount.myBL.getHostingUnitByHost()
-                          where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.UserName)
+                var imp = from i in GlobalVars.myBL.getHostingUnitByHost()
+                          where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(GlobalVars.UserName)
                           select i;
                 IEnumerable<BE.Order> ppp = new List<BE.Order>();
 
@@ -108,7 +108,7 @@ namespace PLWPF
                 {
                     foreach (var li in i)
                     {
-                        ppp = from j in CreateAccount.myBL.GetAllOrders()
+                        ppp = from j in GlobalVars.myBL.GetAllOrders()
                               where li.HostingUnitKey == j.HostingUnitKey
                               select j;
                     }
@@ -133,8 +133,8 @@ namespace PLWPF
             HostingUnitStack.Children.Add(Resources["TitlesBar"] as Grid);
             try
             {
-                var li = from i in CreateAccount.myBL.getHostingUnitByHost()
-                         where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(LoginPage.UserName)
+                var li = from i in GlobalVars.myBL.getHostingUnitByHost()
+                         where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(GlobalVars.UserName)
                          select new { Hostingunits = i };
 
                 foreach (var i in li)
@@ -162,7 +162,7 @@ namespace PLWPF
             var dialogResult = MessageBox.Show("Are you sure you want to delete the hosting unit?\nNote! This will permanently delete the hosting unit and all related Orders!", "Alert!", MessageBoxButton.YesNo);
             if (dialogResult == MessageBoxResult.Yes)
             {
-                CreateAccount.myBL.RemoveHostingUnit(key);
+                GlobalVars.myBL.RemoveHostingUnit(key);
                 Complete_Refresh();
             }
         }
@@ -184,7 +184,7 @@ namespace PLWPF
             List<BE.GuestRequest> list = new List<BE.GuestRequest>();
 
 
-            list.AddRange(CreateAccount.myBL.GetMatchingGuestRequests(hu));
+            list.AddRange(GlobalVars.myBL.GetMatchingGuestRequests(hu));
 
             foreach (var i in list)
             {

@@ -28,8 +28,8 @@ namespace PLWPF.Guest_Windows
 
         private void LoadData()
         {
-            NameLab.Content = gr.PrivateName + " " + gr.FamilyName;
-            MailLab.Content = gr.MailAddress;
+            NameLab.Content = gr.Requester.PrivateName + " " + gr.Requester.FamilyName;
+            MailLab.Content = gr.Requester.MailAddress;
             RegisterLab.Content = string.Format("{0}.{1}", gr.RegistrationDate.Day, gr.RegistrationDate.Month);
             DurationLab.Content = string.Format("{0}.{1} - {2}.{3}", gr.EntryDate.Day, gr.EntryDate.Month, gr.ReleaseDate.Day, gr.ReleaseDate.Month);
             AreaLab.Content = gr.Area.ToString();

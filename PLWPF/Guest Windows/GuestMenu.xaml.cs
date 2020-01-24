@@ -38,11 +38,11 @@ namespace PLWPF
             RequestListBox.Items.Clear();
             try
             {
-                var t1 = CreateAccount.myBL.GetAllGuestRequests().ToArray();
-                var allGuestRequest = from item in CreateAccount.myBL.GetAllGuestRequests()
+                var t1 = GlobalVars.myBL.GetAllGuestRequests().ToArray();
+                var allGuestRequest = from item in GlobalVars.myBL.GetAllGuestRequests()
                                       where item.GuestKey == Key
                                       select item;
-                //var allGuestRequest = CreateAccount.myBL.GetAllGuestRequestWhere((x) => ((GuestRequest)x).GuestKey == Key);
+                //var allGuestRequest = GlobalVars.myBL.GetAllGuestRequestWhere((x) => ((GuestRequest)x).GuestKey == Key);
 
                 var t = allGuestRequest.ToArray();
                 foreach (var item in allGuestRequest)

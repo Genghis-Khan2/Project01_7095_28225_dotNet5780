@@ -13,19 +13,17 @@ namespace PLWPF
     /// </summary>
     public partial class LoginPage : Window
     {
-        internal static string UserName;
-
         private void KillExpiredGRs(object sender, DoWorkEventArgs de)
         {
             try
             {
-                var li = from i in CreateAccount.myBL.GetAllGuestRequests()
+                var li = from i in GlobalVars.myBL.GetAllGuestRequests()
                          where i.Status == Enums.RequestStatus.CloseWithExpired
                          select i;
 
                 foreach (var i in li)
                 {
-                    CreateAccount.myBL.RemoveGuestRequest(i.GuestRequestKey);
+                    GlobalVars.myBL.RemoveGuestRequest(i.GuestRequestKey);
                 }
             }
             catch (Exceptions.NoItemsException)

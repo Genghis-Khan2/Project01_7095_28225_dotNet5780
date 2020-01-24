@@ -90,7 +90,7 @@ namespace PLWPF
                 FR.FR_Imp.GetFR().WriteHostToFile(User.Text, Pass.Password, BE.Configuration.HostKey, MailAddressBox.Text, PrivateNameBox.Text, FamilyNameBox.Text, PhoneNumberBox.Text);
                 MessageBox.Show("You have been registered!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                 Hide();
-                LoginPage.UserName = User.Text;
+                GlobalVars.UserName = User.Text;
                 var createWin = new HostMenu(new BE.Host()
                 {
                     MailAddress = MailAddressBox.Text,

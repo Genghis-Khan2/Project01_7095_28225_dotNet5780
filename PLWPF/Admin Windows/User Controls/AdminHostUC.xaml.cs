@@ -42,14 +42,14 @@ namespace PLWPF.Admin_Windows.User_Controls
         {
             try
             {
-                var HUs = from i in CreateAccount.myBL.GetAllHostingUnits()
+                var HUs = from i in GlobalVars.myBL.GetAllHostingUnits()
                           select i;
 
                 foreach (var i in HUs)
                 {
                     if (i.Owner.HostKey == host.HostKey)
                     {
-                        CreateAccount.myBL.RemoveHostingUnit(i.HostingUnitKey);
+                        GlobalVars.myBL.RemoveHostingUnit(i.HostingUnitKey);
                     }
                 }
             }

@@ -9,35 +9,8 @@ namespace BE
     /// </summary>
     public class GuestRequest
     {
-        public int GuestKey { get; set; }
+        public Guest Requester { get; set; };
         public int GuestRequestKey { get; set; } = 0;//No need to change, determined when creating the object
-        public string PrivateName { get; set; }
-        public string FamilyName { get; set; }
-        public string MailAddress
-        {
-            get
-            {
-                return mailAddress;
-            }
-            set
-            {
-                //Input integrity checking by using the email address integrity check in the System.Net.Mail.MailAddress function
-                try
-                {
-                    new System.Net.Mail.MailAddress(value);
-                    mailAddress = value;
-                    //if the email address valid
-                }
-                catch
-                {
-                    //if the email address is invalid
-                    mailAddress = "plony@almony.com";
-                    throw new FormatException("The format of the email isnt valid");
-                }
-            }
-        }
-
-        private string mailAddress;
         public Enums.RequestStatus Status { get; set; }
         public DateTime RegistrationDate { get; set; }
         public DateTime EntryDate { get; set; }
@@ -60,9 +33,6 @@ namespace BE
         {
             string res = "";
             res += "Guest Request Key: " + GuestRequestKey + "\n";
-            res += "Private Name: " + PrivateName + "\n";
-            res += "Family Name: " + FamilyName + "\n";
-            res += "Mail Address: " + MailAddress + "\n";
             res += "Status: " + Status + "\n";
             res += "Registration Date: " + RegistrationDate.ToString("dd.MM.yyyy") + "\n";
             res += "Entry Date: " + EntryDate.ToString("dd.MM.yyyy") + "\n";

@@ -31,7 +31,7 @@ namespace PLWPF.Admin_Windows.User_Controls
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            CreateAccount.myBL.UpdateOrderStatus(ord.OrderKey, BE.Enums.OrderStatus.ClosedByHost);
+            GlobalVars.myBL.UpdateOrderStatus(ord.OrderKey, BE.Enums.OrderStatus.ClosedByHost);
         }
     }
 }

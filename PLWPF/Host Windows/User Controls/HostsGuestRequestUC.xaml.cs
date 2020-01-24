@@ -43,7 +43,7 @@ namespace PLWPF.Host_Windows.User_Controls
                 hu = window.GetHostingUnit();
                 if (hu != null)
                 {
-                    CreateAccount.myBL.UpdateHostingUnit(hu, hu.HostingUnitKey);
+                    GlobalVars.myBL.UpdateHostingUnit(hu, hu.HostingUnitKey);
                     caller.Complete_Refresh();
                 }
             };

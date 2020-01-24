@@ -20,8 +20,6 @@ namespace PLWPF
     /// </summary>
     public partial class CreateAccount : Window
     {
-        internal static BL.IBL myBL = BL.BLImp.getBL();
-
         public CreateAccount()
         {
             InitializeComponent();

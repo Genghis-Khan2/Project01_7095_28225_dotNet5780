@@ -1,8 +1,0 @@
-Hello, I am the documentation machine for the project
-I was instructed to document the meaning of each of the numbers in the conf.data file
-
-GuestRequestKey
-HostKey
-HostingUnitKey
-OrderKey
-GuestKey

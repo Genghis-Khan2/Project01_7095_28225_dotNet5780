@@ -4,11 +4,11 @@ using System.Text;
 
 namespace DAL
 {
-    public class DAL_Adapter
+    public static class DAL_Adapter
     {
         public static IDAL GetDAL()
         {
-            return DalImp.GetDAL();
+            return Dal_XML_imp.GetDAL();
         }
     }
 }

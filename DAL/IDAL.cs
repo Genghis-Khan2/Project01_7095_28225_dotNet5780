@@ -10,6 +10,20 @@ namespace DAL
         // No need for the singletory functions to be here... They are in
         /// <see cref="DalImp"/>
 
+        #region Guest
+
+        void AddGuest(Guest g);
+
+        bool CheckIfGuestExists(int key);
+
+        IEnumerable<Guest> GetAllGuests();
+
+        Guest GetGuest(int key);
+
+        void RemoveGuest(int key);
+
+        #endregion
+
         #region GuestRequest These functions perform actions on GuestRequests
 
         #region AddGuestRequest This function adds a guest request
