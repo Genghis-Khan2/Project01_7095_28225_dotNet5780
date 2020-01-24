@@ -280,5 +280,33 @@ namespace DAL
 
         #endregion
 
+        #region Config Values Functions.
+
+        int GetGuestRequestKey();
+
+
+        int GetBankNumber();
+
+
+        int GetHostKey();
+
+
+
+        int GetHostingUnitKey();
+
+
+        int GetOrderKey();
+
+
+        float GetCommission();
+
+
+        int GetNumberOfDaysUntilExpired();
+
+
+        int GetGuestKey();
+
+
+        #endregion
     }
 }

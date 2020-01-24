@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
+using System.Xml.Linq;
+using System.IO;
 using BE;
 using DS;
 using Exceptions;
@@ -15,12 +16,23 @@ namespace DAL
     /// </summary>
     public class DalImp : IDAL
     {
+
+        #region Paths and Roots
+
+        private const string configPath = @"..\..\..\..\config.xml";
+        private XElement configRoot = null;
+
+        #endregion
+
         #region Singletory These parts are what make the class a singletory
 
         /// <summary>
         /// Private constructor for DalImp so that another instance can't be created
         /// </summary>
-        private DalImp() { }
+        private DalImp()
+        {
+            SetupConfigFile();
+        }
 
         protected static DalImp instance = null;
 
@@ -53,7 +65,7 @@ namespace DAL
         {
             if (0 == request.GuestRequestKey)
             {
-                request.GuestRequestKey = Configuration.GuestRequestKey;
+                request.GuestRequestKey = GetGuestRequestKey();
             }
 
 
@@ -180,7 +192,7 @@ namespace DAL
         {
             if (unit.HostingUnitKey == 0)
             {
-                unit.HostingUnitKey = Configuration.HostingUnitKey;
+                unit.HostingUnitKey = GetHostingUnitKey();
             }
 
 
@@ -314,7 +326,7 @@ namespace DAL
 
             if (0 == order.OrderKey)
             {
-                order.OrderKey = Configuration.OrderKey;
+                order.OrderKey = GetOrderKey();
             }
 
             var linq = from item in DataSource.ordersList
@@ -606,6 +618,285 @@ namespace DAL
         public bool CheckIfHostExists(int key)
         {
             return GetAllHosts().Any((h => h.HostKey == key));
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Config Values Functions
+
+        private void SetupConfigFile()
+        {
+            if (!File.Exists(configPath))
+            {
+                configRoot = new XElement("config",
+                             new XElement("guestrequestkey", 1),
+                             new XElement("banknumber", 1),
+                             new XElement("hostkey", 1),
+                             new XElement("hostingunitkey", 1),
+                             new XElement("orderkey", 1),
+                             new XElement("commission", 1),
+                             new XElement("numberofdaysuntilexpired", 1),
+                             new XElement("guestkey", 1));
+
+                configRoot.Save(configPath);
+            }
+        }
+
+        #region Get Config Values
+
+        public int GetGuestRequestKey()
+        {
+            int key = int.Parse(configRoot.Element("guestrequestkey").Value);
+            IncrementGuestRequestKey();
+            return key;
+        }
+
+        public int GetBankNumber()
+        {
+            int num = int.Parse(configRoot.Element("banknumber").Value);
+            IncrementBankNumber();
+            return num;
+        }
+
+        public int GetHostKey()
+        {
+            int key = int.Parse(configRoot.Element("hostkey").Value);
+            IncrementHostKey();
+            return key;
+        }
+
+        public int GetHostingUnitKey()
+        {
+            int key = int.Parse(configRoot.Element("hostingunitkey").Value);
+            IncrementHostingUnitKey();
+            return key;
+        }
+
+        public int GetOrderKey()
+        {
+            int key = int.Parse(configRoot.Element("orderkey").Value);
+            IncrementOrderKey();
+            return key;
+        }
+
+        public float GetCommission()
+        {
+            return float.Parse(configRoot.Element("commission").Value);
+        }
+
+        public int GetNumberOfDaysUntilExpired()
+        {
+            return int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
+        }
+
+        public int GetGuestKey()
+        {
+            int key = int.Parse(configRoot.Element("guestkey").Value);
+            IncrementGuestKey();
+            return key;
+        }
+
+        #endregion
+
+        #region Set Config Values
+
+        private void IncrementGuestRequestKey()
+        {
+            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
+            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
+            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
+            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
+            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
+            float commission = float.Parse(configRoot.Element("commission").Value);
+            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
+            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
+
+            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
+            configRoot = new XElement("config",
+                             new XElement("guestrequestkey", guestrequestkey + 1),
+                             new XElement("banknumber", banknumber),
+                             new XElement("hostkey", hostkey),
+                             new XElement("hostingunitkey", hostingunitkey),
+                             new XElement("orderkey", orderkey),
+                             new XElement("commission", commission),
+                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
+                             new XElement("guestkey", guestkey));
+
+            configRoot.Save(configPath);
+        }
+
+        private void IncrementBankNumber()
+        {
+            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
+            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
+            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
+            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
+            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
+            float commission = float.Parse(configRoot.Element("commission").Value);
+            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
+            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
+
+            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
+            configRoot = new XElement("config",
+                             new XElement("guestrequestkey", guestrequestkey),
+                             new XElement("banknumber", banknumber + 1),
+                             new XElement("hostkey", hostkey),
+                             new XElement("hostingunitkey", hostingunitkey),
+                             new XElement("orderkey", orderkey),
+                             new XElement("commission", commission),
+                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
+                             new XElement("guestkey", guestkey));
+
+            configRoot.Save(configPath);
+        }
+
+        private void IncrementHostKey()
+        {
+            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
+            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
+            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
+            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
+            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
+            float commission = float.Parse(configRoot.Element("commission").Value);
+            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
+            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
+
+            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
+            configRoot = new XElement("config",
+                             new XElement("guestrequestkey", guestrequestkey),
+                             new XElement("banknumber", banknumber),
+                             new XElement("hostkey", hostkey + 1),
+                             new XElement("hostingunitkey", hostingunitkey),
+                             new XElement("orderkey", orderkey),
+                             new XElement("commission", commission),
+                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
+                             new XElement("guestkey", guestkey));
+
+            configRoot.Save(configPath);
+        }
+
+        private void IncrementHostingUnitKey()
+        {
+            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
+            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
+            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
+            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
+            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
+            float commission = float.Parse(configRoot.Element("commission").Value);
+            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
+            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
+
+            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
+            configRoot = new XElement("config",
+                             new XElement("guestrequestkey", guestrequestkey),
+                             new XElement("banknumber", banknumber),
+                             new XElement("hostkey", hostkey),
+                             new XElement("hostingunitkey", hostingunitkey + 1),
+                             new XElement("orderkey", orderkey),
+                             new XElement("commission", commission),
+                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
+                             new XElement("guestkey", guestkey));
+
+            configRoot.Save(configPath);
+        }
+
+        private void IncrementOrderKey()
+        {
+            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
+            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
+            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
+            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
+            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
+            float commission = float.Parse(configRoot.Element("commission").Value);
+            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
+            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
+
+            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
+            configRoot = new XElement("config",
+                             new XElement("guestrequestkey", guestrequestkey),
+                             new XElement("banknumber", banknumber),
+                             new XElement("hostkey", hostkey),
+                             new XElement("hostingunitkey", hostingunitkey),
+                             new XElement("orderkey", orderkey + 1),
+                             new XElement("commission", commission),
+                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
+                             new XElement("guestkey", guestkey));
+
+            configRoot.Save(configPath);
+        }
+
+        public void SetCommission(float commission)
+        {
+            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
+            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
+            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
+            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
+            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
+            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
+
+            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
+            configRoot = new XElement("config",
+                             new XElement("guestrequestkey", guestrequestkey + 1),
+                             new XElement("banknumber", banknumber),
+                             new XElement("hostkey", hostkey),
+                             new XElement("hostingunitkey", hostingunitkey),
+                             new XElement("orderkey", orderkey),
+                             new XElement("commission", commission),
+                             new XElement("numberofdaysuntilexpired", commission),
+                             new XElement("guestkey", guestkey));
+
+            configRoot.Save(configPath);
+        }
+
+        public void SetNumberOfDaysUntilExpired(int val)
+        {
+            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
+            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
+            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
+            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
+            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
+            float commission = float.Parse(configRoot.Element("commission").Value);
+            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
+
+            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
+            configRoot = new XElement("config",
+                             new XElement("guestrequestkey", guestrequestkey + 1),
+                             new XElement("banknumber", banknumber),
+                             new XElement("hostkey", hostkey),
+                             new XElement("hostingunitkey", hostingunitkey),
+                             new XElement("orderkey", orderkey),
+                             new XElement("commission", commission),
+                             new XElement("numberofdaysuntilexpired", val),
+                             new XElement("guestkey", guestkey));
+
+            configRoot.Save(configPath);
+        }
+
+        private void IncrementGuestKey()
+        {
+            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
+            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
+            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
+            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
+            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
+            float commission = float.Parse(configRoot.Element("commission").Value);
+            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
+            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
+
+            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
+            configRoot = new XElement("config",
+                             new XElement("guestrequestkey", guestrequestkey),
+                             new XElement("banknumber", banknumber),
+                             new XElement("hostkey", hostkey),
+                             new XElement("hostingunitkey", hostingunitkey),
+                             new XElement("orderkey", orderkey),
+                             new XElement("commission", commission),
+                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
+                             new XElement("guestkey", guestkey + 1));
+
+            configRoot.Save(configPath);
         }
 
         #endregion
