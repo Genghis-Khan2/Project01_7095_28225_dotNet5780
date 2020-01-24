@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLWPF", "PLWPF\PLWPF.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XML Files", "XML Files", "{2EF430C2-9DF9-400B-8A34-19CCF3E1F3F2}"
 	ProjectSection(SolutionItems) = preProject
+		config.xml = config.xml
+		Docs For Configuration File.txt = Docs For Configuration File.txt
 		GuestRequest.xml = GuestRequest.xml
 		Host.xml = Host.xml
 		HostingUnit.xml = HostingUnit.xml
@@ -33,7 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Files", "Data Files", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FR", "FR\FR.csproj", "{767C1973-F5AB-447A-9DA4-4C85BD2E7957}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALTest", "DALTest\DALTest.csproj", "{DC420C99-67FE-4974-A370-F4C6743A6964}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DALTest", "DALTest\DALTest.csproj", "{DC420C99-67FE-4974-A370-F4C6743A6964}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

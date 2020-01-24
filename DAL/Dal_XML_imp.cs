@@ -17,12 +17,10 @@ namespace DAL
         private readonly string hostingUnitPath = @"..\..\..\..\HostingUnit.xml";
         private readonly string guestRequestPath = @"..\..\..\..\GuestRequest.xml";
         private readonly string orderPath = @"..\..\..\..\Order.xml";
+        private readonly string bankBranchPath = @"..\..\..\..\BankBranch.xml";
         #endregion
 
         #region Roots
-        private XElement guestRequestRoot = null;
-        private XElement hostingUnitRoot = null;
-        private XElement hostRoot = null;
         private XElement orderRoot = null;
         #endregion
 
@@ -49,7 +47,13 @@ namespace DAL
 
         #region Loading Functions
 
-        #region Loading Object List Functions
+
+        #region LoadHostingUnitList Function
+
+        /// <summary>
+        /// This function loads a list containing the hosting unit from the files
+        /// </summary>
+        /// <returns>List of hosting units that are in file</returns>
         private List<HostingUnit> LoadHostingUnitList()
         {
             using (StreamReader sr = new StreamReader(hostingUnitPath))
@@ -65,6 +69,13 @@ namespace DAL
             return new List<HostingUnit>();
         }
 
+        #endregion
+
+        #region LoadHostList Function
+        /// <summary>
+        /// This function loads a list containing the hosts from the files
+        /// </summary>
+        /// <returns>List of hosts that are in file</returns>
         private List<Host> LoadHostList()
         {
             using (StreamReader sr = new StreamReader(hostsPath))
@@ -80,7 +91,14 @@ namespace DAL
             return new List<Host>();
 
         }
+        #endregion
 
+        #region LoadGuestRequestList Function
+
+        /// <summary>
+        /// This function loads a list containing the guest requests from the files
+        /// </summary>
+        /// <returns>List of guest requests that are in file</returns>
         private List<GuestRequest> LoadGuestRequestList()
         {
             using (StreamReader sr = new StreamReader(guestRequestPath))
@@ -95,7 +113,12 @@ namespace DAL
 
             return new List<GuestRequest>();
         }
+        #endregion
 
+        #region LoadOrderData Function
+        /// <summary>
+        /// This function loads the root of the order file into the root item
+        /// </summary>
         private void LoadOrderData()
         {
             try
@@ -107,7 +130,13 @@ namespace DAL
                 throw new FileLoadException("File loading problem");
             }
         }
+        #endregion
 
+        #region LoadOrderList Function
+        /// <summary>
+        /// This function loads a list containing the orders from the files
+        /// </summary>
+        /// <returns>List of orders that are in file</returns>
         private List<Order> LoadOrderList()
         {
             try
@@ -156,10 +185,39 @@ namespace DAL
 
         #endregion
 
+        #region LoadBankBranchList Function
+        /// <summary>
+        /// This function loads a list containing the bank branches from the files
+        /// </summary>
+        /// <returns>List of bank branches that are in file</returns>
+        private List<BankBranch> LoadBankBranchList()
+        {
+            using (StreamReader sr = new StreamReader(bankBranchPath))
+            {
+                if (sr.Peek() != -1)
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<BankBranch>));
+                    List<BankBranch> list = (List<BankBranch>)xmlSerializer.Deserialize(sr);
+                    return list;
+                }
+            }
+
+            return new List<BankBranch>();
+        }
+
+        #endregion
+
         #endregion
 
         #region Saving Functions
 
+        #region SaveOrders Function
+
+        /// <summary>
+        /// This function saves a <paramref name="list"/> of orders to the orders file.
+        /// We made this seperate since we were required to make at least one linq function
+        /// </summary>
+        /// <param name="list">List of orders to add to the orders file</param>
         private void SaveOrders(List<Order> list)
         {
             orderRoot = new XElement("orders",
@@ -179,45 +237,22 @@ namespace DAL
                                 new XElement("day", order.OrderDate.Day))));
 
             orderRoot.Save(orderPath);
-
         }
 
+        #endregion
+
         #region Saving Object List Function
+
+        /// <summary>
+        /// This function saves a list of <paramref name="objects"/> to the file at the <paramref name="path"/> specified.
+        /// IMPORTANT: THIS FUNCTION OVERWRITES THE EXISTING FILE!
+        /// </summary>
+        /// <typeparam name="T">Type of objects to be saved to file</typeparam>
+        /// <param name="objects">List of objects to save to file</param>
+        /// <param name="path">Path of the file to add the list to</param>
         private void SaveObjectList<T>(List<T> objects, string path)
         {
-            //guestRequestRoot = new XElement("guestrequests",
-            //                    from g in guestRequests
-            //                    select new XElement("guestrequest",
-            //                        new XElement("guestrequestkey", g.GuestRequestKey),
-            //                        new XElement("name",
-            //                            new XElement("privatename", g.PrivateName),
-            //                            new XElement("familyname", g.FamilyName)),
-            //                        new XElement("mailaddress", g.MailAddress),
-            //                        new XElement("status", g.Status.ToString()),
-            //                        new XElement("registrationdate",
-            //                            new XElement("year", g.RegistrationDate.Year),
-            //                            new XElement("month", g.RegistrationDate.Month),
-            //                            new XElement("day", g.RegistrationDate.Day)),
-            //                        new XElement("entrydate",
-            //                            new XElement("year", g.EntryDate.Year),
-            //                            new XElement("month", g.EntryDate.Month),
-            //                            new XElement("day", g.EntryDate.Day)),
-            //                        new XElement("releasedate",
-            //                            new XElement("year", g.ReleaseDate.Year),
-            //                            new XElement("month", g.ReleaseDate.Month),
-            //                            new XElement("day", g.ReleaseDate.Day)),
-            //                        new XElement("area", g.Area),
-            //                        new XElement("type", g.Type),
-            //                        new XElement("adults", g.Adults),
-            //                        new XElement("children", g.Children),
-            //                        new XElement("pool", g.Pool),
-            //                        new XElement("jacuzzi", g.Jacuzzi),
-            //                        new XElement("garden", g.Garden),
-            //                        new XElement("childrensattractions", g.ChildrensAttractions))
-            //    );
-
-            //guestRequestRoot.Save(guestRequestPath);
-            using (StreamWriter sw = new StreamWriter(path, false))
+            using (StreamWriter sw = new StreamWriter(path, false)) // This will create a new file if it does not exist, so there is no reason for a special function to do so
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(objects.GetType());
                 xmlSerializer.Serialize(sw, objects);
@@ -227,6 +262,10 @@ namespace DAL
         #endregion
         #endregion
 
+        /// <summary>
+        /// This function adds a guest request to the data's list
+        /// </summary>
+        /// <param name="gr">GuestRequest to be added to the data collection</param>
         public void AddGuestRequest(GuestRequest gr)
         {
             if (gr.GuestRequestKey == 0)
@@ -244,6 +283,10 @@ namespace DAL
             SaveObjectList(list, guestRequestPath);
         }
 
+        /// <summary>
+        /// This function adds a hosting unit to the data's list
+        /// </summary>
+        /// <param name="hu">HostingUnit to be added to the data collection</param>
         public void AddHostingUnit(HostingUnit hu)
         {
             if (hu.HostingUnitKey == 0)
@@ -282,6 +325,10 @@ namespace DAL
             SaveObjectList(list, hostsPath);
         }
 
+        /// <summary>
+        /// This function addes an order to the data's list
+        /// </summary>
+        /// <param name="ord">Order to be added to the data collection</param>
         public void AddOrder(Order ord)
         {
             if (ord.OrderKey == 0)
@@ -301,104 +348,241 @@ namespace DAL
             SaveOrders(list);
         }
 
+        public void AddBankAccount(BankBranch branch)
+        {
+            if (branch.BankNumber == 0)
+            {
+                branch.BankNumber = Configuration.BankNumber;
+            }
+
+            var list = LoadBankBranchList();
+
+            if (list.Exists(s => s.BankNumber == branch.BankNumber))
+            {
+                throw new AlreadyExistsException(branch.BankNumber, "BankBranch");
+            }
+
+            list.Add(branch);
+
+            SaveObjectList(list, bankBranchPath);
+        }
+
+        /// <summary>
+        /// This function return if bankAccount exists in the data
+        /// </summary>
+        /// <param name="key">The key of the bankAccount</param>
+        /// <returns>boolean, if the bankAccount exists or not</returns>
         public bool CheckIfBankAccountExists(int key)
         {
-            throw new NotImplementedException();
+            var list = LoadBankBranchList();
+            return list.Exists(s => s.BankNumber == key);
         }
 
+        /// <summary>
+        /// This function return if guestRequest exists in the data
+        /// </summary>
+        /// <param name="key">The key of the guestRequest</param>
+        /// <returns>boolean, if the guestRequest exists or not</returns>
         public bool CheckIfGuestRequestExists(int key)
         {
-            throw new NotImplementedException();
+            var list = LoadGuestRequestList();
+            return list.Exists(s => s.GuestRequestKey == key);
         }
 
+        /// <summary>
+        /// This function return if host exists in the data
+        /// </summary>
+        /// <param name="key">The key of the host</param>
+        /// <returns>boolean, if the host exists or not</returns>
         public bool CheckIfHostExists(int key)
         {
-            throw new NotImplementedException();
+            var list = LoadHostList();
+            return list.Exists(s => s.HostKey == key);
         }
 
+        /// <summary>
+        /// This function return if hostingUnit exists in the data
+        /// </summary>
+        /// <param name="key">The key of the hostingUnit</param>
+        /// <returns>boolean, if the hostingUnit exists or not</returns>
         public bool CheckIfHostingUnitExists(int key)
         {
-            throw new NotImplementedException();
+            var list = LoadHostingUnitList();
+            return list.Exists(s => s.HostingUnitKey == key);
         }
 
+        /// <summary>
+        /// This function return if order exists in the data
+        /// </summary>
+        /// <param name="key">The key of the order</param>
+        /// <returns>boolean, if the order exists or not</returns>
         public bool CheckIfOrderExists(int key)
         {
-            throw new NotImplementedException();
+            var list = LoadOrderList();
+            return list.Exists(s => s.OrderKey == key);
         }
 
+        /// <summary>
+        /// This function returns the bank accounts in the data
+        /// </summary>
+        /// <exception cref="NoItemsException">Thrown when there are no bank accounts in the list</exception>
+        /// <returns>IEnumerable to go over the list of bank accounts</returns>
         public IEnumerable<BankBranch> GetAllBankAccounts()
         {
-            throw new NotImplementedException();
+            return LoadBankBranchList();
         }
 
+        /// <summary>
+        /// This function returns the guest requests in the data
+        /// </summary>
+        /// <returns>IEnumerable to go over the list of guest requests</returns>
         public IEnumerable<GuestRequest> GetAllGuestRequests()
         {
-            throw new NotImplementedException();
+            return LoadGuestRequestList();
         }
 
+        /// <summary>
+        /// This function returns the hosting units in the data
+        /// </summary>
+        /// <returns>IEnumerable to go over the list of hosting units</returns>
         public IEnumerable<HostingUnit> GetAllHostingUnits()
         {
-            throw new NotImplementedException();
+            return LoadHostingUnitList();
         }
 
+        /// <summary>
+        /// This function return all the Host 
+        /// </summary>
+        /// <returns><seealso cref="IEnumerable{Host}"/> to go over the list of all the Hosts</returns>
         public IEnumerable<Host> GetAllHosts()
         {
-            throw new NotImplementedException();
+            return LoadHostList();
         }
 
+        /// <summary>
+        /// This function returns the orders in the data
+        /// </summary>
+        /// <returns>IEnumerable to go over the list of orders</returns>
+        /// <returns>IEnumerable to go over the list of orders</returns>
         public IEnumerable<Order> GetAllOrders()
         {
-            throw new NotImplementedException();
+            return LoadOrderList();
         }
 
+        /// <summary>
+        /// This function return BankBranch according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the BankBranch</param>
         public BankBranch GetBankBranch(int key)
         {
-            throw new NotImplementedException();
+            return LoadBankBranchList().Find(s => s.BankNumber == key);
         }
 
+        /// <summary>
+        /// This function return GuestRequest according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the GuestRequest</param>
+        /// <returns>The GuestRequest with the <paramref name="key"/></returns>
         public GuestRequest GetGuestRequest(int key)
         {
-            throw new NotImplementedException();
+            return LoadGuestRequestList().Find(s => s.GuestRequestKey == key);
         }
 
+        /// <summary>
+        /// This function return the Host with the <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The requested <see cref="Host"/>'s KEY</param>
+        /// <returns>The Host with the  <paramref name="key"/></returns>
         public Host GetHost(int key)
         {
-            throw new NotImplementedException();
+            return LoadHostList().Find(s => s.HostKey == key);
         }
 
+        /// <summary>
+        /// This function return HostingUnit according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the HostingUnit</param>
+        /// <returns>The HostingUnit with the <paramref name="key"/></returns>
         public HostingUnit GetHostingUnit(int key)
         {
-            throw new NotImplementedException();
+            return LoadHostingUnitList().Find(s => s.HostingUnitKey == key);
         }
 
+        /// <summary>
+        /// This function return Order according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the Order</param>
+        /// <returns>The Order with the <paramref name="key"/></returns>
         public Order GetOrder(int key)
         {
-            throw new NotImplementedException();
+            return LoadOrderList().Find(s => s.OrderKey == key);
         }
 
+        /// <summary>
+        /// This function removes a hosting unit from the data
+        /// </summary>
+        /// Important Note: It will not compare all fields. It will only compare the key 
+        /// <param name="key">Key to remove the hosting unit of</param>
         public void RemoveHostingUnit(int key)
         {
-            throw new NotImplementedException();
+            var list = LoadHostingUnitList();
+            list.RemoveAll(s => s.HostingUnitKey == key);
+            SaveObjectList(list, hostingUnitPath);
         }
 
+        /// <summary>
+        /// This function updates a guest request of key <paramref name="key"/> to the status <paramref name="stat"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">Key of guest request to update</param>
+        /// <param name="stat">Status to update guest request to</param>
         public void UpdateGuestRequestStatus(int key, Enums.RequestStatus stat)
         {
-            throw new NotImplementedException();
+            var list = LoadGuestRequestList();
+            int index = list.FindIndex(s => s.GuestRequestKey == key);
+            list[index].Status = stat;
+            SaveObjectList(list, guestRequestPath);
         }
 
+        /// <summary>
+        /// This function updates a hosting unit
+        /// </summary>
+        /// <param name="hu">Hosting unit to update to</param>
+        /// <param name="key">Key of hosting unit to update</param>
         public void UpdateHostingUnit(HostingUnit hu, int key)
         {
-            throw new NotImplementedException();
+            var list = LoadHostingUnitList();
+            list.RemoveAll(s => s.HostingUnitKey == key);
+            list.Add(hu);
+
+            SaveObjectList(list, hostingUnitPath);
         }
 
+        /// <summary>
+        /// This function updates an order with a key of <paramref name="key"/> to a status of <paramref name="stat"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown when an order with the specified key is not found</exception>
+        /// <param name="key">Key of Order to update the status of</param>
+        /// <param name="stat">Status to update Order status to</param>
         public void UpdateOrderStatus(int key, Enums.OrderStatus stat)
         {
-            throw new NotImplementedException();
+            var list = LoadOrderList();
+            int index = list.FindIndex(s => s.OrderKey == key);
+            list[index].Status = stat;
+
+            SaveObjectList(list, orderPath);
         }
 
+        /// <summary>
+        /// This function removes a guest request from the data
+        /// </summary>
+        /// Important Note: It will not compare all fields. It will only compare the key 
+        /// <exception cref="KeyNotFoundException">Thrown if no guest request in the data match the guest request with the <paramref name="key"/></exception>
         public void RemoveGuestRequest(int key)
         {
-            throw new NotImplementedException();
+            var list = LoadGuestRequestList();
+            list.RemoveAll(s => s.GuestRequestKey == key);
+            SaveObjectList(list, guestRequestPath);
         }
     }
 }
