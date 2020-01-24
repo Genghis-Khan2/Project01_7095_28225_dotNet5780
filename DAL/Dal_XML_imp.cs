@@ -104,13 +104,20 @@ namespace DAL
             }
             catch
             {
-                throw new Exception("File loading problem");
+                throw new FileLoadException("File loading problem");
             }
         }
 
         private List<Order> LoadOrderList()
         {
-            LoadOrderData();
+            try
+            {
+                LoadOrderData();
+            }
+            catch (FileLoadException)
+            {
+                return new List<Order>();
+            }
             List<Order> orders;
             try
             {
@@ -160,16 +167,16 @@ namespace DAL
                          select new XElement("order",
                             new XElement("hostingunitkey", order.HostingUnitKey),
                             new XElement("guestrequestkey", order.GuestRequestKey),
-                            new XElement("order", order.OrderKey),
+                            new XElement("orderkey", order.OrderKey),
                             new XElement("status", order.Status),
                             new XElement("createdate",
                                 new XElement("year", order.CreateDate.Year),
                                 new XElement("month", order.CreateDate.Month),
-                                new XElement("year", order.CreateDate.Day)),
+                                new XElement("day", order.CreateDate.Day)),
                             new XElement("orderdate",
                                 new XElement("year", order.OrderDate.Year),
                                 new XElement("month", order.OrderDate.Month),
-                                new XElement("year", order.OrderDate.Day))));
+                                new XElement("day", order.OrderDate.Day))));
 
             orderRoot.Save(orderPath);
 
