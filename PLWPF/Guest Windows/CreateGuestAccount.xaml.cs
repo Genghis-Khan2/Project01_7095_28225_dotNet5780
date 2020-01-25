@@ -27,11 +27,13 @@ namespace PLWPF
         private void Register_Click(object sender, RoutedEventArgs e)
         {
             //TODO:fix it
+            //Add email address
+            //Add all other guest fields
             if (Pass.Password == ConfPass.Password)
             {
-
+                //TODO: Add regexes
                 if (GlobalVars.myBL.CheckIfGuestExists(User.Text) ||
-                    FR.FR_Imp.GetFR().CheckIfHostExists(User.Text))
+                    GlobalVars.myBL.CheckIfHostExists(User.Text))
                 {
                     MessageBox.Show("There is already an account by that name!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -41,11 +43,19 @@ namespace PLWPF
                     MessageBox.Show("Invalid username!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                int key = GlobalVars.myBL.Get;
-                FR_Imp.GetFR().WriteGuestToFile(User.Text, Pass.Password, key);
+                Guest guest = new Guest()
+                {
+                    PrivateName = privateNameBox.Text,
+                    FamilyName = familyName.Text,
+                    MailAddress = mailAddress.Text,
+                    guestRequests = new List<GuestRequest>()
+                };
+
+                GlobalVars.myBL.AddGuest(guest);
+                GlobalVars.myBL.WriteGuestToFile(User.Text, Pass.Password, guest.GuestKey);
                 MessageBox.Show("You have been registered!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Hide();
-                var createWin = new GuestMenu(User.Text, key);
+                Hide();
+                var createWin = new GuestMenu(guest);
                 createWin.Closed += (s, args) => Close();
                 createWin.Show();
                 return;

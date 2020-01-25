@@ -22,15 +22,17 @@ namespace PLWPF
     /// </summary>
     public partial class GuestMenu : Window
     {
-        public string UserName { get; set; } = "~~~~";
-        public int Key { get; set; } = -1;
 
-        public GuestMenu(string userName, int key)
+
+        private Guest requester;
+        private string Username;
+
+        public GuestMenu(Guest guest)
         {
             InitializeComponent();
-            this.UserName = userName;
-            this.Key = key;
-            this.DataContext = this;
+            Username = GlobalVars.myBL.GetGuestUsername(guest.GuestKey);
+            requester = guest;
+            DataContext = this;
             Refresh();
         }
         private void Refresh()
@@ -39,12 +41,8 @@ namespace PLWPF
             try
             {
                 var t1 = GlobalVars.myBL.GetAllGuestRequests().ToArray();
-                var allGuestRequest = from item in GlobalVars.myBL.GetAllGuestRequests()
-                                      where item.GuestKey == Key
-                                      select item;
+                var allGuestRequest = requester.guestRequests;
                 //var allGuestRequest = GlobalVars.myBL.GetAllGuestRequestWhere((x) => ((GuestRequest)x).GuestKey == Key);
-
-                var t = allGuestRequest.ToArray();
                 foreach (var item in allGuestRequest)
                 {
                     //Border b = new Border();
@@ -68,7 +66,7 @@ namespace PLWPF
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            CreateGuestRequest cgr = new CreateGuestRequest(this.Key);
+            CreateGuestRequest cgr = new CreateGuestRequest(guest);
             cgr.Show();
             cgr.Closing += (s, args) => Refresh();
 
@@ -112,7 +110,7 @@ namespace PLWPF
         {
             if (RequestListBox.SelectedItem == null)
                 return;
-            GuestRequestInfo gri = new GuestRequestInfo(((GuestRequest)RequestListBox.SelectedItem));
+            GuestRequestInfo gri = new GuestRequestInfo((GuestRequest)RequestListBox.SelectedItem);
             gri.Show();
         }
 

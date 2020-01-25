@@ -16,6 +16,8 @@ namespace DAL
 
         bool CheckIfGuestExists(int key);
 
+        bool CheckIfGuestExists(string username);
+
         IEnumerable<Guest> GetAllGuests();
 
         Guest GetGuest(int key);
@@ -233,6 +235,8 @@ namespace DAL
 
         #endregion
 
+        bool CheckIfHostExists(string username);
+
         #endregion
 
         #region IfExists These function check if object exsits in the data
@@ -319,6 +323,8 @@ namespace DAL
 
 
         int GetGuestKey();
+        string GetGuestUserName(int key);
+        void WriteGuestToFile(string username, string password, int key);
 
 
         #endregion

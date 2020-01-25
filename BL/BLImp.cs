@@ -584,6 +584,10 @@ namespace BL
 
         #endregion
 
+        public bool CheckIfHostExists(string username)
+        {
+            return DAL_Adapter.GetDAL().CheckIfHostExists(username);
+        }
         #endregion
 
         #region Guest
@@ -596,6 +600,16 @@ namespace BL
         public Guest GetGuest(int key)
         {
             return DAL_Adapter.GetDAL().GetGuest(key);
+        }
+
+        public bool CheckIfGuestExists(int key)
+        {
+            return DAL_Adapter.GetDAL().CheckIfGuestExists(key);
+        }
+
+        public bool CheckIfGuestExists(string username)
+        {
+            return DAL_Adapter.GetDAL().CheckIfGuestExists(username);
         }
 
 
@@ -1158,6 +1172,21 @@ namespace BL
             }
 
             return desired == type;
+        }
+
+        public string GetGuestUsername(int key)
+        {
+            return DAL_Adapter.GetDAL().GetGuestUserName(key);
+        }
+
+        public void WriteGuestToFile(string username, string password, int key)
+        {
+            DAL_Adapter.GetDAL().WriteGuestToFile(username, password, key);
+        }
+
+        public void AddGuest(Guest guest)
+        {
+            DAL_Adapter.GetDAL().AddGuest(guest);
         }
 
 

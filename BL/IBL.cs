@@ -263,7 +263,22 @@ namespace BL
         /// <returns>The Host with the  <paramref name="key"/></returns>
         Host GetHost(int key);
 
+        #endregion.
+
+        bool CheckIfHostExists(string username);
+
         #endregion
+
+        #region Guest
+
+        IEnumerable<Guest> GetAllGuests();
+
+        Guest GetGuest(int key);
+
+        bool CheckIfGuestExists(int key);
+
+        bool CheckIfGuestExists(string username);
+
 
         #endregion
 
@@ -580,6 +595,9 @@ namespace BL
         /// </summary>
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all HostingUnit group by there host</returns>
         IEnumerable<IGrouping<Host, HostingUnit>> getHostingUnitByHost();
+        string GetGuestUsername(int key);
+        void WriteGuestToFile(string text, string password, int key);
+        void AddGuest(Guest guest);
         #endregion
 
         #endregion

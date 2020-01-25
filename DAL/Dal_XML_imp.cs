@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using BE;
 using Exceptions;
+using System.Security.Cryptography;
 
 namespace DAL
 {
@@ -20,17 +21,31 @@ namespace DAL
         private const string bankBranchPath = @"..\..\..\..\BankBranch.xml";
         private const string configPath = @"..\..\..\..\config.xml";
         private const string guestPath = @"..\..\..\..\Guest.xml";
+        private const string usersPath = @"..\..\..\..\Users.xml";
         #endregion
 
         #region Roots
         private XElement orderRoot = null;
         private XElement configRoot = null;
+        private XElement userRoot = null;
         #endregion
 
         #region Singleton and Factory Methods
         private Dal_XML_imp()
         {
             SetupConfigFile();
+            LoadUsersFile();
+            LoadOrderData();
+        }
+
+        private void LoadUsersFile()
+        {
+            if (!File.Exists(usersPath))
+            {
+                using (StreamWriter sw = new StreamWriter(usersPath)) { }
+            }
+
+            userRoot = XElement.Load(usersPath);
         }
 
         protected static Dal_XML_imp instance = null;
@@ -325,6 +340,10 @@ namespace DAL
             list.Add(gr);
 
             SaveObjectList(list, guestRequestPath);
+
+            gr.Requester.guestRequests.Add(gr);
+            RemoveGuest(gr.Requester.GuestKey);
+            AddGuest(gr.Requester);
         }
 
         /// <summary>
@@ -431,6 +450,20 @@ namespace DAL
             return LoadGuestList().Exists(s => key == s.GuestKey);
         }
 
+        public bool CheckIfGuestExists(string username)
+        {
+            var list = (from guestUser in userRoot.Elements("users").Elements("guest")
+                        select new
+                        {
+                            Key = guestUser.Element("key").Value,
+                            Username = guestUser.Element("username").Value,
+                            Password = guestUser.Element("password").Value
+                        }
+                        ).ToList();
+
+            return list.Exists(s => s.Username == username);
+        }
+
         /// <summary>
         /// This function return if guestRequest exists in the data
         /// </summary>
@@ -452,6 +485,21 @@ namespace DAL
             var list = LoadHostList();
             return list.Exists(s => s.HostKey == key);
         }
+
+        public bool CheckIfHostExists(string username)
+        {
+            var list = (from guestUser in userRoot.Elements("users").Elements("host")
+                        select new
+                        {
+                            Key = guestUser.Element("key").Value,
+                            Username = guestUser.Element("username").Value,
+                            Password = guestUser.Element("password").Value
+                        }
+                        ).ToList();
+
+            return list.Exists(s => s.Username == username);
+        }
+
 
         /// <summary>
         /// This function return if hostingUnit exists in the data
@@ -1080,6 +1128,42 @@ namespace DAL
                              new XElement("guestkey", guestkey - 1));
 
             configRoot.Save(configPath);
+        }
+
+        public string GetGuestUserName(int key)
+        {
+            var guestList = (from guest in userRoot.Elements("users").Elements("guest")
+                             where int.Parse(guest.Element("key").Value) == key
+                             select new
+                             {
+                                 Username = guest.Element("username").Value
+                             }).ToList();
+
+            if (guestList.Count > 0)
+            {
+                return guestList[0].Username;
+            }
+
+            return null;
+
+        }
+
+        public void WriteGuestToFile(string username, string password, int key)
+        {
+            using (SHA256 sha = SHA256.Create())
+            {
+                string passStr = "";
+                foreach (var i in sha.ComputeHash(Encoding.ASCII.GetBytes(password)))
+                {
+                    passStr += i.ToString();
+                }
+
+                userRoot = new XElement("users",
+                            new XElement("guest",
+                                new XElement("key", key),
+                                new XElement("username", username),
+                                new XElement("password", passStr)));
+            }
         }
 
 

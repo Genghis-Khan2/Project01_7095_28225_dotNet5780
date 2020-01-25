@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XML Files", "XML Files", "{
 		Host.xml = Host.xml
 		HostingUnit.xml = HostingUnit.xml
 		Order.xml = Order.xml
+		Users.xml = Users.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Files", "Data Files", "{E9477238-FA38-4EA6-944D-AED7C40DDE8A}"
