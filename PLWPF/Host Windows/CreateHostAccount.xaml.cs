@@ -34,8 +34,8 @@ namespace PLWPF
             if (Pass.Password == ConfPass.Password)
             {
                 //TODO: Needs to be a check if the user exists
-                if (FR.FR_Imp.GetFR().CheckIfGuestExists(User.Text) ||
-                    FR.FR_Imp.GetFR().CheckIfHostExists(User.Text))
+                if (GlobalVars.myBL.CheckIfGuestExists(User.Text) ||
+                    GlobalVars.myBL.CheckIfHostExists(User.Text))
                 {
                     MessageBox.Show("There is already an account by that name!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -87,21 +87,23 @@ namespace PLWPF
                     return;
                 }
 
-                FR.FR_Imp.GetFR().WriteHostToFile(User.Text, Pass.Password, BE.Configuration.HostKey, MailAddressBox.Text, PrivateNameBox.Text, FamilyNameBox.Text, PhoneNumberBox.Text);
-                MessageBox.Show("You have been registered!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
-                Hide();
-                GlobalVars.UserName = User.Text;
-                var createWin = new HostMenu(new BE.Host()
+                BE.Host host = new BE.Host()
                 {
                     MailAddress = MailAddressBox.Text,
                     PrivateName = PrivateNameBox.Text.Substring(0, 1).ToUpper() + PrivateNameBox.Text.Substring(1),
                     FamilyName = FamilyNameBox.Text.Substring(0, 1).ToUpper() + FamilyNameBox.Text.Substring(1),
                     BankAccountNumber = 0,
-                    HostKey = FR.FR_Imp.GetFR().GetHostKey(User.Text),
                     PhoneNumber = PhoneNumberBox.Text,
                     BankBranchDetails = new BE.BankBranch()
-                }
-                                );
+                };
+
+                GlobalVars.myBL.AddHost(host);
+
+                GlobalVars.myBL.WriteHostToFile(User.Text, Pass.Password, BE.Configuration.HostKey);
+                MessageBox.Show("You have been registered!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                Hide();
+                GlobalVars.UserName = User.Text;
+                var createWin = new HostMenu(host);
                 createWin.Closed += (s, args) => Close();
                 createWin.Show();
                 return;

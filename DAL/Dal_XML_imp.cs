@@ -341,7 +341,7 @@ namespace DAL
 
             SaveObjectList(list, guestRequestPath);
 
-            gr.Requester.guestRequests.Add(gr);
+            gr.Requester.GuestRequests.Add(gr);
             RemoveGuest(gr.Requester.GuestKey);
             AddGuest(gr.Requester);
         }
@@ -1163,6 +1163,128 @@ namespace DAL
                                 new XElement("key", key),
                                 new XElement("username", username),
                                 new XElement("password", passStr)));
+            }
+        }
+
+        public void WriteHostToFile(string username, string password, int hostKey)
+        {
+            using (SHA256 sha = SHA256.Create())
+            {
+                string passStr = "";
+                foreach (var i in sha.ComputeHash(Encoding.ASCII.GetBytes(password)))
+                {
+                    passStr += i.ToString();
+                }
+
+                userRoot = new XElement("users",
+                            new XElement("user",
+                                new XElement("key", hostKey),
+                                new XElement("username", username),
+                                new XElement("password", passStr)));
+            }
+        }
+
+        public int GetGuestKey(string userName)
+        {
+            var guestList = (from guest in userRoot.Elements("users").Elements("guest")
+                             where guest.Element("username").Value == userName
+                             select new
+                             {
+                                 Key = int.Parse(guest.Element("key").Value)
+                             }).ToList();
+
+            if (guestList.Count > 0)
+            {
+                return guestList.First().Key;
+            }
+
+            return -1;
+        }
+
+        public bool HostCompareToPasswordInFile(string username, string password)
+        {
+            var hostList = (from host in userRoot.Elements("users").Elements("host")
+                            where host.Element("username").Value == username
+                            select new
+                            {
+                                Password = host.Element("password").Value
+                            }).ToList();
+
+            if (hostList.Count > 0)
+            {
+                var passBytesStr = hostList.First().Password.Split(' ');
+                byte[] passBytes = new byte[passBytesStr.Length];
+                for (int i = 0; i < passBytesStr.Length; i++)
+                {
+                    passBytes[i] = byte.Parse(passBytesStr[i]);
+                }
+
+                using (SHA256 sha = SHA256.Create())
+                {
+                    return Enumerable.SequenceEqual(passBytes, sha.ComputeHash(Encoding.ASCII.GetBytes(password)));
+                }
+
+            }
+
+            return false;
+        }
+
+        public int GetHostKey(string username)
+        {
+            var hostList = (from host in userRoot.Elements("users").Elements("host")
+                            where host.Element("username").Value == username
+                            select new
+                            {
+                                Key = int.Parse(host.Element("key").Value)
+                            }
+                            ).ToList();
+            if (hostList.Count > 0)
+            {
+                return hostList.First().Key;
+            }
+
+            return -1;
+        }
+
+        public bool GuestCompareToPasswordInFile(string username, string password)
+        {
+            var guestList = (from host in userRoot.Elements("users").Elements("guest")
+                             where host.Element("username").Value == username
+                             select new
+                             {
+                                 Password = host.Element("password").Value
+                             }).ToList();
+
+            if (guestList.Count > 0)
+            {
+                var passBytesStr = guestList.First().Password.Split(' ');
+                byte[] passBytes = new byte[passBytesStr.Length];
+                for (int i = 0; i < passBytesStr.Length; i++)
+                {
+                    passBytes[i] = byte.Parse(passBytesStr[i]);
+                }
+
+                using (SHA256 sha = SHA256.Create())
+                {
+                    return Enumerable.SequenceEqual(passBytes, sha.ComputeHash(Encoding.ASCII.GetBytes(password)));
+                }
+
+            }
+
+            return false;
+        }
+
+        public bool AdminCompareToPasswordInFile(string username, string password)
+        {
+            if (username != "admin")
+            {
+                return false;
+            }
+
+            using (SHA256 sha = SHA256.Create())
+            {
+                var passBytes = new byte[32] { 127, 115, 144, 82, 251, 73, 59, 118, 196, 87, 146, 6, 61, 104, 36, 115, 243, 138, 164, 19, 60, 126, 138, 62, 55, 174, 114, 193, 107, 74, 177, 237 }
+                return Enumerable.SequenceEqual(passBytes, sha.ComputeHash(Encoding.ASCII.GetBytes(password)));
             }
         }
 

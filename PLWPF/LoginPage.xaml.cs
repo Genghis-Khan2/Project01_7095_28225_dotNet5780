@@ -47,7 +47,7 @@ namespace PLWPF
 
         private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            Hide();
             var createWin = new CreateAccount();
             createWin.Closed += (s, args) =>
             {
@@ -59,11 +59,11 @@ namespace PLWPF
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            if (FR.FR_Imp.GetFR().GuestCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
+            if (GlobalVars.myBL.GuestCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
             {
-                UserName = UserTextBox.Text;
+                GlobalVars.UserName = UserTextBox.Text;
                 Hide();
-                var createWin = new GuestMenu(UserName, FR.FR_Imp.GetFR().GetGuestKey(UserName));
+                var createWin = new GuestMenu(GlobalVars.myBL.GetGuest(GlobalVars.myBL.GetGuestKey(GlobalVars.UserName)));
                 createWin.Closed += (s, args) =>
                 {
                     ClearButton_Click(null, null);
@@ -72,19 +72,11 @@ namespace PLWPF
                 createWin.Show();
             }
 
-            else if (FR.FR_Imp.GetFR().HostCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
+            else if (GlobalVars.myBL.HostCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
             {
-                UserName = UserTextBox.Text;
+                GlobalVars.UserName = UserTextBox.Text;
                 Hide();
-                var createWin = new HostMenu(new BE.Host()
-                {
-                    PhoneNumber = FR.FR_Imp.GetFR().GetHostPhoneNumber(UserName),
-                    PrivateName = FR.FR_Imp.GetFR().GetHostPrivateName(UserName),
-                    FamilyName = FR.FR_Imp.GetFR().GetHostFamilyName(UserName),
-                    MailAddress = FR.FR_Imp.GetFR().GetHostMailAddress(UserName),
-                    HostKey = FR.FR_Imp.GetFR().GetHostKey(UserName),
-                    BankBranchDetails = new BE.BankBranch()
-                });
+                var createWin = new HostMenu(GlobalVars.myBL.GetHost(GlobalVars.myBL.GetHostKey(GlobalVars.UserName)));
                 createWin.Closed += (s, args) =>
                 {
                     ClearButton_Click(null, null);
@@ -93,9 +85,9 @@ namespace PLWPF
                 createWin.Show();
             }
 
-            else if (FR.FR_Imp.GetFR().AdminCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
+            else if (GlobalVars.myBL.AdminCompareToPasswordInFile(UserTextBox.Text.ToLower(), PassBox.Password))
             {
-                UserName = "admin";
+                GlobalVars.UserName = "admin";
                 Hide();
                 var createWin = new AdminWindow();
                 createWin.Closed += (s, args) =>

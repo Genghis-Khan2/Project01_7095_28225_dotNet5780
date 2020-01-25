@@ -43,6 +43,7 @@ namespace BL
         /// <exception cref="ArgumentException">Thrown when the vacation start date is not at least one day before the vacation end date</exception>
         /// <param name="gr">GuestRequest to be added to the data collection</param>
         void AddGuestRequest(GuestRequest gr);
+        bool HostCompareToPasswordInFile(string v, string password);
 
         #endregion
 
@@ -54,6 +55,7 @@ namespace BL
         /// <exception cref="NoItemsException">Thrown if there are no guest requests</exception>
         /// <returns><see cref="IEnumerable{GuestRequest}"/> to go over the list of guest requests</returns>
         IEnumerable<GuestRequest> GetAllGuestRequests();
+        bool AdminCompareToPasswordInFile(string username, string password);
 
         #endregion
 
@@ -66,6 +68,8 @@ namespace BL
         /// <exception cref="KeyNotFoundException">Thrown if no guest request in the data match the guest request with the <paramref name="key"/></exception>
         ///<exception cref="ChangedWhileLinkedException">Thrown if there is any open <see cref="Order"/> linked to the guest request with the <paramref name="key"/> and you try to delete it</exception>        /// <param name="key">Key to remove the guest request of</param>
         void RemoveGuestRequest(int key);
+        void WriteHostToFile(string username, string password, int hostKey);
+        void AddHost(Host host);
 
         #endregion
 
@@ -598,6 +602,9 @@ namespace BL
         string GetGuestUsername(int key);
         void WriteGuestToFile(string text, string password, int key);
         void AddGuest(Guest guest);
+        int GetGuestKey(string userName);
+        int GetHostKey(string userName);
+        bool GuestCompareToPasswordInFile(string username, string password);
         #endregion
 
         #endregion

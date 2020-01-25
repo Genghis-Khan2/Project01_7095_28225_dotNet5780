@@ -9,7 +9,7 @@ namespace BE
     /// </summary>
     public class GuestRequest
     {
-        public Guest Requester { get; set; };
+        public Guest Requester { get; set; }
         public int GuestRequestKey { get; set; } = 0;//No need to change, determined when creating the object
         public Enums.RequestStatus Status { get; set; }
         public DateTime RegistrationDate { get; set; }

@@ -41,7 +41,7 @@ namespace PLWPF
             try
             {
                 var t1 = GlobalVars.myBL.GetAllGuestRequests().ToArray();
-                var allGuestRequest = requester.guestRequests;
+                var allGuestRequest = requester.GuestRequests;
                 //var allGuestRequest = GlobalVars.myBL.GetAllGuestRequestWhere((x) => ((GuestRequest)x).GuestKey == Key);
                 foreach (var item in allGuestRequest)
                 {

@@ -21,19 +21,16 @@ namespace DAL
         {
             GuestRequest ret = new GuestRequest()
             {
+                Requester = original.Requester.Clone(),
                 Adults = original.Adults,
                 Area = original.Area,
                 Children = original.Children,
                 ChildrensAttractions = original.ChildrensAttractions,
                 EntryDate = original.EntryDate,
-                FamilyName = original.FamilyName.Clone() as string,
                 Garden = original.Garden,
-                GuestKey = original.GuestKey,
                 GuestRequestKey = original.GuestRequestKey,
                 Jacuzzi = original.Jacuzzi,
-                MailAddress = original.MailAddress.Clone() as string,
                 Pool = original.Pool,
-                PrivateName = original.PrivateName.Clone() as string,
                 RegistrationDate = original.RegistrationDate,
                 ReleaseDate = original.ReleaseDate,
                 Status = original.Status,
@@ -149,6 +146,21 @@ namespace DAL
         }
 
         #endregion
+
+        public static Guest Clone(this Guest original)
+        {
+            Guest ret = new Guest
+            {
+                FamilyName = original.FamilyName.Clone() as string,
+                GuestKey = original.GuestKey,
+                MailAddress = original.MailAddress.Clone() as string,
+                PrivateName = original.PrivateName.Clone() as string,
+                GuestRequests = original.GuestRequests.Clone()
+            };
+
+            return ret;
+
+        }
 
         #endregion
 

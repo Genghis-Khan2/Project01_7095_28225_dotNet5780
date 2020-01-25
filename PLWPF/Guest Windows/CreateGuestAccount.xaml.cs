@@ -48,7 +48,7 @@ namespace PLWPF
                     PrivateName = privateNameBox.Text,
                     FamilyName = familyName.Text,
                     MailAddress = mailAddress.Text,
-                    guestRequests = new List<GuestRequest>()
+                    GuestRequests = new List<GuestRequest>()
                 };
 
                 GlobalVars.myBL.AddGuest(guest);

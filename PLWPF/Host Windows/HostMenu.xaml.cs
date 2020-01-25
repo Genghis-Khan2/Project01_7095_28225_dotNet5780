@@ -50,7 +50,7 @@ namespace PLWPF
             try
             {
                 var li = from i in GlobalVars.myBL.getHostingUnitByHost()
-                         where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(GlobalVars.UserName)
+                         where i.Key.HostKey == GlobalVars.myBL.GetHostKey(GlobalVars.UserName)
                          select new { Hostingunits = i };
                 foreach (var i in li)
                 {

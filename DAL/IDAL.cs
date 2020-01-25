@@ -306,10 +306,6 @@ namespace DAL
         int GetBankNumber();
 
 
-        int GetHostKey();
-
-
-
         int GetHostingUnitKey();
 
 
@@ -322,9 +318,15 @@ namespace DAL
         int GetNumberOfDaysUntilExpired();
 
 
-        int GetGuestKey();
+        int GetGuestKey(string userName);
         string GetGuestUserName(int key);
         void WriteGuestToFile(string username, string password, int key);
+        void WriteHostToFile(string username, string password, int hostKey);
+        void AddHost(Host host);
+        bool HostCompareToPasswordInFile(string username, string password);
+        int GetHostKey(string username);
+        bool GuestCompareToPasswordInFile(string username, string password);
+        bool AdminCompareToPasswordInFile(string username, string password);
 
 
         #endregion

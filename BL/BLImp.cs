@@ -757,7 +757,7 @@ namespace BL
         /// <returns><see cref="IEnumerable{GuestRequest}"/>All guest request the specific guest have</returns>
         public IEnumerable<GuestRequest> GetAllGuestRequestToGuest(int key)
         {
-            return GetGuest(key).guestRequests;
+            return GetGuest(key).GuestRequests;
         }
 
         #endregion
@@ -1187,6 +1187,51 @@ namespace BL
         public void AddGuest(Guest guest)
         {
             DAL_Adapter.GetDAL().AddGuest(guest);
+        }
+
+        public void WriteHostToFile(string username, string password, int hostKey)
+        {
+            DAL_Adapter.GetDAL().WriteHostToFile(username, password, hostKey);
+        }
+
+        public void WriteHostToFile(string username, string password, int hostKey, string text2, string text3, string text4, string text5)
+        {
+            DAL_Adapter.GetDAL().WriteHostToFile(username, password, hostKey);
+        }
+
+        public void WriteHostToFile(string text1, string password, object hostKey, string text2, string text3, string text4, string text5)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddHost(Host host)
+        {
+            DAL_Adapter.GetDAL().AddHost(host);
+        }
+
+        public int GetGuestKey(string userName)
+        {
+            return DAL_Adapter.GetDAL().GetGuestKey(userName);
+        }
+
+        public bool HostCompareToPasswordInFile(string username, string password)
+        {
+            return DAL_Adapter.GetDAL().HostCompareToPasswordInFile(username, password);
+        }
+
+        public int GetHostKey(string userName)
+        {
+            return DAL_Adapter.GetDAL().GetHostKey(userName);
+        }
+
+        public bool GuestCompareToPasswordInFile(string username, string password)
+        {
+            return DAL_Adapter.GetDAL().GuestCompareToPasswordInFile(username, password);
+        }
+
+        public bool AdminCompareToPasswordInFile(string username, string password)
+        {
+            return DAL_Adapter.GetDAL().AdminCompareToPasswordInFile(username, password);
         }
 
 
