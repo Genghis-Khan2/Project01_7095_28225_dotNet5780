@@ -25,7 +25,7 @@ namespace PLWPF.Admin_Windows
 
         private void LoadData(BE.GuestRequest gr)
         {
-            NameLab.Content = gr.PrivateName + " " + gr.FamilyName;
+            NameLab.Content = gr.Requester.PrivateName + " " + gr.Requester.FamilyName;
             RegisterLab.Content = string.Format("{0}.{1}", gr.RegistrationDate.Day, gr.RegistrationDate.Month);
             DurationLab.Content = string.Format("{0}.{1} - {2}.{3}", gr.EntryDate.Day, gr.EntryDate.Month, gr.ReleaseDate.Day, gr.ReleaseDate.Month);
             MainGrid.DataContext = gr;

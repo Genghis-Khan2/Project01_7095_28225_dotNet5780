@@ -605,6 +605,10 @@ namespace BL
         int GetGuestKey(string userName);
         int GetHostKey(string userName);
         bool GuestCompareToPasswordInFile(string username, string password);
+        void RemoveGuest(string username);
+
+        int GetHostKey();
+        void RemoveHost(int key);
         #endregion
 
         #endregion

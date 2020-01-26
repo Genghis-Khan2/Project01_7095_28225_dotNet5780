@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FR;
+using BE;
 
 namespace PLWPF.Admin_Windows.User_Controls
 {
@@ -19,16 +19,16 @@ namespace PLWPF.Admin_Windows.User_Controls
     /// </summary>
     public partial class AdminGuestUC : UserControl
     {
-        public AdminGuestUC(string username)
+        public AdminGuestUC(Guest guest)
         {
             InitializeComponent();
-            Key.Content = FR_Imp.GetFR().GetGuestKey(username);
-            Name.Content = username;
+            Key.Content = guest.GuestKey;
+            Name.Content = GlobalVars.myBL.GetGuestUsername(guest.GuestKey);
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            FR_Imp.GetFR().RemoveGuestFromFile(Name.Content as string);
+            GlobalVars.myBL.RemoveGuest(Name.Content as string);
         }
     }
 }

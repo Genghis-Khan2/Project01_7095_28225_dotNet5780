@@ -24,10 +24,10 @@ namespace PLWPF.Host_Windows.User_Controls
         public HostsGuestRequestUC(HostMenu caller, BE.GuestRequest guestRequest, BE.Host host)
         {
             InitializeComponent();
-            Name.Content = guestRequest.PrivateName + " " + guestRequest.FamilyName;
+            Name.Content = guestRequest.Requester.PrivateName + " " + guestRequest.Requester.FamilyName;
             Duration.Content = string.Format("{0}.{2} - {1}.{3}", guestRequest.EntryDate.Day, guestRequest.ReleaseDate.Day,
                 guestRequest.EntryDate.Month, guestRequest.ReleaseDate.Month);
-            MailAddress.Content = guestRequest.MailAddress;
+            MailAddress.Content = guestRequest.Requester.MailAddress;
             gr = guestRequest;
             this.host = host;
             this.caller = caller;

@@ -10,7 +10,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BE;
-using FR;
 
 namespace PLWPF
 {
@@ -45,7 +44,7 @@ namespace PLWPF
                 }
                 Guest guest = new Guest()
                 {
-                    PrivateName = privateNameBox.Text,
+                    PrivateName = privateNameBox.Text, // These errors will be fixed by adding the appropriate textboxes
                     FamilyName = familyName.Text,
                     MailAddress = mailAddress.Text,
                     GuestRequests = new List<GuestRequest>()

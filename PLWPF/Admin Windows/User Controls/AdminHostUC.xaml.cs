@@ -58,7 +58,7 @@ namespace PLWPF.Admin_Windows.User_Controls
                 return;
             }
 
-            FR.FR_Imp.GetFR().RemoveHostFromFile(FR.FR_Imp.GetFR().GetHostUserNameFromKey(host.HostKey));
+            GlobalVars.myBL.RemoveHost(host.HostKey);
 
             caller.Complete_Refresh();
         }

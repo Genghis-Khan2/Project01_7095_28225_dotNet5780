@@ -924,6 +924,66 @@ namespace DAL
             throw new NotImplementedException();
         }
 
+        public bool CheckIfGuestExists(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckIfHostExists(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetGuestKey(string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetGuestUserName(int key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WriteGuestToFile(string username, string password, int key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WriteHostToFile(string username, string password, int hostKey)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddHost(Host host)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool HostCompareToPasswordInFile(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetHostKey(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool GuestCompareToPasswordInFile(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AdminCompareToPasswordInFile(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveHost(int key)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #endregion

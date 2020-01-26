@@ -105,7 +105,7 @@ namespace PLWPF
         private void Refresh_Guests()
         {
             GuestStack.Children.Clear();
-            var list = FR.FR_Imp.GetFR().GetListOfGuestNames();
+            var list = GlobalVars.myBL.GetAllGuests();
             foreach (var i in list)
             {
                 GuestStack.Children.Add(new AdminGuestUC(i));

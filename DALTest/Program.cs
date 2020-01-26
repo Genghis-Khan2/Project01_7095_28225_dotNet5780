@@ -2,7 +2,6 @@
 using Exceptions;
 using DAL;
 using BE;
-using FR;
 
 namespace DALTest
 {

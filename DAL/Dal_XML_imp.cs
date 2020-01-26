@@ -689,6 +689,11 @@ namespace DAL
             var list = LoadGuestList();
             list.RemoveAll(s => s.GuestKey == key);
             SaveObjectList(list, guestPath);
+
+            // User file removal
+            userRoot.Elements("users").Elements("guest")
+                .Where(s => int.Parse(s.Element("key").Value) == key)
+                .Remove();
         }
 
         /// <summary>
@@ -1283,9 +1288,21 @@ namespace DAL
 
             using (SHA256 sha = SHA256.Create())
             {
-                var passBytes = new byte[32] { 127, 115, 144, 82, 251, 73, 59, 118, 196, 87, 146, 6, 61, 104, 36, 115, 243, 138, 164, 19, 60, 126, 138, 62, 55, 174, 114, 193, 107, 74, 177, 237 }
+                var passBytes = new byte[32] { 127, 115, 144, 82, 251, 73, 59, 118, 196, 87, 146, 6, 61, 104, 36, 115, 243, 138, 164, 19, 60, 126, 138, 62, 55, 174, 114, 193, 107, 74, 177, 237 };
                 return Enumerable.SequenceEqual(passBytes, sha.ComputeHash(Encoding.ASCII.GetBytes(password)));
             }
+        }
+
+        public void RemoveHost(int key)
+        {
+            var list = LoadHostList();
+            list.RemoveAll(s => s.HostKey == key);
+            SaveObjectList(list, hostsPath);
+
+            // User file removal
+            userRoot.Elements("users").Elements("host")
+                .Where(s => int.Parse(s.Element("key").Value) == key)
+                .Remove();
         }
 
 

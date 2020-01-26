@@ -99,7 +99,7 @@ namespace PLWPF
 
                 GlobalVars.myBL.AddHost(host);
 
-                GlobalVars.myBL.WriteHostToFile(User.Text, Pass.Password, BE.Configuration.HostKey);
+                GlobalVars.myBL.WriteHostToFile(User.Text, Pass.Password, GlobalVars.myBL.GetHostKey());
                 MessageBox.Show("You have been registered!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                 Hide();
                 GlobalVars.UserName = User.Text;

@@ -10,7 +10,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Linq;
-using FR;
 using PLWPF.Host_Windows;
 using PLWPF.Host_Windows.User_Controls;
 using System.Threading;
@@ -100,7 +99,7 @@ namespace PLWPF
             {
 
                 var imp = from i in GlobalVars.myBL.getHostingUnitByHost()
-                          where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(GlobalVars.UserName)
+                          where i.Key.HostKey == GlobalVars.myBL.GetHostKey(GlobalVars.UserName)
                           select i;
                 IEnumerable<BE.Order> ppp = new List<BE.Order>();
 
@@ -134,7 +133,7 @@ namespace PLWPF
             try
             {
                 var li = from i in GlobalVars.myBL.getHostingUnitByHost()
-                         where i.Key.HostKey == FR_Imp.GetFR().GetHostKey(GlobalVars.UserName)
+                         where i.Key.HostKey == GlobalVars.myBL.GetHostKey(GlobalVars.UserName)
                          select new { Hostingunits = i };
 
                 foreach (var i in li)

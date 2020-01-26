@@ -66,7 +66,7 @@ namespace PLWPF
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            CreateGuestRequest cgr = new CreateGuestRequest(guest);
+            CreateGuestRequest cgr = new CreateGuestRequest(requester);
             cgr.Show();
             cgr.Closing += (s, args) => Refresh();
 

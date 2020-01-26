@@ -302,6 +302,8 @@ namespace DAL
 
         int GetGuestRequestKey();
 
+        int GetHostKey();
+
 
         int GetBankNumber();
 
@@ -327,6 +329,7 @@ namespace DAL
         int GetHostKey(string username);
         bool GuestCompareToPasswordInFile(string username, string password);
         bool AdminCompareToPasswordInFile(string username, string password);
+        void RemoveHost(int key);
 
 
         #endregion

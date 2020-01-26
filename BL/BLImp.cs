@@ -1234,6 +1234,21 @@ namespace BL
             return DAL_Adapter.GetDAL().AdminCompareToPasswordInFile(username, password);
         }
 
+        public void RemoveGuest(string username)
+        {
+            DAL_Adapter.GetDAL().RemoveGuest(GetGuestKey(username));
+        }
+
+        public int GetHostKey()
+        {
+            return DAL_Adapter.GetDAL().GetHostKey();
+        }
+
+        public void RemoveHost(int key)
+        {
+            DAL_Adapter.GetDAL().RemoveHost(key);
+        }
+
 
 
         #endregion
