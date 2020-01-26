@@ -47,7 +47,7 @@ namespace PLWPF
                     PrivateName = privateNameBox.Text, // These errors will be fixed by adding the appropriate textboxes
                     FamilyName = familyName.Text,
                     MailAddress = mailAddress.Text,
-                    GuestRequests = new List<GuestRequest>()
+                    GuestRequests = new List<int>()
                 };
 
                 GlobalVars.myBL.AddGuest(guest);

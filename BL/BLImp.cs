@@ -755,7 +755,14 @@ namespace BL
         /// <returns><see cref="IEnumerable{GuestRequest}"/>All guest request the specific guest have</returns>
         public IEnumerable<GuestRequest> GetAllGuestRequestToGuest(int key)
         {
-            return GetGuest(key).GuestRequests;
+            var GRkeys = GetGuest(key).GuestRequests;
+            List<GuestRequest> list = new List<GuestRequest>();
+            foreach (var GRkey in GRkeys)
+            {
+                list.Add(GetGuestRequest(GRkey));
+            }
+
+            return list;
         }
 
         #endregion

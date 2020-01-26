@@ -58,6 +58,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -69,6 +70,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -80,6 +82,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -91,6 +94,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -102,6 +106,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -113,6 +118,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -124,6 +130,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -135,6 +142,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -146,6 +154,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -157,6 +166,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -168,6 +178,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -179,6 +190,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -190,6 +202,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -201,6 +214,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -212,21 +226,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -395,10 +395,10 @@
       <boolean>false</boolean>
     </Diary>
     <Commission>0</Commission>
-    <Area>Center</Area>
+    <Area>All</Area>
     <Type>All</Type>
-    <NumberOfPlacesForAdults>3</NumberOfPlacesForAdults>
-    <NumberOfPlacesForChildren>6</NumberOfPlacesForChildren>
+    <NumberOfPlacesForAdults>10</NumberOfPlacesForAdults>
+    <NumberOfPlacesForChildren>10</NumberOfPlacesForChildren>
     <IsTherePool>true</IsTherePool>
     <IsThereJacuzzi>true</IsThereJacuzzi>
     <IsThereGarden>false</IsThereGarden>

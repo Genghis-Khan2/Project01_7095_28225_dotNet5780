@@ -40,10 +40,9 @@ namespace PLWPF
             RequestListBox.Items.Clear();
             try
             {
-                var t1 = GlobalVars.myBL.GetAllGuestRequests().ToArray();
-                var allGuestRequest = requester.GuestRequests;
+                var allGuestRequests = GlobalVars.myBL.GetAllGuestRequestToGuest(requester.GuestKey).ToArray();
                 //var allGuestRequest = GlobalVars.myBL.GetAllGuestRequestWhere((x) => ((GuestRequest)x).GuestKey == Key);
-                foreach (var item in allGuestRequest)
+                foreach (var item in allGuestRequests)
                 {
                     //Border b = new Border();
                     //b.Background = Brushes.LightGray;

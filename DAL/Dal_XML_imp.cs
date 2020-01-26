@@ -33,19 +33,9 @@ namespace DAL
         #region Singleton and Factory Methods
         private Dal_XML_imp()
         {
-            SetupConfigFile();
-            LoadUsersFile();
-            LoadOrderData();
-        }
-
-        private void LoadUsersFile()
-        {
-            if (!File.Exists(usersPath))
-            {
-                using (StreamWriter sw = new StreamWriter(usersPath)) { }
-            }
-
-            userRoot = XElement.Load(usersPath);
+            CreateConfigFile();
+            CreateOrderFile();
+            CreatUsersFile();
         }
 
         protected static Dal_XML_imp instance = null;
@@ -66,6 +56,69 @@ namespace DAL
         #endregion
 
         #region Private Help Methods
+
+        #region Make Linq Files Correct Format
+
+        private void CreateOrderFile()
+        {
+            using (StreamReader sr = new StreamReader(orderPath))
+            {
+                if (!File.Exists(orderPath) || sr.ReadLine() == null)
+                {
+                    orderRoot = new XElement("orders");
+                    orderRoot.Save(orderPath);
+                }
+
+                else
+                {
+                    orderRoot = XElement.Load(orderPath);
+                }
+            }
+        }
+
+        private void CreateConfigFile()
+        {
+            using (StreamReader sr = new StreamReader(configPath))
+            {
+                if (!File.Exists(configPath) || sr.ReadLine() == null)
+                {
+                    configRoot = new XElement("config",
+                                    new XElement("guestrequestkey", 1),
+                                    new XElement("banknumber", 1),
+                                    new XElement("hostkey", 1),
+                                    new XElement("hostingunitkey", 1),
+                                    new XElement("orderkey", 1),
+                                    new XElement("commission"),
+                                    new XElement("numberofdaysuntilexpired", 1),
+                                    new XElement("guestkey", 1));
+                    configRoot.Save(configPath);
+                }
+
+                else
+                {
+                    configRoot = XElement.Load(configPath);
+                }
+            }
+        }
+
+        private void CreatUsersFile()
+        {
+            using (StreamReader sr = new StreamReader(usersPath))
+            {
+                if (!File.Exists(usersPath) || sr.ReadLine() == null)
+                {
+                    userRoot = new XElement("users");
+                    userRoot.Save(usersPath);
+                }
+
+                else
+                {
+                    userRoot = XElement.Load(usersPath);
+                }
+            }
+        }
+
+        #endregion
 
         #region Loading Functions
 
@@ -549,7 +602,7 @@ namespace DAL
 
             SaveObjectList(list, guestRequestPath);
 
-            gr.Requester.GuestRequests.Add(gr);
+            gr.Requester.GuestRequests.Add(gr.GuestRequestKey);
             RemoveGuest(gr.Requester.GuestKey);
             AddGuest(gr.Requester);
         }
@@ -898,29 +951,6 @@ namespace DAL
         #endregion
 
         #region Config Values Functions
-
-        private void SetupConfigFile()
-        {
-            if (!File.Exists(configPath))
-            {
-                configRoot = new XElement("config",
-                             new XElement("guestrequestkey", 1),
-                             new XElement("banknumber", 1),
-                             new XElement("hostkey", 1),
-                             new XElement("hostingunitkey", 1),
-                             new XElement("orderkey", 1),
-                             new XElement("commission", 1),
-                             new XElement("numberofdaysuntilexpired", 1),
-                             new XElement("guestkey", 1));
-
-                configRoot.Save(configPath);
-            }
-
-            else
-            {
-                configRoot = XElement.Load(configPath);
-            }
-        }
 
         #region Get Config Values
 

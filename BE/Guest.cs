@@ -38,7 +38,7 @@ namespace BE
 
         private string mailAddress;
 
-        public List<GuestRequest> GuestRequests { get; set; } = null;
+        public List<int> GuestRequests { get; set; } = null;
 
         public override string ToString()
         {

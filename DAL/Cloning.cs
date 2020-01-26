@@ -155,117 +155,117 @@ namespace DAL
                 GuestKey = original.GuestKey,
                 MailAddress = original.MailAddress.Clone() as string,
                 PrivateName = original.PrivateName.Clone() as string,
-                GuestRequests = original.GuestRequests.Clone()
-            };
+                GuestRequests = original.GuestRequests
+        };
 
             return ret;
 
         }
 
-        #endregion
+    #endregion
 
-        #region List These functions clones a list of objects
+    #region List These functions clones a list of objects
 
-        #region HU-List-Clone Clones HostingUnit List
+    #region HU-List-Clone Clones HostingUnit List
 
-        /// <summary>
-        /// This function clones a HostingUnit List
-        /// </summary>
-        /// <param name="original">HostingUnit List to clone</param>
-        /// <returns>Cloned HostingUnit List</returns>
-        public static List<HostingUnit> Clone(this List<HostingUnit> original)
+    /// <summary>
+    /// This function clones a HostingUnit List
+    /// </summary>
+    /// <param name="original">HostingUnit List to clone</param>
+    /// <returns>Cloned HostingUnit List</returns>
+    public static List<HostingUnit> Clone(this List<HostingUnit> original)
+    {
+        List<HostingUnit> ret = new List<HostingUnit>();
+        foreach (HostingUnit i in original)
         {
-            List<HostingUnit> ret = new List<HostingUnit>();
-            foreach (HostingUnit i in original)
-            {
-                ret.Add(i.Clone());
-            }
-
-            return ret;
+            ret.Add(i.Clone());
         }
 
-        #endregion
-
-        #region GR-List-Clone Clones GuestRequest List
-
-        /// <summary>
-        /// This function clones a GuestRequest List
-        /// </summary>
-        /// <param name="original">GuestRequest List to clone</param>
-        /// <returns>Cloned GuestRequest List</returns>
-        public static List<GuestRequest> Clone(this List<GuestRequest> original)
-        {
-            List<GuestRequest> ret = new List<GuestRequest>();
-            foreach (GuestRequest i in original)
-            {
-                ret.Add(i.Clone());
-            }
-
-            return ret;
-        }
-
-        #endregion
-
-        #region BA-List-Clone Clones BankAccounts List
-
-        /// <summary>
-        /// This function clones a BankAccount List
-        /// </summary>
-        /// <param name="original">BankAccount List to clone</param>
-        /// <returns>Cloned BankAccount List</returns>
-        public static List<BankBranch> Clone(this List<BankBranch> original)
-        {
-            var ret = new List<BankBranch>();
-            foreach (var i in original)
-            {
-                ret.Add(i.Clone());
-            }
-
-            return ret;
-        }
-
-        #endregion
-
-        #region Order-List-Clone Clones Order List
-
-        /// <summary>
-        /// This function clones an Order List
-        /// </summary>
-        /// <param name="original">Order List to clone</param>
-        /// <returns>Cloned Order List</returns>
-        public static List<Order> Clone(this List<Order> original)
-        {
-            var ret = new List<Order>();
-            foreach (var i in original)
-            {
-                ret.Add(i.Clone());
-            }
-
-            return ret;
-        }
-
-        #endregion
-
-        #region Host-List-Clone Clones Host List
-
-        /// <summary>
-        /// This function clones an Host List
-        /// </summary>
-        /// <param name="original">Host List to clone</param>
-        /// <returns>Cloned Host List</returns>
-        public static List<Host> Clone(this List<Host> original)
-        {
-            var ret = new List<Host>();
-            foreach (var i in original)
-            {
-                ret.Add(i.Clone());
-            }
-
-            return ret;
-        }
-
-        #endregion
-
-        #endregion
+        return ret;
     }
+
+    #endregion
+
+    #region GR-List-Clone Clones GuestRequest List
+
+    /// <summary>
+    /// This function clones a GuestRequest List
+    /// </summary>
+    /// <param name="original">GuestRequest List to clone</param>
+    /// <returns>Cloned GuestRequest List</returns>
+    public static List<GuestRequest> Clone(this List<GuestRequest> original)
+    {
+        List<GuestRequest> ret = new List<GuestRequest>();
+        foreach (GuestRequest i in original)
+        {
+            ret.Add(i.Clone());
+        }
+
+        return ret;
+    }
+
+    #endregion
+
+    #region BA-List-Clone Clones BankAccounts List
+
+    /// <summary>
+    /// This function clones a BankAccount List
+    /// </summary>
+    /// <param name="original">BankAccount List to clone</param>
+    /// <returns>Cloned BankAccount List</returns>
+    public static List<BankBranch> Clone(this List<BankBranch> original)
+    {
+        var ret = new List<BankBranch>();
+        foreach (var i in original)
+        {
+            ret.Add(i.Clone());
+        }
+
+        return ret;
+    }
+
+    #endregion
+
+    #region Order-List-Clone Clones Order List
+
+    /// <summary>
+    /// This function clones an Order List
+    /// </summary>
+    /// <param name="original">Order List to clone</param>
+    /// <returns>Cloned Order List</returns>
+    public static List<Order> Clone(this List<Order> original)
+    {
+        var ret = new List<Order>();
+        foreach (var i in original)
+        {
+            ret.Add(i.Clone());
+        }
+
+        return ret;
+    }
+
+    #endregion
+
+    #region Host-List-Clone Clones Host List
+
+    /// <summary>
+    /// This function clones an Host List
+    /// </summary>
+    /// <param name="original">Host List to clone</param>
+    /// <returns>Cloned Host List</returns>
+    public static List<Host> Clone(this List<Host> original)
+    {
+        var ret = new List<Host>();
+        foreach (var i in original)
+        {
+            ret.Add(i.Clone());
+        }
+
+        return ret;
+    }
+
+    #endregion
+
+    #endregion
+}
 }
