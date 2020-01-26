@@ -8,7 +8,7 @@ namespace BL
     {
         public static IBL GetBL()
         {
-            return BLImp.getBL();
+            return BLImp.GetBL();
         }
     }
 }

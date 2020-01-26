@@ -388,6 +388,8 @@ namespace DAL
             list.Add(host);
 
             SaveObjectList(list, hostsPath);
+
+
         }
 
         /// <summary>
@@ -727,6 +729,11 @@ namespace DAL
                              new XElement("guestkey", 1));
 
                 configRoot.Save(configPath);
+            }
+
+            else
+            {
+                configRoot = XElement.Load(configPath);
             }
         }
 
@@ -1160,7 +1167,7 @@ namespace DAL
                 string passStr = "";
                 foreach (var i in sha.ComputeHash(Encoding.ASCII.GetBytes(password)))
                 {
-                    passStr += i.ToString();
+                    passStr += i.ToString() + " ";
                 }
 
                 userRoot = new XElement("users",
@@ -1178,8 +1185,10 @@ namespace DAL
                 string passStr = "";
                 foreach (var i in sha.ComputeHash(Encoding.ASCII.GetBytes(password)))
                 {
-                    passStr += i.ToString();
+                    passStr += i.ToString() + " ";
                 }
+
+                passStr.Trim();
 
                 userRoot = new XElement("users",
                             new XElement("user",

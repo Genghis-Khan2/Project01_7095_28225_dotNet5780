@@ -29,7 +29,7 @@ namespace BL
         /// This is the factory method of BLImp
         /// </summary>
         /// <returns>The <see cref="instance"/> of the singleton factory (singletory)</returns>
-        static public IBL getBL()
+        static public IBL GetBL()
         {
             if (instance == null)
             {
@@ -894,7 +894,7 @@ namespace BL
 
                 return ret;
             }
-            catch (NoItemsException e)
+            catch (NoItemsException)
             {
                 throw;
             }
@@ -1187,21 +1187,12 @@ namespace BL
         public void AddGuest(Guest guest)
         {
             DAL_Adapter.GetDAL().AddGuest(guest);
+
         }
 
         public void WriteHostToFile(string username, string password, int hostKey)
         {
             DAL_Adapter.GetDAL().WriteHostToFile(username, password, hostKey);
-        }
-
-        public void WriteHostToFile(string username, string password, int hostKey, string text2, string text3, string text4, string text5)
-        {
-            DAL_Adapter.GetDAL().WriteHostToFile(username, password, hostKey);
-        }
-
-        public void WriteHostToFile(string text1, string password, object hostKey, string text2, string text3, string text4, string text5)
-        {
-            throw new NotImplementedException();
         }
 
         public void AddHost(Host host)

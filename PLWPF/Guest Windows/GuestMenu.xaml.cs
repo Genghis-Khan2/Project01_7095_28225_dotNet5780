@@ -92,7 +92,7 @@ namespace PLWPF
                     return;
                 try
                 {
-                    BLImp.getBL().RemoveGuestRequest(((GuestRequest)RequestListBox.SelectedItem).GuestRequestKey);
+                    BLImp.GetBL().RemoveGuestRequest(((GuestRequest)RequestListBox.SelectedItem).GuestRequestKey);
                     Refresh();
                 }
                 catch (KeyNotFoundException)

@@ -49,7 +49,7 @@ namespace PLWPF
             try
             {
                 var li = from i in GlobalVars.myBL.getHostingUnitByHost()
-                         where i.Key.HostKey == GlobalVars.myBL.GetHostKey(GlobalVars.UserName)
+                         where i.Key.HostKey == host.HostKey
                          select new { Hostingunits = i };
                 foreach (var i in li)
                 {
@@ -133,7 +133,7 @@ namespace PLWPF
             try
             {
                 var li = from i in GlobalVars.myBL.getHostingUnitByHost()
-                         where i.Key.HostKey == GlobalVars.myBL.GetHostKey(GlobalVars.UserName)
+                         where i.Key.HostKey == host.HostKey
                          select new { Hostingunits = i };
 
                 foreach (var i in li)
