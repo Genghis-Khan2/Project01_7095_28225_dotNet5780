@@ -8,6 +8,8 @@ using System.Xml.Serialization;
 using BE;
 using Exceptions;
 using System.Security.Cryptography;
+using System.Net;
+using System.ComponentModel;
 
 namespace DAL
 {
@@ -18,7 +20,7 @@ namespace DAL
         private const string hostingUnitPath = @"..\..\..\..\HostingUnit.xml";
         private const string guestRequestPath = @"..\..\..\..\GuestRequest.xml";
         private const string orderPath = @"..\..\..\..\Order.xml";
-        private const string bankBranchPath = @"..\..\..\..\BankBranch.xml";
+        private const string bankBranchPath = @"..\..\..\..\atm.xml";
         private const string configPath = @"..\..\..\..\config.xml";
         private const string guestPath = @"..\..\..\..\Guest.xml";
         private const string usersPath = @"..\..\..\..\Users.xml";
@@ -28,6 +30,10 @@ namespace DAL
         private XElement orderRoot = null;
         private XElement configRoot = null;
         private XElement userRoot = null;
+        private XElement atmRoot = null;
+
+
+        bool isBankFileAvailable = false;
         #endregion
 
         #region Singleton and Factory Methods
@@ -36,6 +42,13 @@ namespace DAL
             CreateConfigFile();
             CreateOrderFile();
             CreatUsersFile();
+            BackgroundWorker bw = new BackgroundWorker
+            {
+                WorkerReportsProgress = false
+            };
+            bw.DoWork += DownloadBankAccountInfo;
+            bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
+            bw.RunWorkerAsync();
         }
 
         protected static Dal_XML_imp instance = null;
@@ -216,7 +229,7 @@ namespace DAL
         {
             try
             {
-                LoadOrderData();
+
             }
             catch (FileLoadException)
             {
@@ -260,27 +273,35 @@ namespace DAL
 
         #endregion
 
-        #region LoadBankBranchList Function
-        /// <summary>
-        /// This function loads a list containing the bank branches from the files
-        /// </summary>
-        /// <returns>List of bank branches that are in file</returns>
         private List<BankBranch> LoadBankBranchList()
         {
-            using (StreamReader sr = new StreamReader(bankBranchPath))
+            if (!isBankFileAvailable)
             {
-                if (sr.Peek() != -1)
-                {
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<BankBranch>));
-                    List<BankBranch> list = (List<BankBranch>)xmlSerializer.Deserialize(sr);
-                    return list;
-                }
+                return new List<BankBranch>();
+            }
+            List<BankBranch> bankBranches;
+            try
+            {
+                bankBranches = (from branch in atmRoot.Elements("ATM")
+                                select new BankBranch()
+                                {
+                                    BankNumber = int.Parse(branch.Element("קוד_בנק").Value),
+                                    BankName = branch.Element("שם_בנק").Value,
+                                    BankAccountNumber = GetBankNumber(),
+                                    BranchAddress = branch.Element("כתובת_ה-ATM").Value,
+                                    BranchCity = branch.Element("ישוב").Value,
+                                    BranchNumber = int.Parse(branch.Element("קוד_סניף").Value)
+                                }
+            ).ToList();
             }
 
-            return new List<BankBranch>();
-        }
+            catch
+            {
+                bankBranches = new List<BankBranch>();
+            }
 
-        #endregion
+            return bankBranches;
+        }
 
         public List<Guest> LoadGuestList()
         {
@@ -352,6 +373,46 @@ namespace DAL
         #endregion
 
         #endregion
+
+        #endregion
+
+        #region Net Functions
+
+        private void DownloadBankAccountInfo(object sender, DoWorkEventArgs e)
+        {
+            const string xmlLocalPath = bankBranchPath;
+            WebClient wc = new WebClient();
+            try
+            {
+                string xmlServerPath = @"http://www.jct.ac.il/~coshri/atm.xml";
+                wc.DownloadFile(xmlServerPath, xmlLocalPath);
+            }
+            catch (Exception)
+            {
+                string xmlServerPath = @"http://www.boi.org.il/he/BankingSupervision/BanksAndBranchLocations/Lists/BoiBankBranchesDocs/atm.xml";
+                wc.DownloadFile(xmlServerPath, xmlLocalPath);
+            }
+            finally
+            {
+                wc.Dispose();
+            }
+        }
+
+        private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                atmRoot = XElement.Load(bankBranchPath);
+                isBankFileAvailable = true;
+            }
+
+            else
+            {
+                throw e.Error;
+            }
+
+        }
+
 
         #endregion
 

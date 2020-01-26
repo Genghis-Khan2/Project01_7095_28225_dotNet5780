@@ -112,6 +112,16 @@ namespace PLWPF
             }
         }
 
+        private void Refresh_BankBranches()
+        {
+            BankBranchStack.Children.Clear();
+            var list = GlobalVars.myBL.GetAllBankAccounts();
+            foreach (var i in list)
+            {
+                BankBranchStack.Children.Add(new AdminBankBranchUC(i));
+            }
+        }
+
         internal void Complete_Refresh()
         {
             Refresh_GuestRequests();
@@ -119,6 +129,7 @@ namespace PLWPF
             Refresh_HostingUnits();
             Refresh_Orders();
             Refresh_Guests();
+            Refresh_BankBranches();
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)

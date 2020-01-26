@@ -52,6 +52,13 @@
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
+            <TabItem Header="Bank Accounts">
+                <ScrollViewer>
+                    <StackPanel x:Name="BankBranchStack">
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
         </TabControl>
         <Button Content="Refresh" FontSize="55" FontWeight="Bold" x:Name="RefreshButton" HorizontalAlignment="Center" Margin="0,212,0,0" VerticalAlignment="Top" Height="222" Width="218" Click="RefreshButton_Click"/>
         <Button Content="Log Out" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,163,0,0" VerticalAlignment="Top" Height="54" Width="218" Click="Button_Click"/>

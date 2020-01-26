@@ -24,13 +24,11 @@ namespace PLWPF
     {
 
 
-        private Guest requester;
-        private string Username;
+        private readonly Guest requester;
 
         public GuestMenu(Guest guest)
         {
             InitializeComponent();
-            Username = GlobalVars.myBL.GetGuestUsername(guest.GuestKey);
             requester = guest;
             DataContext = this;
             Refresh();
