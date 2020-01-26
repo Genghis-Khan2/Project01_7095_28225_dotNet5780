@@ -42,7 +42,7 @@
         <Label Grid.Row="0" Content="Name" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
 
         <Label Grid.Row="0" Grid.Column="1" x:Name="NameLab"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold" />
-        <Label Grid.Row="1" Grid.Column="1" x:Name="MailLab" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold" Content="{Binding Path=MailAddress}"/>
+        <Label Grid.Row="1" Grid.Column="1" x:Name="MailLab" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
         <Label Grid.Row="2" Grid.Column="1" x:Name="RegisterLab" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
         <Label Grid.Row="3" Grid.Column="1" x:Name="DurationLab" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
         <Label Grid.Row="4" Grid.Column="1" x:Name="AreaLab" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold" Content="{Binding Path=Area}"/>

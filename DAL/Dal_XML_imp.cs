@@ -10,6 +10,7 @@ using Exceptions;
 using System.Security.Cryptography;
 using System.Net;
 using System.ComponentModel;
+using System.Net.Mail;
 
 namespace DAL
 {
@@ -573,6 +574,7 @@ namespace DAL
         /// <param name="ord">Order to be added to the data collection</param>
         public void AddOrder(Order ord)
         {
+            ord.Status = Enums.OrderStatus.UnTreated;
             if (ord.OrderKey == 0)
             {
                 ord.OrderKey = GetOrderKey();
@@ -589,6 +591,33 @@ namespace DAL
             list.Add(ord);
 
             SaveOrders(list);
+
+            SendEmail(GetHostingUnit(ord.HostingUnitKey).Owner,
+                GetGuestRequest(ord.GuestRequestKey).Requester
+                );
+        }
+
+        private void SendEmail(Host host, Guest guest)
+        {
+            MailMessage mail = new MailMessage();
+            mail.To.Add(guest.MailAddress);
+            mail.From = new MailAddress(host.MailAddress);
+            mail.Subject = "Request for accomodation";
+            mail.Body = "Hey there,\n I saw that you were interested in my hosting unit. Would you like to come over for your vacation? Shoot me back a text,\n" + host.PrivateName;
+            mail.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            //TODO: Fix the issue with credentials
+            smtp.Credentials = new System.Net.NetworkCredential("myGmailEmailAddress@gmail.com",
+            "myGmailPassword");
+            smtp.EnableSsl = true;
+            try
+            {
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         /// <summary>
