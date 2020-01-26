@@ -187,8 +187,10 @@ namespace PLWPF
 
             foreach (var i in list)
             {
-                var s = new HostsGuestRequestUC(this, i, host);
-                s.ToolTip = "Click refresh to load all guest requests";
+                var s = new HostsGuestRequestUC(this, i, host)
+                {
+                    ToolTip = "Click refresh to load all guest requests"
+                };
                 GuestRequestStack.Children.Add(s);
 
             }

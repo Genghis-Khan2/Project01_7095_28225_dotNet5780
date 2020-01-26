@@ -11,7 +11,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Column="0" x:Name="Name" HorizontalAlignment="Center"/>
+        <Label Grid.Column="0" x:Name="GRName" HorizontalAlignment="Center"/>
         <Label Grid.Column="1" x:Name="MailAddress" HorizontalAlignment="Center"/>
         <Label Grid.Column="2" x:Name="Duration" HorizontalAlignment="Center"/>
     </Grid>

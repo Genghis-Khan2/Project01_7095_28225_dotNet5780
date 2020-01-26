@@ -18,9 +18,9 @@ namespace PLWPF.Host_Windows
     /// </summary>
     public partial class CreateHostingUnit : Window
     {
-        private BE.Host host;
+        private readonly BE.Host host;
 
-        private bool updating;
+        private readonly bool updating;
 
         private BE.HostingUnit hu;
         public CreateHostingUnit(BE.Host host, bool update = false, BE.HostingUnit hu = null)

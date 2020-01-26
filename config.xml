@@ -2,8 +2,8 @@
 <config>
   <guestrequestkey>1</guestrequestkey>
   <banknumber>1</banknumber>
-  <hostkey>2</hostkey>
-  <hostingunitkey>2</hostingunitkey>
+  <hostkey>1</hostkey>
+  <hostingunitkey>1</hostingunitkey>
   <orderkey>1</orderkey>
   <commission>1</commission>
   <numberofdaysuntilexpired>1</numberofdaysuntilexpired>

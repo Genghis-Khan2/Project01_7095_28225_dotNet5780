@@ -734,8 +734,6 @@ namespace BL
         /// <returns>Boolean, if date is at least one day before the second date</returns>
         public bool IsLeastThenOneDay(DateTime date1, DateTime date2)
         {
-            DateTime dt1 = new DateTime(2020, date1.Month, date1.Day);
-            DateTime dt2 = new DateTime(2020, date2.Month, date2.Day);
             if (date1.AddDays(1) > date2)
                 return false;
             return true;

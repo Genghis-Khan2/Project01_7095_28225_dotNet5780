@@ -18,11 +18,11 @@ namespace PLWPF.Admin_Windows
     /// </summary>
     public partial class AdminGuestRequestUC : UserControl
     {
-        private BE.GuestRequest gr;
+        private readonly BE.GuestRequest gr;
         public AdminGuestRequestUC(BE.GuestRequest guestRequest)
         {
             InitializeComponent();
-            Name.Content = guestRequest.Requester.PrivateName + " " + guestRequest.Requester.FamilyName;
+            GRName.Content = guestRequest.Requester.PrivateName + " " + guestRequest.Requester.FamilyName;
             Duration.Content = string.Format("{0}.{2} - {1}.{3}", guestRequest.EntryDate.Day, guestRequest.ReleaseDate.Day,
                 guestRequest.EntryDate.Month, guestRequest.ReleaseDate.Month);
             MailAddress.Content = guestRequest.Requester.MailAddress;

@@ -11,7 +11,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Column="0" x:Name="Name"/>
+        <Label Grid.Column="0" x:Name="GuestName"/>
         <Label Grid.Column="1" x:Name="Key"/>
     </Grid>
     <UserControl.ContextMenu>

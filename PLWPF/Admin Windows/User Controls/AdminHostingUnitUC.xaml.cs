@@ -23,7 +23,7 @@ namespace PLWPF.Admin_Windows.User_Controls
         public AdminHostingUnitUC(BE.HostingUnit hu)
         {
             InitializeComponent();
-            Name.Content = hu.HostingUnitName;
+            HUName.Content = hu.HostingUnitName;
             Owner.Content = hu.Owner.PrivateName + " " + hu.Owner.FamilyName;
             Key.Content = hu.HostingUnitKey;
             this.hu = hu;

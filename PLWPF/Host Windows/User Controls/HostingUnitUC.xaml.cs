@@ -26,7 +26,7 @@ namespace PLWPF
             InitializeComponent();
             this.hu = hu;
             this.caller = caller;
-            Name.Content = hu.HostingUnitName;
+            HUName.Content = hu.HostingUnitName;
             Key.Content = hu.HostingUnitKey.ToString();
             Commission.Content = hu.Commission.ToString();
         }

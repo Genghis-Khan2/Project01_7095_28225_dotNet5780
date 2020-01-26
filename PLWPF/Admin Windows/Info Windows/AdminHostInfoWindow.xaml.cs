@@ -25,7 +25,7 @@ namespace PLWPF.Admin_Windows.Info_Windows
 
         private void LoadData(BE.Host host)
         {
-            Name.Content = host.PrivateName + " " + host.FamilyName;
+            HIName.Content = host.PrivateName + " " + host.FamilyName;
 
             MainGrid.DataContext = host;
         }

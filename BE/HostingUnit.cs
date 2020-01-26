@@ -11,7 +11,9 @@ namespace BE
     public class HostingUnit
     {
         public int HostingUnitKey { get; set; } = 0;
-        public Host Owner { set; get; }
+
+        public Host Owner { get; set; }
+
         public string HostingUnitName { get; set; }
 
         [XmlArray("Diary")]

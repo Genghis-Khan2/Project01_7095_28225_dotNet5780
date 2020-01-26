@@ -65,6 +65,8 @@ namespace DAL
         }
         #endregion
 
+        #region Private Help Methods
+
         #region Loading Functions
 
 
@@ -298,7 +300,11 @@ namespace DAL
         #endregion
         #endregion
 
-        #region TODO functions
+        #endregion
+
+        #region General functions
+
+        #region Guest
 
         public void AddGuest(Guest g)
         {
@@ -318,6 +324,208 @@ namespace DAL
 
             SaveObjectList(list, guestPath);
         }
+
+        public IEnumerable<Guest> GetAllGuests()
+        {
+            return LoadGuestList();
+        }
+
+        public bool CheckIfGuestExists(int key)
+        {
+            return LoadGuestList().Exists(s => key == s.GuestKey);
+        }
+
+        public bool CheckIfGuestExists(string username)
+        {
+            var list = (from guestUser in userRoot.Elements("users").Elements("guest")
+                        select new
+                        {
+                            Key = guestUser.Element("key").Value,
+                            Username = guestUser.Element("username").Value,
+                            Password = guestUser.Element("password").Value
+                        }
+                        ).ToList();
+
+            return list.Exists(s => s.Username == username);
+        }
+
+        public Guest GetGuest(int key)
+        {
+            return LoadGuestList().Find(s => s.GuestKey == key);
+        }
+
+        public void RemoveGuest(int key)
+        {
+            var list = LoadGuestList();
+            list.RemoveAll(s => s.GuestKey == key);
+            SaveObjectList(list, guestPath);
+
+            // User file removal
+            userRoot.Elements("users").Elements("guest")
+                .Where(s => int.Parse(s.Element("key").Value) == key)
+                .Remove();
+        }
+
+        public string GetGuestUserName(int key)
+        {
+            var guestList = (from guest in userRoot.Elements("guest")
+                             where int.Parse(guest.Element("key").Value) == key
+                             select new
+                             {
+                                 Username = guest.Element("username").Value
+                             }).ToList();
+
+            if (guestList.Count > 0)
+            {
+                return guestList[0].Username;
+            }
+
+            return null;
+        }
+
+        public int GetGuestKey(string userName)
+        {
+            var guestList = (from guest in userRoot.Elements("guest")
+                             where guest.Element("username").Value == userName
+                             select new
+                             {
+                                 Key = int.Parse(guest.Element("key").Value)
+                             }).ToList();
+
+            if (guestList.Count > 0)
+            {
+                return guestList.First().Key;
+            }
+
+            return -1;
+        }
+
+        public bool GuestCompareToPasswordInFile(string username, string password)
+        {
+            var guestList = (from host in userRoot.Elements("guest")
+                             where host.Element("username").Value.ToLower() == username
+                             select new
+                             {
+                                 Password = host.Element("password").Value
+                             }).ToList();
+
+            if (guestList.Count > 0)
+            {
+                var passBytesStr = guestList.First().Password.Split(' ');
+                byte[] passBytes = new byte[passBytesStr.Length];
+                for (int i = 0; i < passBytesStr.Length; i++)
+                {
+                    passBytes[i] = byte.Parse(passBytesStr[i]);
+                }
+
+                using (SHA256 sha = SHA256.Create())
+                {
+                    return Enumerable.SequenceEqual(passBytes, sha.ComputeHash(Encoding.ASCII.GetBytes(password)));
+                }
+
+            }
+
+            return false;
+        }
+
+        public void WriteGuestToFile(string username, string password, int key)
+        {
+            using (SHA256 sha = SHA256.Create())
+            {
+                string passStr = "";
+                foreach (var i in sha.ComputeHash(Encoding.ASCII.GetBytes(password)))
+                {
+                    passStr += i.ToString() + " ";
+                }
+
+                passStr = passStr.Trim();
+
+                userRoot.Add(new XElement("guest",
+                                new XElement("key", key),
+                                new XElement("username", username),
+                                new XElement("password", passStr)));
+
+                userRoot.Save(usersPath);
+            }
+        }
+
+        #endregion
+
+        #region Order
+
+        /// <summary>
+        /// This function addes an order to the data's list
+        /// </summary>
+        /// <param name="ord">Order to be added to the data collection</param>
+        public void AddOrder(Order ord)
+        {
+            if (ord.OrderKey == 0)
+            {
+                ord.OrderKey = GetOrderKey();
+            }
+
+            var list = LoadOrderList();
+
+            if (list.Exists(s => s.OrderKey == ord.OrderKey))
+            {
+                DecrementOrderKey();
+                throw new AlreadyExistsException(ord.OrderKey, "Order");
+            }
+
+            list.Add(ord);
+
+            SaveOrders(list);
+        }
+
+        /// <summary>
+        /// This function return if order exists in the data
+        /// </summary>
+        /// <param name="key">The key of the order</param>
+        /// <returns>boolean, if the order exists or not</returns>
+        public bool CheckIfOrderExists(int key)
+        {
+            var list = LoadOrderList();
+            return list.Exists(s => s.OrderKey == key);
+        }
+
+        /// <summary>
+        /// This function returns the orders in the data
+        /// </summary>
+        /// <returns>IEnumerable to go over the list of orders</returns>
+        /// <returns>IEnumerable to go over the list of orders</returns>
+        public IEnumerable<Order> GetAllOrders()
+        {
+            return LoadOrderList();
+        }
+
+        /// <summary>
+        /// This function return Order according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the Order</param>
+        /// <returns>The Order with the <paramref name="key"/></returns>
+        public Order GetOrder(int key)
+        {
+            return LoadOrderList().Find(s => s.OrderKey == key);
+        }
+
+        /// <summary>
+        /// This function updates an order with a key of <paramref name="key"/> to a status of <paramref name="stat"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown when an order with the specified key is not found</exception>
+        /// <param name="key">Key of Order to update the status of</param>
+        /// <param name="stat">Status to update Order status to</param>
+        public void UpdateOrderStatus(int key, Enums.OrderStatus stat)
+        {
+            var list = LoadOrderList();
+            int index = list.FindIndex(s => s.OrderKey == key);
+            list[index].Status = stat;
+
+            SaveObjectList(list, orderPath);
+        }
+
+        #endregion
+
+        #region GuestRequest
 
         /// <summary>
         /// This function adds a guest request to the data's list
@@ -347,6 +555,66 @@ namespace DAL
         }
 
         /// <summary>
+        /// This function return if guestRequest exists in the data
+        /// </summary>
+        /// <param name="key">The key of the guestRequest</param>
+        /// <returns>boolean, if the guestRequest exists or not</returns>
+        public bool CheckIfGuestRequestExists(int key)
+        {
+            var list = LoadGuestRequestList();
+            return list.Exists(s => s.GuestRequestKey == key);
+        }
+
+        /// <summary>
+        /// This function returns the guest requests in the data
+        /// </summary>
+        /// <returns>IEnumerable to go over the list of guest requests</returns>
+        public IEnumerable<GuestRequest> GetAllGuestRequests()
+        {
+            return LoadGuestRequestList();
+        }
+        /// <summary>
+        /// This function return GuestRequest according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the GuestRequest</param>
+        /// <returns>The GuestRequest with the <paramref name="key"/></returns>
+        public GuestRequest GetGuestRequest(int key)
+        {
+            return LoadGuestRequestList().Find(s => s.GuestRequestKey == key);
+        }
+
+        /// <summary>
+        /// This function updates a guest request of key <paramref name="key"/> to the status <paramref name="stat"/>
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
+        /// <param name="key">Key of guest request to update</param>
+        /// <param name="stat">Status to update guest request to</param>
+        public void UpdateGuestRequestStatus(int key, Enums.RequestStatus stat)
+        {
+            var list = LoadGuestRequestList();
+            int index = list.FindIndex(s => s.GuestRequestKey == key);
+            list[index].Status = stat;
+            SaveObjectList(list, guestRequestPath);
+        }
+
+        /// <summary>
+        /// This function removes a guest request from the data
+        /// </summary>
+        /// Important Note: It will not compare all fields. It will only compare the key 
+        /// <exception cref="KeyNotFoundException">Thrown if no guest request in the data match the guest request with the <paramref name="key"/></exception>
+        public void RemoveGuestRequest(int key)
+        {
+            var list = LoadGuestRequestList();
+            list.RemoveAll(s => s.GuestRequestKey == key);
+            SaveObjectList(list, guestRequestPath);
+        }
+
+
+        #endregion
+
+        #region HostingUnit
+
+        /// <summary>
         /// This function adds a hosting unit to the data's list
         /// </summary>
         /// <param name="hu">HostingUnit to be added to the data collection</param>
@@ -370,6 +638,65 @@ namespace DAL
             SaveObjectList(list, hostingUnitPath);
         }
 
+        /// <summary>
+        /// This function return if hostingUnit exists in the data
+        /// </summary>
+        /// <param name="key">The key of the hostingUnit</param>
+        /// <returns>boolean, if the hostingUnit exists or not</returns>
+        public bool CheckIfHostingUnitExists(int key)
+        {
+            var list = LoadHostingUnitList();
+            return list.Exists(s => s.HostingUnitKey == key);
+        }
+
+        /// <summary>
+        /// This function returns the hosting units in the data
+        /// </summary>
+        /// <returns>IEnumerable to go over the list of hosting units</returns>
+        public IEnumerable<HostingUnit> GetAllHostingUnits()
+        {
+            return LoadHostingUnitList();
+        }
+
+        /// <summary>
+        /// This function return HostingUnit according to <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The key of the HostingUnit</param>
+        /// <returns>The HostingUnit with the <paramref name="key"/></returns>
+        public HostingUnit GetHostingUnit(int key)
+        {
+            return LoadHostingUnitList().Find(s => s.HostingUnitKey == key);
+        }
+
+        /// <summary>
+        /// This function removes a hosting unit from the data
+        /// </summary>
+        /// Important Note: It will not compare all fields. It will only compare the key 
+        /// <param name="key">Key to remove the hosting unit of</param>
+        public void RemoveHostingUnit(int key)
+        {
+            var list = LoadHostingUnitList();
+            list.RemoveAll(s => s.HostingUnitKey == key);
+            SaveObjectList(list, hostingUnitPath);
+        }
+
+        /// <summary>
+        /// This function updates a hosting unit
+        /// </summary>
+        /// <param name="hu">Hosting unit to update to</param>
+        /// <param name="key">Key of hosting unit to update</param>
+        public void UpdateHostingUnit(HostingUnit hu, int key)
+        {
+            var list = LoadHostingUnitList();
+            list.RemoveAll(s => s.HostingUnitKey == key);
+            list.Add(hu);
+
+            SaveObjectList(list, hostingUnitPath);
+        }
+
+        #endregion
+
+        #region Host
         public void AddHost(Host host)
         {
             if (host.HostKey == 0)
@@ -388,34 +715,134 @@ namespace DAL
             list.Add(host);
 
             SaveObjectList(list, hostsPath);
-
-
         }
 
         /// <summary>
-        /// This function addes an order to the data's list
+        /// This function return if host exists in the data
         /// </summary>
-        /// <param name="ord">Order to be added to the data collection</param>
-        public void AddOrder(Order ord)
+        /// <param name="key">The key of the host</param>
+        /// <returns>boolean, if the host exists or not</returns>
+        public bool CheckIfHostExists(int key)
         {
-            if (ord.OrderKey == 0)
-            {
-                ord.OrderKey = GetOrderKey();
-            }
-
-            var list = LoadOrderList();
-
-            if (list.Exists(s => s.OrderKey == ord.OrderKey))
-            {
-                DecrementOrderKey();
-                throw new AlreadyExistsException(ord.OrderKey, "Order");
-            }
-
-            list.Add(ord);
-
-            SaveOrders(list);
+            var list = LoadHostList();
+            return list.Exists(s => s.HostKey == key);
         }
 
+        public bool CheckIfHostExists(string username)
+        {
+            var list = (from guestUser in userRoot.Elements("users").Elements("host")
+                        select new
+                        {
+                            Key = guestUser.Element("key").Value,
+                            Username = guestUser.Element("username").Value,
+                            Password = guestUser.Element("password").Value
+                        }
+                        ).ToList();
+
+            return list.Exists(s => s.Username == username);
+        }
+
+        /// <summary>
+        /// This function return all the Host 
+        /// </summary>
+        /// <returns><seealso cref="IEnumerable{Host}"/> to go over the list of all the Hosts</returns>
+        public IEnumerable<Host> GetAllHosts()
+        {
+            return LoadHostList();
+        }
+
+        /// <summary>
+        /// This function return the Host with the <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">The requested <see cref="Host"/>'s KEY</param>
+        /// <returns>The Host with the  <paramref name="key"/></returns>
+        public Host GetHost(int key)
+        {
+            return LoadHostList().Find(s => s.HostKey == key);
+        }
+
+        public void WriteHostToFile(string username, string password, int hostKey)
+        {
+            using (SHA256 sha = SHA256.Create())
+            {
+                string passStr = "";
+                foreach (var i in sha.ComputeHash(Encoding.ASCII.GetBytes(password)))
+                {
+                    passStr += i.ToString() + " ";
+                }
+
+                passStr = passStr.Trim();
+
+                userRoot.Add(new XElement("host",
+                                new XElement("key", hostKey),
+                                new XElement("username", username),
+                                new XElement("password", passStr)));
+
+                userRoot.Save(usersPath);
+            }
+        }
+
+        public bool HostCompareToPasswordInFile(string username, string password)
+        {
+            var hostList = (from host in userRoot.Elements("host")
+                            where host.Element("username").Value.ToLower() == username
+                            select new
+                            {
+                                Password = host.Element("password").Value
+                            }).ToList();
+
+            if (hostList.Count > 0)
+            {
+                var passBytesStr = hostList.First().Password.Split(' ');
+                byte[] passBytes = new byte[passBytesStr.Length];
+                for (int i = 0; i < passBytesStr.Length; i++)
+                {
+                    passBytes[i] = byte.Parse(passBytesStr[i]);
+                }
+
+                using (SHA256 sha = SHA256.Create())
+                {
+                    return Enumerable.SequenceEqual(passBytes, sha.ComputeHash(Encoding.ASCII.GetBytes(password)));
+                }
+
+            }
+
+            return false;
+        }
+
+        public int GetHostKey(string username)
+        {
+            var hostList = (from host in userRoot.Elements("host")
+                            where host.Element("username").Value == username
+                            select new
+                            {
+                                Key = int.Parse(host.Element("key").Value)
+                            }
+                            ).ToList();
+            if (hostList.Count > 0)
+            {
+                return hostList.First().Key;
+            }
+
+            return -1;
+        }
+
+        public void RemoveHost(int key)
+        {
+            var list = LoadHostList();
+            list.RemoveAll(s => s.HostKey == key);
+            SaveObjectList(list, hostsPath);
+
+            // User file removal
+            userRoot.Elements("users").Elements("host")
+                .Where(s => int.Parse(s.Element("key").Value) == key)
+                .Remove();
+        }
+
+
+        #endregion
+
+        #region BankAccount
         public void AddBankAccount(BankBranch branch)
         {
             if (branch.BankNumber == 0)
@@ -447,84 +874,6 @@ namespace DAL
             return list.Exists(s => s.BankNumber == key);
         }
 
-        public bool CheckIfGuestExists(int key)
-        {
-            return LoadGuestList().Exists(s => key == s.GuestKey);
-        }
-
-        public bool CheckIfGuestExists(string username)
-        {
-            var list = (from guestUser in userRoot.Elements("users").Elements("guest")
-                        select new
-                        {
-                            Key = guestUser.Element("key").Value,
-                            Username = guestUser.Element("username").Value,
-                            Password = guestUser.Element("password").Value
-                        }
-                        ).ToList();
-
-            return list.Exists(s => s.Username == username);
-        }
-
-        /// <summary>
-        /// This function return if guestRequest exists in the data
-        /// </summary>
-        /// <param name="key">The key of the guestRequest</param>
-        /// <returns>boolean, if the guestRequest exists or not</returns>
-        public bool CheckIfGuestRequestExists(int key)
-        {
-            var list = LoadGuestRequestList();
-            return list.Exists(s => s.GuestRequestKey == key);
-        }
-
-        /// <summary>
-        /// This function return if host exists in the data
-        /// </summary>
-        /// <param name="key">The key of the host</param>
-        /// <returns>boolean, if the host exists or not</returns>
-        public bool CheckIfHostExists(int key)
-        {
-            var list = LoadHostList();
-            return list.Exists(s => s.HostKey == key);
-        }
-
-        public bool CheckIfHostExists(string username)
-        {
-            var list = (from guestUser in userRoot.Elements("users").Elements("host")
-                        select new
-                        {
-                            Key = guestUser.Element("key").Value,
-                            Username = guestUser.Element("username").Value,
-                            Password = guestUser.Element("password").Value
-                        }
-                        ).ToList();
-
-            return list.Exists(s => s.Username == username);
-        }
-
-
-        /// <summary>
-        /// This function return if hostingUnit exists in the data
-        /// </summary>
-        /// <param name="key">The key of the hostingUnit</param>
-        /// <returns>boolean, if the hostingUnit exists or not</returns>
-        public bool CheckIfHostingUnitExists(int key)
-        {
-            var list = LoadHostingUnitList();
-            return list.Exists(s => s.HostingUnitKey == key);
-        }
-
-        /// <summary>
-        /// This function return if order exists in the data
-        /// </summary>
-        /// <param name="key">The key of the order</param>
-        /// <returns>boolean, if the order exists or not</returns>
-        public bool CheckIfOrderExists(int key)
-        {
-            var list = LoadOrderList();
-            return list.Exists(s => s.OrderKey == key);
-        }
-
         /// <summary>
         /// This function returns the bank accounts in the data
         /// </summary>
@@ -533,48 +882,6 @@ namespace DAL
         public IEnumerable<BankBranch> GetAllBankAccounts()
         {
             return LoadBankBranchList();
-        }
-
-        public IEnumerable<Guest> GetAllGuests()
-        {
-            return LoadGuestList();
-        }
-
-        /// <summary>
-        /// This function returns the guest requests in the data
-        /// </summary>
-        /// <returns>IEnumerable to go over the list of guest requests</returns>
-        public IEnumerable<GuestRequest> GetAllGuestRequests()
-        {
-            return LoadGuestRequestList();
-        }
-
-        /// <summary>
-        /// This function returns the hosting units in the data
-        /// </summary>
-        /// <returns>IEnumerable to go over the list of hosting units</returns>
-        public IEnumerable<HostingUnit> GetAllHostingUnits()
-        {
-            return LoadHostingUnitList();
-        }
-
-        /// <summary>
-        /// This function return all the Host 
-        /// </summary>
-        /// <returns><seealso cref="IEnumerable{Host}"/> to go over the list of all the Hosts</returns>
-        public IEnumerable<Host> GetAllHosts()
-        {
-            return LoadHostList();
-        }
-
-        /// <summary>
-        /// This function returns the orders in the data
-        /// </summary>
-        /// <returns>IEnumerable to go over the list of orders</returns>
-        /// <returns>IEnumerable to go over the list of orders</returns>
-        public IEnumerable<Order> GetAllOrders()
-        {
-            return LoadOrderList();
         }
 
         /// <summary>
@@ -586,129 +893,7 @@ namespace DAL
             return LoadBankBranchList().Find(s => s.BankNumber == key);
         }
 
-        public Guest GetGuest(int key)
-        {
-            return LoadGuestList().Find(s => s.GuestKey == key);
-        }
-
-        /// <summary>
-        /// This function return GuestRequest according to <paramref name="key"/>
-        /// </summary>
-        /// <param name="key">The key of the GuestRequest</param>
-        /// <returns>The GuestRequest with the <paramref name="key"/></returns>
-        public GuestRequest GetGuestRequest(int key)
-        {
-            return LoadGuestRequestList().Find(s => s.GuestRequestKey == key);
-        }
-
-        /// <summary>
-        /// This function return the Host with the <paramref name="key"/>
-        /// </summary>
-        /// <param name="key">The requested <see cref="Host"/>'s KEY</param>
-        /// <returns>The Host with the  <paramref name="key"/></returns>
-        public Host GetHost(int key)
-        {
-            return LoadHostList().Find(s => s.HostKey == key);
-        }
-
-        /// <summary>
-        /// This function return HostingUnit according to <paramref name="key"/>
-        /// </summary>
-        /// <param name="key">The key of the HostingUnit</param>
-        /// <returns>The HostingUnit with the <paramref name="key"/></returns>
-        public HostingUnit GetHostingUnit(int key)
-        {
-            return LoadHostingUnitList().Find(s => s.HostingUnitKey == key);
-        }
-
-        /// <summary>
-        /// This function return Order according to <paramref name="key"/>
-        /// </summary>
-        /// <param name="key">The key of the Order</param>
-        /// <returns>The Order with the <paramref name="key"/></returns>
-        public Order GetOrder(int key)
-        {
-            return LoadOrderList().Find(s => s.OrderKey == key);
-        }
-
-        /// <summary>
-        /// This function removes a hosting unit from the data
-        /// </summary>
-        /// Important Note: It will not compare all fields. It will only compare the key 
-        /// <param name="key">Key to remove the hosting unit of</param>
-        public void RemoveHostingUnit(int key)
-        {
-            var list = LoadHostingUnitList();
-            list.RemoveAll(s => s.HostingUnitKey == key);
-            SaveObjectList(list, hostingUnitPath);
-        }
-
-        /// <summary>
-        /// This function updates a guest request of key <paramref name="key"/> to the status <paramref name="stat"/>
-        /// </summary>
-        /// <exception cref="KeyNotFoundException">Thrown if object with key of <paramref name="key"/> does not exist</exception>
-        /// <param name="key">Key of guest request to update</param>
-        /// <param name="stat">Status to update guest request to</param>
-        public void UpdateGuestRequestStatus(int key, Enums.RequestStatus stat)
-        {
-            var list = LoadGuestRequestList();
-            int index = list.FindIndex(s => s.GuestRequestKey == key);
-            list[index].Status = stat;
-            SaveObjectList(list, guestRequestPath);
-        }
-
-        /// <summary>
-        /// This function updates a hosting unit
-        /// </summary>
-        /// <param name="hu">Hosting unit to update to</param>
-        /// <param name="key">Key of hosting unit to update</param>
-        public void UpdateHostingUnit(HostingUnit hu, int key)
-        {
-            var list = LoadHostingUnitList();
-            list.RemoveAll(s => s.HostingUnitKey == key);
-            list.Add(hu);
-
-            SaveObjectList(list, hostingUnitPath);
-        }
-
-        /// <summary>
-        /// This function updates an order with a key of <paramref name="key"/> to a status of <paramref name="stat"/>
-        /// </summary>
-        /// <exception cref="KeyNotFoundException">Thrown when an order with the specified key is not found</exception>
-        /// <param name="key">Key of Order to update the status of</param>
-        /// <param name="stat">Status to update Order status to</param>
-        public void UpdateOrderStatus(int key, Enums.OrderStatus stat)
-        {
-            var list = LoadOrderList();
-            int index = list.FindIndex(s => s.OrderKey == key);
-            list[index].Status = stat;
-
-            SaveObjectList(list, orderPath);
-        }
-
-        public void RemoveGuest(int key)
-        {
-            var list = LoadGuestList();
-            list.RemoveAll(s => s.GuestKey == key);
-            SaveObjectList(list, guestPath);
-
-            // User file removal
-            userRoot.Elements("users").Elements("guest")
-                .Where(s => int.Parse(s.Element("key").Value) == key)
-                .Remove();
-        }
-
-        /// <summary>
-        /// This function removes a guest request from the data
-        /// </summary>
-        /// Important Note: It will not compare all fields. It will only compare the key 
-        /// <exception cref="KeyNotFoundException">Thrown if no guest request in the data match the guest request with the <paramref name="key"/></exception>
-        public void RemoveGuestRequest(int key)
-        {
-            var list = LoadGuestRequestList();
-            list.RemoveAll(s => s.GuestRequestKey == key);
-            SaveObjectList(list, guestRequestPath);
-        }
+        #endregion
 
         #endregion
 
@@ -797,496 +982,91 @@ namespace DAL
 
         private void IncrementGuestRequestKey()
         {
-            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
-            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
-            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
-            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
-            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
-            float commission = float.Parse(configRoot.Element("commission").Value);
-            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
-            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
-
-            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
-            configRoot = new XElement("config",
-                             new XElement("guestrequestkey", guestrequestkey + 1),
-                             new XElement("banknumber", banknumber),
-                             new XElement("hostkey", hostkey),
-                             new XElement("hostingunitkey", hostingunitkey),
-                             new XElement("orderkey", orderkey),
-                             new XElement("commission", commission),
-                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
-                             new XElement("guestkey", guestkey));
-
+            configRoot.Element("guestrequestkey").Value = (int.Parse(configRoot.Element("guestrequestkey").Value) + 1).ToString();
             configRoot.Save(configPath);
         }
 
         private void IncrementBankNumber()
         {
-            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
-            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
-            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
-            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
-            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
-            float commission = float.Parse(configRoot.Element("commission").Value);
-            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
-            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
-
-            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
-            configRoot = new XElement("config",
-                             new XElement("guestrequestkey", guestrequestkey),
-                             new XElement("banknumber", banknumber + 1),
-                             new XElement("hostkey", hostkey),
-                             new XElement("hostingunitkey", hostingunitkey),
-                             new XElement("orderkey", orderkey),
-                             new XElement("commission", commission),
-                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
-                             new XElement("guestkey", guestkey));
-
+            configRoot.Element("banknumber").Value = (int.Parse(configRoot.Element("banknumber").Value) + 1).ToString();
             configRoot.Save(configPath);
         }
 
         private void IncrementHostKey()
         {
-            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
-            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
-            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
-            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
-            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
-            float commission = float.Parse(configRoot.Element("commission").Value);
-            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
-            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
-
-            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
-            configRoot = new XElement("config",
-                             new XElement("guestrequestkey", guestrequestkey),
-                             new XElement("banknumber", banknumber),
-                             new XElement("hostkey", hostkey + 1),
-                             new XElement("hostingunitkey", hostingunitkey),
-                             new XElement("orderkey", orderkey),
-                             new XElement("commission", commission),
-                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
-                             new XElement("guestkey", guestkey));
-
+            configRoot.Element("hostkey").Value = (int.Parse(configRoot.Element("hostkey").Value) + 1).ToString();
             configRoot.Save(configPath);
         }
 
         private void IncrementHostingUnitKey()
         {
-            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
-            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
-            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
-            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
-            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
-            float commission = float.Parse(configRoot.Element("commission").Value);
-            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
-            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
-
-            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
-            configRoot = new XElement("config",
-                             new XElement("guestrequestkey", guestrequestkey),
-                             new XElement("banknumber", banknumber),
-                             new XElement("hostkey", hostkey),
-                             new XElement("hostingunitkey", hostingunitkey + 1),
-                             new XElement("orderkey", orderkey),
-                             new XElement("commission", commission),
-                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
-                             new XElement("guestkey", guestkey));
-
+            configRoot.Element("hostingunitkey").Value = (int.Parse(configRoot.Element("hostingunitkey").Value) + 1).ToString();
             configRoot.Save(configPath);
         }
 
         private void IncrementOrderKey()
         {
-            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
-            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
-            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
-            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
-            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
-            float commission = float.Parse(configRoot.Element("commission").Value);
-            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
-            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
-
-            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
-            configRoot = new XElement("config",
-                             new XElement("guestrequestkey", guestrequestkey),
-                             new XElement("banknumber", banknumber),
-                             new XElement("hostkey", hostkey),
-                             new XElement("hostingunitkey", hostingunitkey),
-                             new XElement("orderkey", orderkey + 1),
-                             new XElement("commission", commission),
-                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
-                             new XElement("guestkey", guestkey));
-
+            configRoot.Element("orderkey").Value = (int.Parse(configRoot.Element("orderkey").Value) + 1).ToString();
             configRoot.Save(configPath);
         }
 
         public void SetCommission(float commission)
         {
-            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
-            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
-            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
-            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
-            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
-            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
-
-            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
-            configRoot = new XElement("config",
-                             new XElement("guestrequestkey", guestrequestkey + 1),
-                             new XElement("banknumber", banknumber),
-                             new XElement("hostkey", hostkey),
-                             new XElement("hostingunitkey", hostingunitkey),
-                             new XElement("orderkey", orderkey),
-                             new XElement("commission", commission),
-                             new XElement("numberofdaysuntilexpired", commission),
-                             new XElement("guestkey", guestkey));
-
+            configRoot.Element("commission").Value = commission.ToString();
             configRoot.Save(configPath);
         }
 
         public void SetNumberOfDaysUntilExpired(int val)
         {
-            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
-            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
-            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
-            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
-            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
-            float commission = float.Parse(configRoot.Element("commission").Value);
-            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
-
-            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
-            configRoot = new XElement("config",
-                             new XElement("guestrequestkey", guestrequestkey + 1),
-                             new XElement("banknumber", banknumber),
-                             new XElement("hostkey", hostkey),
-                             new XElement("hostingunitkey", hostingunitkey),
-                             new XElement("orderkey", orderkey),
-                             new XElement("commission", commission),
-                             new XElement("numberofdaysuntilexpired", val),
-                             new XElement("guestkey", guestkey));
-
+            configRoot.Element("numberofdaysuntilexpired").Value = val.ToString();
             configRoot.Save(configPath);
         }
 
         private void IncrementGuestKey()
         {
-            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
-            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
-            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
-            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
-            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
-            float commission = float.Parse(configRoot.Element("commission").Value);
-            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
-            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
-
-            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
-            configRoot = new XElement("config",
-                             new XElement("guestrequestkey", guestrequestkey),
-                             new XElement("banknumber", banknumber),
-                             new XElement("hostkey", hostkey),
-                             new XElement("hostingunitkey", hostingunitkey),
-                             new XElement("orderkey", orderkey),
-                             new XElement("commission", commission),
-                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
-                             new XElement("guestkey", guestkey + 1));
-
+            configRoot.Element("guestkey").Value = (int.Parse(configRoot.Element("guestkey").Value) + 1).ToString();
             configRoot.Save(configPath);
         }
 
         private void DecrementGuestRequestKey()
         {
-            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
-            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
-            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
-            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
-            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
-            float commission = float.Parse(configRoot.Element("commission").Value);
-            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
-            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
-
-            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
-            configRoot = new XElement("config",
-                             new XElement("guestrequestkey", guestrequestkey - 1),
-                             new XElement("banknumber", banknumber),
-                             new XElement("hostkey", hostkey),
-                             new XElement("hostingunitkey", hostingunitkey),
-                             new XElement("orderkey", orderkey),
-                             new XElement("commission", commission),
-                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
-                             new XElement("guestkey", guestkey));
-
+            configRoot.Element("guestrequestkey").Value = (int.Parse(configRoot.Element("guestrequestkey").Value) - 1).ToString();
             configRoot.Save(configPath);
         }
 
         private void DecrementBankNumber()
         {
-            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
-            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
-            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
-            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
-            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
-            float commission = float.Parse(configRoot.Element("commission").Value);
-            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
-            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
-
-            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
-            configRoot = new XElement("config",
-                             new XElement("guestrequestkey", guestrequestkey),
-                             new XElement("banknumber", banknumber - 1),
-                             new XElement("hostkey", hostkey),
-                             new XElement("hostingunitkey", hostingunitkey),
-                             new XElement("orderkey", orderkey),
-                             new XElement("commission", commission),
-                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
-                             new XElement("guestkey", guestkey));
-
+            configRoot.Element("banknumber").Value = (int.Parse(configRoot.Element("banknumber").Value) - 1).ToString();
             configRoot.Save(configPath);
         }
 
         private void DecrementHostKey()
         {
-            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
-            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
-            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
-            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
-            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
-            float commission = float.Parse(configRoot.Element("commission").Value);
-            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
-            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
-
-            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
-            configRoot = new XElement("config",
-                             new XElement("guestrequestkey", guestrequestkey),
-                             new XElement("banknumber", banknumber),
-                             new XElement("hostkey", hostkey - 1),
-                             new XElement("hostingunitkey", hostingunitkey),
-                             new XElement("orderkey", orderkey),
-                             new XElement("commission", commission),
-                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
-                             new XElement("guestkey", guestkey));
-
+            configRoot.Element("hostkey").Value = (int.Parse(configRoot.Element("hostkey").Value) - 1).ToString();
             configRoot.Save(configPath);
         }
 
         private void DecrementHostingUnitKey()
         {
-            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
-            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
-            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
-            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
-            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
-            float commission = float.Parse(configRoot.Element("commission").Value);
-            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
-            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
-
-            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
-            configRoot = new XElement("config",
-                             new XElement("guestrequestkey", guestrequestkey),
-                             new XElement("banknumber", banknumber),
-                             new XElement("hostkey", hostkey),
-                             new XElement("hostingunitkey", hostingunitkey - 1),
-                             new XElement("orderkey", orderkey),
-                             new XElement("commission", commission),
-                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
-                             new XElement("guestkey", guestkey));
-
+            configRoot.Element("hostingunitkey").Value = (int.Parse(configRoot.Element("hostingunitkey").Value) - 1).ToString();
             configRoot.Save(configPath);
         }
 
         private void DecrementOrderKey()
         {
-            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
-            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
-            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
-            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
-            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
-            float commission = float.Parse(configRoot.Element("commission").Value);
-            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
-            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
-
-            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
-            configRoot = new XElement("config",
-                             new XElement("guestrequestkey", guestrequestkey),
-                             new XElement("banknumber", banknumber),
-                             new XElement("hostkey", hostkey),
-                             new XElement("hostingunitkey", hostingunitkey),
-                             new XElement("orderkey", orderkey - 1),
-                             new XElement("commission", commission),
-                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
-                             new XElement("guestkey", guestkey));
-
+            configRoot.Element("orderkey").Value = (int.Parse(configRoot.Element("orderkey").Value) - 1).ToString();
             configRoot.Save(configPath);
         }
 
         private void DecrementGuestKey()
         {
-            int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
-            int banknumber = int.Parse(configRoot.Element("banknumber").Value);
-            int hostkey = int.Parse(configRoot.Element("hostkey").Value);
-            int hostingunitkey = int.Parse(configRoot.Element("hostingunitkey").Value);
-            int orderkey = int.Parse(configRoot.Element("orderkey").Value);
-            float commission = float.Parse(configRoot.Element("commission").Value);
-            int numberofdaysuntilexpired = int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
-            int guestkey = int.Parse(configRoot.Element("guestkey").Value);
-
-            using (StreamWriter sw = new StreamWriter(configPath, false)) { } // Overwrite the file
-            configRoot = new XElement("config",
-                             new XElement("guestrequestkey", guestrequestkey),
-                             new XElement("banknumber", banknumber),
-                             new XElement("hostkey", hostkey),
-                             new XElement("hostingunitkey", hostingunitkey),
-                             new XElement("orderkey", orderkey),
-                             new XElement("commission", commission),
-                             new XElement("numberofdaysuntilexpired", numberofdaysuntilexpired),
-                             new XElement("guestkey", guestkey - 1));
-
+            configRoot.Element("guestkey").Value = (int.Parse(configRoot.Element("guestkey").Value) - 1).ToString();
             configRoot.Save(configPath);
         }
 
-        public string GetGuestUserName(int key)
-        {
-            var guestList = (from guest in userRoot.Elements("users").Elements("guest")
-                             where int.Parse(guest.Element("key").Value) == key
-                             select new
-                             {
-                                 Username = guest.Element("username").Value
-                             }).ToList();
+        #endregion
 
-            if (guestList.Count > 0)
-            {
-                return guestList[0].Username;
-            }
-
-            return null;
-
-        }
-
-        public void WriteGuestToFile(string username, string password, int key)
-        {
-            using (SHA256 sha = SHA256.Create())
-            {
-                string passStr = "";
-                foreach (var i in sha.ComputeHash(Encoding.ASCII.GetBytes(password)))
-                {
-                    passStr += i.ToString() + " ";
-                }
-
-                userRoot = new XElement("users",
-                            new XElement("guest",
-                                new XElement("key", key),
-                                new XElement("username", username),
-                                new XElement("password", passStr)));
-            }
-        }
-
-        public void WriteHostToFile(string username, string password, int hostKey)
-        {
-            using (SHA256 sha = SHA256.Create())
-            {
-                string passStr = "";
-                foreach (var i in sha.ComputeHash(Encoding.ASCII.GetBytes(password)))
-                {
-                    passStr += i.ToString() + " ";
-                }
-
-                passStr.Trim();
-
-                userRoot = new XElement("users",
-                            new XElement("user",
-                                new XElement("key", hostKey),
-                                new XElement("username", username),
-                                new XElement("password", passStr)));
-            }
-        }
-
-        public int GetGuestKey(string userName)
-        {
-            var guestList = (from guest in userRoot.Elements("users").Elements("guest")
-                             where guest.Element("username").Value == userName
-                             select new
-                             {
-                                 Key = int.Parse(guest.Element("key").Value)
-                             }).ToList();
-
-            if (guestList.Count > 0)
-            {
-                return guestList.First().Key;
-            }
-
-            return -1;
-        }
-
-        public bool HostCompareToPasswordInFile(string username, string password)
-        {
-            var hostList = (from host in userRoot.Elements("users").Elements("host")
-                            where host.Element("username").Value == username
-                            select new
-                            {
-                                Password = host.Element("password").Value
-                            }).ToList();
-
-            if (hostList.Count > 0)
-            {
-                var passBytesStr = hostList.First().Password.Split(' ');
-                byte[] passBytes = new byte[passBytesStr.Length];
-                for (int i = 0; i < passBytesStr.Length; i++)
-                {
-                    passBytes[i] = byte.Parse(passBytesStr[i]);
-                }
-
-                using (SHA256 sha = SHA256.Create())
-                {
-                    return Enumerable.SequenceEqual(passBytes, sha.ComputeHash(Encoding.ASCII.GetBytes(password)));
-                }
-
-            }
-
-            return false;
-        }
-
-        public int GetHostKey(string username)
-        {
-            var hostList = (from host in userRoot.Elements("users").Elements("host")
-                            where host.Element("username").Value == username
-                            select new
-                            {
-                                Key = int.Parse(host.Element("key").Value)
-                            }
-                            ).ToList();
-            if (hostList.Count > 0)
-            {
-                return hostList.First().Key;
-            }
-
-            return -1;
-        }
-
-        public bool GuestCompareToPasswordInFile(string username, string password)
-        {
-            var guestList = (from host in userRoot.Elements("users").Elements("guest")
-                             where host.Element("username").Value == username
-                             select new
-                             {
-                                 Password = host.Element("password").Value
-                             }).ToList();
-
-            if (guestList.Count > 0)
-            {
-                var passBytesStr = guestList.First().Password.Split(' ');
-                byte[] passBytes = new byte[passBytesStr.Length];
-                for (int i = 0; i < passBytesStr.Length; i++)
-                {
-                    passBytes[i] = byte.Parse(passBytesStr[i]);
-                }
-
-                using (SHA256 sha = SHA256.Create())
-                {
-                    return Enumerable.SequenceEqual(passBytes, sha.ComputeHash(Encoding.ASCII.GetBytes(password)));
-                }
-
-            }
-
-            return false;
-        }
+        #endregion
 
         public bool AdminCompareToPasswordInFile(string username, string password)
         {
@@ -1301,22 +1081,5 @@ namespace DAL
                 return Enumerable.SequenceEqual(passBytes, sha.ComputeHash(Encoding.ASCII.GetBytes(password)));
             }
         }
-
-        public void RemoveHost(int key)
-        {
-            var list = LoadHostList();
-            list.RemoveAll(s => s.HostKey == key);
-            SaveObjectList(list, hostsPath);
-
-            // User file removal
-            userRoot.Elements("users").Elements("host")
-                .Where(s => int.Parse(s.Element("key").Value) == key)
-                .Remove();
-        }
-
-
-        #endregion
-
-        #endregion
     }
 }

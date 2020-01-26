@@ -28,8 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XML Files", "XML Files", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FR", "FR\FR.csproj", "{767C1973-F5AB-447A-9DA4-4C85BD2E7957}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DALTest", "DALTest\DALTest.csproj", "{DC420C99-67FE-4974-A370-F4C6743A6964}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,10 +62,6 @@ Global
 		{767C1973-F5AB-447A-9DA4-4C85BD2E7957}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{767C1973-F5AB-447A-9DA4-4C85BD2E7957}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{767C1973-F5AB-447A-9DA4-4C85BD2E7957}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC420C99-67FE-4974-A370-F4C6743A6964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC420C99-67FE-4974-A370-F4C6743A6964}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC420C99-67FE-4974-A370-F4C6743A6964}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC420C99-67FE-4974-A370-F4C6743A6964}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

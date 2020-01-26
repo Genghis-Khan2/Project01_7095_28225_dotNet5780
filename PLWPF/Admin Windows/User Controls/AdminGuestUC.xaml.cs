@@ -23,12 +23,12 @@ namespace PLWPF.Admin_Windows.User_Controls
         {
             InitializeComponent();
             Key.Content = guest.GuestKey;
-            Name.Content = GlobalVars.myBL.GetGuestUsername(guest.GuestKey);
+            GuestName.Content = GlobalVars.myBL.GetGuestUsername(guest.GuestKey);
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            GlobalVars.myBL.RemoveGuest(Name.Content as string);
+            GlobalVars.myBL.RemoveGuest(GuestName.Content as string);
         }
     }
 }

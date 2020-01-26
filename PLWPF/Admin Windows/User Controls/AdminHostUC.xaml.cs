@@ -25,7 +25,7 @@ namespace PLWPF.Admin_Windows.User_Controls
         public AdminHostUC(AdminWindow caller, BE.Host host)
         {
             InitializeComponent();
-            Name.Content = host.PrivateName + " " + host.FamilyName;
+            HostName.Content = host.PrivateName + " " + host.FamilyName;
             MailAddress.Content = host.MailAddress;
             PhoneNumber.Content = host.PhoneNumber;
             this.host = host;
