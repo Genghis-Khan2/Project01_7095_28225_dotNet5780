@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfHost xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Host>
+    <HostKey>1</HostKey>
+    <PrivateName>Johnny</PrivateName>
+    <FamilyName>Appleseed</FamilyName>
+    <PhoneNumber>0549535242</PhoneNumber>
+    <MailAddress>gabikomet@gmail.com</MailAddress>
+    <BankBranchDetails>
+      <BankNumber>0</BankNumber>
+      <BankName>Mizrach</BankName>
+      <BranchNumber>0</BranchNumber>
+      <BranchAddress>212 PoopyDoo</BranchAddress>
+      <BranchCity>Meliathan</BranchCity>
+      <BankAccountNumber>0</BankAccountNumber>
+    </BankBranchDetails>
+    <BankAccountNumber>0</BankAccountNumber>
+    <CollectionClearance>false</CollectionClearance>
+  </Host>
+</ArrayOfHost>

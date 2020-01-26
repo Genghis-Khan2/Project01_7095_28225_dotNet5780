@@ -1,1 +1,8 @@
-﻿<users></users>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<users>
+  <host>
+    <key>1</key>
+    <username>gak</username>
+    <password>193 240 38 88 47 230 232 203 98 13 12 133 167 47 228 33 221 222 215 86 102 42 142 192 14 212 194 151 173 16 103 107</password>
+  </host>
+</users>
