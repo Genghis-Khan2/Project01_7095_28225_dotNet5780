@@ -330,6 +330,7 @@ namespace DAL
         bool GuestCompareToPasswordInFile(string username, string password);
         bool AdminCompareToPasswordInFile(string username, string password);
         void RemoveHost(int key);
+        void SetCommission(float? value);
 
 
         #endregion

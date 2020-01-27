@@ -984,6 +984,11 @@ namespace DAL
             throw new NotImplementedException();
         }
 
+        public void SetCommission(float? value)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #endregion

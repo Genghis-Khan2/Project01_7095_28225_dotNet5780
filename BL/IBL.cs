@@ -70,6 +70,7 @@ namespace BL
         void RemoveGuestRequest(int key);
         void WriteHostToFile(string username, string password, int hostKey);
         void AddHost(Host host);
+        void SetCommission(float? value);
 
         #endregion
 

@@ -1251,6 +1251,14 @@ namespace BL
             DAL_Adapter.GetDAL().RemoveHost(key);
         }
 
+        public void SetCommission(float? value)
+        {
+            if (value != null)
+            {
+                DAL_Adapter.GetDAL().SetCommission(value);
+            }
+        }
+
 
 
         #endregion
