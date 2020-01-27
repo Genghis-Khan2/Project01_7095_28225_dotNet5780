@@ -4,6 +4,8 @@ using System.Linq;
 using BE;
 using DAL;
 using Exceptions;
+using System.Net;
+using System.Net.Mail;
 
 namespace BL
 {
@@ -368,6 +370,10 @@ namespace BL
             catch (AlreadyExistsException e)
             {
                 throw new AlreadyExistsException(e.Message);
+            }
+            catch (SmtpException)
+            {
+                throw;
             }
         }
 

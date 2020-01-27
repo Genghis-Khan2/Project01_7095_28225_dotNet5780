@@ -71,6 +71,10 @@ namespace PLWPF.Host_Windows.User_Controls
                 {
                     throw;
                 }
+                catch (System.Net.Mail.SmtpException err)
+                {
+                    MessageBox.Show(err.Message, "Error with mail!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
 
                 huOrderedTo = hu;
 

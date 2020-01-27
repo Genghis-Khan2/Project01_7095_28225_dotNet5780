@@ -605,18 +605,21 @@ namespace DAL
             mail.Subject = "Request for accomodation";
             mail.Body = "Hey there,\n I saw that you were interested in my hosting unit. Would you like to come over for your vacation? Shoot me back a text,\n" + host.PrivateName;
             mail.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            //TODO: Fix the issue with credentials
-            smtp.Credentials = new System.Net.NetworkCredential("myGmailEmailAddress@gmail.com",
-            "myGmailPassword");
-            smtp.EnableSsl = true;
+            SmtpClient smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                //TODO: Fix the issue with credentials
+                Credentials = new NetworkCredential("myGmailEmailAddress@gmail.com",
+            "myGmailPassword"),
+                EnableSsl = true
+            };
             try
             {
                 smtp.Send(mail);
             }
             catch (Exception ex)
             {
+                throw ex;
             }
         }
 
