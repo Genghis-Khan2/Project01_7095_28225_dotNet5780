@@ -19,7 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XML Files", "XML Files", "{
 	ProjectSection(SolutionItems) = preProject
 		atm.xml = atm.xml
 		config.xml = config.xml
-		Docs For Configuration File.txt = Docs For Configuration File.txt
 		Guest.xml = Guest.xml
 		GuestRequest.xml = GuestRequest.xml
 		Host.xml = Host.xml

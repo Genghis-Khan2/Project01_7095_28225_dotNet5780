@@ -50,7 +50,10 @@ namespace DAL
             bw.DoWork += DownloadBankAccountInfo;
             bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
             bw.RunWorkerAsync();
+
         }
+
+
 
         protected static Dal_XML_imp instance = null;
 
@@ -391,7 +394,14 @@ namespace DAL
             catch (Exception)
             {
                 string xmlServerPath = @"http://www.boi.org.il/he/BankingSupervision/BanksAndBranchLocations/Lists/BoiBankBranchesDocs/atm.xml";
-                wc.DownloadFile(xmlServerPath, xmlLocalPath);
+                try
+                {
+                    wc.DownloadFile(xmlServerPath, xmlLocalPath);
+                }
+                catch (WebException)
+                {
+                    throw;//TODO: לעשות פה משהו במקרה ושאר האופציןת לא עובדות
+                }
             }
             finally
             {

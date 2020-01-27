@@ -42,21 +42,27 @@ namespace PLWPF
                     MessageBox.Show("Invalid username!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                Guest guest = new Guest()
+                try
                 {
-                    PrivateName = privateNameBox.Text, // These errors will be fixed by adding the appropriate textboxes
-                    FamilyName = familyName.Text,
-                    MailAddress = mailAddress.Text,
-                    GuestRequests = new List<int>()
-                };
-
-                GlobalVars.myBL.AddGuest(guest);
-                GlobalVars.myBL.WriteGuestToFile(User.Text, Pass.Password, guest.GuestKey);
-                MessageBox.Show("You have been registered!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
-                Hide();
-                var createWin = new GuestMenu(guest);
-                createWin.Closed += (s, args) => Close();
-                createWin.Show();
+                    Guest guest = new Guest()
+                    {
+                        PrivateName = privateNameBox.Text, // These errors will be fixed by adding the appropriate textboxes
+                        FamilyName = familyName.Text,
+                        MailAddress = mailAddress.Text,
+                        GuestRequests = new List<int>()
+                    };
+                    GlobalVars.myBL.AddGuest(guest);
+                    GlobalVars.myBL.WriteGuestToFile(User.Text, Pass.Password, guest.GuestKey);
+                    MessageBox.Show("You have been registered!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Hide();
+                    var createWin = new GuestMenu(guest);
+                    createWin.Closed += (s, args) => Close();
+                    createWin.Show();
+                }
+                catch (FormatException err)
+                {
+                    MessageBox.Show(err.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
                 return;
             }
             //TODO: לעשות שאי שיוון בי הטקסטבוקסים יותרע בתווית
