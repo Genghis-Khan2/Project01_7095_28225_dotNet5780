@@ -141,5 +141,10 @@ namespace PLWPF
         {
             Close();
         }
+
+        private void UpDownControl_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            GlobalVars.myBL.SetCommission(UpDownControl.Value);
+        }
     }
 }

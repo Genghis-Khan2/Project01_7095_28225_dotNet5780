@@ -17,6 +17,10 @@ namespace DAL
     public class Dal_XML_imp : IDAL
     {
         #region Paths
+
+        /// <summary>
+        /// These constants represent the paths of the xml files
+        /// </summary>
         private const string hostsPath = @"..\..\..\..\Host.xml";
         private const string hostingUnitPath = @"..\..\..\..\HostingUnit.xml";
         private const string guestRequestPath = @"..\..\..\..\GuestRequest.xml";
@@ -25,33 +29,49 @@ namespace DAL
         private const string configPath = @"..\..\..\..\config.xml";
         private const string guestPath = @"..\..\..\..\Guest.xml";
         private const string usersPath = @"..\..\..\..\Users.xml";
+
         #endregion
 
         #region Roots
+
+        /// <summary>
+        /// These variables represent the root objects of the xml files
+        /// </summary>
         private XElement orderRoot = null;
         private XElement configRoot = null;
         private XElement userRoot = null;
         private XElement atmRoot = null;
 
-
+        /// <summary>
+        /// This variable represents whether the contents of the bank accounts file is available or not
+        /// </summary>
         bool isBankFileAvailable = false;
         #endregion
 
         #region Singleton and Factory Methods
+
+        /// <summary>
+        /// Private constructor that creates necessary files, and begins thread to download bank accounts
+        /// </summary>
         private Dal_XML_imp()
         {
             CreateConfigFile();
             CreateOrderFile();
             CreatUsersFile();
+
             BackgroundWorker bw = new BackgroundWorker
             {
                 WorkerReportsProgress = false
             };
+
             bw.DoWork += DownloadBankAccountInfo;
             bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
             bw.RunWorkerAsync();
         }
 
+        /// <summary>
+        /// The singletory object of the class
+        /// </summary>
         protected static Dal_XML_imp instance = null;
 
         /// <summary>
@@ -73,11 +93,14 @@ namespace DAL
 
         #region Make Linq Files Correct Format
 
+        /// <summary>
+        /// This function checks whether the order file exists or not, and configures it for linq use
+        /// </summary>
         private void CreateOrderFile()
         {
             using (StreamReader sr = new StreamReader(orderPath))
             {
-                if (!File.Exists(orderPath) || sr.ReadLine() == null)
+                if (!File.Exists(orderPath) || sr.ReadLine() == null) // If the file doesn't exists, or doesn't contain anything
                 {
                     orderRoot = new XElement("orders");
                     orderRoot.Save(orderPath);
@@ -85,16 +108,19 @@ namespace DAL
 
                 else
                 {
-                    orderRoot = XElement.Load(orderPath);
+                    orderRoot = XElement.Load(orderPath); // If the file exists, load it into the root object
                 }
             }
         }
 
+        /// <summary>
+        /// This function checks whether the config file exists or not, and configures it for linq use
+        /// </summary>
         private void CreateConfigFile()
         {
             using (StreamReader sr = new StreamReader(configPath))
             {
-                if (!File.Exists(configPath) || sr.ReadLine() == null)
+                if (!File.Exists(configPath) || sr.ReadLine() == null) // If the config file doesn't exist, or it's empty
                 {
                     configRoot = new XElement("config",
                                     new XElement("guestrequestkey", 1),
@@ -104,7 +130,7 @@ namespace DAL
                                     new XElement("orderkey", 1),
                                     new XElement("commission"),
                                     new XElement("numberofdaysuntilexpired", 1),
-                                    new XElement("guestkey", 1));
+                                    new XElement("guestkey", 1)); // Set all the fields to 1
                     configRoot.Save(configPath);
                 }
 
@@ -115,11 +141,14 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// This function checks whether the users file exists or not, and configures it for linq use
+        /// </summary>
         private void CreatUsersFile()
         {
             using (StreamReader sr = new StreamReader(usersPath))
             {
-                if (!File.Exists(usersPath) || sr.ReadLine() == null)
+                if (!File.Exists(usersPath) || sr.ReadLine() == null) // If the file doesn't exist, or is empty
                 {
                     userRoot = new XElement("users");
                     userRoot.Save(usersPath);
@@ -379,6 +408,11 @@ namespace DAL
 
         #region Net Functions
 
+        /// <summary>
+        /// This is the function that the background worker runs when the program is run
+        /// </summary>
+        /// <param name="sender">Ignore</param>
+        /// <param name="e">Ignore</param>
         private void DownloadBankAccountInfo(object sender, DoWorkEventArgs e)
         {
             const string xmlLocalPath = bankBranchPath;
@@ -399,6 +433,11 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// This is the function that is run when the download of the bank account info is finished
+        /// </summary>
+        /// <param name="sender">Ignore</param>
+        /// <param name="e">Ignore</param>
         private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Error == null)
@@ -421,35 +460,53 @@ namespace DAL
 
         #region Guest
 
-        public void AddGuest(Guest g)
+        /// <summary>
+        /// This function adds a <paramref name="guest"/> to the data
+        /// </summary>
+        /// <param name="guest">Guest to add to the data</param>
+        public void AddGuest(Guest guest)
         {
-            if (g.GuestKey == 0)
+            if (guest.GuestKey == 0)
             {
-                g.GuestKey = GetGuestKey();
+                guest.GuestKey = GetGuestKey();
             }
 
             var list = LoadGuestList();
-            if (list.Exists(s => s.GuestKey == g.GuestKey))
+            if (list.Exists(s => s.GuestKey == guest.GuestKey))
             {
                 DecrementGuestKey();
-                throw new AlreadyExistsException(g.GuestKey, "Guest");
+                throw new AlreadyExistsException(guest.GuestKey, "Guest");
             }
 
-            list.Add(g);
+            list.Add(guest);
 
             SaveObjectList(list, guestPath);
         }
 
+        /// <summary>
+        /// This function gets all the guests from the data
+        /// </summary>
+        /// <returns>IEnumerable ofall the guests in the data</returns>
         public IEnumerable<Guest> GetAllGuests()
         {
             return LoadGuestList();
         }
 
+        /// <summary>
+        /// Checks if a guest with the appropriate <paramref name="key"/> exists
+        /// </summary>
+        /// <param name="key">Key of the guest who's existence is being queried</param>
+        /// <returns>Whether the guest with the corresponding key exists</returns>
         public bool CheckIfGuestExists(int key)
         {
             return LoadGuestList().Exists(s => key == s.GuestKey);
         }
 
+        /// <summary>
+        /// Check if a guest with the appropriate <paramref name="username"/> exists
+        /// </summary>
+        /// <param name="username">Username of the guest who's existence is being queried</param>
+        /// <returns>Whether such a guest exists</returns>
         public bool CheckIfGuestExists(string username)
         {
             var list = (from guestUser in userRoot.Elements("users").Elements("guest")
@@ -464,11 +521,20 @@ namespace DAL
             return list.Exists(s => s.Username == username);
         }
 
+        /// <summary>
+        /// This function returns a guest with a matching <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">Key of the guest to be returned</param>
+        /// <returns>Guest with matching key</returns>
         public Guest GetGuest(int key)
         {
             return LoadGuestList().Find(s => s.GuestKey == key);
         }
 
+        /// <summary>
+        /// Removes the guest with the corresponding <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">Key of the guest who is to be removed</param>
         public void RemoveGuest(int key)
         {
             var list = LoadGuestList();
@@ -481,6 +547,11 @@ namespace DAL
                 .Remove();
         }
 
+        /// <summary>
+        /// Gets the username of a guest with a corresponding <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">Key of the guest who's username is being queried</param>
+        /// <returns>Username of the guest with matching <paramref name="key"/></returns>
         public string GetGuestUserName(int key)
         {
             var guestList = (from guest in userRoot.Elements("guest")
@@ -498,6 +569,11 @@ namespace DAL
             return null;
         }
 
+        /// <summary>
+        /// Gets the key of a guest with a corresponding <paramref name="userName"/>
+        /// </summary>
+        /// <param name="userName">The username to match</param>
+        /// <returns>The key of the guest with a matching <paramref name="userName"/></returns>
         public int GetGuestKey(string userName)
         {
             var guestList = (from guest in userRoot.Elements("guest")
@@ -515,6 +591,12 @@ namespace DAL
             return -1;
         }
 
+        /// <summary>
+        /// Checks if the <paramref name="username"/> and <paramref name="password"/> match data
+        /// </summary>
+        /// <param name="username">Username to compare to the data</param>
+        /// <param name="password">Password to compare to the data</param>
+        /// <returns>Whether the <paramref name="username"/> and <paramref name="password"/> match data</returns>
         public bool GuestCompareToPasswordInFile(string username, string password)
         {
             var guestList = (from host in userRoot.Elements("guest")
@@ -543,6 +625,12 @@ namespace DAL
             return false;
         }
 
+        /// <summary>
+        /// Writes a guest to data, with <paramref name="key"/>, <paramref name="username"/> and <paramref name="password"/>
+        /// </summary>
+        /// <param name="username">Username to write to data</param>
+        /// <param name="password">Password to write to data</param>
+        /// <param name="key">Key of guest being written to data</param>
         public void WriteGuestToFile(string username, string password, int key)
         {
             using (SHA256 sha = SHA256.Create())
@@ -597,6 +685,11 @@ namespace DAL
                 );
         }
 
+        /// <summary>
+        /// Sends an email from host's mail address to guest's
+        /// </summary>
+        /// <param name="host">Host who's mail address is used as the from: field</param>
+        /// <param name="guest">Guest who's mail address is used as the to: field</param>
         private void SendEmail(Host host, Guest guest)
         {
             MailMessage mail = new MailMessage();
@@ -907,6 +1000,12 @@ namespace DAL
             return LoadHostList().Find(s => s.HostKey == key);
         }
 
+        /// <summary>
+        /// Writes a host's <paramref name="username"/>, <paramref name="password"/> and <paramref name="hostKey"/> to data
+        /// </summary>
+        /// <param name="username">Username to be written to data</param>
+        /// <param name="password">Password to be written to data</param>
+        /// <param name="hostKey">Key of the host being written to data</param>
         public void WriteHostToFile(string username, string password, int hostKey)
         {
             using (SHA256 sha = SHA256.Create())
@@ -928,6 +1027,12 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// Compares <paramref name="username"/> and <paramref name="password"/> of host to ones stored in data
+        /// </summary>
+        /// <param name="username">Username to compare</param>
+        /// <param name="password">Password to compare</param>
+        /// <returns>Whether the <paramref name="username"/> and <paramref name="password"/> match data</returns>
         public bool HostCompareToPasswordInFile(string username, string password)
         {
             var hostList = (from host in userRoot.Elements("host")
@@ -956,6 +1061,11 @@ namespace DAL
             return false;
         }
 
+        /// <summary>
+        /// Gets the key of host with matching username
+        /// </summary>
+        /// <param name="username">Username of the host who's key is being queried</param>
+        /// <returns></returns>
         public int GetHostKey(string username)
         {
             var hostList = (from host in userRoot.Elements("host")
@@ -973,6 +1083,10 @@ namespace DAL
             return -1;
         }
 
+        /// <summary>
+        /// Removes a host from data and removes the user data
+        /// </summary>
+        /// <param name="key">Key of the host to be removed</param>
         public void RemoveHost(int key)
         {
             var list = LoadHostList();
@@ -989,6 +1103,11 @@ namespace DAL
         #endregion
 
         #region BankAccount
+
+        /// <summary>
+        /// Adds a bank account to the data
+        /// </summary>
+        /// <param name="branch">Branch to be added to data</param>
         public void AddBankAccount(BankBranch branch)
         {
             if (branch.BankNumber == 0)
@@ -1047,6 +1166,10 @@ namespace DAL
 
         #region Get Config Values
 
+        /// <summary>
+        /// Gets GuestRequestKey from config file, AND INCREMENTS IT!
+        /// </summary>
+        /// <returns>Value of GuestRequestKey</returns>
         public int GetGuestRequestKey()
         {
             int key = int.Parse(configRoot.Element("guestrequestkey").Value);
@@ -1054,6 +1177,10 @@ namespace DAL
             return key;
         }
 
+        /// <summary>
+        /// Gets BankNumber from config file, AND INCREMENTS IT!
+        /// </summary>
+        /// <returns>Value of BankNumber</returns>
         public int GetBankNumber()
         {
             int num = int.Parse(configRoot.Element("banknumber").Value);
@@ -1061,6 +1188,10 @@ namespace DAL
             return num;
         }
 
+        /// <summary>
+        /// Gets HostKey from config file, AND INCREMENTS IT!
+        /// </summary>
+        /// <returns>Value of HostKey</returns>
         public int GetHostKey()
         {
             int key = int.Parse(configRoot.Element("hostkey").Value);
@@ -1068,6 +1199,10 @@ namespace DAL
             return key;
         }
 
+        /// <summary>
+        /// Gets HostingUnitKey from config file, AND INCREMENTS IT!
+        /// </summary>
+        /// <returns>Value of HostingUnitKey</returns>
         public int GetHostingUnitKey()
         {
             int key = int.Parse(configRoot.Element("hostingunitkey").Value);
@@ -1075,6 +1210,10 @@ namespace DAL
             return key;
         }
 
+        /// <summary>
+        /// Gets OrderKey from config file, AND INCREMENTS IT!
+        /// </summary>
+        /// <returns>Value of OrderKey</returns>
         public int GetOrderKey()
         {
             int key = int.Parse(configRoot.Element("orderkey").Value);
@@ -1082,16 +1221,28 @@ namespace DAL
             return key;
         }
 
+        /// <summary>
+        /// Gets Commission from config file
+        /// </summary>
+        /// <returns>Value of commission</returns>
         public float GetCommission()
         {
             return float.Parse(configRoot.Element("commission").Value);
         }
 
+        /// <summary>
+        /// Gets NumberOfDaysUntilExpired from config file
+        /// </summary>
+        /// <returns>Value of NumberOfDaysUntilExpired</returns>
         public int GetNumberOfDaysUntilExpired()
         {
             return int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
         }
 
+        /// <summary>
+        /// Gets GuestKey from config file, AND INCREMENTS IT!
+        /// </summary>
+        /// <returns>Value of GuestKey</returns>
         public int GetGuestKey()
         {
             int key = int.Parse(configRoot.Element("guestkey").Value);
@@ -1103,84 +1254,128 @@ namespace DAL
 
         #region Set Config Values
 
+        /// <summary>
+        /// Increments GuestRequestKey in data
+        /// </summary>
         private void IncrementGuestRequestKey()
         {
             configRoot.Element("guestrequestkey").Value = (int.Parse(configRoot.Element("guestrequestkey").Value) + 1).ToString();
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// Increments BankNumber in data
+        /// </summary>
         private void IncrementBankNumber()
         {
             configRoot.Element("banknumber").Value = (int.Parse(configRoot.Element("banknumber").Value) + 1).ToString();
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// Increments HostKey in data
+        /// </summary>
         private void IncrementHostKey()
         {
             configRoot.Element("hostkey").Value = (int.Parse(configRoot.Element("hostkey").Value) + 1).ToString();
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// Increments HostingUnitKey in data
+        /// </summary>
         private void IncrementHostingUnitKey()
         {
             configRoot.Element("hostingunitkey").Value = (int.Parse(configRoot.Element("hostingunitkey").Value) + 1).ToString();
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// Increments OrderKey in data
+        /// </summary>
         private void IncrementOrderKey()
         {
             configRoot.Element("orderkey").Value = (int.Parse(configRoot.Element("orderkey").Value) + 1).ToString();
             configRoot.Save(configPath);
         }
 
-        public void SetCommission(float commission)
+        /// <summary>
+        /// Sets Commission in data
+        /// </summary>
+        /// <param name="commission"></param>
+        public void SetCommission(float? commission)
         {
             configRoot.Element("commission").Value = commission.ToString();
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// Sets NumberOfDaysUntilExpired in data
+        /// </summary>
+        /// <param name="val"></param>
         public void SetNumberOfDaysUntilExpired(int val)
         {
             configRoot.Element("numberofdaysuntilexpired").Value = val.ToString();
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// Increments GuestRequestKey in data
+        /// </summary>
         private void IncrementGuestKey()
         {
             configRoot.Element("guestkey").Value = (int.Parse(configRoot.Element("guestkey").Value) + 1).ToString();
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// Decrements GuestRequestKey in data
+        /// </summary>
         private void DecrementGuestRequestKey()
         {
             configRoot.Element("guestrequestkey").Value = (int.Parse(configRoot.Element("guestrequestkey").Value) - 1).ToString();
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// Increments BankNumber in data
+        /// </summary>
         private void DecrementBankNumber()
         {
             configRoot.Element("banknumber").Value = (int.Parse(configRoot.Element("banknumber").Value) - 1).ToString();
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// Decrements HostKey in data
+        /// </summary>
         private void DecrementHostKey()
         {
             configRoot.Element("hostkey").Value = (int.Parse(configRoot.Element("hostkey").Value) - 1).ToString();
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// Decrements HostingUnitKey in data
+        /// </summary>
         private void DecrementHostingUnitKey()
         {
             configRoot.Element("hostingunitkey").Value = (int.Parse(configRoot.Element("hostingunitkey").Value) - 1).ToString();
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// Decrements OrderKey in data
+        /// </summary>
         private void DecrementOrderKey()
         {
             configRoot.Element("orderkey").Value = (int.Parse(configRoot.Element("orderkey").Value) - 1).ToString();
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// Decrements GuestKey in data
+        /// </summary>
         private void DecrementGuestKey()
         {
             configRoot.Element("guestkey").Value = (int.Parse(configRoot.Element("guestkey").Value) - 1).ToString();
@@ -1191,6 +1386,12 @@ namespace DAL
 
         #endregion
 
+        /// <summary>
+        /// Compares <paramref name="username"/> and <paramref name="password"/> to admin credentials
+        /// </summary>
+        /// <param name="username">Username of user</param>
+        /// <param name="password">Password of user</param>
+        /// <returns>Whether the login credentials match admin's</returns>
         public bool AdminCompareToPasswordInFile(string username, string password)
         {
             if (username != "admin")

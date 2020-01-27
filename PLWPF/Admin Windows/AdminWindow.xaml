@@ -15,7 +15,7 @@
 
         <!--It may seem arbitrary but 100 makes sense. Otherwise it would be too much-->
         <Label Content="Value of tax" HorizontalAlignment="Center" Margin="0,56,0,0" VerticalAlignment="Top" Height="26" Width="72"/>
-        <local1:UpDownTextBox x:Name="UpDownControl" Margin="73,93,62,297"/>
+        <local1:UpDownTextBox x:Name="UpDownControl" Margin="73,93,62,297" LostKeyboardFocus="UpDownControl_LostKeyboardFocus"/>
         <TabControl Grid.Column="1">
             <TabItem Header="Guest Requests">
                 <ScrollViewer>
