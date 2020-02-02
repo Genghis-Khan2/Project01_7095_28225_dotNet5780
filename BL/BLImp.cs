@@ -1152,8 +1152,26 @@ namespace BL
 
         #region Just a Few Help Functions
 
+        /// <summary>
+        /// The function check if the Hosting unit property is relevant, matchig the guestRequest
+        /// </summary>
+        /// <param name="desired"></param>
+        /// <param name="has"></param>
+        /// <returns></returns>
+        /// <remarks>
+        ///           has  |    false  |  true  |   
+        ///   IsInterested\|           |        |
+        ///  --------------|-----------|--------|
+        ///   Necessary    |    false  |  true  |
+        ///  --------------|-----------|--------|
+        ///   Possible     |    true   |  true  |
+        ///  --------------|-----------|--------|
+        ///   Uninterested:|    true   |  false |
+        ///  --------------|-----------|--------|
+        /// </remarks>
         private bool IsRelevant(Enums.IsInterested desired, bool has)
         {
+            
             switch (desired)
             {
                 case Enums.IsInterested.Necessary:

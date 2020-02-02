@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace BE
 {
@@ -23,7 +24,11 @@ namespace BE
             {
                 try
                 {
-                    new System.Net.Mail.MailAddress(value);
+                    //Use regex to check the validation of the mail address
+                    string reg = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+                    Regex r = new Regex(reg, RegexOptions.IgnoreCase);
+                    if (!r.IsMatch(value))
+                        throw new FormatException("The format of the email isnt valid");
                     mailAddress = value;
                 }
                 catch

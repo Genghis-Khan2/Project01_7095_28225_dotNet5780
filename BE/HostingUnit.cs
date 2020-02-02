@@ -64,6 +64,7 @@ namespace BE
         private bool[,] diary = new bool[12, 31];
 
         public float Commission { get; set; } = 0;
+       
         #region Properties related to the hosting conditions in the hosting unit
         public Enums.Area Area { get; set; }
         public Enums.HostingUnitType Type { get; set; }
@@ -74,6 +75,7 @@ namespace BE
         public bool IsThereGarden { get; set; }
         public bool IsThereChildrensAttractions { get; set; }
         #endregion
+       
         /// <summary>
         /// The function returns the hosting unit information in a string type
         /// </summary>
