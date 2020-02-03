@@ -34,18 +34,15 @@ namespace DAL
 
         #region Roots
 
-        /// <summary>
-        /// These variables represent the root objects of the xml files
-        /// </summary>
+        // These variables represent the root objects of the xml files
         private XElement orderRoot = null;
         private XElement configRoot = null;
         private XElement userRoot = null;
         private XElement atmRoot = null;
 
-        /// <summary>
-        /// This variable represents whether the contents of the bank accounts file is available or not
-        /// </summary>
+        // This variable represents whether the contents of the bank accounts file is available or not
         bool isBankFileAvailable = false;
+
         #endregion
 
         #region Singleton and Factory Methods
@@ -93,6 +90,8 @@ namespace DAL
 
         #region Make Linq Files Correct Format
 
+        #region CreateOrderFile The function create\load Order file
+
         /// <summary>
         /// This function checks whether the order file exists or not, and configures it for linq use
         /// </summary>
@@ -112,6 +111,10 @@ namespace DAL
                 }
             }
         }
+
+        #endregion
+
+        #region CreateConfigFile The function create\load config file
 
         /// <summary>
         /// This function checks whether the config file exists or not, and configures it for linq use
@@ -133,13 +136,16 @@ namespace DAL
                                     new XElement("guestkey", 1)); // Set all the fields to 1
                     configRoot.Save(configPath);
                 }
-
-                else
+                else//If the file exists, load it into the root object
                 {
                     configRoot = XElement.Load(configPath);
                 }
             }
         }
+
+        #endregion
+
+        #region CreatUsersFile The function create\load the user file
 
         /// <summary>
         /// This function checks whether the users file exists or not, and configures it for linq use
@@ -153,8 +159,7 @@ namespace DAL
                     userRoot = new XElement("users");
                     userRoot.Save(usersPath);
                 }
-
-                else
+                else//If the file exists, load it into the root object
                 {
                     userRoot = XElement.Load(usersPath);
                 }
@@ -163,10 +168,11 @@ namespace DAL
 
         #endregion
 
+        #endregion
+
         #region Loading Functions
 
-
-        #region LoadHostingUnitList Function
+        #region LoadHostingUnitList The function load HostingUnit list from file
 
         /// <summary>
         /// This function loads a list containing the hosting unit from the files
@@ -189,7 +195,8 @@ namespace DAL
 
         #endregion
 
-        #region LoadHostList Function
+        #region LoadHostList The function load Host list from file
+
         /// <summary>
         /// This function loads a list containing the hosts from the files
         /// </summary>
@@ -209,9 +216,10 @@ namespace DAL
             return new List<Host>();
 
         }
+
         #endregion
 
-        #region LoadGuestRequestList Function
+        #region LoadGuestRequestList The function load GuestRequest list from file
 
         /// <summary>
         /// This function loads a list containing the guest requests from the files
@@ -231,9 +239,11 @@ namespace DAL
 
             return new List<GuestRequest>();
         }
+
         #endregion
 
-        #region LoadOrderData Function
+        #region LoadOrderData The function load Order data from file
+
         /// <summary>
         /// This function loads the root of the order file into the root item
         /// </summary>
@@ -248,9 +258,11 @@ namespace DAL
                 throw new FileLoadException("File loading problem");
             }
         }
+
         #endregion
 
-        #region LoadOrderList Function
+        #region LoadOrderList The function load Order list from file
+
         /// <summary>
         /// This function loads a list containing the orders from the files
         /// </summary>
@@ -303,6 +315,12 @@ namespace DAL
 
         #endregion
 
+        #region LoadBankBranchList The function load BankBrunch list from file
+
+        /// <summary>
+        /// This function loads a list containing the BankBranchs from the files
+        /// </summary>
+        /// <returns>List of BankBranchs that are in file</returns>
         private List<BankBranch> LoadBankBranchList()
         {
             if (!isBankFileAvailable)
@@ -333,6 +351,14 @@ namespace DAL
             return bankBranches;
         }
 
+        #endregion
+
+        #region LoadGuestList The function load Guest list from file
+
+        /// <summary>
+        /// This function loads a list containing the Guests from the files
+        /// </summary>
+        /// <returns>List of Guests that are in file</returns>
         public List<Guest> LoadGuestList()
         {
             using (StreamReader sr = new StreamReader(guestPath))
@@ -348,6 +374,8 @@ namespace DAL
             return new List<Guest>();
 
         }
+
+        #endregion
 
         #endregion
 
@@ -408,6 +436,8 @@ namespace DAL
 
         #region Net Functions
 
+        #region DownloadBankAccountInfo The function download the bank account info
+
         /// <summary>
         /// This is the function that the background worker runs when the program is run
         /// </summary>
@@ -429,9 +459,13 @@ namespace DAL
             }
             finally
             {
-                wc.Dispose();
+                wc.Dispose();//release the object
             }
         }
+
+        #endregion
+
+        #region Bw_RunWorkerCompleted The function run after download the bank account info
 
         /// <summary>
         /// This is the function that is run when the download of the bank account info is finished
@@ -445,7 +479,6 @@ namespace DAL
                 atmRoot = XElement.Load(bankBranchPath);
                 isBankFileAvailable = true;
             }
-
             else
             {
                 throw e.Error;
@@ -453,12 +486,15 @@ namespace DAL
 
         }
 
+        #endregion
 
         #endregion
 
         #region General functions
 
         #region Guest
+
+        #region AddGuest The function add guest
 
         /// <summary>
         /// This function adds a <paramref name="guest"/> to the data
@@ -483,6 +519,10 @@ namespace DAL
             SaveObjectList(list, guestPath);
         }
 
+        #endregion
+
+        #region GetAllGuests The function return all the guests
+
         /// <summary>
         /// This function gets all the guests from the data
         /// </summary>
@@ -491,6 +531,10 @@ namespace DAL
         {
             return LoadGuestList();
         }
+
+        #endregion
+
+        #region CheckIfGuestExists The function check if guest exist using key
 
         /// <summary>
         /// Checks if a guest with the appropriate <paramref name="key"/> exists
@@ -501,6 +545,10 @@ namespace DAL
         {
             return LoadGuestList().Exists(s => key == s.GuestKey);
         }
+
+        #endregion
+
+        #region CheckIfGuestExists The function check if guest exist using username
 
         /// <summary>
         /// Check if a guest with the appropriate <paramref name="username"/> exists
@@ -521,6 +569,10 @@ namespace DAL
             return list.Exists(s => s.Username == username);
         }
 
+        #endregion
+
+        #region GetGuest The function return guest using key
+
         /// <summary>
         /// This function returns a guest with a matching <paramref name="key"/>
         /// </summary>
@@ -530,6 +582,10 @@ namespace DAL
         {
             return LoadGuestList().Find(s => s.GuestKey == key);
         }
+
+        #endregion
+
+        #region RemoveGuest The function remove guest
 
         /// <summary>
         /// Removes the guest with the corresponding <paramref name="key"/>
@@ -546,6 +602,10 @@ namespace DAL
                 .Where(s => int.Parse(s.Element("key").Value) == key)
                 .Remove();
         }
+
+        #endregion
+
+        #region GetGuestUserName The function return user name using 
 
         /// <summary>
         /// Gets the username of a guest with a corresponding <paramref name="key"/>
@@ -569,6 +629,10 @@ namespace DAL
             return null;
         }
 
+        #endregion
+
+        #region GetGuestKey The function return the guest key using username
+
         /// <summary>
         /// Gets the key of a guest with a corresponding <paramref name="userName"/>
         /// </summary>
@@ -590,6 +654,10 @@ namespace DAL
 
             return -1;
         }
+
+        #endregion
+
+        #region GuestCompareToPasswordInFile The function if the password match the user name
 
         /// <summary>
         /// Checks if the <paramref name="username"/> and <paramref name="password"/> match data
@@ -625,6 +693,10 @@ namespace DAL
             return false;
         }
 
+        #endregion
+
+        #region WriteGuestToFile The function write the guest data to file
+
         /// <summary>
         /// Writes a guest to data, with <paramref name="key"/>, <paramref name="username"/> and <paramref name="password"/>
         /// </summary>
@@ -651,6 +723,8 @@ namespace DAL
                 userRoot.Save(usersPath);
             }
         }
+
+        #endregion
 
         #endregion
 
@@ -1170,6 +1244,7 @@ namespace DAL
         /// Gets GuestRequestKey from config file, AND INCREMENTS IT!
         /// </summary>
         /// <returns>Value of GuestRequestKey</returns>
+        ///<remarks>The function increments the key</remarks>
         public int GetGuestRequestKey()
         {
             int key = int.Parse(configRoot.Element("guestrequestkey").Value);

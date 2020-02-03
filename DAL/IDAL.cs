@@ -12,17 +12,114 @@ namespace DAL
 
         #region Guest
 
+        #region AddGuest The function add guest
+
+        /// <summary>
+        /// This function adds a <paramref name="guest"/> to the data
+        /// </summary>
+        /// <param name="guest">Guest to add to the data</param>
         void AddGuest(Guest g);
 
+        #endregion
+
+        #region CheckIfGuestExists The function check if guest exist using key
+
+        /// <summary>
+        /// Checks if a guest with the appropriate <paramref name="key"/> exists
+        /// </summary>
+        /// <param name="key">Key of the guest who's existence is being queried</param>
+        /// <returns>Whether the guest with the corresponding key exists</returns>
         bool CheckIfGuestExists(int key);
 
+        #endregion
+
+        #region CheckIfGuestExists The function check if guest exist using username
+
+        /// <summary>
+        /// Check if a guest with the appropriate <paramref name="username"/> exists
+        /// </summary>
+        /// <param name="username">Username of the guest who's existence is being queried</param>
+        /// <returns>Whether such a guest exists</returns>
         bool CheckIfGuestExists(string username);
 
+        #endregion
+
+        #region GetAllGuests The function return all the guests
+       
+        /// <summary>
+        /// This function gets all the guests from the data
+        /// </summary>
+        /// <returns>IEnumerable ofall the guests in the data</returns>
         IEnumerable<Guest> GetAllGuests();
 
+        #endregion
+
+        #region GetGuest The function return guest using key
+
+        /// <summary>
+        /// This function returns a guest with a matching <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">Key of the guest to be returned</param>
+        /// <returns>Guest with matching key</returns>
         Guest GetGuest(int key);
 
+        #endregion
+
+        #region RemoveGuest The function remove guest
+
+        /// <summary>
+        /// Removes the guest with the corresponding <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">Key of the guest who is to be removed</param>
         void RemoveGuest(int key);
+
+        #endregion
+
+        #region GetGuestKey The function return the guest key using username
+
+        /// <summary>
+        /// Gets the key of a guest with a corresponding <paramref name="userName"/>
+        /// </summary>
+        /// <param name="userName">The username to match</param>
+        /// <returns>The key of the guest with a matching <paramref name="userName"/></returns>
+        int GetGuestKey(string userName);
+
+        #endregion
+
+        #region GetGuestUserName The function return user name using 
+
+        /// <summary>
+        /// Gets the username of a guest with a corresponding <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">Key of the guest who's username is being queried</param>
+        /// <returns>Username of the guest with matching <paramref name="key"/></returns>
+        string GetGuestUserName(int key);
+
+        #endregion
+
+        #region WriteGuestToFile The function write the guest data to file
+
+        /// <summary>
+        /// Writes a guest to data, with <paramref name="key"/>, <paramref name="username"/> and <paramref name="password"/>
+        /// </summary>
+        /// <param name="username">Username to write to data</param>
+        /// <param name="password">Password to write to data</param>
+        /// <param name="key">Key of guest being written to data</param>
+        void WriteGuestToFile(string username, string password, int key);
+
+        #endregion
+
+        #region GuestCompareToPasswordInFile The function if the password match the user name
+
+        /// <summary>
+        /// Checks if the <paramref name="username"/> and <paramref name="password"/> match data
+        /// </summary>
+        /// <param name="username">Username to compare to the data</param>
+        /// <param name="password">Password to compare to the data</param>
+        /// <returns>Whether the <paramref name="username"/> and <paramref name="password"/> match data</returns>
+        bool GuestCompareToPasswordInFile(string username, string password);
+
+        #endregion
 
         #endregion
 
@@ -300,7 +397,13 @@ namespace DAL
 
         #region Config Values Functions.
 
+        /// <summary>
+        /// Gets GuestRequestKey from config file, AND INCREMENTS IT!
+        /// </summary>
+        /// <returns>Value of GuestRequestKey</returns>
+        ///<remarks>The function increments the key</remarks>
         int GetGuestRequestKey();
+
 
         int GetHostKey();
 
@@ -320,14 +423,11 @@ namespace DAL
         int GetNumberOfDaysUntilExpired();
 
 
-        int GetGuestKey(string userName);
-        string GetGuestUserName(int key);
-        void WriteGuestToFile(string username, string password, int key);
+        
         void WriteHostToFile(string username, string password, int hostKey);
         void AddHost(Host host);
         bool HostCompareToPasswordInFile(string username, string password);
         int GetHostKey(string username);
-        bool GuestCompareToPasswordInFile(string username, string password);
         bool AdminCompareToPasswordInFile(string username, string password);
         void RemoveHost(int key);
         void SetCommission(float? value);
