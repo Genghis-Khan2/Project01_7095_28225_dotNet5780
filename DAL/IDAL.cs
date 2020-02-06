@@ -59,6 +59,7 @@ namespace DAL
         /// <summary>
         /// This function returns a guest with a matching <paramref name="key"/>
         /// </summary>
+        ///  <exception cref="KeyNotFoundException">Thrown if no guest in the data match the guest with the <paramref name="key"/></exception>
         /// <param name="key">Key of the guest to be returned</param>
         /// <returns>Guest with matching key</returns>
         Guest GetGuest(int key);
@@ -70,6 +71,7 @@ namespace DAL
         /// <summary>
         /// Removes the guest with the corresponding <paramref name="key"/>
         /// </summary>
+        ///  <exception cref="KeyNotFoundException">Thrown if no guest in the data match the guest with the <paramref name="key"/></exception>
         /// <param name="key">Key of the guest who is to be removed</param>
         void RemoveGuest(int key);
 
@@ -80,6 +82,7 @@ namespace DAL
         /// <summary>
         /// Gets the key of a guest with a corresponding <paramref name="userName"/>
         /// </summary>
+        ///  <exception cref="KeyNotFoundException">Thrown if no guest in the data match the guest with the <paramref name="key"/></exception>
         /// <param name="userName">The username to match</param>
         /// <returns>The key of the guest with a matching <paramref name="userName"/></returns>
         int GetGuestKey(string userName);
@@ -91,6 +94,7 @@ namespace DAL
         /// <summary>
         /// Gets the username of a guest with a corresponding <paramref name="key"/>
         /// </summary>
+        ///  <exception cref="KeyNotFoundException">Thrown if no guest in the data match the guest with the <paramref name="key"/></exception>
         /// <param name="key">Key of the guest who's username is being queried</param>
         /// <returns>Username of the guest with matching <paramref name="key"/></returns>
         string GetGuestUserName(int key);

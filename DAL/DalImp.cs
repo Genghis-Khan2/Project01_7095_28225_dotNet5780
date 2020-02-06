@@ -122,9 +122,7 @@ namespace DAL
                       where temp == item.GuestRequestKey
                       select item;
             if (res.Count() == 0)
-            {
                 throw new KeyNotFoundException("No guest request with key specified");
-            }
 
             foreach (var it in res)
             {

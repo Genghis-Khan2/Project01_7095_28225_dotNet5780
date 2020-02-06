@@ -1215,20 +1215,34 @@ namespace BL
             return desired == type;
         }
 
+        //TODO: check this
         public string GetGuestUsername(int key)
         {
-            return DAL_Adapter.GetDAL().GetGuestUserName(key);
+            try
+            {
+                return DAL_Adapter.GetDAL().GetGuestUserName(key);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void WriteGuestToFile(string username, string password, int key)
         {
-            DAL_Adapter.GetDAL().WriteGuestToFile(username, password, key);
+            try
+            {
+                DAL_Adapter.GetDAL().WriteGuestToFile(username, password, key);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void AddGuest(Guest guest)
         {
             DAL_Adapter.GetDAL().AddGuest(guest);
-
         }
 
         public void WriteHostToFile(string username, string password, int hostKey)
