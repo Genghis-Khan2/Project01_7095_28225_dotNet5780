@@ -1155,9 +1155,9 @@ namespace BL
         /// <summary>
         /// The function check if the Hosting unit property is relevant, matchig the guestRequest
         /// </summary>
-        /// <param name="desired"></param>
-        /// <param name="has"></param>
-        /// <returns></returns>
+        /// <param name="desired">The request</param>
+        /// <param name="has">If the HostingUnit have this</param>
+        /// <returns>Boolean, if the HostingUnit relevant to the GuestRequest</returns>
         /// <remarks>
         ///           has  |    false  |  true  |   
         ///   IsInterested\|           |        |
@@ -1171,7 +1171,7 @@ namespace BL
         /// </remarks>
         private bool IsRelevant(Enums.IsInterested desired, bool has)
         {
-            
+
             switch (desired)
             {
                 case Enums.IsInterested.Necessary:
@@ -1183,6 +1183,12 @@ namespace BL
             }
         }
 
+        /// <summary>
+        /// The function check if the Hosting unit "Area" property is relevant, matchig the guestRequest
+        /// </summary>
+        /// <param name="desired">The HostingUnit area in </param>
+        /// <param name="area">The area in the request</param>
+        /// <returns>Boolean, if the HostingUnit relevant to the GuestRequest</returns>
         private bool IsRelevant(Enums.Area desired, Enums.Area area)
         {
             if (area == Enums.Area.All)
@@ -1193,6 +1199,12 @@ namespace BL
             return desired == area;
         }
 
+        /// <summary>
+        /// The function return if the <see cref="Enums.HostingUnitType"/> in the HostingUnit match the request
+        /// </summary>
+        /// <param name="desired">The Hosting unit type</param>
+        /// <param name="type">The request type</param>
+        /// <returns></returns>
         private bool IsRelevant(Enums.HostingUnitType desired, Enums.HostingUnitType type)
         {
             if (type == Enums.HostingUnitType.All)

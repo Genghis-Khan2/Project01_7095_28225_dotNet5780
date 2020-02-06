@@ -576,10 +576,13 @@ namespace DAL
         /// <summary>
         /// This function returns a guest with a matching <paramref name="key"/>
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no guest matching <paramref name="key"/> is found</exception>
         /// <param name="key">Key of the guest to be returned</param>
         /// <returns>Guest with matching key</returns>
         public Guest GetGuest(int key)
         {
+            if (!CheckIfGuestExists(key))
+                throw new KeyNotFoundException("No Guest match this key");
             return LoadGuestList().Find(s => s.GuestKey == key);
         }
 
@@ -590,11 +593,13 @@ namespace DAL
         /// <summary>
         /// Removes the guest with the corresponding <paramref name="key"/>
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no Guest matching <paramref name="key"/> is found</exception>
         /// <param name="key">Key of the guest who is to be removed</param>
         public void RemoveGuest(int key)
         {
             var list = LoadGuestList();
-            list.RemoveAll(s => s.GuestKey == key);
+            if (list.RemoveAll(s => s.GuestKey == key) == 0)
+                throw new KeyNotFoundException("No Guest match this key");
             SaveObjectList(list, guestPath);
 
             // User file removal
@@ -610,6 +615,7 @@ namespace DAL
         /// <summary>
         /// Gets the username of a guest with a corresponding <paramref name="key"/>
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no Guest matching <paramref name="key"/> is found</exception>
         /// <param name="key">Key of the guest who's username is being queried</param>
         /// <returns>Username of the guest with matching <paramref name="key"/></returns>
         public string GetGuestUserName(int key)
@@ -626,7 +632,7 @@ namespace DAL
                 return guestList[0].Username;
             }
 
-            return null;
+            throw new KeyNotFoundException("No user match this key");
         }
 
         #endregion
@@ -636,6 +642,7 @@ namespace DAL
         /// <summary>
         /// Gets the key of a guest with a corresponding <paramref name="userName"/>
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no Guest matching <paramref name="key"/> is found</exception>
         /// <param name="userName">The username to match</param>
         /// <returns>The key of the guest with a matching <paramref name="userName"/></returns>
         public int GetGuestKey(string userName)
@@ -652,7 +659,7 @@ namespace DAL
                 return guestList.First().Key;
             }
 
-            return -1;
+            throw new KeyNotFoundException("No guest match this user name");
         }
 
         #endregion
@@ -815,9 +822,12 @@ namespace DAL
         /// This function return Order according to <paramref name="key"/>
         /// </summary>
         /// <param name="key">The key of the Order</param>
+        /// <exception cref="KeyNotFoundException">Thrown if no Guest matching <paramref name="key"/> is found</exception>
         /// <returns>The Order with the <paramref name="key"/></returns>
         public Order GetOrder(int key)
         {
+            if (!CheckIfOrderExists(key))
+                throw new KeyNotFoundException("No order match this key");
             return LoadOrderList().Find(s => s.OrderKey == key);
         }
 
@@ -831,6 +841,8 @@ namespace DAL
         {
             var list = LoadOrderList();
             int index = list.FindIndex(s => s.OrderKey == key);
+            if (index == -1)
+                throw new KeyNotFoundException("No order match this key");
             list[index].Status = stat;
 
             SaveObjectList(list, orderPath);
@@ -889,10 +901,13 @@ namespace DAL
         /// <summary>
         /// This function return GuestRequest according to <paramref name="key"/>
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no Guest matching <paramref name="key"/> is found</exception>
         /// <param name="key">The key of the GuestRequest</param>
         /// <returns>The GuestRequest with the <paramref name="key"/></returns>
         public GuestRequest GetGuestRequest(int key)
         {
+            if (!CheckIfGuestRequestExists(key))
+                throw new KeyNotFoundException("No guest request match this key");
             return LoadGuestRequestList().Find(s => s.GuestRequestKey == key);
         }
 
@@ -906,6 +921,8 @@ namespace DAL
         {
             var list = LoadGuestRequestList();
             int index = list.FindIndex(s => s.GuestRequestKey == key);
+            if (index == -1)
+                throw new KeyNotFoundException("No guest request match this key");
             list[index].Status = stat;
             SaveObjectList(list, guestRequestPath);
         }
@@ -918,7 +935,8 @@ namespace DAL
         public void RemoveGuestRequest(int key)
         {
             var list = LoadGuestRequestList();
-            list.RemoveAll(s => s.GuestRequestKey == key);
+            if (list.RemoveAll(s => s.GuestRequestKey == key) == 0)
+                throw new KeyNotFoundException("No guest request match this key");
             SaveObjectList(list, guestRequestPath);
         }
 
@@ -974,36 +992,42 @@ namespace DAL
         /// <summary>
         /// This function return HostingUnit according to <paramref name="key"/>
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no Guest matching <paramref name="key"/> is found</exception>
         /// <param name="key">The key of the HostingUnit</param>
         /// <returns>The HostingUnit with the <paramref name="key"/></returns>
         public HostingUnit GetHostingUnit(int key)
         {
+            if (!CheckIfHostingUnitExists(key))
+                throw new KeyNotFoundException("No hosting unit match this key");
             return LoadHostingUnitList().Find(s => s.HostingUnitKey == key);
         }
 
         /// <summary>
         /// This function removes a hosting unit from the data
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no Guest matching <paramref name="key"/> is found</exception>
         /// Important Note: It will not compare all fields. It will only compare the key 
         /// <param name="key">Key to remove the hosting unit of</param>
         public void RemoveHostingUnit(int key)
         {
             var list = LoadHostingUnitList();
-            list.RemoveAll(s => s.HostingUnitKey == key);
+            if (list.RemoveAll(s => s.HostingUnitKey == key) == 0)
+                throw new KeyNotFoundException("No hosting unit match this key");
             SaveObjectList(list, hostingUnitPath);
         }
 
         /// <summary>
         /// This function updates a hosting unit
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no Guest matching <paramref name="key"/> is found</exception>
         /// <param name="hu">Hosting unit to update to</param>
         /// <param name="key">Key of hosting unit to update</param>
         public void UpdateHostingUnit(HostingUnit hu, int key)
         {
             var list = LoadHostingUnitList();
-            list.RemoveAll(s => s.HostingUnitKey == key);
+            if (list.RemoveAll(s => s.HostingUnitKey == key) == 0)
+                throw new KeyNotFoundException("No hosting unit match this key");
             list.Add(hu);
-
             SaveObjectList(list, hostingUnitPath);
         }
 
@@ -1067,10 +1091,13 @@ namespace DAL
         /// <summary>
         /// This function return the Host with the <paramref name="key"/>
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no Guest matching <paramref name="key"/> is found</exception>
         /// <param name="key">The requested <see cref="Host"/>'s KEY</param>
         /// <returns>The Host with the  <paramref name="key"/></returns>
         public Host GetHost(int key)
         {
+            if (!CheckIfHostExists(key))
+                throw new KeyNotFoundException("No host match this key");
             return LoadHostList().Find(s => s.HostKey == key);
         }
 
@@ -1160,11 +1187,13 @@ namespace DAL
         /// <summary>
         /// Removes a host from data and removes the user data
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no Guest matching <paramref name="key"/> is found</exception>
         /// <param name="key">Key of the host to be removed</param>
         public void RemoveHost(int key)
         {
             var list = LoadHostList();
-            list.RemoveAll(s => s.HostKey == key);
+            if (list.RemoveAll(s => s.HostKey == key) == 0)
+                throw new KeyNotFoundException("No host match this key");
             SaveObjectList(list, hostsPath);
 
             // User file removal

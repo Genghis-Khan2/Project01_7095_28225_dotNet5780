@@ -899,6 +899,8 @@ namespace DAL
             configRoot.Save(configPath);
         }
 
+        #region function that implement in the DAL_XML_imp
+
         public void AddGuest(Guest g)
         {
             throw new NotImplementedException();
@@ -988,6 +990,8 @@ namespace DAL
         {
             throw new NotImplementedException();
         }
+
+        #endregion
 
         #endregion
 
