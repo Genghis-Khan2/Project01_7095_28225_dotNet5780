@@ -122,6 +122,25 @@ namespace PLWPF
             }
         }
 
+        private void Refresh_GuestComments()
+        {
+            GuestComments.Children.Clear();
+            foreach (var comment in GlobalVars.myBL.GetAllGuestComments())
+            {
+                GuestComments.Children.Add(new Comment(comment));
+            }
+        }
+
+        private void Refresh_HostComments()
+        {
+            HostComments.Children.Clear();
+            foreach (var comment in GlobalVars.myBL.GetAllHostComments())
+            {
+                HostComments.Children.Add(new Comment(comment));
+                HostComments.Children.Add(new Separator());
+            }
+        }
+
         internal void Complete_Refresh()
         {
             Refresh_GuestRequests();
@@ -130,6 +149,8 @@ namespace PLWPF
             Refresh_Orders();
             Refresh_Guests();
             Refresh_BankBranches();
+            Refresh_HostComments();
+            Refresh_GuestComments();
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)

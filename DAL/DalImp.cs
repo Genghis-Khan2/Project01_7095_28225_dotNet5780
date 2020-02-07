@@ -989,6 +989,26 @@ namespace DAL
             throw new NotImplementedException();
         }
 
+        public void SubmitHostComment(string comment)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SubmitGuestComment(string comment)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetAllGuestComments()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetAllHostComments()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #endregion

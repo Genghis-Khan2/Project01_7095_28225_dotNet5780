@@ -30,6 +30,7 @@ namespace DAL
         private const string configPath = @"..\..\..\..\config.xml";
         private const string guestPath = @"..\..\..\..\Guest.xml";
         private const string usersPath = @"..\..\..\..\Users.xml";
+        private const string commentsPath = @"..\..\..\..\Comment.xml";
 
         #endregion
 
@@ -40,6 +41,7 @@ namespace DAL
         private XElement configRoot = null;
         private XElement userRoot = null;
         private XElement atmRoot = null;
+        private XElement commentRoot = null;
 
         // This variable represents whether the contents of the bank accounts file is available or not
         bool isBankFileAvailable = false;
@@ -56,6 +58,7 @@ namespace DAL
             CreateConfigFile();
             CreateOrderFile();
             CreatUsersFile();
+            CreateCommentsFile();
 
             BackgroundWorker bw = new BackgroundWorker
             {
@@ -99,16 +102,25 @@ namespace DAL
         private void CreateOrderFile()
         {
             bool isEmpty = false;
-            using (StreamReader sr = new StreamReader(orderPath))
-            {
-                if (!File.Exists(orderPath) || sr.ReadLine() == null) // If the file doesn't exists, or doesn't contain anything
-                {
-                    isEmpty = true;
-                }
 
-                else
+            if (!File.Exists(orderPath))
+            {
+                isEmpty = true;
+            }
+
+            else
+            {
+                using (StreamReader sr = new StreamReader(orderPath))
                 {
-                    orderRoot = XElement.Load(orderPath); // If the file exists, load it into the root object
+                    if (sr.ReadLine() == null) // If the file doesn't exists, or doesn't contain anything
+                    {
+                        isEmpty = true;
+                    }
+
+                    else
+                    {
+                        orderRoot = XElement.Load(orderPath); // If the file exists, load it into the root object
+                    }
                 }
             }
 
@@ -128,25 +140,41 @@ namespace DAL
         /// </summary>
         private void CreateConfigFile()
         {
-            using (StreamReader sr = new StreamReader(configPath))
+            bool isEmpty = false;
+
+            if (!File.Exists(configPath))
             {
-                if (!File.Exists(configPath) || sr.ReadLine() == null) // If the config file doesn't exist, or it's empty
+                isEmpty = true;
+            }
+
+            else
+            {
+                using (StreamReader sr = new StreamReader(configPath))
                 {
-                    configRoot = new XElement("config",
-                                    new XElement("guestrequestkey", 1),
-                                    new XElement("banknumber", 1),
-                                    new XElement("hostkey", 1),
-                                    new XElement("hostingunitkey", 1),
-                                    new XElement("orderkey", 1),
-                                    new XElement("commission"),
-                                    new XElement("numberofdaysuntilexpired", 1),
-                                    new XElement("guestkey", 1)); // Set all the fields to 1
-                    configRoot.Save(configPath);
+                    if (sr.ReadLine() == null) // If the config file doesn't exist, or it's empty
+                    {
+                        isEmpty = true;
+                    }
+
+                    else//If the file exists, load it into the root object
+                    {
+                        configRoot = XElement.Load(configPath);
+                    }
                 }
-                else//If the file exists, load it into the root object
-                {
-                    configRoot = XElement.Load(configPath);
-                }
+            }
+
+            if (isEmpty)
+            {
+                configRoot = new XElement("config",
+                                new XElement("guestrequestkey", 1),
+                                new XElement("banknumber", 1),
+                                new XElement("hostkey", 1),
+                                new XElement("hostingunitkey", 1),
+                                new XElement("orderkey", 1),
+                                new XElement("commission"),
+                                new XElement("numberofdaysuntilexpired", 1),
+                                new XElement("guestkey", 1)); // Set all the fields to 1
+                configRoot.Save(configPath);
             }
         }
 
@@ -161,15 +189,23 @@ namespace DAL
         {
             bool isEmpty = false;
 
-            using (StreamReader sr = new StreamReader(usersPath))
+            if (!File.Exists(usersPath))
             {
-                if (!File.Exists(usersPath) || sr.ReadLine() == null) // If the file doesn't exist, or is empty
+                isEmpty = true;
+            }
+
+            else
+            {
+                using (StreamReader sr = new StreamReader(usersPath))
                 {
-                    isEmpty = true;
-                }
-                else//If the file exists, load it into the root object
-                {
-                    userRoot = XElement.Load(usersPath);
+                    if (sr.ReadLine() == null) // If the file doesn't exist, or is empty
+                    {
+                        isEmpty = true;
+                    }
+                    else//If the file exists, load it into the root object
+                    {
+                        userRoot = XElement.Load(usersPath);
+                    }
                 }
             }
 
@@ -178,7 +214,44 @@ namespace DAL
                 userRoot = new XElement("users");
                 userRoot.Save(usersPath);
             }
+        }
 
+        #endregion
+
+        #region CreateCommentsFile The function create\load the comments file
+
+        /// <summary>
+        /// This function checks whether the comments file exists or not, and configures it for linq use
+        /// </summary>
+        private void CreateCommentsFile()
+        {
+            bool isEmpty = false;
+
+            if (!File.Exists(commentsPath))
+            {
+                isEmpty = true;
+            }
+
+            else
+            {
+                using (StreamReader sr = new StreamReader(commentsPath))
+                {
+                    if (sr.ReadLine() == null) // If the file doesn't exist, or is empty
+                    {
+                        isEmpty = true;
+                    }
+                    else//If the file exists, load it into the root object
+                    {
+                        commentRoot = XElement.Load(commentsPath);
+                    }
+                }
+            }
+
+            if (isEmpty)
+            {
+                commentRoot = new XElement("comments");
+                commentRoot.Save(commentsPath);
+            }
         }
 
         #endregion
@@ -772,9 +845,10 @@ namespace DAL
                 throw new AlreadyExistsException(ord.OrderKey, "Order");
             }
 
-            list.Add(ord);
+            List<Order> lister = new List<Order>();
+            lister.Add(ord);
 
-            SaveOrders(list);
+            SaveOrders(lister);
 
             SendEmail(GetHostingUnit(ord.HostingUnitKey).Owner,
                 GetGuestRequest(ord.GuestRequestKey).Requester
@@ -1525,6 +1599,46 @@ namespace DAL
                 var passBytes = new byte[32] { 127, 115, 144, 82, 251, 73, 59, 118, 196, 87, 146, 6, 61, 104, 36, 115, 243, 138, 164, 19, 60, 126, 138, 62, 55, 174, 114, 193, 107, 74, 177, 237 };
                 return Enumerable.SequenceEqual(passBytes, sha.ComputeHash(Encoding.ASCII.GetBytes(password)));
             }
+        }
+
+        /// <summary>
+        /// Submits a comment about the service of the website
+        /// </summary>
+        /// <param name="comment"></param>
+        public void SubmitHostComment(string comment)
+        {
+            commentRoot.Add(new XElement("comment",
+                new XElement("host_or_guest", "Host"),
+                new XElement("content", comment)));
+            commentRoot.Save(commentsPath);
+        }
+
+        public List<string> GetAllHostComments()
+        {
+            return (from comment in commentRoot.Elements("comment")
+                    where comment.Element("host_or_guest").Value == "Host"
+                    select comment.Element("content").Value
+                    ).ToList();
+        }
+
+        /// <summary>
+        /// Submits a comment about the service of the website
+        /// </summary>
+        /// <param name="comment"></param>
+        public void SubmitGuestComment(string comment)
+        {
+            commentRoot.Add(new XElement("comment",
+                new XElement("host_or_guest", "Guest"),
+                new XElement("content", comment)));
+            commentRoot.Save(commentsPath);
+        }
+
+        public List<string> GetAllGuestComments()
+        {
+            return (from comment in commentRoot.Elements("comment")
+                    where comment.Element("host_or_guest").Value == "Guest"
+                    select comment.Element("content").Value
+                    ).ToList();
         }
     }
 }

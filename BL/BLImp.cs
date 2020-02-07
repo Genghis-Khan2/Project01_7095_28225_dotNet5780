@@ -1303,7 +1303,20 @@ namespace BL
             }
         }
 
+        public void SubmitHostComment(string comment)
+        {
+            DAL_Adapter.GetDAL().SubmitHostComment(comment);
+        }
 
+        public List<string> GetAllGuestComments()
+        {
+            return DAL_Adapter.GetDAL().GetAllGuestComments();
+        }
+
+        public List<string> GetAllHostComments()
+        {
+            return DAL_Adapter.GetDAL().GetAllHostComments();
+        }
 
         #endregion
 

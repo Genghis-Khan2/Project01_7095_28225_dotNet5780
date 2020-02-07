@@ -18,6 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XML Files", "XML Files", "{2EF430C2-9DF9-400B-8A34-19CCF3E1F3F2}"
 	ProjectSection(SolutionItems) = preProject
 		atm.xml = atm.xml
+		Comment.xml = Comment.xml
 		config.xml = config.xml
 		Guest.xml = Guest.xml
 		GuestRequest.xml = GuestRequest.xml

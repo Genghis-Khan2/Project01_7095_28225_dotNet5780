@@ -47,8 +47,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Content="Add a hosting unit" Grid.Row="1" FontSize="25" FontWeight="DemiBold" HorizontalAlignment="Center" Height="150" x:Name="AddUnit" VerticalAlignment="Top" Click="AddUnit_Click" Width="261" FontFamily="Papyrus"/>
+        <Button Content="Add a hosting unit" Grid.Row="1" FontSize="25" FontWeight="DemiBold" Height="150" x:Name="AddUnit" HorizontalAlignment="Stretch" VerticalAlignment="Top" Click="AddUnit_Click" FontFamily="Papyrus"/>
+        <Button Content="Comment on service" Grid.Row="2" FontSize="25" FontWeight="DemiBold" HorizontalAlignment="Center" Height="150" x:Name="CommentButton" VerticalAlignment="Top" FontFamily="Kristen ITC" Click="CommentButton_Click"/>
         <TabControl Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" x:Name="Tabs" Grid.ColumnSpan="2">
             <TabItem Header="Hosting Units">
                 <Grid Background="White">
@@ -76,7 +78,7 @@
             </TabItem>
         </TabControl>
         <Button Content="Refresh" Grid.Row="0" FontSize="40" FontWeight="ExtraBold" HorizontalAlignment="Stretch" x:Name="RefreshButton" VerticalAlignment="Stretch" Click="Refresh_Click" FontFamily="Lucida Calligraphy"/>
-        <Button Content="Log Off" Grid.Row="2" FontSize="40" FontWeight="ExtraBold" HorizontalAlignment="Stretch" x:Name="LogOffButton" VerticalAlignment="Stretch" FontFamily="Monotype Corsiva" Click="LogOffButton_Click"/>
+        <Button Content="Log Off" Grid.Row="3" FontSize="40" FontWeight="ExtraBold" HorizontalAlignment="Stretch" x:Name="LogOffButton" VerticalAlignment="Stretch" FontFamily="Monotype Corsiva" Click="LogOffButton_Click"/>
 
 
     </Grid>

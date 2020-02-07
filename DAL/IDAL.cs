@@ -45,7 +45,7 @@ namespace DAL
         #endregion
 
         #region GetAllGuests The function return all the guests
-       
+
         /// <summary>
         /// This function gets all the guests from the data
         /// </summary>
@@ -427,7 +427,7 @@ namespace DAL
         int GetNumberOfDaysUntilExpired();
 
 
-        
+
         void WriteHostToFile(string username, string password, int hostKey);
         void AddHost(Host host);
         bool HostCompareToPasswordInFile(string username, string password);
@@ -438,5 +438,13 @@ namespace DAL
 
 
         #endregion
+
+        void SubmitHostComment(string comment);
+
+        void SubmitGuestComment(string comment);
+
+        List<string> GetAllGuestComments();
+
+        List<string> GetAllHostComments();
     }
 }

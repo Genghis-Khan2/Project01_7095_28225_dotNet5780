@@ -610,9 +610,14 @@ namespace BL
 
         int GetHostKey();
         void RemoveHost(int key);
+        void SubmitHostComment(string text);
         #endregion
 
         #endregion
+
+        List<string> GetAllGuestComments();
+
+        List<string> GetAllHostComments();
 
     }
 

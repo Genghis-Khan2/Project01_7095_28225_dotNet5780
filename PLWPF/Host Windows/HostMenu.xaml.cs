@@ -200,5 +200,11 @@ namespace PLWPF
         {
             Close();
         }
+
+        private void CommentButton_Click(object sender, RoutedEventArgs e)
+        {
+            var commentWin = new ServiceComment();
+            commentWin.ShowDialog();
+        }
     }
 }
