@@ -1591,7 +1591,7 @@ namespace DAL
         public void SubmitHostComment(string comment)
         {
             commentRoot.Add(new XElement("comment",
-                new XElement("host_or_guest", "Host"),
+                new XElement("type", "Host"),
                 new XElement("content", comment)));
             commentRoot.Save(commentsPath);
         }

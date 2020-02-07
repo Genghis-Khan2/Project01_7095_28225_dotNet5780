@@ -23,6 +23,16 @@ namespace PLWPF
             InitializeComponent();
             UnitName.ItemsSource = from i in GlobalVars.myBL.GetAllHostingUnits()
                                    select i.HostingUnitName;
+
+            if (GlobalVars.myBL.GetAllHostingUnits().Count() != 0)
+            {
+                UnitName.SelectedIndex = 0;
+            }
+
+            else
+            {
+                CommentBox.IsReadOnly = true;
+            }
         }
 
         private void Submit_Click(object sender, RoutedEventArgs e)

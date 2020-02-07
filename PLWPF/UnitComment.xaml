@@ -15,6 +15,16 @@
         </Grid.RowDefinitions>
         <ComboBox Grid.Row="0" x:Name="UnitName"/>
         <xctf:WatermarkTextBox Grid.Row="1" Watermark="Leave a comment..." x:Name="CommentBox" FontSize="25"/>
-        <Button Grid.Row="2" Content="Comment" x:Name="Submit" FontSize="25" FontWeight="ExtraBold" Click="Submit_Click"/>
+        <Button Grid.Row="2" Content="Comment" x:Name="Submit" FontSize="25" FontWeight="ExtraBold" Click="Submit_Click">
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=CommentBox, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Window>
