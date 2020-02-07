@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using BE;
+using Exceptions;
 
 namespace DAL
 {
@@ -45,7 +46,7 @@ namespace DAL
         #endregion
 
         #region GetAllGuests The function return all the guests
-       
+
         /// <summary>
         /// This function gets all the guests from the data
         /// </summary>
@@ -212,6 +213,7 @@ namespace DAL
         /// <summary>
         /// This function removes a hosting unit from the data
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no Guest matching <paramref name="key"/> is found</exception>
         /// Important Note: It will not compare all fields. It will only compare the key 
         /// <param name="key">Key to remove the hosting unit of</param>
         void RemoveHostingUnit(int key);
@@ -223,6 +225,7 @@ namespace DAL
         /// <summary>
         /// This function updates a hosting unit
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no HostingUnit matching <paramref name="key"/> is found</exception>
         /// <param name="hu">Hosting unit to update to</param>
         /// <param name="key">Key of hosting unit to update</param>
         void UpdateHostingUnit(HostingUnit hu, int key);
@@ -234,6 +237,7 @@ namespace DAL
         /// <summary>
         /// This function return HostingUnit according to <paramref name="key"/>
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no HostingUnit matching <paramref name="key"/> is found</exception>
         /// <param name="key">The key of the HostingUnit</param>
         /// <returns>The HostingUnit with the <paramref name="key"/></returns>
         HostingUnit GetHostingUnit(int key);
@@ -281,6 +285,7 @@ namespace DAL
         /// <summary>
         /// This function return Order according to <paramref name="key"/>
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no Order matching <paramref name="key"/> is found</exception>
         /// <param name="key">The key of the Order</param>
         /// <returns>The Order with the <paramref name="key"/></returns>
         Order GetOrder(int key);
@@ -330,6 +335,7 @@ namespace DAL
         /// <summary>
         /// This function return the Host with the <paramref name="key"/>
         /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown if no Guest matching <paramref name="key"/> is found</exception>
         /// <param name="key">The requested <see cref="Host"/>'s KEY</param>
         /// <returns>The Host with the  <paramref name="key"/></returns>
         Host GetHost(int key);
@@ -427,15 +433,25 @@ namespace DAL
         int GetNumberOfDaysUntilExpired();
 
 
-        
         void WriteHostToFile(string username, string password, int hostKey);
-        void AddHost(Host host);
-        bool HostCompareToPasswordInFile(string username, string password);
-        int GetHostKey(string username);
-        bool AdminCompareToPasswordInFile(string username, string password);
-        void RemoveHost(int key);
-        void SetCommission(float? value);
 
+
+        void AddHost(Host host);
+
+
+        bool HostCompareToPasswordInFile(string username, string password);
+
+
+        int GetHostKey(string username);
+
+
+        bool AdminCompareToPasswordInFile(string username, string password);
+
+
+        void RemoveHost(int key);
+
+
+        void SetCommission(float? value);
 
         #endregion
     }
