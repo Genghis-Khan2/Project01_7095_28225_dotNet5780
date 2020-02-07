@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using System.Net;
 using System.ComponentModel;
 using System.Net.Mail;
+using System.Threading;
 
 namespace DAL
 {
@@ -97,18 +98,24 @@ namespace DAL
         /// </summary>
         private void CreateOrderFile()
         {
+            bool isEmpty = false;
             using (StreamReader sr = new StreamReader(orderPath))
             {
                 if (!File.Exists(orderPath) || sr.ReadLine() == null) // If the file doesn't exists, or doesn't contain anything
                 {
-                    orderRoot = new XElement("orders");
-                    orderRoot.Save(orderPath);
+                    isEmpty = true;
                 }
 
                 else
                 {
                     orderRoot = XElement.Load(orderPath); // If the file exists, load it into the root object
                 }
+            }
+
+            if (isEmpty)
+            {
+                orderRoot = new XElement("orders");
+                orderRoot.Save(orderPath);
             }
         }
 
@@ -152,18 +159,26 @@ namespace DAL
         /// </summary>
         private void CreatUsersFile()
         {
+            bool isEmpty = false;
+
             using (StreamReader sr = new StreamReader(usersPath))
             {
                 if (!File.Exists(usersPath) || sr.ReadLine() == null) // If the file doesn't exist, or is empty
                 {
-                    userRoot = new XElement("users");
-                    userRoot.Save(usersPath);
+                    isEmpty = true;
                 }
                 else//If the file exists, load it into the root object
                 {
                     userRoot = XElement.Load(usersPath);
                 }
             }
+
+            if (isEmpty)
+            {
+                userRoot = new XElement("users");
+                userRoot.Save(usersPath);
+            }
+
         }
 
         #endregion
@@ -1040,6 +1055,8 @@ namespace DAL
             {
                 host.HostKey = GetHostKey();
             }
+
+            host.BankAccountNumber = GetBankNumber();
 
             var list = LoadHostList();
 

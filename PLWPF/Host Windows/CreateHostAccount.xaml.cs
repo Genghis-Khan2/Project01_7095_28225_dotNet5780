@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace PLWPF
 {
@@ -21,6 +22,7 @@ namespace PLWPF
         public CreateHostAccount()
         {
             InitializeComponent();
+            BankBranchesBox.ItemsSource = GlobalVars.myBL.GetAllBankAccounts();
         }
 
         private void Register_Click(object sender, RoutedEventArgs e)
@@ -94,7 +96,8 @@ namespace PLWPF
                     FamilyName = FamilyNameBox.Text.Substring(0, 1).ToUpper() + FamilyNameBox.Text.Substring(1),
                     BankAccountNumber = 0,
                     PhoneNumber = PhoneNumberBox.Text,
-                    BankBranchDetails = new BE.BankBranch()
+                    BankBranchDetails = BankBranchesBox.SelectedItem as BE.BankBranch,
+                    CollectionClearance = (bool)HasCollection.IsChecked
                 };
 
                 GlobalVars.myBL.AddHost(host);
@@ -112,6 +115,17 @@ namespace PLWPF
             else
             {
                 MessageBox.Show("Passwords do not match!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Regex regex = new Regex("^[0-9]*$");
+            if (regex.IsMatch(SearchBox.Text))
+            {
+                BankBranchesBox.ItemsSource = from i in GlobalVars.myBL.GetAllBankAccounts()
+                                              where i.BranchNumber == int.Parse(SearchBox.Text)
+                                              select i;
             }
         }
     }
