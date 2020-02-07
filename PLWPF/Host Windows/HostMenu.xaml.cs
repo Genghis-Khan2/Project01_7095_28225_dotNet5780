@@ -13,6 +13,8 @@ using System.Linq;
 using PLWPF.Host_Windows;
 using PLWPF.Host_Windows.User_Controls;
 using System.Threading;
+using BE;
+using PLWPF.Admin_Windows.User_Controls;
 
 namespace PLWPF
 {
@@ -48,7 +50,7 @@ namespace PLWPF
 
             try
             {
-                var li = from i in GlobalVars.myBL.getHostingUnitByHost()
+                var li = from i in GlobalVars.myBL.GetHostingUnitByHost()
                          where i.Key.HostKey == host.HostKey
                          select new { Hostingunits = i };
                 foreach (var i in li)
@@ -88,6 +90,30 @@ namespace PLWPF
             }
         }
 
+        internal void LoadCommentsForHU(HostingUnit hu)
+        {
+            Comments.Children.Clear();
+            Tabs.SelectedIndex = 3;
+
+            var comments = GlobalVars.myBL.GetAllUnitComments();
+
+            List<string> relevantComments = new List<string>();
+
+            foreach (var com in comments)
+            {
+                if (com.Substring(0, com.IndexOf(":")) == hu.HostingUnitName)
+                {
+                    relevantComments.Add(com);
+                }
+            }
+
+            foreach (var com in relevantComments)
+            {
+                Comments.Children.Add(new Comment(com));
+                Comments.Children.Add(new Separator());
+            }
+        }
+
         private void LoadOrders()
         {
             OrderStack.Children.Clear();
@@ -98,7 +124,7 @@ namespace PLWPF
             try
             {
 
-                var imp = from i in GlobalVars.myBL.getHostingUnitByHost()
+                var imp = from i in GlobalVars.myBL.GetHostingUnitByHost()
                           where i.Key.HostKey == GlobalVars.myBL.GetHostKey(GlobalVars.UserName)
                           select i;
                 IEnumerable<BE.Order> ppp = new List<BE.Order>();
@@ -132,7 +158,7 @@ namespace PLWPF
             HostingUnitStack.Children.Add(Resources["TitlesBar"] as Grid);
             try
             {
-                var li = from i in GlobalVars.myBL.getHostingUnitByHost()
+                var li = from i in GlobalVars.myBL.GetHostingUnitByHost()
                          where i.Key.HostKey == host.HostKey
                          select new { Hostingunits = i };
 
@@ -171,6 +197,41 @@ namespace PLWPF
             Refresh();
             LoadGuestRequests();
             LoadOrders();
+            LoadComments();
+        }
+
+        private void LoadComments()
+        {
+            Comments.Children.Clear();
+            var comments = GlobalVars.myBL.GetAllUnitComments();
+
+            List<string> relevantComments = new List<string>();
+
+            var li = from i in GlobalVars.myBL.GetHostingUnitByHost()
+                     where i.Key.HostKey == host.HostKey
+                     select new { Hostingunits = i };
+
+            foreach (var i in li)
+            {
+                foreach (var item in i.Hostingunits)
+                {
+                    foreach (var com in comments)
+                    {
+                        if (com.Substring(0, com.IndexOf(":")) == item.HostingUnitName)
+                        {
+                            relevantComments.Add(com);
+                        }
+                    }
+                }
+            }
+
+
+
+            foreach (var com in relevantComments)
+            {
+                Comments.Children.Add(new Comment(com));
+                Comments.Children.Add(new Separator());
+            }
         }
 
         internal void LoadMatchesForHU(BE.HostingUnit hu)

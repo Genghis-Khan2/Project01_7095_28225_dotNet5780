@@ -76,6 +76,14 @@
                     </ScrollViewer>
                 </Grid>
             </TabItem>
+            <TabItem Header="Comments">
+                <Grid Background="White">
+                    <ScrollViewer>
+                        <StackPanel x:Name="Comments">
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
         </TabControl>
         <Button Content="Refresh" Grid.Row="0" FontSize="40" FontWeight="ExtraBold" HorizontalAlignment="Stretch" x:Name="RefreshButton" VerticalAlignment="Stretch" Click="Refresh_Click" FontFamily="Lucida Calligraphy"/>
         <Button Content="Log Off" Grid.Row="3" FontSize="40" FontWeight="ExtraBold" HorizontalAlignment="Stretch" x:Name="LogOffButton" VerticalAlignment="Stretch" FontFamily="Monotype Corsiva" Click="LogOffButton_Click"/>

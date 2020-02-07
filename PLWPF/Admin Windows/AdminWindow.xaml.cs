@@ -128,6 +128,7 @@ namespace PLWPF
             foreach (var comment in GlobalVars.myBL.GetAllGuestComments())
             {
                 GuestComments.Children.Add(new Comment(comment));
+                GuestComments.Children.Add(new Separator());
             }
         }
 
@@ -141,6 +142,16 @@ namespace PLWPF
             }
         }
 
+        private void Refresh_HostingComments()
+        {
+            UnitComments.Children.Clear();
+            foreach (var comment in GlobalVars.myBL.GetAllUnitComments())
+            {
+                UnitComments.Children.Add(new Comment(comment));
+                UnitComments.Children.Add(new Separator());
+            }
+        }
+
         internal void Complete_Refresh()
         {
             Refresh_GuestRequests();
@@ -151,6 +162,7 @@ namespace PLWPF
             Refresh_BankBranches();
             Refresh_HostComments();
             Refresh_GuestComments();
+            Refresh_HostingComments();
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)

@@ -22,6 +22,8 @@
             <MenuItem Header="Edit" x:Name="EditButton" Click="EditButton_Click"/>
             <Separator/>
             <MenuItem Header="Check Matches" x:Name="MatchesButton" Click="MatchesButton_Click"/>
+            <Separator/>
+            <MenuItem Header="Find Comments" x:Name="CommentsButton" Click="CommentsButton_Click"/>
         </ContextMenu>
     </UserControl.ContextMenu>
 </UserControl>

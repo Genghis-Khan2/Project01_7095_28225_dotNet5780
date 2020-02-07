@@ -17,14 +17,24 @@ namespace PLWPF.Host_Windows
     /// </summary>
     public partial class ServiceComment : Window
     {
-        public ServiceComment()
+        private readonly bool host;
+        public ServiceComment(bool host = true)
         {
             InitializeComponent();
+            this.host = host;
         }
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-            GlobalVars.myBL.SubmitHostComment(CommentBox.Text);
+            if (host)
+            {
+                GlobalVars.myBL.SubmitHostComment(CommentBox.Text);
+            }
+            else
+            {
+                GlobalVars.myBL.SubmitGuestComment(CommentBox.Text);
+            }
+
             MessageBox.Show("Commented", "Success!", MessageBoxButton.OK);
             Close();
         }

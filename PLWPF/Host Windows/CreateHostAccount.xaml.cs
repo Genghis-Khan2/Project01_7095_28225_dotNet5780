@@ -121,6 +121,12 @@ namespace PLWPF
         private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
         {
             Regex regex = new Regex("^[0-9]*$");
+
+            if (SearchBox.Text.Length == 0)
+            {
+                return;
+            }
+
             if (regex.IsMatch(SearchBox.Text))
             {
                 BankBranchesBox.ItemsSource = from i in GlobalVars.myBL.GetAllBankAccounts()

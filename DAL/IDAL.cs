@@ -446,5 +446,8 @@ namespace DAL
         List<string> GetAllGuestComments();
 
         List<string> GetAllHostComments();
+        void SubmitUnitComment(string text, string name);
+
+        List<string> GetAllUnitComments();
     }
 }

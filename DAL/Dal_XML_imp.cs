@@ -330,25 +330,6 @@ namespace DAL
 
         #endregion
 
-        #region LoadOrderData The function load Order data from file
-
-        /// <summary>
-        /// This function loads the root of the order file into the root item
-        /// </summary>
-        private void LoadOrderData()
-        {
-            try
-            {
-                orderRoot = XElement.Load(orderPath);
-            }
-            catch
-            {
-                throw new FileLoadException("File loading problem");
-            }
-        }
-
-        #endregion
-
         #region LoadOrderList The function load Order list from file
 
         /// <summary>
@@ -845,8 +826,10 @@ namespace DAL
                 throw new AlreadyExistsException(ord.OrderKey, "Order");
             }
 
-            List<Order> lister = new List<Order>();
-            lister.Add(ord);
+            List<Order> lister = new List<Order>
+            {
+                ord
+            };
 
             SaveOrders(lister);
 
@@ -1616,7 +1599,7 @@ namespace DAL
         public List<string> GetAllHostComments()
         {
             return (from comment in commentRoot.Elements("comment")
-                    where comment.Element("host_or_guest").Value == "Host"
+                    where comment.Element("type").Value == "Host"
                     select comment.Element("content").Value
                     ).ToList();
         }
@@ -1628,7 +1611,7 @@ namespace DAL
         public void SubmitGuestComment(string comment)
         {
             commentRoot.Add(new XElement("comment",
-                new XElement("host_or_guest", "Guest"),
+                new XElement("type", "Guest"),
                 new XElement("content", comment)));
             commentRoot.Save(commentsPath);
         }
@@ -1636,9 +1619,27 @@ namespace DAL
         public List<string> GetAllGuestComments()
         {
             return (from comment in commentRoot.Elements("comment")
-                    where comment.Element("host_or_guest").Value == "Guest"
+                    where comment.Element("type").Value == "Guest"
                     select comment.Element("content").Value
                     ).ToList();
         }
+
+        public void SubmitUnitComment(string text, string name)
+        {
+            commentRoot.Add(new XElement("comment",
+                new XElement("type", "Unit"),
+                new XElement("name", name),
+                new XElement("content", text)));
+            commentRoot.Save(commentsPath);
+        }
+
+        public List<string> GetAllUnitComments()
+        {
+            return (from comment in commentRoot.Elements("comment")
+                    where comment.Element("type").Value == "Unit"
+                    select comment.Element("name").Value + ": " + comment.Element("content").Value
+                    ).ToList();
+        }
+
     }
 }

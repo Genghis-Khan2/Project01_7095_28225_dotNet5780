@@ -1009,6 +1009,16 @@ namespace DAL
             throw new NotImplementedException();
         }
 
+        public void SubmitUnitComment(string text, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetAllUnitComments()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #endregion

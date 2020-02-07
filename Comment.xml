@@ -1,11 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <comments>
   <comment>
-    <host_or_guest>Host</host_or_guest>
+    <type>Host</type>
     <content>Awesome service thanks!</content>
   </comment>
   <comment>
-    <host_or_guest>Host</host_or_guest>
+    <type>Host</type>
     <content>Poopy man you are</content>
+  </comment>
+  <comment>
+    <type>Guest</type>
+    <content>You guys is snobs</content>
+  </comment>
+  <comment>
+    <type>Unit</type>
+    <name>Ploop</name>
+    <content>Terrible. You guys suck</content>
   </comment>
 </comments>

@@ -1108,7 +1108,7 @@ namespace BL
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all Host group by the number of Hosting unit they have</returns>
         public IEnumerable<IGrouping<int, Host>> GetAllHostByNumberOfHostingUnits()
         {
-            var listOfAllHostingUnitGroupByHost = getHostingUnitByHost();
+            var listOfAllHostingUnitGroupByHost = GetHostingUnitByHost();
             var groupedList = from item in listOfAllHostingUnitGroupByHost
                               group item.Key by item.Count();
             return groupedList;
@@ -1138,7 +1138,7 @@ namespace BL
         ///  This function return all the HostingUnit group by There Host
         /// </summary>
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all HostingUnit group by there host</returns>
-        public IEnumerable<IGrouping<Host, HostingUnit>> getHostingUnitByHost()
+        public IEnumerable<IGrouping<Host, HostingUnit>> GetHostingUnitByHost()
         {
             var allHostingUnit = GetAllHostingUnits();
             var groupedList = from hu in allHostingUnit
@@ -1308,6 +1308,11 @@ namespace BL
             DAL_Adapter.GetDAL().SubmitHostComment(comment);
         }
 
+        public void SubmitGuestComment(string comment)
+        {
+            DAL_Adapter.GetDAL().SubmitGuestComment(comment);
+        }
+
         public List<string> GetAllGuestComments()
         {
             return DAL_Adapter.GetDAL().GetAllGuestComments();
@@ -1316,6 +1321,16 @@ namespace BL
         public List<string> GetAllHostComments()
         {
             return DAL_Adapter.GetDAL().GetAllHostComments();
+        }
+
+        public void SubmitUnitComment(string text, string name)
+        {
+            DAL_Adapter.GetDAL().SubmitUnitComment(text, name);
+        }
+
+        public List<string> GetAllUnitComments()
+        {
+            return DAL_Adapter.GetDAL().GetAllUnitComments();
         }
 
         #endregion

@@ -14,6 +14,7 @@ using BL;
 using BE;
 using Exceptions;
 using PLWPF.Guest_Windows;
+using PLWPF.Host_Windows;
 
 namespace PLWPF
 {
@@ -111,5 +112,16 @@ namespace PLWPF
             gri.Show();
         }
 
+        private void CommentButton_Click(object sender, RoutedEventArgs e)
+        {
+            var commentWin = new ServiceComment(false);
+            commentWin.ShowDialog();
+        }
+
+        private void CommentOnUnitButton_Click(object sender, RoutedEventArgs e)
+        {
+            var commentWin = new UnitComment();
+            commentWin.ShowDialog();
+        }
     }
 }
