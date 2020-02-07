@@ -601,7 +601,14 @@ namespace DAL
         /// <returns>boolean, if the bankAccount exists or not</returns>
         public bool CheckIfBankAccountExists(int key)
         {
-            return GetAllBankAccounts().Any((ba => ba.BankAccountNumber == key));
+            try
+            {
+                return GetAllBankAccounts().Any((ba => ba.BankAccountNumber == key));
+            }
+            catch (NoItemsException)
+            {
+                return false;
+            }
         }
 
         #endregion
@@ -615,7 +622,14 @@ namespace DAL
         /// <returns>boolean, if the host exists or not</returns>
         public bool CheckIfHostExists(int key)
         {
-            return GetAllHosts().Any((h => h.HostKey == key));
+            try
+            {
+                return GetAllHosts().Any((h => h.HostKey == key));
+            }
+            catch (NoItemsException)
+            {
+                return false;
+            }
         }
 
         #endregion
@@ -624,6 +638,9 @@ namespace DAL
 
         #region Config Values Functions
 
+        /// <summary>
+        /// The function setup the config XML file
+        /// </summary>
         private void SetupConfigFile()
         {
             if (!File.Exists(configPath))
@@ -644,6 +661,11 @@ namespace DAL
 
         #region Get Config Values
 
+        /// <summary>
+        /// The function return the GuestRequest key from the XML file
+        /// </summary>
+        /// <returns>The GuestRequest key</returns>
+        /// <remarks>The function increment the key!!</remarks>
         public int GetGuestRequestKey()
         {
             int key = int.Parse(configRoot.Element("guestrequestkey").Value);
@@ -651,6 +673,11 @@ namespace DAL
             return key;
         }
 
+        /// <summary>
+        /// The function return the bank key from the XML file
+        /// </summary>
+        /// <returns>The bank key</returns>
+        /// <remarks>The function increment the key!!</remarks>
         public int GetBankNumber()
         {
             int num = int.Parse(configRoot.Element("banknumber").Value);
@@ -658,6 +685,11 @@ namespace DAL
             return num;
         }
 
+        /// <summary>
+        /// The function return the host key from the XML file
+        /// </summary>
+        /// <returns>The host key</returns>
+        /// <remarks>The function increment the key!!</remarks>
         public int GetHostKey()
         {
             int key = int.Parse(configRoot.Element("hostkey").Value);
@@ -665,6 +697,11 @@ namespace DAL
             return key;
         }
 
+        /// <summary>
+        /// The function return the hosting unit key from the XML file
+        /// </summary>
+        /// <returns>The hosting unit key</returns>
+        /// <remarks>The function increment the key!!</remarks>
         public int GetHostingUnitKey()
         {
             int key = int.Parse(configRoot.Element("hostingunitkey").Value);
@@ -672,6 +709,11 @@ namespace DAL
             return key;
         }
 
+        /// <summary>
+        /// The function return the order key from the XML file
+        /// </summary>
+        /// <returns>The oreder key</returns>
+        /// <remarks>The function increment the key!!</remarks>
         public int GetOrderKey()
         {
             int key = int.Parse(configRoot.Element("orderkey").Value);
@@ -679,16 +721,29 @@ namespace DAL
             return key;
         }
 
+        /// <summary>
+        /// The function return the commision from the XML file
+        /// </summary>
+        /// <returns>The commision</returns>
         public float GetCommission()
         {
             return float.Parse(configRoot.Element("commission").Value);
         }
 
+        /// <summary>
+        /// The function return the number of days until expired from the XML file
+        /// </summary>
+        /// <returns>The number of days until expired</returns>
         public int GetNumberOfDaysUntilExpired()
         {
             return int.Parse(configRoot.Element("numberofdaysuntilexpired").Value);
         }
 
+        /// <summary>
+        /// The function return the guest key from the XML file
+        /// </summary>
+        /// <returns>The guest key</returns>
+        /// <remarks>The function increment the key!!</remarks>
         public int GetGuestKey()
         {
             int key = int.Parse(configRoot.Element("guestkey").Value);
@@ -700,6 +755,10 @@ namespace DAL
 
         #region Set Config Values
 
+        /// <summary>
+        /// The function increment the GuestRequest key in the XML file
+        /// </summary>
+        /// <remarks>This append when added GuestRequest</remarks>
         private void IncrementGuestRequestKey()
         {
             int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
@@ -725,6 +784,10 @@ namespace DAL
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// The function increment the bank key in the XML file
+        /// </summary>
+        /// <remarks>This append when added BankBranch</remarks>
         private void IncrementBankNumber()
         {
             int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
@@ -750,6 +813,10 @@ namespace DAL
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// The function increment the Host key in the XML file
+        /// </summary>
+        /// <remarks>This append when added Host</remarks>
         private void IncrementHostKey()
         {
             int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
@@ -775,6 +842,10 @@ namespace DAL
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// The function increment the order key in the XML file
+        /// </summary>
+        /// <remarks>This append when added Hosting unit</remarks>
         private void IncrementHostingUnitKey()
         {
             int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
@@ -800,6 +871,10 @@ namespace DAL
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// The function increment the order key in the XML file
+        /// </summary>
+        /// <remarks>This append when added order</remarks>
         private void IncrementOrderKey()
         {
             int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
@@ -825,6 +900,10 @@ namespace DAL
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// The function set the commission in the XML file
+        /// </summary>
+        /// <param name="commission">The commission</param>
         public void SetCommission(float commission)
         {
             int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
@@ -848,6 +927,10 @@ namespace DAL
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// The function set the number of days until experied in the XML file
+        /// </summary>
+        /// <param name="val">The number of days until expired</param>
         public void SetNumberOfDaysUntilExpired(int val)
         {
             int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);
@@ -872,6 +955,10 @@ namespace DAL
             configRoot.Save(configPath);
         }
 
+        /// <summary>
+        /// The function increment the guest key in the XML file
+        /// </summary>
+        /// <remarks>This append when added guest</remarks>
         private void IncrementGuestKey()
         {
             int guestrequestkey = int.Parse(configRoot.Element("guestrequestkey").Value);

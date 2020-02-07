@@ -1245,7 +1245,6 @@ namespace DAL
         /// <summary>
         /// This function returns the bank accounts in the data
         /// </summary>
-        /// <exception cref="NoItemsException">Thrown when there are no bank accounts in the list</exception>
         /// <returns>IEnumerable to go over the list of bank accounts</returns>
         public IEnumerable<BankBranch> GetAllBankAccounts()
         {
