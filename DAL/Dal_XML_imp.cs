@@ -740,6 +740,7 @@ namespace DAL
         /// <summary>
         /// This function addes an order to the data's list
         /// </summary>
+        /// <exception cref="AlreadyExistsException">Thrown when there is already order same to <paramref name="ord"/></exception>
         /// <param name="ord">Order to be added to the data collection</param>
         public void AddOrder(Order ord)
         {
@@ -761,41 +762,9 @@ namespace DAL
 
             SaveOrders(list);
 
-            SendEmail(GetHostingUnit(ord.HostingUnitKey).Owner,
-                GetGuestRequest(ord.GuestRequestKey).Requester
-                );
         }
 
-        /// <summary>
-        /// Sends an email from host's mail address to guest's
-        /// </summary>
-        /// <param name="host">Host who's mail address is used as the from: field</param>
-        /// <param name="guest">Guest who's mail address is used as the to: field</param>
-        private void SendEmail(Host host, Guest guest)
-        {
-            MailMessage mail = new MailMessage();
-            mail.To.Add(guest.MailAddress);
-            mail.From = new MailAddress(host.MailAddress);
-            mail.Subject = "Request for accomodation";
-            mail.Body = "Hey there,\n I saw that you were interested in my hosting unit. Would you like to come over for your vacation? Shoot me back a text,\n" + host.PrivateName;
-            mail.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                //TODO: Fix the issue with credentials
-                Credentials = new NetworkCredential("myGmailEmailAddress@gmail.com",
-            "myGmailPassword"),
-                EnableSsl = true
-            };
-            try
-            {
-                smtp.Send(mail);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        
 
         /// <summary>
         /// This function return if order exists in the data
@@ -1034,6 +1003,7 @@ namespace DAL
         #endregion
 
         #region Host
+
         public void AddHost(Host host)
         {
             if (host.HostKey == 0)
@@ -1055,7 +1025,7 @@ namespace DAL
         }
 
         /// <summary>
-        /// This function return if host exists in the data
+        /// This function return if host exists in the data using the key
         /// </summary>
         /// <param name="key">The key of the host</param>
         /// <returns>boolean, if the host exists or not</returns>
@@ -1065,6 +1035,11 @@ namespace DAL
             return list.Exists(s => s.HostKey == key);
         }
 
+        /// <summary>
+        /// This function return if host exists in the data using the user name
+        /// </summary>
+        /// <param name="username">The user name of the host</param>
+        /// <returns>boolean, if the host exists or not</returns>
         public bool CheckIfHostExists(string username)
         {
             var list = (from guestUser in userRoot.Elements("users").Elements("host")

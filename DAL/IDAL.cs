@@ -253,6 +253,7 @@ namespace DAL
         /// <summary>
         /// This function addes an order to the data's list
         /// </summary>
+        /// <exception cref="AlreadyExistsException">Thrown when there is already order same to <paramref name="ord"/></exception>
         /// <param name="ord">Order to be added to the data collection</param>
         void AddOrder(Order ord);
 

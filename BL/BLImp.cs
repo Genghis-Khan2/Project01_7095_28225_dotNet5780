@@ -6,6 +6,7 @@ using DAL;
 using Exceptions;
 using System.Net;
 using System.Net.Mail;
+using System.ComponentModel;
 
 namespace BL
 {
@@ -432,7 +433,11 @@ namespace BL
             {
                 if (!GetHostingUnit(ord.HostingUnitKey).Owner.CollectionClearance)
                     throw new UnauthorizedAccessException("a host cannot send an email if it does not authorize an account billing authorization");
-                Console.WriteLine("Send mail");
+                BackgroundWorker bw = new BackgroundWorker
+                {
+                    WorkerReportsProgress = false
+                };
+                bw.DoWork += SendMail(GetHostingUnit(ord.HostingUnitKey).Owner.MailAddress, "noReplay@minip.com", "")
                 DAL_Adapter.GetDAL().UpdateOrderStatus(key, Enums.OrderStatus.SentMail);
             }
 
@@ -1303,7 +1308,48 @@ namespace BL
             }
         }
 
+        /// <summary>
+        /// The function send mail
+        /// </summary>
+        /// <exception cref="SmtpException">Thrown when there is an error with the connection</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the argument is null</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there are problem with data entered</exception>
+        /// <param name="to">The destination mail address</param>
+        /// <param name="from">The source mail address</param>
+        /// <param name="subject">The subject of the mail</param>
+        /// <param name="body">The body of the mail</param>
+        public void SendMail(string to, string from, string subject, string body)
+        {
+            MailMessage mail = new MailMessage();
+            mail.To.Add(to);
+            mail.From = new MailAddress(from);
+            mail.Subject = subject;
+            mail.Body = body;
+            mail.IsBodyHtml = true;
+            //mail.Priority = MailPriority.High;
 
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Credentials = new System.Net.NetworkCredential("minipwindows2020@gmail.com", "minip2020");
+            smtp.EnableSsl = true;
+            try
+            {
+                smtp.Send(mail);
+            }
+            catch (ArgumentNullException)
+            {
+                throw new ArgumentException("The message is null");
+            }
+            catch (SmtpException)
+            {
+                throw new SmtpException("Error connecting to server");
+            }
+            catch (InvalidOperationException)
+            {
+                throw new InvalidOperationException("Problem with data entered");
+            }
+
+        }
 
         #endregion
 
@@ -1311,4 +1357,6 @@ namespace BL
 }
 
 
-
+/*
+ 
+     */

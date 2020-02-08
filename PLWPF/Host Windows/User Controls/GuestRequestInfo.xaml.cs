@@ -69,7 +69,7 @@ namespace PLWPF.Host_Windows.User_Controls
                 }
                 catch (Exceptions.NoItemsException)
                 {
-                    throw;
+                    throw;//TODO: check it
                 }
                 catch (System.Net.Mail.SmtpException err)
                 {

@@ -547,6 +547,18 @@ namespace BL
 
         #endregion
 
+        /// <summary>
+        /// The function send mail
+        /// </summary>
+        /// <exception cref="SmtpException">Thrown when there is an error with the connection</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the argument is null</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there are problem with data entered</exception>
+        /// <param name="to">The destination mail address</param>
+        /// <param name="from">The source mail address</param>
+        /// <param name="subject">The subject of the mail</param>
+        /// <param name="body">The body of the mail</param>
+        void SendMail(string to, string from, string subject, string body);
+
         #endregion
 
         #region Grouping functions
