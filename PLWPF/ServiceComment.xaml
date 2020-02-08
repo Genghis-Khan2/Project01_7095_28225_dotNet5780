@@ -1,0 +1,28 @@
+﻿<Window x:Class="PLWPF.Host_Windows.ServiceComment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:PLWPF.Host_Windows"
+        mc:Ignorable="d"
+        Title="ServiceComment" Height="170" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <xctf:WatermarkTextBox Grid.Row="0" Watermark="Leave a comment..." x:Name="CommentBox" FontSize="25"/>
+        <Button Grid.Row="1" Content="Comment" x:Name="Submit" FontSize="25" FontWeight="ExtraBold" Click="Submit_Click">
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Text, ElementName=CommentBox}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</Window>

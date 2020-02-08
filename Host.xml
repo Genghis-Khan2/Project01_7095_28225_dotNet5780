@@ -1,37 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfHost xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Host>
-    <HostKey>1</HostKey>
+    <HostKey>3</HostKey>
     <PrivateName>Johnny</PrivateName>
     <FamilyName>Appleseed</FamilyName>
     <PhoneNumber>0549535242</PhoneNumber>
     <MailAddress>gabikomet@gmail.com</MailAddress>
     <BankBranchDetails>
-      <BankNumber>0</BankNumber>
-      <BankName>Mizrach</BankName>
-      <BranchNumber>0</BranchNumber>
-      <BranchAddress>212 PoopyDoo</BranchAddress>
-      <BranchCity>Meliathan</BranchCity>
-      <BankAccountNumber>0</BankAccountNumber>
+      <BankNumber>31</BankNumber>
+      <BankName>הבנק הבינלאומי הראשון לישראל בע"מ</BankName>
+      <BranchNumber>62</BranchNumber>
+      <BranchAddress>הזית 54 השוק החדש</BranchAddress>
+      <BranchCity>קריית גת</BranchCity>
+      <BankAccountNumber>50387</BankAccountNumber>
     </BankBranchDetails>
-    <BankAccountNumber>0</BankAccountNumber>
+    <BankAccountNumber>50415</BankAccountNumber>
+    <CollectionClearance>true</CollectionClearance>
+  </Host>
+  <Host>
+    <HostKey>4</HostKey>
+    <PrivateName>Tzippy</PrivateName>
+    <FamilyName>Temple</FamilyName>
+    <PhoneNumber>0547305850</PhoneNumber>
+    <MailAddress>tamkom@msn.com</MailAddress>
+    <BankBranchDetails>
+      <BankNumber>13</BankNumber>
+      <BankName>בנק אגוד לישראל בע"מ</BankName>
+      <BranchNumber>73</BranchNumber>
+      <BranchAddress>ניסנבאום 33 </BranchAddress>
+      <BranchCity>בת ים</BranchCity>
+      <BankAccountNumber>62154</BankAccountNumber>
+    </BankBranchDetails>
+    <BankAccountNumber>65992</BankAccountNumber>
     <CollectionClearance>false</CollectionClearance>
   </Host>
   <Host>
-    <HostKey>2</HostKey>
-    <PrivateName>Kushi</PrivateName>
-    <FamilyName>Nigger</FamilyName>
-    <PhoneNumber>0542354215</PhoneNumber>
-    <MailAddress>eshlomi15@gmail.com</MailAddress>
+    <HostKey>5</HostKey>
+    <PrivateName>Johnny</PrivateName>
+    <FamilyName>Appleseed</FamilyName>
+    <PhoneNumber>0549535242</PhoneNumber>
+    <MailAddress>gabikomet@gmail.com</MailAddress>
     <BankBranchDetails>
-      <BankNumber>0</BankNumber>
-      <BankName>Mizrach</BankName>
-      <BranchNumber>0</BranchNumber>
-      <BranchAddress>212 PoopyDoo</BranchAddress>
-      <BranchCity>Meliathan</BranchCity>
-      <BankAccountNumber>0</BankAccountNumber>
+      <BankNumber>13</BankNumber>
+      <BankName>בנק אגוד לישראל בע"מ</BankName>
+      <BranchNumber>70</BranchNumber>
+      <BranchAddress>ההסתדרות 26 </BranchAddress>
+      <BranchCity>פתח תקווה</BranchCity>
+      <BankAccountNumber>139982</BankAccountNumber>
     </BankBranchDetails>
-    <BankAccountNumber>0</BankAccountNumber>
-    <CollectionClearance>false</CollectionClearance>
+    <BankAccountNumber>143873</BankAccountNumber>
+    <CollectionClearance>true</CollectionClearance>
   </Host>
 </ArrayOfHost>

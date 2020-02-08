@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfHostingUnit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <HostingUnit>
-    <HostingUnitKey>1</HostingUnitKey>
+    <HostingUnitKey>5</HostingUnitKey>
     <Owner>
-      <HostKey>1</HostKey>
+      <HostKey>3</HostKey>
       <PrivateName>Johnny</PrivateName>
       <FamilyName>Appleseed</FamilyName>
       <PhoneNumber>0549535242</PhoneNumber>
       <MailAddress>gabikomet@gmail.com</MailAddress>
       <BankBranchDetails>
-        <BankNumber>0</BankNumber>
-        <BankName>Mizrach</BankName>
-        <BranchNumber>0</BranchNumber>
-        <BranchAddress>212 PoopyDoo</BranchAddress>
-        <BranchCity>Meliathan</BranchCity>
-        <BankAccountNumber>0</BankAccountNumber>
+        <BankNumber>31</BankNumber>
+        <BankName>הבנק הבינלאומי הראשון לישראל בע"מ</BankName>
+        <BranchNumber>62</BranchNumber>
+        <BranchAddress>הזית 54 השוק החדש</BranchAddress>
+        <BranchCity>קריית גת</BranchCity>
+        <BankAccountNumber>50387</BankAccountNumber>
       </BankBranchDetails>
-      <BankAccountNumber>0</BankAccountNumber>
-      <CollectionClearance>false</CollectionClearance>
+      <BankAccountNumber>50415</BankAccountNumber>
+      <CollectionClearance>true</CollectionClearance>
     </Owner>
-    <HostingUnitName>Ali Baba</HostingUnitName>
+    <HostingUnitName>Sleepy Poop</HostingUnitName>
     <Diary>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -58,7 +58,6 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -70,7 +69,6 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -82,7 +80,6 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -94,7 +91,6 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -106,7 +102,6 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -118,7 +113,6 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -130,7 +124,6 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -142,7 +135,6 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -154,7 +146,6 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -166,7 +157,6 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -178,7 +168,6 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -190,7 +179,6 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -202,7 +190,6 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -214,7 +201,6 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -226,7 +212,21 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -397,8 +397,8 @@
     <Commission>0</Commission>
     <Area>All</Area>
     <Type>All</Type>
-    <NumberOfPlacesForAdults>10</NumberOfPlacesForAdults>
-    <NumberOfPlacesForChildren>10</NumberOfPlacesForChildren>
+    <NumberOfPlacesForAdults>5</NumberOfPlacesForAdults>
+    <NumberOfPlacesForChildren>8</NumberOfPlacesForChildren>
     <IsTherePool>true</IsTherePool>
     <IsThereJacuzzi>true</IsThereJacuzzi>
     <IsThereGarden>false</IsThereGarden>

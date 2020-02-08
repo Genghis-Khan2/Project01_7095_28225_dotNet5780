@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfGuest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Guest>
-    <GuestKey>1</GuestKey>
-    <PrivateName>Meir</PrivateName>
+    <GuestKey>2</GuestKey>
+    <PrivateName>Gabi</PrivateName>
     <FamilyName>Komet</FamilyName>
-    <MailAddress>meirkomet@gmail.com</MailAddress>
-    <GuestRequests>
-      <int>1</int>
-    </GuestRequests>
+    <MailAddress>pollock@gmail.com</MailAddress>
+    <GuestRequests />
+  </Guest>
+  <Guest>
+    <GuestKey>3</GuestKey>
+    <PrivateName>Tom</PrivateName>
+    <FamilyName>Malone</FamilyName>
+    <MailAddress>tommalone@g.jct.ac.il</MailAddress>
+    <GuestRequests />
   </Guest>
 </ArrayOfGuest>

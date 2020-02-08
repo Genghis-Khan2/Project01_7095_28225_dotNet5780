@@ -47,15 +47,16 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" >
                 <TextBlock FontSize="22" Text="UserName: " TextWrapping="Wrap"/>
                 <TextBlock FontSize="22" Text="{Binding UserName}" TextWrapping="Wrap"/>
             </StackPanel>
-            <Button Grid.Column="0" FontSize="20" Grid.Row="1" Content="Add Guest Request" x:Name="AddButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="110" Margin="10" Click="AddButton_Click"/>
+            <Button Grid.Column="0" FontSize="20" Grid.Row="1" Content="Add Guest Request" x:Name="AddButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="AddButton_Click"/>
             <ListBox ItemTemplate="{StaticResource RequestTemplate}" HorizontalContentAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" x:Name="RequestListBox" Background="LightGray"/>
             <Button Grid.Column="1" Grid.Row="4" FontSize="20" Content="Refresh" x:Name="RefreshButton" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2" Width="100" Click="RefreshButton_Click"/>
             <Button Grid.Column="1" Grid.Row="3" FontSize="20" Content="Delete" x:Name="DeleteRequestButton" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,2.04" Width="100" Click="DeleteRequestButton_Click" Height="34">
@@ -80,7 +81,9 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Grid.Column="2" FontSize="20" Content="Log off" x:Name="LogOffButton" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="2" Click="LogOffButton_Click"/>
+            <Button Grid.Column="2" FontSize="20" Content="Log off" x:Name="LogOffButton" HorizontalAlignment="Right" VerticalAlignment="Stretch" Click="LogOffButton_Click"/>
+            <Button Grid.Column="0" Grid.Row="2" FontSize="20" Content="Comment on service" x:Name="CommentOnServiceButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="CommentButton_Click"/>
+            <Button Grid.Column="0" Grid.Row="3" FontSize="20" Content="Comment on unit" x:Name="CommentOnUnitButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="CommentOnUnitButton_Click"/>
 
         </Grid>
 

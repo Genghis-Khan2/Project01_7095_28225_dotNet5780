@@ -7,6 +7,31 @@
         xmlns:local1="clr-namespace:PLWPF.User_Control"
         mc:Ignorable="d"
         Title="AdminWindow" Height="450" Width="800">
+    <Window.Resources>
+        <ComboBox Width="120" x:Key="HostComboBox">
+            <ComboBoxItem Content="--Sort By--" IsSelected="True"/>
+            <ComboBoxItem Content="Private Name A-Z"/>
+            <ComboBoxItem Content="Family Name A-Z"/>
+            <ComboBoxItem Content="Key"/>
+        </ComboBox>
+        <ComboBox Width="120" x:Key="HostingUnitComboBox">
+            <ComboBoxItem Content="--Sort By--" IsSelected="True"/>
+            <ComboBoxItem Content="Host Name A-Z"/>
+            <ComboBoxItem Content="Key"/>
+        </ComboBox>
+        <ComboBox Width="120" x:Key="GuestComboBox">
+            <ComboBoxItem Content="--Sort By--" IsSelected="True"/>
+            <ComboBoxItem Content="Private Name A-Z"/>
+            <ComboBoxItem Content="Family Name A-Z"/>
+            <ComboBoxItem Content="Key"/>
+        </ComboBox>
+        <ComboBox Width="120" x:Key="GuestRequestComboBox">
+            <ComboBoxItem Content="--Sort By--" IsSelected="True"/>
+            <ComboBoxItem Content="Private Name A-Z"/>
+            <ComboBoxItem Content="Family Name A-Z"/>
+            <ComboBoxItem Content="Key"/>
+        </ComboBox>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="109*"/>
@@ -55,6 +80,28 @@
             <TabItem Header="Bank Accounts">
                 <ScrollViewer>
                     <StackPanel x:Name="BankBranchStack">
+
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Host Comments">
+                <ScrollViewer>
+                    <StackPanel x:Name="HostComments">
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Guest Comments">
+                <ScrollViewer>
+                    <StackPanel x:Name="GuestComments">
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Unit Comments">
+                <ScrollViewer>
+                    <StackPanel x:Name="UnitComments">
 
                     </StackPanel>
                 </ScrollViewer>

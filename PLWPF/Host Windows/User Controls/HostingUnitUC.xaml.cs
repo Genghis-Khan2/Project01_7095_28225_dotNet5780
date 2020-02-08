@@ -53,5 +53,10 @@ namespace PLWPF
         {
             caller.LoadMatchesForHU(hu);
         }
+
+        private void CommentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            caller.LoadCommentsForHU(hu);
+        }
     }
 }

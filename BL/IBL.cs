@@ -611,7 +611,7 @@ namespace BL
         ///  This function return all the HostingUnit group by There Host
         /// </summary>
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all HostingUnit group by there host</returns>
-        IEnumerable<IGrouping<Host, HostingUnit>> getHostingUnitByHost();
+        IEnumerable<IGrouping<Host, HostingUnit>> GetHostingUnitByHost();
         string GetGuestUsername(int key);
         void WriteGuestToFile(string text, string password, int key);
         void AddGuest(Guest guest);
@@ -622,10 +622,20 @@ namespace BL
 
         int GetHostKey();
         void RemoveHost(int key);
+        void SubmitHostComment(string text);
+
+        void SubmitGuestComment(string text);
         #endregion
 
         #endregion
 
+        List<string> GetAllGuestComments();
+
+        List<string> GetAllHostComments();
+        void SubmitUnitComment(string text, string name);
+
+        List<string> GetAllUnitComments();
+        void RemoveUnitComment(string comment);
     }
 
 }

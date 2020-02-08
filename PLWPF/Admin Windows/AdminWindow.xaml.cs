@@ -21,7 +21,7 @@ namespace PLWPF
     /// </summary>
     public partial class AdminWindow : Window
     {
-        // TODO: Add remove option
+        // TODO: Add sort option
 
         public AdminWindow()
         {
@@ -50,6 +50,7 @@ namespace PLWPF
         private void Refresh_Hosts()
         {
             HostStack.Children.Clear();
+            HostStack.Children.Add(Resources["HostComboBox"] as ComboBox);
             try
             {
                 var li = from i in GlobalVars.myBL.GetAllHosts()
@@ -122,6 +123,36 @@ namespace PLWPF
             }
         }
 
+        private void Refresh_GuestComments()
+        {
+            GuestComments.Children.Clear();
+            foreach (var comment in GlobalVars.myBL.GetAllGuestComments())
+            {
+                GuestComments.Children.Add(new Comment(comment));
+                GuestComments.Children.Add(new Separator());
+            }
+        }
+
+        private void Refresh_HostComments()
+        {
+            HostComments.Children.Clear();
+            foreach (var comment in GlobalVars.myBL.GetAllHostComments())
+            {
+                HostComments.Children.Add(new Comment(comment));
+                HostComments.Children.Add(new Separator());
+            }
+        }
+
+        private void Refresh_HostingComments()
+        {
+            UnitComments.Children.Clear();
+            foreach (var comment in GlobalVars.myBL.GetAllUnitComments())
+            {
+                UnitComments.Children.Add(new Comment(comment));
+                UnitComments.Children.Add(new Separator());
+            }
+        }
+
         internal void Complete_Refresh()
         {
             Refresh_GuestRequests();
@@ -130,6 +161,9 @@ namespace PLWPF
             Refresh_Orders();
             Refresh_Guests();
             Refresh_BankBranches();
+            Refresh_HostComments();
+            Refresh_GuestComments();
+            Refresh_HostingComments();
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)

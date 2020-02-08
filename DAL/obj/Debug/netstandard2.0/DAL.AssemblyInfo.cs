@@ -10,7 +10,7 @@
 
 using System;
 using System.Reflection;
-//[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("012377d0-3503-4684-abe3-5e9173e35677")]
+
 [assembly: System.Reflection.AssemblyCompanyAttribute("DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

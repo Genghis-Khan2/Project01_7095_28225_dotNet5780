@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<comments>
+  <comment>
+    <type>Host</type>
+    <content>Awesome service thanks!</content>
+  </comment>
+  <comment>
+    <type>Host</type>
+    <content>Poopy man you are</content>
+  </comment>
+  <comment>
+    <type>Guest</type>
+    <content>You guys is snobs</content>
+  </comment>
+  <comment>
+    <type>Unit</type>
+    <name>Ploop</name>
+    <content>Terrible. You guys suck</content>
+  </comment>
+  <comment>
+    <type>Unit</type>
+    <name>Tiiiiii</name>
+    <content>Plooper</content>
+  </comment>
+  <comment>
+    <type>Unit</type>
+    <name>Ploop</name>
+    <content>Karen</content>
+  </comment>
+  <comment>
+    <type>Host</type>
+    <content>Stanley</content>
+  </comment>
+</comments>
