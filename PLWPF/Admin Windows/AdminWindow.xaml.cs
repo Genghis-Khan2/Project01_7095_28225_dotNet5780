@@ -21,7 +21,7 @@ namespace PLWPF
     /// </summary>
     public partial class AdminWindow : Window
     {
-        // TODO: Add remove option
+        // TODO: Add sort option
 
         public AdminWindow()
         {
@@ -50,6 +50,7 @@ namespace PLWPF
         private void Refresh_Hosts()
         {
             HostStack.Children.Clear();
+            HostStack.Children.Add(Resources["HostComboBox"] as ComboBox);
             try
             {
                 var li = from i in GlobalVars.myBL.GetAllHosts()
