@@ -1019,6 +1019,11 @@ namespace DAL
             throw new NotImplementedException();
         }
 
+        public void RemoveUnitComment(string comment)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #endregion

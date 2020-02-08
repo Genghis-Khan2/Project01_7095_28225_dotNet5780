@@ -1333,6 +1333,11 @@ namespace BL
             return DAL_Adapter.GetDAL().GetAllUnitComments();
         }
 
+        public void RemoveUnitComment(string comment)
+        {
+            DAL_Adapter.GetDAL().RemoveUnitComment(comment);
+        }
+
         #endregion
 
     }

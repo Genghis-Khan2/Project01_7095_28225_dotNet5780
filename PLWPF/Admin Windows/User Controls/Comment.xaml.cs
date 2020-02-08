@@ -23,5 +23,11 @@ namespace PLWPF.Admin_Windows.User_Controls
             InitializeComponent();
             CommentBlock.Text = comment;
         }
+
+        private void IssueFixed_Click(object sender, RoutedEventArgs e)
+        {
+            string comment = CommentBlock.Text.Substring(CommentBlock.Text.IndexOf(": ") + 2);
+            GlobalVars.myBL.RemoveUnitComment(comment);
+        }
     }
 }

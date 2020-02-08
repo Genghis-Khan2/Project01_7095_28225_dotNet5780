@@ -34,4 +34,21 @@
     <BankAccountNumber>65992</BankAccountNumber>
     <CollectionClearance>false</CollectionClearance>
   </Host>
+  <Host>
+    <HostKey>5</HostKey>
+    <PrivateName>Johnny</PrivateName>
+    <FamilyName>Appleseed</FamilyName>
+    <PhoneNumber>0549535242</PhoneNumber>
+    <MailAddress>gabikomet@gmail.com</MailAddress>
+    <BankBranchDetails>
+      <BankNumber>13</BankNumber>
+      <BankName>בנק אגוד לישראל בע"מ</BankName>
+      <BranchNumber>70</BranchNumber>
+      <BranchAddress>ההסתדרות 26 </BranchAddress>
+      <BranchCity>פתח תקווה</BranchCity>
+      <BankAccountNumber>139982</BankAccountNumber>
+    </BankBranchDetails>
+    <BankAccountNumber>143873</BankAccountNumber>
+    <CollectionClearance>true</CollectionClearance>
+  </Host>
 </ArrayOfHost>

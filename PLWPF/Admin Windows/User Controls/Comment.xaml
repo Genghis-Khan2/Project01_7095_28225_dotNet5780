@@ -9,4 +9,9 @@
     <Grid>
         <TextBlock x:Name="CommentBlock" FontSize="22"/>
     </Grid>
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Fixed Issue" x:Name="IssueFixed" Click="IssueFixed_Click"/>
+        </ContextMenu>
+    </UserControl.ContextMenu>
 </UserControl>

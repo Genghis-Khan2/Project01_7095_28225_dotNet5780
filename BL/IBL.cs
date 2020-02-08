@@ -623,6 +623,7 @@ namespace BL
         void SubmitUnitComment(string text, string name);
 
         List<string> GetAllUnitComments();
+        void RemoveUnitComment(string comment);
     }
 
 }

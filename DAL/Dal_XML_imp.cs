@@ -1641,5 +1641,14 @@ namespace DAL
                     ).ToList();
         }
 
+        public void RemoveUnitComment(string comment)
+        {
+            var com = from i in commentRoot.Elements("comment")
+                      where i.Element("type").Value == "Unit"
+                      && i.Element("content").Value == comment
+                      select i;
+            com.Remove();
+            commentRoot.Save(commentsPath);
+        }
     }
 }
