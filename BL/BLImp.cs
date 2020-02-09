@@ -437,7 +437,7 @@ namespace BL
                 {
                     WorkerReportsProgress = false
                 };
-                bw.DoWork += SendMail(GetHostingUnit(ord.HostingUnitKey).Owner.MailAddress, "noReplay@minip.com", "")
+                //bw.DoWork += SendMail(GetHostingUnit(ord.HostingUnitKey).Owner.MailAddress, "noReplay@minip.com", "");
                 DAL_Adapter.GetDAL().UpdateOrderStatus(key, Enums.OrderStatus.SentMail);
             }
 
@@ -1113,7 +1113,7 @@ namespace BL
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all Host group by the number of Hosting unit they have</returns>
         public IEnumerable<IGrouping<int, Host>> GetAllHostByNumberOfHostingUnits()
         {
-            var listOfAllHostingUnitGroupByHost = getHostingUnitByHost();
+            var listOfAllHostingUnitGroupByHost = GetHostingUnitByHost();
             var groupedList = from item in listOfAllHostingUnitGroupByHost
                               group item.Key by item.Count();
             return groupedList;
@@ -1143,7 +1143,7 @@ namespace BL
         ///  This function return all the HostingUnit group by There Host
         /// </summary>
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all HostingUnit group by there host</returns>
-        public IEnumerable<IGrouping<Host, HostingUnit>> getHostingUnitByHost()
+        public IEnumerable<IGrouping<Host, HostingUnit>> GetHostingUnitByHost()
         {
             var allHostingUnit = GetAllHostingUnits();
             var groupedList = from hu in allHostingUnit
@@ -1328,10 +1328,12 @@ namespace BL
             mail.IsBodyHtml = true;
             //mail.Priority = MailPriority.High;
 
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            smtp.Credentials = new System.Net.NetworkCredential("minipwindows2020@gmail.com", "minip2020");
-            smtp.EnableSsl = true;
+            SmtpClient smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Credentials = new System.Net.NetworkCredential("minipwindows2020@gmail.com", "minip2020"),
+                EnableSsl = true
+            };
             try
             {
                 smtp.Send(mail);
@@ -1353,10 +1355,45 @@ namespace BL
 
         #endregion
 
+        public void SubmitHostComment(string text)
+        {
+            DAL_Adapter.GetDAL().SubmitHostComment(text);
+        }
+
+        public void SubmitGuestComment(string text)
+        {
+            DAL_Adapter.GetDAL().SubmitGuestComment(text);
+        }
+
+        public List<string> GetAllGuestComments()
+        {
+            return DAL_Adapter.GetDAL().GetAllGuestComments();
+        }
+
+        public List<string> GetAllHostComments()
+        {
+            return DAL_Adapter.GetDAL().GetAllHostComments();
+        }
+
+        public void SubmitUnitComment(string text, string name)
+        {
+            DAL_Adapter.GetDAL().SubmitUnitComment(text, name);
+        }
+
+        public List<string> GetAllUnitComments()
+        {
+            return DAL_Adapter.GetDAL().GetAllUnitComments();
+        }
+
+        public void RemoveUnitComment(string comment)
+        {
+            DAL_Adapter.GetDAL().RemoveUnitComment(comment);
+        }
+
+        public float GetCommission()
+        {
+            return DAL_Adapter.GetDAL().GetCommission();
+        }
+
     }
 }
-
-
-/*
- 
-     */

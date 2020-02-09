@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfHost xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Host>
-    <HostKey>3</HostKey>
-    <PrivateName>Johnny</PrivateName>
-    <FamilyName>Appleseed</FamilyName>
-    <PhoneNumber>0549535242</PhoneNumber>
-    <MailAddress>gabikomet@gmail.com</MailAddress>
-    <BankBranchDetails>
-      <BankNumber>31</BankNumber>
-      <BankName>הבנק הבינלאומי הראשון לישראל בע"מ</BankName>
-      <BranchNumber>62</BranchNumber>
-      <BranchAddress>הזית 54 השוק החדש</BranchAddress>
-      <BranchCity>קריית גת</BranchCity>
-      <BankAccountNumber>50387</BankAccountNumber>
-    </BankBranchDetails>
-    <BankAccountNumber>50415</BankAccountNumber>
-    <CollectionClearance>true</CollectionClearance>
-  </Host>
-  <Host>
     <HostKey>4</HostKey>
     <PrivateName>Tzippy</PrivateName>
     <FamilyName>Temple</FamilyName>
@@ -33,22 +16,5 @@
     </BankBranchDetails>
     <BankAccountNumber>65992</BankAccountNumber>
     <CollectionClearance>false</CollectionClearance>
-  </Host>
-  <Host>
-    <HostKey>5</HostKey>
-    <PrivateName>Johnny</PrivateName>
-    <FamilyName>Appleseed</FamilyName>
-    <PhoneNumber>0549535242</PhoneNumber>
-    <MailAddress>gabikomet@gmail.com</MailAddress>
-    <BankBranchDetails>
-      <BankNumber>13</BankNumber>
-      <BankName>בנק אגוד לישראל בע"מ</BankName>
-      <BranchNumber>70</BranchNumber>
-      <BranchAddress>ההסתדרות 26 </BranchAddress>
-      <BranchCity>פתח תקווה</BranchCity>
-      <BankAccountNumber>139982</BankAccountNumber>
-    </BankBranchDetails>
-    <BankAccountNumber>143873</BankAccountNumber>
-    <CollectionClearance>true</CollectionClearance>
   </Host>
 </ArrayOfHost>
