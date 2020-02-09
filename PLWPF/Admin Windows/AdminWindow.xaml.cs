@@ -21,8 +21,6 @@ namespace PLWPF
     /// </summary>
     public partial class AdminWindow : Window
     {
-        // TODO: Add sort option
-
         public AdminWindow()
         {
             InitializeComponent();
