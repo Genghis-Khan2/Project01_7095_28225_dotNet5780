@@ -30,11 +30,6 @@ namespace PLWPF
             setDefaultValueToFields();
         }
 
-        private void GardenComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -134,6 +129,10 @@ namespace PLWPF
 
             ArrivalDateCalendar.SelectedDate = DateTime.Today;
             DepartureDateCalendar.SelectedDate = DateTime.Today;
+
+            PrivateNameBox.Text = Guest.PrivateName;
+            FamilyNameBox.Text = Guest.FamilyName;
+            MailAddressBox.Text = Guest.MailAddress;
         }
     }
 }

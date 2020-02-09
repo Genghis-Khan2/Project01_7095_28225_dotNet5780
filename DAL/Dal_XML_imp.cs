@@ -10,8 +10,7 @@ using Exceptions;
 using System.Security.Cryptography;
 using System.Net;
 using System.ComponentModel;
-using System.Net.Mail;
-using System.Threading;
+using System.Windows;
 
 namespace DAL
 {
@@ -399,19 +398,18 @@ namespace DAL
             List<BankBranch> bankBranches;
             try
             {
-                bankBranches = (from branch in atmRoot.Elements("ATM")
+                bankBranches = (from branch in atmRoot.Elements("BankBranch")
                                 select new BankBranch()
                                 {
-                                    BankNumber = int.Parse(branch.Element("קוד_בנק").Value),
-                                    BankName = branch.Element("שם_בנק").Value,
+                                    BankNumber = int.Parse(branch.Element("BankNumber").Value),
+                                    BankName = branch.Element("BankName").Value,
                                     BankAccountNumber = GetBankNumber(),
-                                    BranchAddress = branch.Element("כתובת_ה-ATM").Value,
-                                    BranchCity = branch.Element("ישוב").Value,
-                                    BranchNumber = int.Parse(branch.Element("קוד_סניף").Value)
+                                    BranchAddress = branch.Element("BranchAddress").Value,
+                                    BranchCity = branch.Element("BranchCity").Value,
+                                    BranchNumber = int.Parse(branch.Element("BranchNumber").Value)
                                 }
             ).ToList();
             }
-
             catch
             {
                 bankBranches = new List<BankBranch>();
@@ -530,6 +528,27 @@ namespace DAL
             {
                 wc.Dispose();//release the object
             }
+            List<BankBranch> bankBranches;
+            try
+            {
+                bankBranches = (from branch in XElement.Load(bankBranchPath).Elements("ATM")
+                                select new BankBranch()
+                                {
+                                    BankNumber = int.Parse(branch.Element("קוד_בנק").Value),
+                                    BankName = branch.Element("שם_בנק").Value,
+                                    BankAccountNumber = GetBankNumber(),
+                                    BranchAddress = branch.Element("כתובת_ה-ATM").Value,
+                                    BranchCity = branch.Element("ישוב").Value,
+                                    BranchNumber = int.Parse(branch.Element("קוד_סניף").Value)
+                                }
+            ).ToList();
+            }
+            catch
+            {
+                bankBranches = new List<BankBranch>();
+            }
+            var lisWithoutDup = bankBranches.GroupBy(bb => new { bb.BankNumber, bb.BankName }).Select(bb => bb.FirstOrDefault<BankBranch>()).ToList();
+            SaveObjectList(lisWithoutDup, bankBranchPath);
         }
 
         #endregion

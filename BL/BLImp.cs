@@ -459,7 +459,7 @@ namespace BL
                 {
                     bw.RunWorkerAsync(arg);
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     throw;
                 }
@@ -1413,6 +1413,11 @@ namespace BL
         public void SubmitHostComment(string comment)
         {
             DAL_Adapter.GetDAL().SubmitHostComment(comment);
+        }
+
+        public float GetCommission()
+        {
+            return DAL_Adapter.GetDAL().GetCommission();
         }
         #endregion
 
