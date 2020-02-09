@@ -423,6 +423,10 @@ namespace BL
                 throw new KeyNotFoundException("There is no order with the key specified");
 
             Order ord = GetOrder(key);
+            HostingUnit hu = GetHostingUnit(ord.HostingUnitKey);
+            Host ho = hu.Owner;
+            GuestRequest gr = GetGuestRequest(ord.GuestRequestKey);
+            Guest gu = gr.Requester;
 
             //I assumed that when the status is changed to close ("CustomerResponsiveness" or "CustomerUnresponsiveness") 
             //you can still change the type of close but not to any open status("UnTreated" or "SentMail")
@@ -431,13 +435,34 @@ namespace BL
 
             if (stat == Enums.OrderStatus.SentMail)
             {
-                if (!GetHostingUnit(ord.HostingUnitKey).Owner.CollectionClearance)
+
+                if (!ho.CollectionClearance)
                     throw new UnauthorizedAccessException("a host cannot send an email if it does not authorize an account billing authorization");
                 BackgroundWorker bw = new BackgroundWorker
                 {
                     WorkerReportsProgress = false
                 };
-                bw.DoWork += SendMail(GetHostingUnit(ord.HostingUnitKey).Owner.MailAddress, "noReplay@minip.com", "")
+                /*
+                  MailMessage mail = new MailMessage();
+            mail.To.Add(guest.MailAddress);
+            mail.From = new MailAddress(host.MailAddress);
+            mail.Subject = "Request for accomodation";
+            mail.Body = "Hey there,\n I saw that you were interested in my hosting unit. Would you like to come over for your vacation? Shoot me back a text,\n" + host.PrivateName;
+            }
+                 */
+                bw.DoWork += SendMail;
+                string[] arg = new string[3];
+                arg[0] = gu.MailAddress;
+                arg[1] = ho.MailAddress;
+                arg[2] = ho.PrivateName + " " + ho.FamilyName;
+                try
+                {
+                    bw.RunWorkerAsync(arg);
+                }
+                catch(Exception)
+                {
+                    throw;
+                }
                 DAL_Adapter.GetDAL().UpdateOrderStatus(key, Enums.OrderStatus.SentMail);
             }
 
@@ -1113,7 +1138,7 @@ namespace BL
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all Host group by the number of Hosting unit they have</returns>
         public IEnumerable<IGrouping<int, Host>> GetAllHostByNumberOfHostingUnits()
         {
-            var listOfAllHostingUnitGroupByHost = getHostingUnitByHost();
+            var listOfAllHostingUnitGroupByHost = GetHostingUnitByHost();
             var groupedList = from item in listOfAllHostingUnitGroupByHost
                               group item.Key by item.Count();
             return groupedList;
@@ -1143,7 +1168,7 @@ namespace BL
         ///  This function return all the HostingUnit group by There Host
         /// </summary>
         /// <returns><see cref="IEnumerable{IGrouping}"/> to go over the list of all HostingUnit group by there host</returns>
-        public IEnumerable<IGrouping<Host, HostingUnit>> getHostingUnitByHost()
+        public IEnumerable<IGrouping<Host, HostingUnit>> GetHostingUnitByHost()
         {
             var allHostingUnit = GetAllHostingUnits();
             var groupedList = from hu in allHostingUnit
@@ -1314,17 +1339,21 @@ namespace BL
         /// <exception cref="SmtpException">Thrown when there is an error with the connection</exception>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null</exception>
         /// <exception cref="InvalidOperationException">Thrown when there are problem with data entered</exception>
-        /// <param name="to">The destination mail address</param>
-        /// <param name="from">The source mail address</param>
-        /// <param name="subject">The subject of the mail</param>
-        /// <param name="body">The body of the mail</param>
-        public void SendMail(string to, string from, string subject, string body)
+        /// <param name="sender">The object call the event</param>
+        ///<param name="e">
+        /// Used for parameter, is Argument send as <see cref="string[]"/>
+        /// Argument[0] - Destination mail address
+        /// Argument[1] - Source mail address
+        /// Argument[2] - Name of the sender
+        /// </param>
+        public void SendMail(object sender, DoWorkEventArgs e)
         {
+            string[] parameters = e.Argument as string[];
             MailMessage mail = new MailMessage();
-            mail.To.Add(to);
-            mail.From = new MailAddress(from);
-            mail.Subject = subject;
-            mail.Body = body;
+            mail.To.Add(parameters[0]);
+            mail.From = new MailAddress(parameters[1]);
+            mail.Subject = "Request for accomodation";
+            mail.Body = "Hey there,\n I saw that you were interested in my hosting unit. Would you like to come over for your vacation? Shoot me back a text,\n" + parameters[2];
             mail.IsBodyHtml = true;
             //mail.Priority = MailPriority.High;
 
@@ -1351,6 +1380,40 @@ namespace BL
 
         }
 
+        public void SubmitGuestComment(string comment)
+        {
+            DAL_Adapter.GetDAL().SubmitGuestComment(comment);
+        }
+
+        public List<string> GetAllGuestComments()
+        {
+            return DAL_Adapter.GetDAL().GetAllGuestComments();
+        }
+
+        public List<string> GetAllHostComments()
+        {
+            return DAL_Adapter.GetDAL().GetAllHostComments();
+        }
+
+        public void SubmitUnitComment(string text, string name)
+        {
+            DAL_Adapter.GetDAL().SubmitUnitComment(text, name);
+        }
+
+        public List<string> GetAllUnitComments()
+        {
+            return DAL_Adapter.GetDAL().GetAllUnitComments();
+        }
+
+        public void RemoveUnitComment(string comment)
+        {
+            DAL_Adapter.GetDAL().RemoveUnitComment(comment);
+        }
+
+        public void SubmitHostComment(string comment)
+        {
+            DAL_Adapter.GetDAL().SubmitHostComment(comment);
+        }
         #endregion
 
     }

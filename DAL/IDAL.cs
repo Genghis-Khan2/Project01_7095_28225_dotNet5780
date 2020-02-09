@@ -454,6 +454,20 @@ namespace DAL
 
         void SetCommission(float? value);
 
+
         #endregion
+
+        void SubmitHostComment(string comment);
+
+        void SubmitGuestComment(string comment);
+
+        List<string> GetAllGuestComments();
+
+        List<string> GetAllHostComments();
+        void SubmitUnitComment(string text, string name);
+
+        List<string> GetAllUnitComments();
+        void RemoveUnitComment(string comment);
+
     }
 }
