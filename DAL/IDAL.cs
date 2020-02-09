@@ -454,20 +454,24 @@ namespace DAL
 
         void SetCommission(float? value);
 
-
         #endregion
 
         void SubmitHostComment(string comment);
 
+        List<string> GetAllHostComments();
+
+        /// <summary>
+        /// Submits a comment about the service of the website
+        /// </summary>
+        /// <param name="comment"></param>
         void SubmitGuestComment(string comment);
 
         List<string> GetAllGuestComments();
 
-        List<string> GetAllHostComments();
         void SubmitUnitComment(string text, string name);
 
         List<string> GetAllUnitComments();
-        void RemoveUnitComment(string comment);
 
+        void RemoveUnitComment(string comment);
     }
 }

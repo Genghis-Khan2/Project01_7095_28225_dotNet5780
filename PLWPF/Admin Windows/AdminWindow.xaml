@@ -8,29 +8,7 @@
         mc:Ignorable="d"
         Title="AdminWindow" Height="450" Width="800">
     <Window.Resources>
-        <ComboBox Width="120" x:Key="HostComboBox">
-            <ComboBoxItem Content="--Sort By--" IsSelected="True"/>
-            <ComboBoxItem Content="Private Name A-Z"/>
-            <ComboBoxItem Content="Family Name A-Z"/>
-            <ComboBoxItem Content="Key"/>
-        </ComboBox>
-        <ComboBox Width="120" x:Key="HostingUnitComboBox">
-            <ComboBoxItem Content="--Sort By--" IsSelected="True"/>
-            <ComboBoxItem Content="Host Name A-Z"/>
-            <ComboBoxItem Content="Key"/>
-        </ComboBox>
-        <ComboBox Width="120" x:Key="GuestComboBox">
-            <ComboBoxItem Content="--Sort By--" IsSelected="True"/>
-            <ComboBoxItem Content="Private Name A-Z"/>
-            <ComboBoxItem Content="Family Name A-Z"/>
-            <ComboBoxItem Content="Key"/>
-        </ComboBox>
-        <ComboBox Width="120" x:Key="GuestRequestComboBox">
-            <ComboBoxItem Content="--Sort By--" IsSelected="True"/>
-            <ComboBoxItem Content="Private Name A-Z"/>
-            <ComboBoxItem Content="Family Name A-Z"/>
-            <ComboBoxItem Content="Key"/>
-        </ComboBox>
+
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -38,30 +16,67 @@
             <ColumnDefinition Width="291*"/>
         </Grid.ColumnDefinitions>
 
-        <!--It may seem arbitrary but 100 makes sense. Otherwise it would be too much-->
         <Label Content="Value of tax" HorizontalAlignment="Center" Margin="0,56,0,0" VerticalAlignment="Top" Height="26" Width="72"/>
-        <local1:UpDownTextBox x:Name="UpDownControl" Margin="73,93,62,297" LostKeyboardFocus="UpDownControl_LostKeyboardFocus"/>
+        <local1:UpDownTextBox x:Name="UpDownControl" Margin="73,93,62,297" LostFocus="UpDownControl_LostFocus_1"/>
         <TabControl Grid.Column="1">
             <TabItem Header="Guest Requests">
-                <ScrollViewer>
-                    <StackPanel x:Name="GRStack">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="9*"/>
 
-                    </StackPanel>
-                </ScrollViewer>
+                    </Grid.RowDefinitions>
+                    <ComboBox Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="GuestRequestComboBox" SelectionChanged="GuestRequestSortRefresh">
+                        <ComboBoxItem Content="--Sort By--" IsSelected="True"/>
+                        <ComboBoxItem Content="Name A-Z"/>
+                        <ComboBoxItem Content="Key"/>
+                        <ComboBoxItem Content="Registration Date"/>
+                        <ComboBoxItem Content="Entry Date"/>
+                        <ComboBoxItem Content="Release Date"/>
+                    </ComboBox>
+                    <ScrollViewer Grid.Row="1">
+                        <StackPanel x:Name="GRStack"/>
+
+                    </ScrollViewer>
+                </Grid>
             </TabItem>
             <TabItem Header="Hosts">
-                <ScrollViewer>
-                    <StackPanel x:Name="HostStack">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="9*"/>
 
-                    </StackPanel>
-                </ScrollViewer>
+                    </Grid.RowDefinitions>
+                    <ComboBox Grid.Row="0" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" x:Name="HostComboBox" SelectionChanged="HostSortRefresh">
+                        <ComboBoxItem  Content="--Sort By--" IsSelected="True"/>
+                        <ComboBoxItem Content="Private Name A-Z"/>
+                        <ComboBoxItem Content="Family Name A-Z"/>
+                        <ComboBoxItem Content="Key"/>
+                    </ComboBox>
+                    <ScrollViewer Grid.Row="1">
+                        <StackPanel x:Name="HostStack"/>
+
+                    </ScrollViewer>
+                </Grid>
             </TabItem>
             <TabItem Header="Hosting Units">
-                <ScrollViewer>
-                    <StackPanel x:Name="HUStack">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="9*"/>
+                    </Grid.RowDefinitions>
+                    <ComboBox Grid.Row="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="HostingUnitComboBox" SelectionChanged="HostingUnitSortRefresh">
+                        <ComboBoxItem Content="--Sort By--" IsSelected="True"/>
+                        <ComboBoxItem Content="Host Name A-Z"/>
+                        <ComboBoxItem Content="HostingUnit Name A-Z"/>
+                        <ComboBoxItem Content="Key"/>
+                    </ComboBox>
+                    <ScrollViewer Grid.Row="1">
+                        <StackPanel x:Name="HUStack">
 
-                    </StackPanel>
-                </ScrollViewer>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
             </TabItem>
             <TabItem Header="Orders">
                 <ScrollViewer>
@@ -71,11 +86,23 @@
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="Guests">
-                <ScrollViewer>
-                    <StackPanel x:Name="GuestStack">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="9*"/>
+                    </Grid.RowDefinitions>
+                    <ComboBox Grid.Row="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="GuestComboBox" SelectionChanged="GuestSortRefresh" >
+                        <ComboBoxItem Content="--Sort By--" IsSelected="True"/>
+                        <ComboBoxItem Content="Private Name A-Z"/>
+                        <ComboBoxItem Content="Family Name A-Z"/>
+                        <ComboBoxItem Content="Key"/>
+                    </ComboBox>
+                    <ScrollViewer Grid.Row="1">
+                        <StackPanel x:Name="GuestStack">
 
-                    </StackPanel>
-                </ScrollViewer>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
             </TabItem>
             <TabItem Header="Bank Accounts">
                 <ScrollViewer>

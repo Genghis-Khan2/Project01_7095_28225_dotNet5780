@@ -628,6 +628,7 @@ namespace BL
 
         List<string> GetAllUnitComments();
         void RemoveUnitComment(string comment);
+        float GetCommission();
     }
 
 }
