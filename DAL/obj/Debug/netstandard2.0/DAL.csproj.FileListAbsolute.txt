@@ -49,3 +49,33 @@ E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project0
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.csproj.CopyComplete
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.dll
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\DAL\obj\Debug\netstandard2.0\DAL.pdb
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\PresentationFramework.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Xaml.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\WindowsBase.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\PresentationCore.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\ReachFramework.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Printing.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\UIAutomationProvider.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\UIAutomationTypes.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Windows.Extensions.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Security.Permissions.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.IO.Packaging.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Security.Cryptography.Xml.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Windows.Input.Manipulations.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Security.AccessControl.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Security.Principal.Windows.dll
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\PresentationFramework.xml
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Xaml.xml
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\WindowsBase.xml
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\PresentationCore.xml
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\ReachFramework.xml
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Printing.xml
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\UIAutomationProvider.xml
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\UIAutomationTypes.xml
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Windows.Extensions.xml
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Security.Permissions.xml
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.IO.Packaging.xml
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Security.Cryptography.Xml.xml
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Windows.Input.Manipulations.xml
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Security.AccessControl.xml
+C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\DAL\bin\Debug\netstandard2.0\System.Security.Principal.Windows.xml

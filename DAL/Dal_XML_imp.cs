@@ -389,6 +389,7 @@ namespace DAL
         /// This function loads a list containing the BankBranchs from the files
         /// </summary>
         /// <returns>List of BankBranchs that are in file</returns>
+        /// <remarks>This function reads from the bank file after downsizing, which may cause high waiting times until it works properly!</remarks>
         private List<BankBranch> LoadBankBranchList()
         {
             if (!isBankFileAvailable)
@@ -402,7 +403,7 @@ namespace DAL
                                 select new BankBranch()
                                 {
                                     BankNumber = int.Parse(branch.Element("BankNumber").Value),
-                                    BankName = branch.Element("BankName").Value,
+                                    BankName = branch.Element("BankName").Value.Replace("\n", String.Empty).Replace("\r", String.Empty).Replace("\t", String.Empty),
                                     BankAccountNumber = GetBankNumber(),
                                     BranchAddress = branch.Element("BranchAddress").Value,
                                     BranchCity = branch.Element("BranchCity").Value,
