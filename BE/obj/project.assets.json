@@ -25,16 +25,6 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
-      },
-      "FR/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/FR.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/FR.dll": {}
-        }
       }
     }
   },
@@ -181,16 +171,10 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
-    },
-    "FR/1.0.0": {
-      "type": "project",
-      "path": "../FR/FR.csproj",
-      "msbuildProject": "../FR/FR.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "FR >= 1.0.0",
       "NETStandard.Library >= 2.0.3"
     ]
   },
@@ -223,11 +207,7 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "projectReferences": {
-            "E:\\קורסים\\יב\\סמסטר א\\מיניפ\\Exercises (Visual Studio)\\Project01_7095_28225_dotNet5780\\FR\\FR.csproj": {
-              "projectPath": "E:\\קורסים\\יב\\סמסטר א\\מיניפ\\Exercises (Visual Studio)\\Project01_7095_28225_dotNet5780\\FR\\FR.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

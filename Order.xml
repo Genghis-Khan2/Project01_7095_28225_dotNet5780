@@ -1,2 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<orders />
+<orders>
+  <order>
+    <hostingunitkey>1</hostingunitkey>
+    <guestrequestkey>3</guestrequestkey>
+    <orderkey>1</orderkey>
+    <status>UnTreated</status>
+    <createdate>
+      <year>2020</year>
+      <month>2</month>
+      <day>10</day>
+    </createdate>
+    <orderdate>
+      <year>2020</year>
+      <month>2</month>
+      <day>10</day>
+    </orderdate>
+  </order>
+</orders>

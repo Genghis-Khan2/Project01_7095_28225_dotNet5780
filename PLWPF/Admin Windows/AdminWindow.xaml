@@ -17,7 +17,11 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="Value of tax" HorizontalAlignment="Center" Margin="0,56,0,0" VerticalAlignment="Top" Height="26" Width="72"/>
-        <local1:UpDownTextBox x:Name="UpDownControl" Margin="73,93,62,297" LostFocus="UpDownControl_LostFocus"/>
+        <local1:UpDownTextBox x:Name="UpDownControl" Margin="73,93,62,297" LostFocus="UpDownControl_LostFocus">
+            <local1:UpDownTextBox.ToolTip>
+                <ToolTip Content="Change value of commission"/>
+            </local1:UpDownTextBox.ToolTip>
+        </local1:UpDownTextBox>
         <TabControl Grid.Column="1">
             <TabItem Header="Guest Requests">
                 <Grid>
@@ -33,6 +37,9 @@
                         <ComboBoxItem Content="Registration Date"/>
                         <ComboBoxItem Content="Entry Date"/>
                         <ComboBoxItem Content="Release Date"/>
+                        <ComboBox.ToolTip>
+                            <ToolTip Content="Sort guest requests by certain parameter"/>
+                        </ComboBox.ToolTip>
                     </ComboBox>
                     <ScrollViewer Grid.Row="1">
                         <StackPanel x:Name="GRStack"/>
@@ -52,6 +59,9 @@
                         <ComboBoxItem Content="Private Name A-Z"/>
                         <ComboBoxItem Content="Family Name A-Z"/>
                         <ComboBoxItem Content="Key"/>
+                        <ComboBox.ToolTip>
+                            <ToolTip Content="Sort hosts by certain parameter"/>
+                        </ComboBox.ToolTip>
                     </ComboBox>
                     <ScrollViewer Grid.Row="1">
                         <StackPanel x:Name="HostStack"/>
@@ -70,6 +80,9 @@
                         <ComboBoxItem Content="Host Name A-Z"/>
                         <ComboBoxItem Content="HostingUnit Name A-Z"/>
                         <ComboBoxItem Content="Key"/>
+                        <ComboBox.ToolTip>
+                            <ToolTip Content="Sort hosting units by certain parameter"/>
+                        </ComboBox.ToolTip>
                     </ComboBox>
                     <ScrollViewer Grid.Row="1">
                         <StackPanel x:Name="HUStack">
@@ -91,11 +104,14 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="9*"/>
                     </Grid.RowDefinitions>
-                    <ComboBox Grid.Row="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="GuestComboBox" SelectionChanged="GuestSortRefresh" >
+                    <ComboBox Grid.Row="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="GuestComboBox" SelectionChanged="GuestSortRefresh">
                         <ComboBoxItem Content="--Sort By--" IsSelected="True"/>
                         <ComboBoxItem Content="Private Name A-Z"/>
                         <ComboBoxItem Content="Family Name A-Z"/>
                         <ComboBoxItem Content="Key"/>
+                        <ComboBox.ToolTip>
+                            <ToolTip Content="Sort guest by certain parameter"/>
+                        </ComboBox.ToolTip>
                     </ComboBox>
                     <ScrollViewer Grid.Row="1">
                         <StackPanel x:Name="GuestStack">
@@ -134,8 +150,16 @@
                 </ScrollViewer>
             </TabItem>
         </TabControl>
-        <Button Content="Refresh" FontSize="55" FontWeight="Bold" x:Name="RefreshButton" HorizontalAlignment="Center" Margin="0,212,0,0" VerticalAlignment="Top" Height="222" Width="218" Click="RefreshButton_Click"/>
-        <Button Content="Log Out" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,163,0,0" VerticalAlignment="Top" Height="54" Width="218" Click="Button_Click"/>
+        <Button Content="Refresh" FontSize="55" FontWeight="Bold" x:Name="RefreshButton" HorizontalAlignment="Center" Margin="0,212,0,0" VerticalAlignment="Top" Height="222" Width="218" Click="RefreshButton_Click">
+            <Button.ToolTip>
+                <ToolTip Content="Refresh all data in window"/>
+            </Button.ToolTip>
+        </Button>
+        <Button Content="Log Out" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,163,0,0" VerticalAlignment="Top" Height="54" Width="218" Click="Button_Click">
+            <Button.ToolTip>
+                <ToolTip Content="Log out of admin account"/>
+            </Button.ToolTip>
+        </Button>
 
     </Grid>
 </Window>

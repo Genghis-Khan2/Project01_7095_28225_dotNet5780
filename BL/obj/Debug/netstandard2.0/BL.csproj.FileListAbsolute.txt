@@ -43,12 +43,10 @@ E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project0
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DAL.dll
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DS.dll
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\Exceptions.dll
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\FR.dll
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\BE.pdb
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DAL.pdb
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\DS.pdb
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\Exceptions.pdb
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\bin\Debug\netstandard2.0\FR.pdb
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.csprojAssemblyReference.cache
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.AssemblyInfoInputs.cache
 E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\BL\obj\Debug\netstandard2.0\BL.AssemblyInfo.cs

@@ -170,7 +170,7 @@ namespace DAL
                                 new XElement("hostkey", 1),
                                 new XElement("hostingunitkey", 1),
                                 new XElement("orderkey", 1),
-                                new XElement("commission"),
+                                new XElement("commission", 100),
                                 new XElement("numberofdaysuntilexpired", 1),
                                 new XElement("guestkey", 1)); // Set all the fields to 1
                 configRoot.Save(configPath);
@@ -548,7 +548,7 @@ namespace DAL
             {
                 bankBranches = new List<BankBranch>();
             }
-            var lisWithoutDup = bankBranches.GroupBy(bb => new { bb.BankNumber, bb.BankName }).Select(bb => bb.FirstOrDefault<BankBranch>()).ToList();
+            var lisWithoutDup = bankBranches.GroupBy(bb => new { bb.BankNumber, bb.BankName }).Select(bb => bb.FirstOrDefault()).ToList();
             SaveObjectList(lisWithoutDup, bankBranchPath);
         }
 
@@ -999,6 +999,14 @@ namespace DAL
             if (list.RemoveAll(s => s.GuestRequestKey == key) == 0)
                 throw new KeyNotFoundException("No guest request match this key");
             SaveObjectList(list, guestRequestPath);
+
+            var guestList = LoadGuestList();
+            foreach (var guest in guestList)
+            {
+                guest.GuestRequests.Remove(key);
+            }
+
+            SaveObjectList(guestList, guestPath);
         }
 
 
@@ -1578,6 +1586,8 @@ namespace DAL
             }
         }
 
+        #region Comments Functions
+
         /// <summary>
         /// Submits a comment about the service of the website
         /// </summary>
@@ -1644,5 +1654,7 @@ namespace DAL
             com.Remove();
             commentRoot.Save(commentsPath);
         }
+
+        #endregion
     }
 }

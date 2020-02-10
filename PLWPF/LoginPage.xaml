@@ -22,8 +22,16 @@
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <xctf:WatermarkTextBox Grid.Row="2" Grid.Column="1" x:Name="UserTextBox" FontSize="24" Watermark="Username" HorizontalAlignment="Center" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="40" Width="230" KeyDown="UserTextBox_KeyDown"/>
-        <xctf:WatermarkPasswordBox Grid.Row="3" Grid.Column="1" x:Name="PassBox" Watermark="Password" PasswordChar="*" FontSize="24" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="40" Width="230" KeyDown="PassBox_KeyDown"/>
+        <xctf:WatermarkTextBox Grid.Row="2" Grid.Column="1" x:Name="UserTextBox" FontSize="24" Watermark="Username" HorizontalAlignment="Center" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="40" Width="230" KeyDown="UserTextBox_KeyDown">
+            <xctf:WatermarkTextBox.ToolTip>
+                <ToolTip Content="Username of account"/>
+            </xctf:WatermarkTextBox.ToolTip>
+        </xctf:WatermarkTextBox>
+        <xctf:WatermarkPasswordBox Grid.Row="3" Grid.Column="1" x:Name="PassBox" Watermark="Password" PasswordChar="*" FontSize="24" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="40" Width="230" KeyDown="PassBox_KeyDown">
+            <xctf:WatermarkPasswordBox.ToolTip>
+                <ToolTip Content="Password of account"/>
+            </xctf:WatermarkPasswordBox.ToolTip>
+        </xctf:WatermarkPasswordBox>
         <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Content="Login to User:" FontFamily="Baskerville Old Face" FontSize="36" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
         <Label x:Name="WrongLabel" Grid.Row="1" Grid.Column="1" Content="Username or password are incorrect" FontFamily="Baskerville Old Face" FontSize="14" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="#FFE80E0E" Visibility="Hidden"/>
         <Button Grid.Row="4" Grid.Column="1" Content="Login" FontSize="22" FontWeight="DemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="LoginButton" Height="40" Width="200" Click="LoginButton_Click">
@@ -39,9 +47,21 @@
                     </Style.Triggers>
                 </Style>
             </Button.Style>
+            <Button.ToolTip>
+                <ToolTip Content="Login to account"/>
+            </Button.ToolTip>
         </Button>
-        <Button Grid.Row="5" Grid.Column="1" Content="Create new user" FontSize="22" FontWeight="DemiBold" HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="CreateAccountButton" Height="40" Width="200" Click="CreateAccountButton_Click" />
-        <Button Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Clear" FontSize="22" FontWeight="DemiBold" x:Name="ClearButton" Height="40" Width="100" Click="ClearButton_Click"/>
+        <Button Grid.Row="5" Grid.Column="1" Content="Create new user" FontSize="22" FontWeight="DemiBold" HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="CreateAccountButton" Height="40" Width="200" Click="CreateAccountButton_Click">
+            <Button.ToolTip>
+                <ToolTip Content="Create user (guest or host)"/>
+            </Button.ToolTip>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Clear" FontSize="22" FontWeight="DemiBold" x:Name="ClearButton" Height="40" Width="100" Click="ClearButton_Click">
+            <Button.ToolTip>
+                <ToolTip Content="Clear username and password boxes"/>
+            </Button.ToolTip>
+        </Button>
+        <Label Content="No Account?" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="32,59,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
     </Grid>
 </Window>

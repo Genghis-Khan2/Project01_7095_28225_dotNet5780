@@ -10,7 +10,7 @@
     <Grid>
         <xctf:WatermarkTextBox Watermark="e.g. Sleepy Palms" HorizontalAlignment="Left" Margin="154,55,0,0" Text="" x:Name="NameOfUnit" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
         <Label Content="Enter Unit name:" HorizontalAlignment="Left" Margin="43,53,0,0" VerticalAlignment="Top"/>
-        <Button Content="Create Hosting Unit" FontSize="22" FontWeight="DemiBold" x:Name="CreateButton" HorizontalAlignment="Left" Margin="444,286,0,0" VerticalAlignment="Top" Width="233" Click="CreateButton_Click" Height="49"/>
+        <Button Content="Create Hosting Unit" FontSize="22" FontWeight="DemiBold" x:Name="CreateButton" HorizontalAlignment="Left" Margin="444,286,0,0" VerticalAlignment="Top" Width="233" Click="CreateButton_Click" Height="49" ToolTip="Create hosting unit"/>
         <ComboBox HorizontalAlignment="Left" x:Name="Area" Margin="179,133,0,0" VerticalAlignment="Top" Width="120" SelectedItem="All" SelectedIndex="0">
             <ComboBoxItem Content="All"/>
             <ComboBoxItem Content="North"/>
