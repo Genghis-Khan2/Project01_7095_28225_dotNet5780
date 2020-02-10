@@ -49,10 +49,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Content="Add a hosting unit" Grid.Row="1" FontSize="25" FontWeight="DemiBold" Height="150" x:Name="AddUnit" HorizontalAlignment="Stretch" VerticalAlignment="Top" Click="AddUnit_Click" FontFamily="Papyrus"/>
-        <Button Content="Comment on service" Grid.Row="2" FontSize="25" FontWeight="DemiBold" HorizontalAlignment="Center" Height="150" x:Name="CommentButton" VerticalAlignment="Top" FontFamily="Kristen ITC" Click="CommentButton_Click"/>
+        <Button Content="Add a hosting unit" Grid.Row="1" FontSize="25" FontWeight="DemiBold" Height="150" x:Name="AddUnit" HorizontalAlignment="Stretch" VerticalAlignment="Top" Click="AddUnit_Click" FontFamily="Papyrus" ToolTip="Add hosting unit"/>
+        <Button Content="Comment on service" Grid.Row="2" FontSize="25" FontWeight="DemiBold" HorizontalAlignment="Center" Height="150" x:Name="CommentButton" VerticalAlignment="Top" FontFamily="Kristen ITC" Click="CommentButton_Click" ToolTip="Comment about the service of the website. We will try to adapt it to your wishes"/>
         <TabControl Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" x:Name="Tabs" Grid.ColumnSpan="2">
-            <TabItem Header="Hosting Units">
+            <TabItem Header="Hosting Units" ToolTip="Display all hosting units you own">
                 <Grid Background="White">
                     <ScrollViewer>
                         <StackPanel x:Name="HostingUnitStack">
@@ -60,7 +60,7 @@
                     </ScrollViewer>
                 </Grid>
             </TabItem>
-            <TabItem Header="Guest Requests">
+            <TabItem Header="Guest Requests" ToolTip="Display guest requests matching your hosting units">
                 <Grid Background="White">
                     <ScrollViewer>
                         <StackPanel x:Name="GuestRequestStack">
@@ -68,7 +68,7 @@
                     </ScrollViewer>
                 </Grid>
             </TabItem>
-            <TabItem Header="Orders">
+            <TabItem Header="Orders" ToolTip="Display orders currently open">
                 <Grid Background="White">
                     <ScrollViewer>
                         <StackPanel x:Name="OrderStack">
@@ -76,7 +76,7 @@
                     </ScrollViewer>
                 </Grid>
             </TabItem>
-            <TabItem Header="Comments">
+            <TabItem Header="Comments" ToolTip="Display comments about your hosting units from guests">
                 <Grid Background="White">
                     <ScrollViewer>
                         <StackPanel x:Name="Comments">
@@ -85,8 +85,8 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button Content="Refresh" Grid.Row="0" FontSize="40" FontWeight="ExtraBold" HorizontalAlignment="Stretch" x:Name="RefreshButton" VerticalAlignment="Stretch" Click="Refresh_Click" FontFamily="Lucida Calligraphy"/>
-        <Button Content="Log Off" Grid.Row="3" FontSize="40" FontWeight="ExtraBold" HorizontalAlignment="Stretch" x:Name="LogOffButton" VerticalAlignment="Stretch" FontFamily="Monotype Corsiva" Click="LogOffButton_Click"/>
+        <Button Content="Refresh" Grid.Row="0" FontSize="40" FontWeight="ExtraBold" HorizontalAlignment="Stretch" x:Name="RefreshButton" VerticalAlignment="Stretch" Click="Refresh_Click" FontFamily="Lucida Calligraphy" ToolTip="Refresh data"/>
+        <Button Content="Log Off" Grid.Row="3" FontSize="40" FontWeight="ExtraBold" HorizontalAlignment="Stretch" x:Name="LogOffButton" VerticalAlignment="Stretch" FontFamily="Monotype Corsiva" Click="LogOffButton_Click" ToolTip="Sign out of this account"/>
 
 
     </Grid>

@@ -21,10 +21,12 @@
         </Grid.ColumnDefinitions>
         <Button x:Name="CreateGuestButton" Grid.Row="1"
             Grid.Column="1"
-            Content="Guest" FontSize="50" Click="CreateGuestButton_Click" />
+            Content="Guest" FontSize="50" Click="CreateGuestButton_Click"
+                ToolTip="Create guest account"/>
         <Button x:Name="CreateHostButton" Grid.Row="3"
             Grid.Column="1"
-            Content="Host" FontSize="50" Click="CreateHostButton_Click"/>
+            Content="Host" FontSize="50" Click="CreateHostButton_Click"
+                ToolTip="Create host account"/>
     </Grid>
-    
+
 </Window>

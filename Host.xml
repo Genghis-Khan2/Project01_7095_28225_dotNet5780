@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfHost xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Host>
-    <HostKey>4</HostKey>
-    <PrivateName>Tzippy</PrivateName>
-    <FamilyName>Temple</FamilyName>
-    <PhoneNumber>0547305850</PhoneNumber>
-    <MailAddress>tamkom@msn.com</MailAddress>
+    <HostKey>1</HostKey>
+    <PrivateName>Johnny</PrivateName>
+    <FamilyName>Appleseed</FamilyName>
+    <PhoneNumber>0549535242</PhoneNumber>
+    <MailAddress>gabikomet@gmail.com</MailAddress>
     <BankBranchDetails>
       <BankNumber>13</BankNumber>
       <BankName>בנק אגוד לישראל בע"מ</BankName>
-      <BranchNumber>73</BranchNumber>
-      <BranchAddress>ניסנבאום 33 </BranchAddress>
-      <BranchCity>בת ים</BranchCity>
-      <BankAccountNumber>62154</BankAccountNumber>
+      <BranchNumber>63</BranchNumber>
+      <BranchAddress>אחוזת בית 6-8 </BranchAddress>
+      <BranchCity>תל אביב -יפו</BranchCity>
+      <BankAccountNumber>7789</BankAccountNumber>
     </BankBranchDetails>
-    <BankAccountNumber>65992</BankAccountNumber>
-    <CollectionClearance>false</CollectionClearance>
+    <BankAccountNumber>7809</BankAccountNumber>
+    <CollectionClearance>true</CollectionClearance>
   </Host>
   <Host>
     <HostKey>6</HostKey>
