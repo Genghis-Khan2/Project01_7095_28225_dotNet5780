@@ -15,7 +15,7 @@
         <xctf:WatermarkTextBox FontSize="24" x:Name="privateNameBox" Watermark="Private Name" HorizontalAlignment="Left" Margin="61,75,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
         <xctf:WatermarkTextBox FontSize="24" x:Name="familyName" Watermark="Family Name" HorizontalAlignment="Left" Margin="61,174,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
         <xctf:WatermarkTextBox FontSize="24" x:Name="mailAddress" Watermark="Mail Address" HorizontalAlignment="Left" Margin="61,255,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
-
+        <Button Content="Back" x:Name="BackButton" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="18" VerticalAlignment="Top" Width="86" Click="BackButton_Click"/>
     </Grid>
 </Window>
 

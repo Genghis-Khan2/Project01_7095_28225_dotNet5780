@@ -147,5 +147,10 @@ namespace PLWPF.Host_Windows
         {
             return hu;
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

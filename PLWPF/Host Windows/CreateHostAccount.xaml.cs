@@ -134,5 +134,10 @@ namespace PLWPF
                                               select i;
             }
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

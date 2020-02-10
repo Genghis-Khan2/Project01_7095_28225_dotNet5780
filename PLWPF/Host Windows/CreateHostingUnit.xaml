@@ -38,6 +38,6 @@
         <Label Content="{Binding ElementName=AmountOfAdults, Path=Value}" HorizontalAlignment="Left" Margin="230,268,0,0" VerticalAlignment="Top" Width="18"/>
         <Label Content="{Binding ElementName=AmountOfChildren, Path=Value}" HorizontalAlignment="Left" Margin="231,326,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.619,0.71"/>
         <TextBox HorizontalAlignment="Left" Visibility="Hidden" IsReadOnly="True" x:Name="KeyTextBox" Margin="92,368,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-
+        <Button Content="Back" x:Name="BackButton" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="18" VerticalAlignment="Top" Width="86" Click="BackButton_Click"/>
     </Grid>
 </Window>
