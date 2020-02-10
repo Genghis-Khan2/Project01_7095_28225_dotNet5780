@@ -26,9 +26,6 @@
         }
       },
       "BE/1.0.0": {
-        "dependencies": {
-          "FR": "1.0.0"
-        },
         "runtime": {
           "BE.dll": {}
         }
@@ -44,11 +41,6 @@
       "Exceptions/1.0.0": {
         "runtime": {
           "Exceptions.dll": {}
-        }
-      },
-      "FR/1.0.0": {
-        "runtime": {
-          "FR.dll": {}
         }
       },
       "PresentationFramework/4.0.0.0": {
@@ -204,11 +196,6 @@
       "sha512": ""
     },
     "Exceptions/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "FR/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

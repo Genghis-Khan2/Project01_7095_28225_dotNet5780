@@ -1,35 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<orders>
-  <order>
-    <hostingunitkey>7</hostingunitkey>
-    <guestrequestkey>2</guestrequestkey>
-    <orderkey>2</orderkey>
-    <status>UnTreated</status>
-    <createdate>
-      <year>2020</year>
-      <month>2</month>
-      <day>10</day>
-    </createdate>
-    <orderdate>
-      <year>2020</year>
-      <month>2</month>
-      <day>10</day>
-    </orderdate>
-  </order>
-  <order>
-    <hostingunitkey>7</hostingunitkey>
-    <guestrequestkey>4</guestrequestkey>
-    <orderkey>3</orderkey>
-    <status>UnTreated</status>
-    <createdate>
-      <year>2020</year>
-      <month>2</month>
-      <day>10</day>
-    </createdate>
-    <orderdate>
-      <year>2020</year>
-      <month>2</month>
-      <day>10</day>
-    </orderdate>
-  </order>
-</orders>
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Order>
+    <HostingUnitKey>7</HostingUnitKey>
+    <GuestRequestKey>5</GuestRequestKey>
+    <OrderKey>5</OrderKey>
+    <Status>SentMail</Status>
+    <CreateDate>2020-02-10T00:00:00</CreateDate>
+    <OrderDate>2020-02-10T00:00:00</OrderDate>
+  </Order>
+</ArrayOfOrder>

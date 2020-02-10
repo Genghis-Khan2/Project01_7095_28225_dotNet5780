@@ -7,6 +7,14 @@ Z:\Project01_7095_28225_dotNet5780-Noam\Exceptions\obj\Debug\netstandard2.0\Exce
 Z:\Project01_7095_28225_dotNet5780-Noam\Exceptions\obj\Debug\netstandard2.0\Exceptions.AssemblyInfo.cs
 Z:\Project01_7095_28225_dotNet5780-Noam\Exceptions\obj\Debug\netstandard2.0\Exceptions.dll
 Z:\Project01_7095_28225_dotNet5780-Noam\Exceptions\obj\Debug\netstandard2.0\Exceptions.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\bin\Debug\netstandard2.0\Exceptions.deps.json
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\bin\Debug\netstandard2.0\Exceptions.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\bin\Debug\netstandard2.0\Exceptions.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.AssemblyInfoInputs.cache
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.AssemblyInfo.cs
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.dll
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.pdb
+E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.csprojAssemblyReference.cache
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\Exceptions\bin\Debug\netstandard2.0\Exceptions.deps.json
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\Exceptions\bin\Debug\netstandard2.0\Exceptions.dll
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\Exceptions\bin\Debug\netstandard2.0\Exceptions.pdb
@@ -16,11 +24,3 @@ C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\Exceptions\obj\D
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.AssemblyInfo.cs
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.dll
 C:\Users\noam2_000\Source\Repos\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.pdb
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\bin\Debug\netstandard2.0\Exceptions.deps.json
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\bin\Debug\netstandard2.0\Exceptions.dll
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\bin\Debug\netstandard2.0\Exceptions.pdb
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.AssemblyInfoInputs.cache
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.AssemblyInfo.cs
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.dll
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.pdb
-E:\קורסים\יב\סמסטר א\מיניפ\Exercises (Visual Studio)\Project01_7095_28225_dotNet5780\Exceptions\obj\Debug\netstandard2.0\Exceptions.csprojAssemblyReference.cache

@@ -6,6 +6,7 @@ using BE;
 using System.Linq;
 using Exceptions;
 using System.ComponentModel;
+using System.Net.Mail;
 
 namespace BL
 {
@@ -198,12 +199,13 @@ namespace BL
         /// This function updates an order with a key of <paramref name="key"/> to a status of <paramref name="stat"/>
         /// </summary>
         /// <exception cref="KeyNotFoundException">Thrown when an order with the specified key is not found</exception>
-        ///<exception cref="AlreadyClosedException">Thrown when tryin to change the status of Order Whose status has already been set to "closed"</exception>
-        ///<exception cref="UnauthorizedActionException">Throw when try to change the status to <see cref="Enums.OrderStatus.SentMail"/> but the <see cref="Host.CollectionClearance"/> is false</exception>
+        /// <exception cref="AlreadyClosedException">Thrown when tryin to change the status of Order Whose status has already been set to "closed"</exception>
+        /// <exception cref="UnauthorizedActionException">Throw when try to change the status to <see cref="Enums.OrderStatus.SentMail"/> but the <see cref="Host.CollectionClearance"/> is false</exception>
+        /// <exception cref="SmtpException">Thrown when there is an error with the sending of the mail</exception>
         /// <param name="key">Key of Order to update the status of</param>
         /// <param name="stat">Status to update Order status to</param>
         void UpdateOrderStatus(int key, Enums.OrderStatus stat);
-
+        
         #endregion
 
         #region GetOrder This function return Order

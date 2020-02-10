@@ -36,7 +36,7 @@ namespace PLWPF.Host_Windows.User_Controls
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var window = new GuestRequestInfo(gr, host);
-            window.Show();
+            window.ShowDialog();
             BE.HostingUnit hu = null;
             window.Closing += (s, args) =>
             {
