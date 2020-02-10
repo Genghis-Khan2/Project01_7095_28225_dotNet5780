@@ -39,7 +39,7 @@ namespace PLWPF.Guest_Windows
             PoolLab.Content = gr.Pool.ToString();
             JacuzziLab.Content = gr.Jacuzzi.ToString();
             GardenLab.Content = gr.Garden.ToString();
-            ChildAttractLab.Content = gr.Children.ToString();
+            ChildAttractLab.Content = gr.ChildrensAttractions.ToString();
         }
     }
 }

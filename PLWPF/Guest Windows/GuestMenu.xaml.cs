@@ -31,6 +31,7 @@ namespace PLWPF
         {
             InitializeComponent();
             requester = guest;
+            UserNameTextBlock.Text = "Hi " + guest.PrivateName;
             DataContext = this;
             Refresh();
         }
@@ -90,7 +91,7 @@ namespace PLWPF
                     return;
                 try
                 {
-                    BLImp.GetBL().RemoveGuestRequest(((GuestRequest)RequestListBox.SelectedItem).GuestRequestKey);
+                    BL_Adapter.GetBL().RemoveGuestRequest(((GuestRequest)RequestListBox.SelectedItem).GuestRequestKey);
                     Refresh();
                 }
                 catch (KeyNotFoundException)

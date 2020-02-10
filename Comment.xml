@@ -31,4 +31,8 @@
     <type>Host</type>
     <content>Stanley</content>
   </comment>
+  <comment>
+    <type>Guest</type>
+    <content>the service is good</content>
+  </comment>
 </comments>

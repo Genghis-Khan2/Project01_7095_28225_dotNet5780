@@ -7,4 +7,13 @@
     <MailAddress>tommalone@g.jct.ac.il</MailAddress>
     <GuestRequests />
   </Guest>
+  <Guest>
+    <GuestKey>4</GuestKey>
+    <PrivateName>noam</PrivateName>
+    <FamilyName>ben shlomo</FamilyName>
+    <MailAddress>noam.benshlom@gmail.com</MailAddress>
+    <GuestRequests>
+      <int>2</int>
+    </GuestRequests>
+  </Guest>
 </ArrayOfGuest>

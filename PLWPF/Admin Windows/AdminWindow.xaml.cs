@@ -624,6 +624,7 @@ namespace PLWPF
             Refresh_HostComments();
             Refresh_GuestComments();
             Refresh_UnitComments();
+            Refresh_BankBranches();
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)

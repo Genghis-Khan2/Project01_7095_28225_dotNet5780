@@ -52,14 +52,11 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" >
-                <TextBlock FontSize="22" Text="UserName: " TextWrapping="Wrap"/>
-                <TextBlock FontSize="22" Text="{Binding UserName}" TextWrapping="Wrap"/>
-            </StackPanel>
+            <TextBlock Grid.Column="0" x:Name="UserNameTextBlock" FontSize="22" Text="" TextWrapping="Wrap"/>
             <Button Grid.Column="0" FontSize="20" Grid.Row="1" Content="Add Guest Request" x:Name="AddButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="AddButton_Click"/>
-            <ListBox ItemTemplate="{StaticResource RequestTemplate}" HorizontalContentAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" x:Name="RequestListBox" Background="LightGray"/>
-            <Button Grid.Column="1" Grid.Row="4" FontSize="20" Content="Refresh" x:Name="RefreshButton" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2" Width="100" Click="RefreshButton_Click"/>
-            <Button Grid.Column="1" Grid.Row="3" FontSize="20" Content="Delete" x:Name="DeleteRequestButton" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,2.04" Width="100" Click="DeleteRequestButton_Click" Height="34">
+            <ListBox ItemTemplate="{StaticResource RequestTemplate}" HorizontalContentAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" x:Name="RequestListBox" Background="LightGray"/>
+            <Button Grid.Column="1" Grid.Row="4" FontSize="20" Content="Refresh" x:Name="RefreshButton" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2" Width="130" Click="RefreshButton_Click"/>
+            <Button Grid.Column="1" Grid.Row="4" FontSize="20" Content="Delete" x:Name="DeleteRequestButton" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2" Width="139" Click="DeleteRequestButton_Click" >
                 <Button.Style>
                     <Style>
                         <Style.Triggers>
@@ -70,7 +67,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Grid.Column="1" Grid.Row="3" FontSize="20" Content="Show" x:Name="ShowRequestButton" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="433.333,0,0,3.04" Width="100" Height="34" Click="ShowRequestButton_Click">
+            <Button Grid.Column="1" Grid.Row="4" FontSize="20" Content="Show" x:Name="ShowRequestButton" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="2" Width="130" Click="ShowRequestButton_Click">
                 <Button.Style>
                     <Style>
                         <Style.Triggers>
