@@ -3,120 +3,23 @@
   <GuestRequest>
     <Requester>
       <GuestKey>1</GuestKey>
-      <PrivateName>Tom</PrivateName>
+      <PrivateName>Thomas</PrivateName>
       <FamilyName>Thompson</FamilyName>
-      <MailAddress>mskomet@gmail.com</MailAddress>
-      <GuestRequests />
-    </Requester>
-    <GuestRequestKey>1</GuestRequestKey>
-    <Status>Open</Status>
-    <RegistrationDate>2020-02-10T00:00:00+02:00</RegistrationDate>
-    <EntryDate>2020-02-10T00:00:00+02:00</EntryDate>
-    <ReleaseDate>2020-02-26T00:00:00</ReleaseDate>
-    <Area>Jerusalem</Area>
-    <Type>AccommodationApartment</Type>
-    <Adults>7</Adults>
-    <Children>5</Children>
-    <Pool>Necessary</Pool>
-    <Jacuzzi>Necessary</Jacuzzi>
-    <Garden>Possible</Garden>
-    <ChildrensAttractions>Possible</ChildrensAttractions>
-  </GuestRequest>
-  <GuestRequest>
-    <Requester>
-      <GuestKey>1</GuestKey>
-      <PrivateName>Tom</PrivateName>
-      <FamilyName>Thompson</FamilyName>
-      <MailAddress>mskomet@gmail.com</MailAddress>
+      <MailAddress>tom@gmail.com</MailAddress>
       <GuestRequests>
-        <int>1</int>
-      </GuestRequests>
-    </Requester>
-    <GuestRequestKey>3</GuestRequestKey>
-    <Status>Open</Status>
-    <RegistrationDate>2020-02-10T00:00:00+02:00</RegistrationDate>
-    <EntryDate>2020-02-17T00:00:00</EntryDate>
-    <ReleaseDate>2020-02-25T00:00:00</ReleaseDate>
-    <Area>Jerusalem</Area>
-    <Type>Zimmer</Type>
-    <Adults>1</Adults>
-    <Children>0</Children>
-    <Pool>Necessary</Pool>
-    <Jacuzzi>Necessary</Jacuzzi>
-    <Garden>Possible</Garden>
-    <ChildrensAttractions>Possible</ChildrensAttractions>
-  </GuestRequest>
-  <GuestRequest>
-    <Requester>
-      <GuestKey>4</GuestKey>
-      <PrivateName>noam</PrivateName>
-      <FamilyName>ben shlomo</FamilyName>
-      <MailAddress>noam.benshlom@gmail.com</MailAddress>
-      <GuestRequests>
-        <int>2</int>
-      </GuestRequests>
-    </Requester>
-    <GuestRequestKey>3</GuestRequestKey>
-    <Status>Open</Status>
-    <RegistrationDate>2020-02-10T00:00:00+02:00</RegistrationDate>
-    <EntryDate>2020-02-10T00:00:00+02:00</EntryDate>
-    <ReleaseDate>2020-02-19T00:00:00</ReleaseDate>
-    <Area>All</Area>
-    <Type>All</Type>
-    <Adults>1</Adults>
-    <Children>0</Children>
-    <Pool>Possible</Pool>
-    <Jacuzzi>Possible</Jacuzzi>
-    <Garden>Possible</Garden>
-    <ChildrensAttractions>Possible</ChildrensAttractions>
-  </GuestRequest>
-  <GuestRequest>
-    <Requester>
-      <GuestKey>4</GuestKey>
-      <PrivateName>noam</PrivateName>
-      <FamilyName>ben shlomo</FamilyName>
-      <MailAddress>noam.benshlom@gmail.com</MailAddress>
-      <GuestRequests>
-        <int>2</int>
         <int>3</int>
       </GuestRequests>
     </Requester>
     <GuestRequestKey>4</GuestRequestKey>
     <Status>Open</Status>
     <RegistrationDate>2020-02-10T00:00:00+02:00</RegistrationDate>
-    <EntryDate>2020-02-19T00:00:00</EntryDate>
-    <ReleaseDate>2020-02-26T00:00:00</ReleaseDate>
+    <EntryDate>2020-02-24T00:00:00</EntryDate>
+    <ReleaseDate>2020-02-25T00:00:00</ReleaseDate>
     <Area>All</Area>
     <Type>All</Type>
     <Adults>1</Adults>
     <Children>0</Children>
-    <Pool>Possible</Pool>
-    <Jacuzzi>Possible</Jacuzzi>
-    <Garden>Possible</Garden>
-    <ChildrensAttractions>Possible</ChildrensAttractions>
-  </GuestRequest>
-  <GuestRequest>
-    <Requester>
-      <GuestKey>4</GuestKey>
-      <PrivateName>noam</PrivateName>
-      <FamilyName>ben shlomo</FamilyName>
-      <MailAddress>noam.benshlom@gmail.com</MailAddress>
-      <GuestRequests>
-        <int>2</int>
-        <int>3</int>
-        <int>4</int>
-      </GuestRequests>
-    </Requester>
-    <GuestRequestKey>5</GuestRequestKey>
-    <Status>Open</Status>
-    <RegistrationDate>2020-02-10T00:00:00+02:00</RegistrationDate>
-    <EntryDate>2020-03-01T00:00:00</EntryDate>
-    <ReleaseDate>2020-03-02T00:00:00</ReleaseDate>
-    <Area>All</Area>
-    <Type>All</Type>
-    <Adults>1</Adults>
-    <Children>0</Children>
-    <Pool>Possible</Pool>
+    <Pool>Necessary</Pool>
     <Jacuzzi>Possible</Jacuzzi>
     <Garden>Possible</Garden>
     <ChildrensAttractions>Possible</ChildrensAttractions>

@@ -107,7 +107,8 @@ namespace PLWPF.Host_Windows
                 IsThereGarden = (bool)HasGarden.IsChecked,
                 IsThereChildrensAttractions = (bool)HasChildrenAttractions.IsChecked,
                 Diary = null,
-                Owner = host
+                Owner = host,
+                Commission = GlobalVars.myBL.GetCommission()
             };
 
             if (updating)

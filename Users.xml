@@ -1,38 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <users>
   <host>
-    <key>3</key>
+    <key>1</key>
     <username>gak</username>
     <password>193 240 38 88 47 230 232 203 98 13 12 133 167 47 228 33 221 222 215 86 102 42 142 192 14 212 194 151 173 16 103 107</password>
   </host>
   <host>
-    <key>4</key>
-    <username>tam</username>
-    <password>243 237 38 176 191 88 2 193 204 83 234 1 13 52 173 204 147 147 142 85 195 61 33 115 189 18 128 211 208 87 222 52</password>
-  </host>
-  <guest>
     <key>2</key>
+    <username>blood</username>
+    <password>62 237 15 51 41 118 153 65 93 229 93 45 152 14 96 211 8 105 191 101 100 226 5 91 98 23 61 54 137 116 161 73</password>
+  </host>
+  <guest>
+    <key>1</key>
     <username>tom</username>
     <password>225 96 143 117 197 215 129 63 61 64 49 203 48 191 183 134 80 125 152 19 117 56 255 142 18 138 111 247 78 132 230 67</password>
   </guest>
-  <host>
-    <key>5</key>
-    <username>gak</username>
-    <password>193 240 38 88 47 230 232 203 98 13 12 133 167 47 228 33 221 222 215 86 102 42 142 192 14 212 194 151 173 16 103 107</password>
-  </host>
-  <guest>
-    <key>3</key>
-    <username>tom</username>
-    <password>225 96 143 117 197 215 129 63 61 64 49 203 48 191 183 134 80 125 152 19 117 56 255 142 18 138 111 247 78 132 230 67</password>
-  </guest>
-  <guest>
-    <key>4</key>
-    <username>benshlom</username>
-    <password>240 228 194 247 108 88 145 110 194 88 242 70 133 27 234 9 29 20 212 36 122 47 195 225 134 148 70 27 24 22 225 59</password>
-  </guest>
-  <host>
-    <key>6</key>
-    <username>abdul</username>
-    <password>240 228 194 247 108 88 145 110 194 88 242 70 133 27 234 9 29 20 212 36 122 47 195 225 134 148 70 27 24 22 225 59</password>
-  </host>
 </users>

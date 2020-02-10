@@ -166,7 +166,7 @@ namespace DAL
                                 new XElement("hostkey", 1),
                                 new XElement("hostingunitkey", 1),
                                 new XElement("orderkey", 1),
-                                new XElement("commission"),
+                                new XElement("commission", 100),
                                 new XElement("numberofdaysuntilexpired", 1),
                                 new XElement("guestkey", 1)); // Set all the fields to 1
                 configRoot.Save(configPath);
@@ -995,6 +995,11 @@ namespace DAL
             if (list.RemoveAll(s => s.GuestRequestKey == key) == 0)
                 throw new KeyNotFoundException("No guest request match this key");
             SaveObjectList(list, guestRequestPath);
+
+            var guestList = LoadGuestList();
+            int index = guestList.FindIndex(s => s.GuestRequests.Contains(key));
+            guestList[index].GuestRequests.Remove(key);
+            SaveObjectList(guestList, guestPath);
         }
 
 
@@ -1554,6 +1559,8 @@ namespace DAL
 
         #endregion
 
+        #region Comment Functions
+
         /// <summary>
         /// Compares <paramref name="username"/> and <paramref name="password"/> to admin credentials
         /// </summary>
@@ -1640,5 +1647,7 @@ namespace DAL
             com.Remove();
             commentRoot.Save(commentsPath);
         }
+
+        #endregion
     }
 }

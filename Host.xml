@@ -7,23 +7,31 @@
     <PhoneNumber>0549535242</PhoneNumber>
     <MailAddress>gabikomet@gmail.com</MailAddress>
     <BankBranchDetails>
-      <BankNumber>13</BankNumber>
-      <BankName>בנק אגוד לישראל בע"מ</BankName>
-      <BranchNumber>63</BranchNumber>
-      <BranchAddress>אחוזת בית 6-8 </BranchAddress>
-      <BranchCity>תל אביב -יפו</BranchCity>
-      <BankAccountNumber>7789</BankAccountNumber>
+      <BankNumber>54</BankNumber>
+      <BankName>בנק ירושלים בע"מ</BankName>
+      <BranchNumber>53</BranchNumber>
+      <BranchAddress>הרצל 63 </BranchAddress>
+      <BranchCity>ראשון לציון</BranchCity>
+      <BankAccountNumber>5633</BankAccountNumber>
     </BankBranchDetails>
-    <BankAccountNumber>7809</BankAccountNumber>
+    <BankAccountNumber>6213</BankAccountNumber>
     <CollectionClearance>true</CollectionClearance>
   </Host>
   <Host>
-    <HostKey>6</HostKey>
-    <PrivateName>Abdul</PrivateName>
-    <FamilyName>Zion</FamilyName>
-    <PhoneNumber>0541221101</PhoneNumber>
-    <MailAddress>floz@greps.com</MailAddress>
-    <BankAccountNumber>281497</BankAccountNumber>
+    <HostKey>2</HostKey>
+    <PrivateName>Pig</PrivateName>
+    <FamilyName>Pen</FamilyName>
+    <PhoneNumber>0547305850</PhoneNumber>
+    <MailAddress>tamkom@msn.com</MailAddress>
+    <BankBranchDetails>
+      <BankNumber>12</BankNumber>
+      <BankName>בנק הפועלים בע"מ</BankName>
+      <BranchNumber>871</BranchNumber>
+      <BranchAddress>יהלום 25 בנין המועצה המקומית שערי תקוה</BranchAddress>
+      <BranchCity>שערי תקווה</BranchCity>
+      <BankAccountNumber>6727</BankAccountNumber>
+    </BankBranchDetails>
+    <BankAccountNumber>7373</BankAccountNumber>
     <CollectionClearance>true</CollectionClearance>
   </Host>
 </ArrayOfHost>

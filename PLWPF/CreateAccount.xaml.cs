@@ -29,7 +29,7 @@ namespace PLWPF
         {
             Hide();
             var guestWin = new CreateGuestAccount();
-            guestWin.Closed += (s, args) => Show();
+            guestWin.Closed += (s, args) => Close();
             guestWin.Show();
         }
 
@@ -37,7 +37,7 @@ namespace PLWPF
         {
             Hide();
             var guestWin = new CreateHostAccount();
-            guestWin.Closed += (s, args) => Show();
+            guestWin.Closed += (s, args) => Close();
             guestWin.Show();
         }
     }

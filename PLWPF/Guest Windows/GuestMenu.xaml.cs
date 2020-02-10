@@ -91,7 +91,7 @@ namespace PLWPF
                     return;
                 try
                 {
-                    BL_Adapter.GetBL().RemoveGuestRequest(((GuestRequest)RequestListBox.SelectedItem).GuestRequestKey);
+                    GlobalVars.myBL.RemoveGuestRequest(((GuestRequest)RequestListBox.SelectedItem).GuestRequestKey);
                     Refresh();
                 }
                 catch (KeyNotFoundException)

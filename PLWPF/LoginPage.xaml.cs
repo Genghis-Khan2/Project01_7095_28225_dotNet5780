@@ -13,7 +13,7 @@ namespace PLWPF
     /// </summary>
     public partial class LoginPage : Window
     {
-        private void KillExpiredGRs(object sender, DoWorkEventArgs de)
+        private void KillExpiredGRs()
         {
             try
             {
@@ -34,15 +34,11 @@ namespace PLWPF
             Thread.Sleep(1000 * 60 * 60 * 24);
         }
 
-        //TODO: Thread idea is that we create a thread that will purge any expired guest requests
 
         public LoginPage()
         {
             InitializeComponent();
-            var bw = new BackgroundWorker();
-            bw.DoWork += KillExpiredGRs;
-            bw.WorkerReportsProgress = false;
-            bw.RunWorkerAsync();
+            Thread t = new Thread(KillExpiredGRs);
         }
 
         private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
