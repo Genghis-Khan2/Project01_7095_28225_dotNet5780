@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Exceptions;
+using System;
 using System.Collections.Generic;
+using System.Net.Mail;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -63,21 +65,33 @@ namespace PLWPF.Host_Windows.User_Controls
                         OrderDate = DateTime.Today,
                         Status = BE.Enums.OrderStatus.UnTreated
                     };
-
                     GlobalVars.myBL.AddOrder(ord);
+                    GlobalVars.myBL.UpdateOrderStatus(ord.OrderKey, BE.Enums.OrderStatus.SentMail);
                     hu.Diary = GlobalVars.myBL.MarkingInTheDiary(hu, gr.EntryDate, gr.ReleaseDate);
                 }
-                catch (Exceptions.NoItemsException)
+                catch(AlreadyExistsException)
+                {
+                    MessageBox.Show("Error!", "Internal software error, please try re-ordering", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (InfoNotExistsException)
+                {
+                    MessageBox.Show("Error!", "The hosting unit and guest request are not suitable, please try again with a different hosting / guest request unit", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (OccupiedDatesException)
+                {
+                    MessageBox.Show("Error!", "The hosting unit and guest request are not suitable, please try again with a different hosting / guest request unit", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (SmtpException)
+                {
+                    MessageBox.Show("Error!", "Error with mail!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (NoItemsException)
                 {
                     throw;//TODO: check it
                 }
-                catch (System.Net.Mail.SmtpException err)
-                {
-                    MessageBox.Show(err.Message, "Error with mail!", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-
                 huOrderedTo = hu;
-
+                MessageBox.Show("The order creation was completed successfully and email was sent to the customer");
+                Close();
             }
         }
 
