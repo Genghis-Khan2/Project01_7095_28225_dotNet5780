@@ -10,7 +10,6 @@ using Exceptions;
 using System.Security.Cryptography;
 using System.Net;
 using System.ComponentModel;
-using System.Windows;
 
 namespace DAL
 {
@@ -59,11 +58,8 @@ namespace DAL
             CreatUsersFile();
             CreateCommentsFile();
 
-            BackgroundWorker bw = new BackgroundWorker
-            {
-                WorkerReportsProgress = false
-            };
-
+            BackgroundWorker bw = new BackgroundWorker();
+            bw.WorkerReportsProgress = false;
             bw.DoWork += DownloadBankAccountInfo;
             bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
             bw.RunWorkerAsync();
@@ -548,8 +544,8 @@ namespace DAL
             {
                 bankBranches = new List<BankBranch>();
             }
-            var lisWithoutDup = bankBranches.GroupBy(bb => new { bb.BankNumber, bb.BankName }).Select(bb => bb.FirstOrDefault<BankBranch>()).ToList();
-            SaveObjectList(lisWithoutDup, bankBranchPath);
+            var listWithoutDup = bankBranches.GroupBy(bb => new { bb.BankNumber, bb.BranchNumber }).Select(bb => bb.FirstOrDefault<BankBranch>()).ToList();
+            SaveObjectList(listWithoutDup, bankBranchPath);
         }
 
         #endregion

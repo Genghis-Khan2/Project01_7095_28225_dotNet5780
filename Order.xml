@@ -1,2 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<orders />
+<orders>
+  <order>
+    <hostingunitkey>7</hostingunitkey>
+    <guestrequestkey>2</guestrequestkey>
+    <orderkey>2</orderkey>
+    <status>UnTreated</status>
+    <createdate>
+      <year>2020</year>
+      <month>2</month>
+      <day>10</day>
+    </createdate>
+    <orderdate>
+      <year>2020</year>
+      <month>2</month>
+      <day>10</day>
+    </orderdate>
+  </order>
+  <order>
+    <hostingunitkey>7</hostingunitkey>
+    <guestrequestkey>4</guestrequestkey>
+    <orderkey>3</orderkey>
+    <status>UnTreated</status>
+    <createdate>
+      <year>2020</year>
+      <month>2</month>
+      <day>10</day>
+    </createdate>
+    <orderdate>
+      <year>2020</year>
+      <month>2</month>
+      <day>10</day>
+    </orderdate>
+  </order>
+</orders>

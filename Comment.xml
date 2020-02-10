@@ -35,4 +35,13 @@
     <type>Guest</type>
     <content>the service is good</content>
   </comment>
+  <comment>
+    <type>Guest</type>
+    <content>The service is great?</content>
+  </comment>
+  <comment>
+    <type>Unit</type>
+    <name>Asdf</name>
+    <content>Its a great movie</content>
+  </comment>
 </comments>
