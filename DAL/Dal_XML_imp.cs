@@ -10,7 +10,6 @@ using Exceptions;
 using System.Security.Cryptography;
 using System.Net;
 using System.ComponentModel;
-using System.Windows;
 
 namespace DAL
 {
@@ -59,11 +58,8 @@ namespace DAL
             CreatUsersFile();
             CreateCommentsFile();
 
-            BackgroundWorker bw = new BackgroundWorker
-            {
-                WorkerReportsProgress = false
-            };
-
+            BackgroundWorker bw = new BackgroundWorker();
+            bw.WorkerReportsProgress = false;
             bw.DoWork += DownloadBankAccountInfo;
             bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
             bw.RunWorkerAsync();
@@ -170,7 +166,7 @@ namespace DAL
                                 new XElement("hostkey", 1),
                                 new XElement("hostingunitkey", 1),
                                 new XElement("orderkey", 1),
-                                new XElement("commission", 100),
+                                new XElement("commission"),
                                 new XElement("numberofdaysuntilexpired", 1),
                                 new XElement("guestkey", 1)); // Set all the fields to 1
                 configRoot.Save(configPath);
@@ -548,8 +544,8 @@ namespace DAL
             {
                 bankBranches = new List<BankBranch>();
             }
-            var lisWithoutDup = bankBranches.GroupBy(bb => new { bb.BankNumber, bb.BankName }).Select(bb => bb.FirstOrDefault()).ToList();
-            SaveObjectList(lisWithoutDup, bankBranchPath);
+            var listWithoutDup = bankBranches.GroupBy(bb => new { bb.BankNumber, bb.BranchNumber }).Select(bb => bb.FirstOrDefault<BankBranch>()).ToList();
+            SaveObjectList(listWithoutDup, bankBranchPath);
         }
 
         #endregion
@@ -999,14 +995,6 @@ namespace DAL
             if (list.RemoveAll(s => s.GuestRequestKey == key) == 0)
                 throw new KeyNotFoundException("No guest request match this key");
             SaveObjectList(list, guestRequestPath);
-
-            var guestList = LoadGuestList();
-            foreach (var guest in guestList)
-            {
-                guest.GuestRequests.Remove(key);
-            }
-
-            SaveObjectList(guestList, guestPath);
         }
 
 
@@ -1586,8 +1574,6 @@ namespace DAL
             }
         }
 
-        #region Comments Functions
-
         /// <summary>
         /// Submits a comment about the service of the website
         /// </summary>
@@ -1654,7 +1640,5 @@ namespace DAL
             com.Remove();
             commentRoot.Save(commentsPath);
         }
-
-        #endregion
     }
 }

@@ -4,4 +4,13 @@
     <type>Host</type>
     <content>Bunch of poop men</content>
   </comment>
+  <comment>
+    <type>Guest</type>
+    <content>The service is great?</content>
+  </comment>
+  <comment>
+    <type>Unit</type>
+    <name>Asdf</name>
+    <content>Its a great movie</content>
+  </comment>
 </comments>

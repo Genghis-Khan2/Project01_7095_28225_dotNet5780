@@ -15,12 +15,12 @@
         <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="MailAddressBox" FontSize="24" Margin="65,107,0,0" Watermark="E-Mail Address" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
         <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="PrivateNameBox" FontSize="24" Margin="65,174,0,0" Watermark="Private Name e.g. John" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
         <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="FamilyNameBox" FontSize="24" Margin="65,253,0,0" Watermark="Family Name e.g. Smith" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
-        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="PhoneNumberBox" FontSize="24" Margin="310,39,0,0" Watermark="e.g. 0541234567" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
-        <Label Content="Phone Number without hyphens:" HorizontalAlignment="Left" FontSize="18" Margin="10,48,0,0" VerticalAlignment="Top"/>
+        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="PhoneNumberBox" FontSize="24" Margin="372,48,0,0" Watermark="e.g. 0541234567" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
+        <Label Content="Phone Number without hyphens:" HorizontalAlignment="Left" FontSize="18" Margin="65,53,0,0" VerticalAlignment="Top"/>
         <ComboBox HorizontalAlignment="Left" x:Name="BankBranchesBox" Margin="400,333,0,0" VerticalAlignment="Top" Width="335" Height="37"/>
         <CheckBox Content="Collection Clearance?" FontSize="20" x:Name="HasCollection" HorizontalAlignment="Left" Margin="28,339,0,0" VerticalAlignment="Top" Height="29" Width="208"/>
         <Label Content="Bank Account:" FontSize="20" HorizontalAlignment="Left" Margin="259,331,0,0" VerticalAlignment="Top" Width="136"/>
         <xctf:WatermarkTextBox x:Name="SearchBox" HorizontalAlignment="Left" Margin="402,387,0,0" Watermark="Search Branch Number" TextWrapping="Wrap" VerticalAlignment="Top" Width="333" Height="37" LostFocus="SearchBox_LostFocus"/>
-
+        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="18" VerticalAlignment="Top" Width="86" Click="BackButton_Click"/>
     </Grid>
 </Window>

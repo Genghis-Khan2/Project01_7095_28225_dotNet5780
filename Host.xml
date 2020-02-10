@@ -17,4 +17,13 @@
     <BankAccountNumber>7809</BankAccountNumber>
     <CollectionClearance>true</CollectionClearance>
   </Host>
+  <Host>
+    <HostKey>6</HostKey>
+    <PrivateName>Abdul</PrivateName>
+    <FamilyName>Zion</FamilyName>
+    <PhoneNumber>0541221101</PhoneNumber>
+    <MailAddress>floz@greps.com</MailAddress>
+    <BankAccountNumber>281497</BankAccountNumber>
+    <CollectionClearance>true</CollectionClearance>
+  </Host>
 </ArrayOfHost>

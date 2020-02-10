@@ -34,20 +34,20 @@ namespace PLWPF.Host_Windows.User_Controls
             {
                 RadioButton rb = new RadioButton();
                 rb.Content = i.HostingUnitName;
-                RadioButtons.Children.Add(rb);
+                RadioButtons.Items.Add(rb);
             }
         }
 
         public BE.HostingUnit GetSelection()
         {
-            foreach (var i in RadioButtons.Children)
+            foreach (var i in RadioButtons.Items)
             {
                 if (i is RadioButton)
                 {
                     RadioButton rb = i as RadioButton;
                     if ((bool)rb.IsChecked)
                     {
-                        return GlobalVars.myBL.GetMatchingHostingUnits(gr, host)[RadioButtons.Children.IndexOf(rb)];
+                        return GlobalVars.myBL.GetMatchingHostingUnits(gr, host)[RadioButtons.Items.IndexOf(rb)];
                     }
                 }
             }
