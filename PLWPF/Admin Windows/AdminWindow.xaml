@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="Value of tax" HorizontalAlignment="Center" Margin="0,56,0,0" VerticalAlignment="Top" Height="26" Width="72"/>
-        <local1:UpDownTextBox x:Name="UpDownControl" Margin="73,93,62,297" LostFocus="UpDownControl_LostFocus_1"/>
+        <local1:UpDownTextBox x:Name="UpDownControl" Margin="73,93,62,297" LostFocus="UpDownControl_LostFocus"/>
         <TabControl Grid.Column="1">
             <TabItem Header="Guest Requests">
                 <Grid>

@@ -636,7 +636,7 @@ namespace PLWPF
             Close();
         }
 
-        private void UpDownControl_LostFocus_1(object sender, RoutedEventArgs e)
+        private void UpDownControl_LostFocus(object sender, RoutedEventArgs e)
         {
             GlobalVars.myBL.SetCommission(UpDownControl.Value);
 

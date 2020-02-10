@@ -459,7 +459,7 @@ namespace BL
                 {
                     bw.RunWorkerAsync(arg);
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     throw;
                 }
@@ -1357,10 +1357,12 @@ namespace BL
             mail.IsBodyHtml = true;
             //mail.Priority = MailPriority.High;
 
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            smtp.Credentials = new System.Net.NetworkCredential("minipwindows2020@gmail.com", "minip2020");
-            smtp.EnableSsl = true;
+            SmtpClient smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Credentials = new System.Net.NetworkCredential("minipwindows2020@gmail.com", "minip2020"),
+                EnableSsl = true
+            };
             try
             {
                 smtp.Send(mail);
@@ -1413,6 +1415,11 @@ namespace BL
         public void SubmitHostComment(string comment)
         {
             DAL_Adapter.GetDAL().SubmitHostComment(comment);
+        }
+
+        public float GetCommission()
+        {
+            return DAL_Adapter.GetDAL().GetCommission();
         }
         #endregion
 
