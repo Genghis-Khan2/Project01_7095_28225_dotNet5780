@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="CreateGuestAccount" Height="450" Width="800">
+        Title="CreateGuestAccount" Height="350" Width="700">
     <Grid>
-        <xctf:WatermarkTextBox FontSize="24" x:Name="User" Watermark="Username" HorizontalAlignment="Left" Margin="496,75,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
-        <xctf:WatermarkPasswordBox FontSize="24" x:Name="Pass" Watermark="Password" HorizontalAlignment="Left" Margin="496,174,0,0" Password="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
-        <xctf:WatermarkPasswordBox FontSize="24" x:Name="ConfPass" Watermark="Confirm Password" HorizontalAlignment="Left" Margin="496,276,0,0" Password="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
-        <Button Content="Create User" x:Name="Register" FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Center" Margin="0,344,0,0" VerticalAlignment="Top" Height="37" Width="180" Click="Register_Click"/>
-        <xctf:WatermarkTextBox FontSize="24" x:Name="privateNameBox" Watermark="Private Name" HorizontalAlignment="Left" Margin="61,75,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
-        <xctf:WatermarkTextBox FontSize="24" x:Name="familyName" Watermark="Family Name" HorizontalAlignment="Left" Margin="61,174,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
-        <xctf:WatermarkTextBox FontSize="24" x:Name="mailAddress" Watermark="Mail Address" HorizontalAlignment="Left" Margin="61,255,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
+        <xctf:WatermarkTextBox FontSize="24" x:Name="User" Watermark="Username" HorizontalAlignment="Left" Margin="441,50,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
+        <xctf:WatermarkPasswordBox FontSize="24" x:Name="Pass" Watermark="Password" HorizontalAlignment="Left" Margin="441,128,0,0" Password="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
+        <xctf:WatermarkPasswordBox FontSize="24" x:Name="ConfPass" Watermark="Confirm Password" HorizontalAlignment="Left" Margin="441,192,0,0" Password="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
+        <Button Content="Create User" x:Name="Register" FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Center" Margin="0,260,0,0" VerticalAlignment="Top" Height="37" Width="180" Click="Register_Click"/>
+        <xctf:WatermarkTextBox FontSize="24" x:Name="privateNameBox" Watermark="Private Name" HorizontalAlignment="Left" Margin="42,50,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="308" Height="43"/>
+        <xctf:WatermarkTextBox FontSize="24" x:Name="familyName" Watermark="Family Name" HorizontalAlignment="Left" Margin="42,127,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="308" Height="44"/>
+        <xctf:WatermarkTextBox FontSize="24" x:Name="mailAddress" Watermark="Mail Address" HorizontalAlignment="Left" Margin="42,192,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="308" Height="43"/>
         <Button Content="Back" x:Name="BackButton" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="18" VerticalAlignment="Top" Width="86" Click="BackButton_Click"/>
     </Grid>
 </Window>
