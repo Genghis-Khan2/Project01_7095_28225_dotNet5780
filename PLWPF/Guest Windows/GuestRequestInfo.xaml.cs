@@ -41,5 +41,10 @@ namespace PLWPF.Guest_Windows
             GardenLab.Content = gr.Garden.ToString();
             ChildAttractLab.Content = gr.ChildrensAttractions.ToString();
         }
+
+        private void ShowOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
