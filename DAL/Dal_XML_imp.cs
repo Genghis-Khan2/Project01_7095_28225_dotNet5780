@@ -10,6 +10,8 @@ using Exceptions;
 using System.Security.Cryptography;
 using System.Net;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Windows;
 
 namespace DAL
 {
@@ -395,17 +397,20 @@ namespace DAL
             List<BankBranch> bankBranches;
             try
             {
-                bankBranches = (from branch in atmRoot.Elements("BankBranch")
+                Stopwatch s = new Stopwatch();
+                s.Start();
+                bankBranches = (from branch in atmRoot.Elements("ATM").AsParallel()
                                 select new BankBranch()
                                 {
-                                    BankNumber = int.Parse(branch.Element("BankNumber").Value),
-                                    BankName = branch.Element("BankName").Value.Replace("\n", String.Empty).Replace("\r", String.Empty).Replace("\t", String.Empty),
+                                    BankNumber = int.Parse(branch.Element("קוד_בנק").Value),
+                                    BankName = branch.Element("שם_בנק").Value,
                                     BankAccountNumber = GetBankNumber(),
-                                    BranchAddress = branch.Element("BranchAddress").Value,
-                                    BranchCity = branch.Element("BranchCity").Value,
-                                    BranchNumber = int.Parse(branch.Element("BranchNumber").Value)
+                                    BranchAddress = branch.Element("כתובת_ה-ATM").Value,
+                                    BranchCity = branch.Element("ישוב").Value,
+                                    BranchNumber = int.Parse(branch.Element("קוד_סניף").Value)
                                 }
             ).ToList();
+                MessageBox.Show((s.ElapsedMilliseconds / 1000).ToString());
             }
             catch
             {
@@ -525,27 +530,27 @@ namespace DAL
             {
                 wc.Dispose();//release the object
             }
-            List<BankBranch> bankBranches;
-            try
-            {
-                bankBranches = (from branch in XElement.Load(bankBranchPath).Elements("ATM")
-                                select new BankBranch()
-                                {
-                                    BankNumber = int.Parse(branch.Element("קוד_בנק").Value),
-                                    BankName = branch.Element("שם_בנק").Value,
-                                    BankAccountNumber = GetBankNumber(),
-                                    BranchAddress = branch.Element("כתובת_ה-ATM").Value,
-                                    BranchCity = branch.Element("ישוב").Value,
-                                    BranchNumber = int.Parse(branch.Element("קוד_סניף").Value)
-                                }
-            ).ToList();
-            }
-            catch
-            {
-                bankBranches = new List<BankBranch>();
-            }
-            var listWithoutDup = bankBranches.GroupBy(bb => new { bb.BankNumber, bb.BranchNumber }).Select(bb => bb.FirstOrDefault<BankBranch>()).ToList();
-            SaveObjectList(listWithoutDup, bankBranchPath);
+            //List<BankBranch> bankBranches;
+            //try
+            //{
+            //    bankBranches = (from branch in XElement.Load(bankBranchPath).Elements("ATM")
+            //                    select new BankBranch()
+            //                    {
+            //                        BankNumber = int.Parse(branch.Element("קוד_בנק").Value),
+            //                        BankName = branch.Element("שם_בנק").Value,
+            //                        BankAccountNumber = GetBankNumber(),
+            //                        BranchAddress = branch.Element("כתובת_ה-ATM").Value,
+            //                        BranchCity = branch.Element("ישוב").Value,
+            //                        BranchNumber = int.Parse(branch.Element("קוד_סניף").Value)
+            //                    }
+            //).ToList();
+            //}
+            //catch
+            //{
+            //    bankBranches = new List<BankBranch>();
+            //}
+            //var listWithoutDup = bankBranches.GroupBy(bb => new { bb.BankNumber, bb.BranchNumber }).Select(bb => bb.FirstOrDefault<BankBranch>()).ToList();
+            //SaveObjectList(listWithoutDup, bankBranchPath);
         }
 
         #endregion
