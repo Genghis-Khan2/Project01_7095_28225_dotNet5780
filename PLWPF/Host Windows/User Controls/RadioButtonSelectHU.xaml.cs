@@ -30,11 +30,19 @@ namespace PLWPF.Host_Windows.User_Controls
 
         private void AddRadioButtons()
         {
+
             foreach (var i in GlobalVars.myBL.GetMatchingHostingUnits(gr, host))
             {
-                RadioButton rb = new RadioButton();
-                rb.Content = i.HostingUnitName;
-                RadioButtons.Items.Add(rb);
+                var allOrder = GlobalVars.myBL.GetAllOrders();
+                var releteadOrder = from ord in allOrder
+                                    where ord.HostingUnitKey == i.HostingUnitKey
+                                    select ord;
+                if (releteadOrder.Count() == 0)
+                {
+                    RadioButton rb = new RadioButton();
+                    rb.Content = i.HostingUnitName;
+                    RadioButtons.Items.Add(rb);
+                }
             }
         }
 

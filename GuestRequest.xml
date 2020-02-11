@@ -24,4 +24,26 @@
     <Garden>Possible</Garden>
     <ChildrensAttractions>Possible</ChildrensAttractions>
   </GuestRequest>
+  <GuestRequest>
+    <Requester>
+      <GuestKey>2</GuestKey>
+      <PrivateName>A</PrivateName>
+      <FamilyName>Aa</FamilyName>
+      <MailAddress>noam.benshlom@gmail.com</MailAddress>
+      <GuestRequests />
+    </Requester>
+    <GuestRequestKey>5</GuestRequestKey>
+    <Status>Open</Status>
+    <RegistrationDate>2020-02-12T00:00:00+02:00</RegistrationDate>
+    <EntryDate>2020-02-12T00:00:00+02:00</EntryDate>
+    <ReleaseDate>2020-02-13T00:00:00</ReleaseDate>
+    <Area>All</Area>
+    <Type>All</Type>
+    <Adults>1</Adults>
+    <Children>0</Children>
+    <Pool>Possible</Pool>
+    <Jacuzzi>Possible</Jacuzzi>
+    <Garden>Possible</Garden>
+    <ChildrensAttractions>Possible</ChildrensAttractions>
+  </GuestRequest>
 </ArrayOfGuestRequest>

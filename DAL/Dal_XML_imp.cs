@@ -906,8 +906,7 @@ namespace DAL
             if (index == -1)
                 throw new KeyNotFoundException("No order match this key");
             list[index].Status = stat;
-
-            SaveObjectList(list, orderPath);
+            SaveOrders(list);
         }
 
         #endregion

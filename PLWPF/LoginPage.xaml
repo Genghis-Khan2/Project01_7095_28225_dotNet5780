@@ -22,7 +22,7 @@
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <xctf:WatermarkTextBox Grid.Row="2" Grid.Column="1" x:Name="UserTextBox" FontSize="24" Watermark="Username" HorizontalAlignment="Center" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="40" Width="230" KeyDown="UserTextBox_KeyDown">
+        <xctf:WatermarkTextBox Grid.Row="2" Grid.Column="1" x:Name="UserTextBox" FontSize="24" Watermark="Username" HorizontalAlignment="Center" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="40" Width="230">
             <xctf:WatermarkTextBox.ToolTip>
                 <ToolTip Content="Username of account"/>
             </xctf:WatermarkTextBox.ToolTip>

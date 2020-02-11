@@ -102,7 +102,6 @@ namespace PLWPF
 
                 GlobalVars.myBL.AddHost(host);
                 GlobalVars.myBL.WriteHostToFile(User.Text, Pass.Password, host.HostKey);
-
                 MessageBox.Show("You have been registered!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                 Hide();
                 GlobalVars.UserName = User.Text;
@@ -118,26 +117,15 @@ namespace PLWPF
             }
         }
 
-        private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            Regex regex = new Regex("^[0-9]*$");
-
-            if (SearchBox.Text.Length == 0)
-            {
-                return;
-            }
-
-            if (regex.IsMatch(SearchBox.Text))
-            {
-                BankBranchesBox.ItemsSource = from i in GlobalVars.myBL.GetAllBankAccounts()
-                                              where i.BranchNumber == int.Parse(SearchBox.Text)
-                                              select i;
-            }
-        }
-
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                Register_Click(sender, new RoutedEventArgs());
         }
     }
 }

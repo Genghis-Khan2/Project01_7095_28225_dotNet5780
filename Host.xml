@@ -34,4 +34,21 @@
     <BankAccountNumber>7373</BankAccountNumber>
     <CollectionClearance>true</CollectionClearance>
   </Host>
+  <Host>
+    <HostKey>3</HostKey>
+    <PrivateName>A</PrivateName>
+    <FamilyName>A</FamilyName>
+    <PhoneNumber>0501221121</PhoneNumber>
+    <MailAddress>a@c.com</MailAddress>
+    <BankBranchDetails>
+      <BankNumber>13</BankNumber>
+      <BankName>בנק אגוד לישראל בע"מ</BankName>
+      <BranchNumber>145</BranchNumber>
+      <BranchAddress>שמעון פרס   33 </BranchAddress>
+      <BranchCity>ראשון לציון</BranchCity>
+      <BankAccountNumber>33140</BankAccountNumber>
+    </BankBranchDetails>
+    <BankAccountNumber>33239</BankAccountNumber>
+    <CollectionClearance>true</CollectionClearance>
+  </Host>
 </ArrayOfHost>

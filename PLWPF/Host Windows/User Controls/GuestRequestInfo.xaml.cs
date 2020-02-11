@@ -1,6 +1,7 @@
 ﻿using Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Windows;
@@ -57,6 +58,7 @@ namespace PLWPF.Host_Windows.User_Controls
             {
                 try
                 {
+                    
                     ord = new BE.Order()
                     {
                         CreateDate = DateTime.Today,
@@ -68,8 +70,9 @@ namespace PLWPF.Host_Windows.User_Controls
                     GlobalVars.myBL.AddOrder(ord);
                     GlobalVars.myBL.UpdateOrderStatus(ord.OrderKey, BE.Enums.OrderStatus.SentMail);
                     hu.Diary = GlobalVars.myBL.MarkingInTheDiary(hu, gr.EntryDate, gr.ReleaseDate);
+                    MessageBox.Show("The order creation was completed successfully and email was sent to the customer");
                 }
-                catch(AlreadyExistsException)
+                catch (AlreadyExistsException)
                 {
                     MessageBox.Show("Error!", "Internal software error, please try re-ordering", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -90,7 +93,6 @@ namespace PLWPF.Host_Windows.User_Controls
                     throw;//TODO: check it
                 }
                 huOrderedTo = hu;
-                MessageBox.Show("The order creation was completed successfully and email was sent to the customer");
                 Close();
             }
         }

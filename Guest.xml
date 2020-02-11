@@ -9,4 +9,13 @@
       <int>4</int>
     </GuestRequests>
   </Guest>
+  <Guest>
+    <GuestKey>2</GuestKey>
+    <PrivateName>A</PrivateName>
+    <FamilyName>Aa</FamilyName>
+    <MailAddress>noam.benshlom@gmail.com</MailAddress>
+    <GuestRequests>
+      <int>5</int>
+    </GuestRequests>
+  </Guest>
 </ArrayOfGuest>

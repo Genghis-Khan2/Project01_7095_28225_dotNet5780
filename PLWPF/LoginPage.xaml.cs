@@ -121,13 +121,5 @@ namespace PLWPF
                 LoginButton_Click(sender, new RoutedEventArgs());
         }
 
-        private void UserTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                PassBox.Focus();
-                e.Handled = true;
-            }
-        }
     }
 }
