@@ -154,11 +154,21 @@
             <Button.ToolTip>
                 <ToolTip Content="Refresh all data in window"/>
             </Button.ToolTip>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
         </Button>
         <Button Content="Log Out" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,163,0,0" VerticalAlignment="Top" Height="54" Width="218" Click="Button_Click">
             <Button.ToolTip>
                 <ToolTip Content="Log out of admin account"/>
             </Button.ToolTip>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
         </Button>
 
     </Grid>

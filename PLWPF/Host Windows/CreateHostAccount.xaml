@@ -6,21 +6,33 @@
         xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="CreateHost" Height="470" Width="800">
+        Title="CreateHost" Height="470" Width="700">
     <Grid>
-        <xctf:WatermarkTextBox FontSize="24" x:Name="User" Watermark="Username" HorizontalAlignment="Left" Margin="460,107,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
-        <xctf:WatermarkPasswordBox FontSize="24" x:Name="Pass" Watermark="Password" HorizontalAlignment="Left" Margin="460,174,0,0" Password="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
-        <xctf:WatermarkPasswordBox FontSize="24" x:Name="ConfPass" Watermark="Confirm Password" HorizontalAlignment="Left" Margin="460,253,0,0" Password="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
-        <Button Content="Create User" x:Name="Register" FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="56,387,0,0" VerticalAlignment="Top" Height="37" Width="180" Click="Register_Click"/>
-        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="MailAddressBox" FontSize="24" Margin="65,107,0,0" Watermark="E-Mail Address" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
-        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="PrivateNameBox" FontSize="24" Margin="65,174,0,0" Watermark="Private Name e.g. John" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
-        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="FamilyNameBox" FontSize="24" Margin="65,253,0,0" Watermark="Family Name e.g. Smith" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
-        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="PhoneNumberBox" FontSize="24" Margin="372,48,0,0" Watermark="e.g. 0541234567" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
-        <Label Content="Phone Number without hyphens:" HorizontalAlignment="Left" FontSize="18" Margin="65,53,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" x:Name="BankBranchesBox" Margin="400,333,0,0" VerticalAlignment="Top" Width="335" Height="37"/>
-        <CheckBox Content="Collection Clearance?" FontSize="20" x:Name="HasCollection" HorizontalAlignment="Left" Margin="28,339,0,0" VerticalAlignment="Top" Height="29" Width="208"/>
-        <Label Content="Bank Account:" FontSize="20" HorizontalAlignment="Left" Margin="259,331,0,0" VerticalAlignment="Top" Width="136"/>
-        <xctf:WatermarkTextBox x:Name="SearchBox" HorizontalAlignment="Left" Margin="402,387,0,0" Watermark="Search Branch Number" TextWrapping="Wrap" VerticalAlignment="Top" Width="333" Height="37" LostFocus="SearchBox_LostFocus"/>
-        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="18" VerticalAlignment="Top" Width="86" Click="BackButton_Click"/>
+        <xctf:WatermarkTextBox FontSize="24" x:Name="User" Watermark="Username" HorizontalAlignment="Left" Margin="449,106,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
+        <xctf:WatermarkPasswordBox FontSize="24" x:Name="Pass" Watermark="Password" HorizontalAlignment="Left" Margin="449,173,0,0" Password="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
+        <xctf:WatermarkPasswordBox FontSize="24" x:Name="ConfPass" Watermark="Confirm Password" HorizontalAlignment="Left" Margin="449,252,0,0" Password="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
+        <Button Content="Create User" x:Name="Register" FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Center" Margin="0,407,0,0" VerticalAlignment="Top" Height="37" Width="180" Click="Register_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="MailAddressBox" FontSize="24" Margin="54,106,0,0" Watermark="E-Mail Address" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
+        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="PrivateNameBox" FontSize="24" Margin="54,173,0,0" Watermark="Private Name e.g. John" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
+        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="FamilyNameBox" FontSize="24" Margin="54,252,0,0" Watermark="Family Name e.g. Smith" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
+        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="PhoneNumberBox" FontSize="24" Margin="361,47,0,0" Watermark="e.g. 0541234567" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
+        <Label Content="Phone Number without hyphens:" HorizontalAlignment="Left" FontSize="18" Margin="54,52,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" x:Name="BankBranchesBox" Margin="190,349,0,0" VerticalAlignment="Top" Width="276" Height="37"/>
+        <CheckBox Content="Collection Clearance?" FontSize="22" x:Name="HasCollection" HorizontalAlignment="Left" Margin="53,309,0,0" VerticalAlignment="Top" Height="29" Width="273"/>
+        <Label Content="Bank Account:" FontSize="22" HorizontalAlignment="Left" Margin="49,347,0,0" VerticalAlignment="Top" Width="136"/>
+        <xctf:WatermarkTextBox x:Name="SearchBox" HorizontalAlignment="Left" Margin="475,349,0,0" Watermark="Search Branch Number" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Height="39" LostFocus="SearchBox_LostFocus" RenderTransformOrigin="0.343,0.555" FontSize="15"/>
+        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="18" VerticalAlignment="Top" Width="86" Click="BackButton_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF.Admin_Windows"
         mc:Ignorable="d"
-        Title="AdminGRInfoWindow" Height="450" Width="800">
+        Title="AdminGRInfoWindow" Height="480" Width="810">
     <Grid ShowGridLines="True" x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

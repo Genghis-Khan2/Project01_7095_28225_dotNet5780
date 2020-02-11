@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PLWPF.Admin_Windows.Info_Windows"
         xmlns:local1="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="AdminHUInfoWindow" Height="450" Width="800">
+        Title="AdminHUInfoWindow" Height="480" Width="810">
     <Window.Resources>
         <local1:IsOrNotToStringConverter x:Key="isOrNotConverter"/>
     </Window.Resources>
