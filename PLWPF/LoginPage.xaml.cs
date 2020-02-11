@@ -13,6 +13,19 @@ namespace PLWPF
     /// </summary>
     public partial class LoginPage : Window
     {
+       
+
+        public LoginPage()
+        {
+            InitializeComponent();
+            Style = (Style)FindResource(typeof(Window));
+            FrameworkElement.StyleProperty.OverrideMetadata(typeof(Window), new FrameworkPropertyMetadata
+            {
+                DefaultValue = FindResource(typeof(Window))
+            });
+            Thread t = new Thread(KillExpiredGRs);
+        }
+
         private void KillExpiredGRs()
         {
             try
@@ -34,12 +47,6 @@ namespace PLWPF
             Thread.Sleep(1000 * 60 * 60 * 24);
         }
 
-
-        public LoginPage()
-        {
-            InitializeComponent();
-            Thread t = new Thread(KillExpiredGRs);
-        }
 
         private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
         {

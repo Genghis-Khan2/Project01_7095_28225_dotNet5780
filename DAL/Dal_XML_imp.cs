@@ -398,7 +398,7 @@ namespace DAL
             try
             {
                 var tArr = atmRoot.Elements("ATM").ToArray();
-                for (int i = 0; i < 400; i++)
+                for (int i = 0; i < 3000; i+=30)
                 {
                     bankBranches.Add(new BankBranch()
                     {

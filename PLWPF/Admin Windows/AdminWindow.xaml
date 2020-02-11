@@ -22,7 +22,7 @@
                 <ToolTip Content="Change value of commission"/>
             </local1:UpDownTextBox.ToolTip>
         </local1:UpDownTextBox>
-        <TabControl Grid.Column="1">
+        <TabControl Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <TabItem Header="Guest Requests">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -52,7 +52,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="9*"/>
-
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <ComboBox Grid.Row="0" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" x:Name="HostComboBox" SelectionChanged="HostSortRefresh">
                         <ComboBoxItem  Content="--Sort By--" IsSelected="True"/>

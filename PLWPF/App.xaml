@@ -7,6 +7,9 @@
 
     StartupUri="LoginPage.xaml">
     <Application.Resources>
-
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="Background" Value="#FF60C31C" />
+        </Style>
     </Application.Resources>
+    
 </Application>
