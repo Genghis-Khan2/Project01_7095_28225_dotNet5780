@@ -394,9 +394,31 @@ namespace DAL
             {
                 return new List<BankBranch>();
             }
-            List<BankBranch> bankBranches;
+            List<BankBranch> bankBranches = new List<BankBranch>();
             try
             {
+                var tArr = atmRoot.Elements("ATM").ToArray();
+                for (int i = 0; i < 400; i++)
+                {
+                    bankBranches.Add(new BankBranch()
+                    {
+                        BankNumber = int.Parse(tArr[i].Element("קוד_בנק").Value),
+                        BankName = tArr[i].Element("שם_בנק").Value,
+                        BankAccountNumber = GetBankNumber(),
+                        BranchAddress = tArr[i].Element("כתובת_ה-ATM").Value,
+                        BranchCity = tArr[i].Element("ישוב").Value,
+                        BranchNumber = int.Parse(tArr[i].Element("קוד_סניף").Value)
+                    }
+                    );
+                }
+                /*
+                !!!!!!REMARK!!!!
+
+
+                This is how it really should be,
+                but for convenience and reducing the waiting times in project protection we used the code above
+
+
                 bankBranches = (from branch in atmRoot.Elements("ATM").AsParallel()
                                 select new BankBranch()
                                 {
@@ -408,6 +430,7 @@ namespace DAL
                                     BranchNumber = int.Parse(branch.Element("קוד_סניף").Value)
                                 }
             ).ToList();
+            */
             }
             catch
             {
@@ -527,27 +550,7 @@ namespace DAL
             {
                 wc.Dispose();//release the object
             }
-            //List<BankBranch> bankBranches;
-            //try
-            //{
-            //    bankBranches = (from branch in XElement.Load(bankBranchPath).Elements("ATM")
-            //                    select new BankBranch()
-            //                    {
-            //                        BankNumber = int.Parse(branch.Element("קוד_בנק").Value),
-            //                        BankName = branch.Element("שם_בנק").Value,
-            //                        BankAccountNumber = GetBankNumber(),
-            //                        BranchAddress = branch.Element("כתובת_ה-ATM").Value,
-            //                        BranchCity = branch.Element("ישוב").Value,
-            //                        BranchNumber = int.Parse(branch.Element("קוד_סניף").Value)
-            //                    }
-            //).ToList();
-            //}
-            //catch
-            //{
-            //    bankBranches = new List<BankBranch>();
-            //}
-            //var listWithoutDup = bankBranches.GroupBy(bb => new { bb.BankNumber, bb.BranchNumber }).Select(bb => bb.FirstOrDefault<BankBranch>()).ToList();
-            //SaveObjectList(listWithoutDup, bankBranchPath);
+           
         }
 
         #endregion
