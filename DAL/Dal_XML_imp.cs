@@ -397,8 +397,6 @@ namespace DAL
             List<BankBranch> bankBranches;
             try
             {
-                Stopwatch s = new Stopwatch();
-                s.Start();
                 bankBranches = (from branch in atmRoot.Elements("ATM").AsParallel()
                                 select new BankBranch()
                                 {
@@ -410,7 +408,6 @@ namespace DAL
                                     BranchNumber = int.Parse(branch.Element("קוד_סניף").Value)
                                 }
             ).ToList();
-                MessageBox.Show((s.ElapsedMilliseconds / 1000).ToString());
             }
             catch
             {
