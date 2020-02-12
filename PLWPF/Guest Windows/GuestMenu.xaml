@@ -41,6 +41,9 @@
         </DataTemplate>
     </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/2.jpg"/>
+        </Grid.Background>
         <Grid ShowGridLines="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*" />

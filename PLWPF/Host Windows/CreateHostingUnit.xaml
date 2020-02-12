@@ -7,9 +7,9 @@
         xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Create Hosting Unit" Height="310" Width="605">
+        Title="Create Hosting Unit" Height="340" Width="605">
     <Grid KeyDown="Grid_KeyDown">
-        <xctf:WatermarkTextBox Watermark="e.g. Sleepy Palms" HorizontalAlignment="Left" Margin="146,53,0,0" Text="" x:Name="NameOfUnit" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" LostFocus="NameOfUnit_LostFocus">
+        <xctf:WatermarkTextBox Watermark="e.g. Sleepy Palms" HorizontalAlignment="Left" Margin="138,53,0,0" Text="" x:Name="NameOfUnit" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" LostFocus="NameOfUnit_LostFocus">
             <xctf:WatermarkTextBox.Style>
                 <Style TargetType="xctf:WatermarkTextBox">
                     <Style.Triggers>
@@ -43,7 +43,7 @@
             <ComboBoxItem Content="Hotel"/>
             <ComboBoxItem Content="Camping"/>
         </ComboBox>
-        <Slider HorizontalAlignment="Left" Minimum="1" TickFrequency="1" IsSnapToTickEnabled="True" x:Name="AmountOfAdults" Margin="157,202,0,0" VerticalAlignment="Top" Width="120"/>
+        <Slider HorizontalAlignment="Left" Minimum="1" TickFrequency="1" IsSnapToTickEnabled="True" x:Name="AmountOfAdults" Margin="166,202,0,0" VerticalAlignment="Top" Width="120"/>
         <Slider HorizontalAlignment="Left" x:Name="AmountOfChildren" TickFrequency="1" IsSnapToTickEnabled="True" Margin="166,251,0,0" VerticalAlignment="Top" Width="120"/>
         <CheckBox Content="Pool?" HorizontalAlignment="Left" FontSize="22" x:Name="HasPool" Margin="347,53,0,0" VerticalAlignment="Top"/>
         <CheckBox Content="Jacuzzi?" HorizontalAlignment="Left" FontSize="22" x:Name="HasJacuzzi" Margin="347,94,0,0" VerticalAlignment="Top"/>
@@ -53,8 +53,8 @@
         <Label Content="Type:" HorizontalAlignment="Left" Margin="30,147,0,0" VerticalAlignment="Top"/>
         <Label Content="Amount of adults:" HorizontalAlignment="Left" Margin="39,198,0,0" VerticalAlignment="Top"/>
         <Label Content="Amount of children:" HorizontalAlignment="Left" Margin="38,247,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding ElementName=AmountOfAdults, Path=Value}" HorizontalAlignment="Left" Margin="208,225,0,0" VerticalAlignment="Top" Width="18"/>
-        <Label Content="{Binding ElementName=AmountOfChildren, Path=Value}" HorizontalAlignment="Left" Margin="232,285,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.619,0.71"/>
+        <Label Content="{Binding ElementName=AmountOfAdults, Path=Value}" HorizontalAlignment="Center" Margin="0,198,0,0" VerticalAlignment="Top" Width="18"/>
+        <Label Content="{Binding ElementName=AmountOfChildren, Path=Value}" HorizontalAlignment="Center" Margin="0,247,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.619,0.71"/>
         <TextBox HorizontalAlignment="Left" Visibility="Hidden" IsReadOnly="True" x:Name="KeyTextBox" Margin="92,368,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Content="Back" x:Name="BackButton" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="18" VerticalAlignment="Top" Width="86" Click="BackButton_Click">
             <Button.Resources>

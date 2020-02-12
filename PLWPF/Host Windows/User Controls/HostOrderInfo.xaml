@@ -8,6 +8,9 @@
         WindowStartupLocation="CenterScreen"
         Title="Host Order Info" Height="480" Width="810">
     <Grid ShowGridLines="True" x:Name="MainGrid">
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/5.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>

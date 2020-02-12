@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Create Guest user" Height="500" Width="800">
-    <Grid x:Name="grid">
+    <Grid x:Name="grid" KeyDown="Grid_KeyDown">
         <Label Content="Enter First Name:" HorizontalAlignment="Left" Margin="70,43,0,0" VerticalAlignment="Top" FontSize="14"/>
         <xctf:WatermarkTextBox x:Name="PrivateNameBox" IsEnabled="False" HorizontalAlignment="Left" Margin="192,44,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
         <Label Content="Enter Last Name:" HorizontalAlignment="Left" Margin="70,74,0,0" VerticalAlignment="Top" FontSize="14"/>

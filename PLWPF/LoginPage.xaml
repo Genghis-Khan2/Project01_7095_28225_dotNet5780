@@ -10,6 +10,9 @@
         Title="Login page" Height="450" Width="600">
 
     <Grid ShowGridLines="False">
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/loginImage.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*" />
             <RowDefinition Height="*" />

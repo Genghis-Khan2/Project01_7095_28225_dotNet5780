@@ -12,6 +12,9 @@
         <local1:IsOrNotToStringConverter x:Key="isOrNotConverter"/>
     </Window.Resources>
     <Grid ShowGridLines="True" x:Name="MainGrid">
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/6.jpg"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="4*"/>

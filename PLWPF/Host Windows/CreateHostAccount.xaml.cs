@@ -125,7 +125,8 @@ namespace PLWPF
         private void Grid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-                Register_Click(sender, new RoutedEventArgs());
+                if (Register.IsEnabled)
+                    Register_Click(sender, new RoutedEventArgs());
         }
 
         private void PhoneNumberBox_LostFocus(object sender, RoutedEventArgs e)

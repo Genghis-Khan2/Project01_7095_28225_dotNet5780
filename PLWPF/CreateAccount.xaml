@@ -8,6 +8,9 @@
         WindowStartupLocation="CenterScreen"
         Title="Create account" Height="400" Width="500">
     <Grid ShowGridLines="False">
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/1.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="3*" />

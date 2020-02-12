@@ -134,5 +134,13 @@ namespace PLWPF
             FamilyNameBox.Text = Guest.FamilyName;
             MailAddressBox.Text = Guest.MailAddress;
         }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                if (SubmitButton.IsEnabled)
+                    SubmitButton_Click(sender, new RoutedEventArgs());
+
+        }
     }
 }

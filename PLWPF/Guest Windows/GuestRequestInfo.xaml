@@ -8,6 +8,9 @@
         WindowStartupLocation="CenterScreen"
         Title="Guest Request Info" Height="480" Width="810">
     <Grid ShowGridLines="True">
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/11.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>

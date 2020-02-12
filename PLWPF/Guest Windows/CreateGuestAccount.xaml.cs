@@ -25,9 +25,6 @@ namespace PLWPF
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-            //TODO:fix it
-            //Add email address
-            //Add all other guest fields
             if (Pass.Password == ConfPass.Password)
             {
                 //TODO: Add regexes
@@ -82,6 +79,13 @@ namespace PLWPF
             else
                 Register.IsEnabled = true;
 
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                if (Register.IsEnabled)
+                    Register_Click(sender, new RoutedEventArgs());
         }
     }
 }

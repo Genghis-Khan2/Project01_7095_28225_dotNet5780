@@ -12,6 +12,9 @@
         <local1:ConvertClearanceToString x:Key="ClearanceToString"/>
     </Window.Resources>
     <Grid ShowGridLines="True" x:Name="MainGrid">
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/5.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>

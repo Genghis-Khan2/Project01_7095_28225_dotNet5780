@@ -8,6 +8,9 @@
         WindowStartupLocation="CenterScreen"
         Title="Guest Request Info" Height="480" Width="810">
     <Grid ShowGridLines="True">
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/11.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -55,7 +58,7 @@
         <Label Grid.Row="10" Grid.Column="1" x:Name="GardenLab" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
         <Label Grid.Row="11" Grid.Column="1" x:Name="ChildAttractLab" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
 
-        <Button Grid.Row="12" Grid.ColumnSpan="2" x:Name="OrderButton" Content="Order Guest Request" FontSize="22" FontWeight="ExtraBold" Click="OrderButton_Click" ToolTip="Select hosting unit to order to"/>
+        <Button Grid.Row="12" Grid.Column="1" x:Name="OrderButton" Content="Order Guest Request" FontSize="22" FontWeight="ExtraBold" Click="OrderButton_Click" ToolTip="Select hosting unit to order to"/>
 
     </Grid>
 </Window>

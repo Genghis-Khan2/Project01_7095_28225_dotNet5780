@@ -9,6 +9,7 @@
         Title="Host Menu" Height="450" Width="800">
     <Window.Resources>
         <Grid x:Key="TitlesBar">
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

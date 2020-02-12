@@ -8,6 +8,9 @@
         WindowStartupLocation="CenterScreen"
         Title="Admin Order Info" Height="480" Width="810">
     <Grid ShowGridLines="True">
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/3.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
