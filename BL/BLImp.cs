@@ -431,7 +431,7 @@ namespace BL
 
             //I assumed that when the status is changed to close ("CustomerResponsiveness" or "CustomerUnresponsiveness") 
             //you can still change the type of close but not to any open status("UnTreated" or "SentMail")
-            if (IsClosed(ord.Status) && !IsClosed(stat))
+            if (IsClosed(ord.Status))
                 throw new AlreadyClosedException("Order", key);
 
             if (stat == Enums.OrderStatus.SentMail)
@@ -482,6 +482,7 @@ namespace BL
                 {
                     hostingUnit.Diary = MarkingInTheDiary(hostingUnit, guestRequest.EntryDate, guestRequest.ReleaseDate);
                     UpdateHostingUnit(hostingUnit, ord.HostingUnitKey);
+                    DAL_Adapter.GetDAL().UpdateOrderStatus(key, Enums.OrderStatus.ClosedByCustomerResponsiveness);
                 }
                 else
                 {
@@ -492,7 +493,7 @@ namespace BL
                 //close all the orders to this guestRequest
                 UpdateGuestRequestStatus(ord.GuestRequestKey, Enums.RequestStatus.ClosedWithDeal);
                 var linkedOrder = from order in GetAllOrders()
-                                  where order.GuestRequestKey == ord.GuestRequestKey
+                                  where order.GuestRequestKey == ord.GuestRequestKey && order.OrderKey != ord.OrderKey
                                   select order;
                 linkedOrder.AsParallel().ForAll((x => UpdateOrderStatus(x.OrderKey, Enums.OrderStatus.ClosedByCustomerResponsiveness)));
 
