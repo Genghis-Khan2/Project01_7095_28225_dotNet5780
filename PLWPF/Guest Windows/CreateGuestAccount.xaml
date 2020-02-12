@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="CreateGuestAccount" Height="345" Width="640">
+        WindowStartupLocation="CenterScreen"
+        Title="Create Guest Account" Height="345" Width="640">
     <Grid>
 
         <xctf:WatermarkTextBox FontSize="24" x:Name="User" Watermark="Username" HorizontalAlignment="Left" Margin="375,50,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43" LostFocus="User_LostFocus">

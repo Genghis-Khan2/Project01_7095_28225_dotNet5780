@@ -24,6 +24,9 @@ namespace PLWPF
                 DefaultValue = FindResource(typeof(Window))
             });
             Thread t = new Thread(KillExpiredGRs);
+
+            //We remove this temporary for the protection
+            //t.Start();
         }
 
         private void KillExpiredGRs()

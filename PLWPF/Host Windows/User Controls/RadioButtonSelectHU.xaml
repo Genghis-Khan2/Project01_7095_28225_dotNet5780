@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF.Host_Windows.User_Controls"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Select Hosting Unit" Height="291" Width="234">
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:be ="clr-namespace:BE;assembly=BE"
         mc:Ignorable="d"
-        Title="GuestMenu" Height="400" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="Guest Menu" Height="400" Width="800">
     <Window.Resources>
         <DataTemplate x:Key="RequestTemplate" DataType="be:GuestRequest">
             <Grid>

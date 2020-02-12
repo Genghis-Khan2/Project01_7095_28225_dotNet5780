@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Create Guest user" Height="500" Width="800">
     <Grid x:Name="grid">
         <Label Content="Enter First Name:" HorizontalAlignment="Left" Margin="70,43,0,0" VerticalAlignment="Top" FontSize="14"/>

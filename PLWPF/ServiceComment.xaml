@@ -6,7 +6,7 @@
         xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:PLWPF.Host_Windows"
         mc:Ignorable="d"
-        Title="ServiceComment" Height="170" Width="800">
+        Title="Comment service" Height="170" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>

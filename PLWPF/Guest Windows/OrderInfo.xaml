@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PLWPF.Guest_Windows"
         xmlns:be ="clr-namespace:BE;assembly=BE"
         mc:Ignorable="d"
-        Title="OrderInfo" Height="400" Width="500">
+        WindowStartupLocation="CenterScreen"
+        Title="Order Info" Height="400" Width="500">
     <Grid>
         <StackPanel x:Name="OrderStackPanel" Background="DarkSeaGreen" Margin="5"/>
     </Grid>

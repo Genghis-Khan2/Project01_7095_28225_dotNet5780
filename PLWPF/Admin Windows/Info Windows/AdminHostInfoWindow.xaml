@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PLWPF.Admin_Windows.Info_Windows"
         xmlns:local1="clr-namespace:PLWPF.Converters"
         mc:Ignorable="d"
-        Title="AdminHostInfoWindow" Height="480" Width="810">
+        WindowStartupLocation="CenterScreen"
+        Title="Admin Host Info" Height="480" Width="810">
     <Window.Resources>
         <local1:ConvertClearanceToString x:Key="ClearanceToString"/>
     </Window.Resources>

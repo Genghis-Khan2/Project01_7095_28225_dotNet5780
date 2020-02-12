@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF.Guest_Windows"
         mc:Ignorable="d"
-        Title="GuestRequestInfo" Height="480" Width="810">
+        WindowStartupLocation="CenterScreen"
+        Title="Guest Request Info" Height="480" Width="810">
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

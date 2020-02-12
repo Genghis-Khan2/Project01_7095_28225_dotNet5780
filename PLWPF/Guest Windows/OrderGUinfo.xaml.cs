@@ -90,4 +90,6 @@ namespace PLWPF.Guest_Windows
                     MessageBox.Show("The order was rejected but there was an error sending the email");
                 }
             }
+        }
     }
+}

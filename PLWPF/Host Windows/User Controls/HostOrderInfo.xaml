@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF.Host_Windows.User_Controls"
         mc:Ignorable="d"
-        Title="HostOrderInfo" Height="480" Width="810">
+        WindowStartupLocation="CenterScreen"
+        Title="Host Order Info" Height="480" Width="810">
     <Grid ShowGridLines="True" x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
