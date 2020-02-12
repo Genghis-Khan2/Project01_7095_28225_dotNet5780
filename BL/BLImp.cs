@@ -494,7 +494,7 @@ namespace BL
                 var linkedOrder = from order in GetAllOrders()
                                   where order.GuestRequestKey == ord.GuestRequestKey
                                   select order;
-                linkedOrder.AsParallel().ForAll((x => UpdateOrderStatus(x.OrderKey, Enums.OrderStatus.ClosedByHost)));
+                linkedOrder.AsParallel().ForAll((x => UpdateOrderStatus(x.OrderKey, Enums.OrderStatus.ClosedByCustomerResponsiveness)));
 
                 //calculate the Commission
                 hostingUnit.Commission += GetNumberOfDateInRange(guestRequest.EntryDate, guestRequest.ReleaseDate) * DAL_Adapter.GetDAL().GetCommission();

@@ -27,7 +27,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="242,186,0,0" Text="Child:" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" />
         <TextBlock HorizontalAlignment="Left" Margin="195,189,0,0" Text="{Binding ElementName=AdultSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" />
         <TextBlock HorizontalAlignment="Left" Margin="360,189,0,0" Text="{Binding ElementName=ChildSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" />
-        <Button x:Name="SubmitButton" Content="Submit" Margin="280,354,280,44.04" FontSize="16" Click="SubmitButton_Click">
+        <Button x:Name="SubmitButton" Content="Submit" Margin="280,354,280,24.04" FontSize="16" Click="SubmitButton_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>

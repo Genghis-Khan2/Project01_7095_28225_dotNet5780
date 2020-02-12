@@ -6,39 +6,8 @@
         xmlns:local="clr-namespace:PLWPF.Guest_Windows"
         xmlns:be ="clr-namespace:BE;assembly=BE"
         mc:Ignorable="d"
-        Title="OrderInfo" Height="450" Width="800">
+        Title="OrderInfo" Height="400" Width="500">
     <Grid>
-        <Grid.Resources>
-            <DataTemplate x:Key="RequestTemplate" DataType="be:GuestRequest">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Horizontal" Grid.Column="0">
-                        <TextBlock Text="Key: " />
-                        <TextBlock Text="{Binding Path=GuestRequestKey}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Grid.Column="1">
-                        <TextBlock Text="Date of vacation: " />
-                        <TextBlock Text="{Binding Path=EntryDate.Day}"/>
-                        <TextBlock Text="." />
-                        <TextBlock Text="{Binding Path=EntryDate.Month}"/>
-                        <TextBlock Text=" - "/>
-                        <TextBlock Text="{Binding Path=ReleaseDate.Day}"/>
-                        <TextBlock Text="." />
-                        <TextBlock Text="{Binding Path=ReleaseDate.Month}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Grid.Column="2">
-                        <TextBlock Text="Status: " />
-                        <TextBlock Text="{Binding Path=Status}" />
-                    </StackPanel>
-                </Grid>
-            </DataTemplate>
-        </Grid.Resources>
+        <StackPanel x:Name="OrderStackPanel" Background="DarkSeaGreen" Margin="5"/>
     </Grid>
 </Window>

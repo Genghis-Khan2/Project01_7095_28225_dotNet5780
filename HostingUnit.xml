@@ -831,6 +831,7 @@
     <Diary>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -854,6 +855,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -865,6 +867,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -959,6 +962,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -982,6 +986,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -993,6 +998,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -1052,6 +1058,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -1099,6 +1106,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -1146,15 +1154,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -1202,7 +1202,7 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
     </Diary>
-    <Commission>100</Commission>
+    <Commission>1000</Commission>
     <Area>All</Area>
     <Type>All</Type>
     <NumberOfPlacesForAdults>1</NumberOfPlacesForAdults>

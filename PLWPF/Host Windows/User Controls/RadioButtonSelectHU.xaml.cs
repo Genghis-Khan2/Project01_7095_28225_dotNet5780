@@ -35,7 +35,7 @@ namespace PLWPF.Host_Windows.User_Controls
             {
                 var allOrder = GlobalVars.myBL.GetAllOrders();
                 var releteadOrder = from ord in allOrder
-                                    where ord.HostingUnitKey == i.HostingUnitKey
+                                    where ord.HostingUnitKey == i.HostingUnitKey && ord.GuestRequestKey == gr.GuestRequestKey
                                     select ord;
                 if (releteadOrder.Count() == 0)
                 {

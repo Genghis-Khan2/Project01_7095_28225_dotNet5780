@@ -479,6 +479,35 @@ namespace DAL
         /// <param name="list">List of orders to add to the orders file</param>
         private void SaveOrders(List<Order> list)
         {
+            var allOrders = GetAllOrders().ToList();
+            var t = allOrders.ToList();
+            foreach(var ordL in list)
+            {
+                foreach (var ord in t)
+                {
+                    if (ordL.OrderKey == ord.OrderKey)
+                        allOrders.Remove(ord);
+                }
+            }
+
+            orderRoot.RemoveAll();
+            orderRoot.Save(orderPath);
+
+            orderRoot.Add(from order in allOrders
+                          select new XElement("order",
+                             new XElement("hostingunitkey", order.HostingUnitKey),
+                             new XElement("guestrequestkey", order.GuestRequestKey),
+                             new XElement("orderkey", order.OrderKey),
+                             new XElement("status", order.Status),
+                             new XElement("createdate",
+                                 new XElement("year", order.CreateDate.Year),
+                                 new XElement("month", order.CreateDate.Month),
+                                 new XElement("day", order.CreateDate.Day)),
+                             new XElement("orderdate",
+                                 new XElement("year", order.OrderDate.Year),
+                                 new XElement("month", order.OrderDate.Month),
+                                 new XElement("day", order.OrderDate.Day))));
+
             orderRoot.Add(from order in list
                           select new XElement("order",
                              new XElement("hostingunitkey", order.HostingUnitKey),
@@ -906,7 +935,7 @@ namespace DAL
             if (index == -1)
                 throw new KeyNotFoundException("No order match this key");
             list[index].Status = stat;
-            SaveOrders(list);
+            SaveOrders(new List<Order>() { list[index] });
         }
 
         #endregion
