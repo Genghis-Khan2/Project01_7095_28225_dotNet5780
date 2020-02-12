@@ -159,5 +159,13 @@ namespace PLWPF.Host_Windows
             if (e.Key == Key.Enter)
                 CreateButton_Click(sender, new RoutedEventArgs());
         }
+
+        private void NameOfUnit_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (NameOfUnit.Text == "")
+                CreateButton.IsEnabled = false;
+            else
+                CreateButton.IsEnabled = true;
+        }
     }
 }

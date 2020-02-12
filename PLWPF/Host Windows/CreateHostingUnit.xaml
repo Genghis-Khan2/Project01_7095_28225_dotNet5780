@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="CreateHostingUnit" Height="310" Width="605">
     <Grid KeyDown="Grid_KeyDown">
-        <xctf:WatermarkTextBox Watermark="e.g. Sleepy Palms" HorizontalAlignment="Left" Margin="146,53,0,0" Text="" x:Name="NameOfUnit" TextWrapping="Wrap" VerticalAlignment="Top" Width="188">
+        <xctf:WatermarkTextBox Watermark="e.g. Sleepy Palms" HorizontalAlignment="Left" Margin="146,53,0,0" Text="" x:Name="NameOfUnit" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" LostFocus="NameOfUnit_LostFocus">
             <xctf:WatermarkTextBox.Style>
                 <Style TargetType="xctf:WatermarkTextBox">
                     <Style.Triggers>
@@ -21,7 +21,7 @@
             </xctf:WatermarkTextBox.Style>
         </xctf:WatermarkTextBox>
         <Label Content="Enter Unit name:" HorizontalAlignment="Left" Margin="35,51,0,0" VerticalAlignment="Top"/>
-        <Button Content="Create Hosting Unit" FontSize="22" FontWeight="DemiBold" x:Name="CreateButton" HorizontalAlignment="Left" Margin="347,231,0,0" VerticalAlignment="Top" Width="233" Click="CreateButton_Click" Height="49" ToolTip="Create hosting unit">
+        <Button Content="Create Hosting Unit" IsEnabled="False" FontSize="22" FontWeight="DemiBold" x:Name="CreateButton" HorizontalAlignment="Left" Margin="347,231,0,0" VerticalAlignment="Top" Width="233" Click="CreateButton_Click" Height="49" ToolTip="Create hosting unit">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>
