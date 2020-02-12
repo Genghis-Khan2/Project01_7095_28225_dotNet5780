@@ -8,20 +8,97 @@
         mc:Ignorable="d"
         Title="CreateHost" Height="440" Width="700">
     <Grid KeyDown="Grid_KeyDown">
-        <xctf:WatermarkTextBox FontSize="24" x:Name="User" Watermark="Username" HorizontalAlignment="Left" Margin="449,106,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
-        <xctf:WatermarkPasswordBox FontSize="24" x:Name="Pass" Watermark="Password" HorizontalAlignment="Left" Margin="449,173,0,0" Password="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
-        <xctf:WatermarkPasswordBox FontSize="24" x:Name="ConfPass" Watermark="Confirm Password" HorizontalAlignment="Left" Margin="449,252,0,0" Password="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43"/>
-        <Button Content="Create User" x:Name="Register" FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="485,349,0,0" VerticalAlignment="Top" Height="37" Width="180" Click="Register_Click">
+        <xctf:WatermarkTextBox FontSize="24" x:Name="User" Watermark="Username" HorizontalAlignment="Left" Margin="449,106,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43">
+            <xctf:WatermarkTextBox.Style>
+                <Style TargetType="xctf:WatermarkTextBox">
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="BorderBrush" Value="Red"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </xctf:WatermarkTextBox.Style>
+        </xctf:WatermarkTextBox>
+        <xctf:WatermarkPasswordBox FontSize="24" x:Name="Pass" Watermark="Password" HorizontalAlignment="Left" Margin="449,173,0,0" Password="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43">
+            <xctf:WatermarkTextBox.Style>
+                <Style TargetType="xctf:WatermarkTextBox">
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="BorderBrush" Value="Red"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </xctf:WatermarkTextBox.Style>
+            </xctf:WatermarkPasswordBox>
+        <xctf:WatermarkPasswordBox FontSize="24" x:Name="ConfPass" Watermark="Confirm Password" HorizontalAlignment="Left" Margin="449,252,0,0" Password="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="43">
+            <xctf:WatermarkTextBox.Style>
+                <Style TargetType="xctf:WatermarkTextBox">
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="BorderBrush" Value="Red"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </xctf:WatermarkTextBox.Style>
+            </xctf:WatermarkPasswordBox>
+            <Button Content="Create User" x:Name="Register" FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="485,349,0,0" VerticalAlignment="Top" Height="37" Width="180" Click="Register_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="MailAddressBox" FontSize="24" Margin="54,106,0,0" Watermark="E-Mail Address" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
-        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="PrivateNameBox" FontSize="24" Margin="54,173,0,0" Watermark="Private Name e.g. John" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
-        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="FamilyNameBox" FontSize="24" Margin="54,252,0,0" Watermark="Family Name e.g. Smith" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
-        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="PhoneNumberBox" FontSize="24" Margin="361,47,0,0" Watermark="e.g. 0541234567" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43"/>
+        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="MailAddressBox" FontSize="24" Margin="54,106,0,0" Watermark="E-Mail Address" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43">
+            <xctf:WatermarkTextBox.Style>
+                <Style TargetType="xctf:WatermarkTextBox">
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="BorderBrush" Value="Red"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </xctf:WatermarkTextBox.Style>
+        </xctf:WatermarkTextBox>
+        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="PrivateNameBox" FontSize="24" Margin="54,173,0,0" Watermark="Private Name e.g. John" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43">
+            <xctf:WatermarkTextBox.Style>
+                <Style TargetType="xctf:WatermarkTextBox">
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="BorderBrush" Value="Red"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </xctf:WatermarkTextBox.Style>
+        </xctf:WatermarkTextBox>
+        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="FamilyNameBox" FontSize="24" Margin="54,252,0,0" Watermark="Family Name e.g. Smith" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43">
+            <xctf:WatermarkTextBox.Style>
+                <Style TargetType="xctf:WatermarkTextBox">
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="BorderBrush" Value="Red"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </xctf:WatermarkTextBox.Style>
+        </xctf:WatermarkTextBox>
+        <xctf:WatermarkTextBox HorizontalAlignment="Left" x:Name="PhoneNumberBox" FontSize="24" Margin="361,47,0,0" Watermark="e.g. 0541234567" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Height="43">
+            <xctf:WatermarkTextBox.Style>
+                <Style TargetType="xctf:WatermarkTextBox">
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="BorderBrush" Value="Red"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </xctf:WatermarkTextBox.Style>
+        </xctf:WatermarkTextBox>
         <Label Content="Phone Number without hyphens:" HorizontalAlignment="Left" FontSize="18" Margin="54,52,0,0" VerticalAlignment="Top"/>
         <ComboBox HorizontalAlignment="Left" x:Name="BankBranchesBox" Margin="190,349,0,0" VerticalAlignment="Top" Width="286" Height="37"/>
         <CheckBox Content="Collection Clearance?" FontSize="22" x:Name="HasCollection" HorizontalAlignment="Left" Margin="53,309,0,0" VerticalAlignment="Top" Height="29" Width="273"/>

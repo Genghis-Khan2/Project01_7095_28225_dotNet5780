@@ -6,19 +6,18 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Create Guest user" Height="450" Width="800">
+        Title="Create Guest user" Height="500" Width="800">
     <Grid x:Name="grid">
-
         <Label Content="Enter First Name:" HorizontalAlignment="Left" Margin="70,43,0,0" VerticalAlignment="Top" FontSize="14"/>
         <xctf:WatermarkTextBox x:Name="PrivateNameBox" IsEnabled="False" HorizontalAlignment="Left" Margin="192,44,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
         <Label Content="Enter Last Name:" HorizontalAlignment="Left" Margin="70,74,0,0" VerticalAlignment="Top" FontSize="14"/>
         <xctf:WatermarkTextBox x:Name="FamilyNameBox" IsEnabled="False" HorizontalAlignment="Left" Margin="192,75,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
         <xctf:WatermarkTextBox x:Name="MailAddressBox" IsEnabled="False" HorizontalAlignment="Left" Margin="210,104,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="212"/>
         <Label Content="Enter Email Address:" HorizontalAlignment="Left" Margin="70,102,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label Content="Enter the date you will arrive:" HorizontalAlignment="Left" Margin="584,10,0,0" VerticalAlignment="Top" Width="185" FontSize="14"/>
-        <Label Content="Enter the date you will leave:" HorizontalAlignment="Left" Margin="584,189,0,0" VerticalAlignment="Top" Width="191" FontSize="14"/>
-        <Calendar x:Name="ArrivalDateCalendar" HorizontalAlignment="Left" Margin="601,44,0,0" VerticalAlignment="Top" Height="132" Width="168"/>
-        <Calendar x:Name="DepartureDateCalendar" HorizontalAlignment="Left" Margin="596,222,0,0" VerticalAlignment="Top"/>
+        <Label Content="Enter the date you will arrive:" HorizontalAlignment="Left" Margin="572,10,0,0" VerticalAlignment="Top" Width="186" FontSize="14"/>
+        <Label Content="Enter the date you will leave:" HorizontalAlignment="Left" Margin="567,233,0,0" VerticalAlignment="Top" Width="191" FontSize="14"/>
+        <Calendar x:Name="ArrivalDateCalendar" HorizontalAlignment="Left" Margin="578,43,0,0" VerticalAlignment="Top" />
+        <Calendar x:Name="DepartureDateCalendar" HorizontalAlignment="Left" Margin="579,266,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="AreaComboBox" HorizontalAlignment="Center" Margin="0,138,0,0" VerticalAlignment="Top" Width="146" IsEditable="False" IsReadOnly="false" />
         <Label Content="The vacation area you are interested in:" HorizontalAlignment="Left" Margin="70,131,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Slider x:Name="AdultSlider" HorizontalAlignment="Left" Margin="130,188,0,0" VerticalAlignment="Top" Width="60" Maximum="20" Minimum="1" Value="1" SmallChange="1" IsSnapToTickEnabled="True"/>
@@ -27,7 +26,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="242,186,0,0" Text="Child:" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" />
         <TextBlock HorizontalAlignment="Left" Margin="195,189,0,0" Text="{Binding ElementName=AdultSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" />
         <TextBlock HorizontalAlignment="Left" Margin="360,189,0,0" Text="{Binding ElementName=ChildSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" />
-        <Button x:Name="SubmitButton" Content="Submit" Margin="280,354,280,24.04" FontSize="16" Click="SubmitButton_Click">
+        <Button x:Name="SubmitButton" Content="Submit" Margin="253,367,307,25.04" FontSize="24" Click="SubmitButton_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>
