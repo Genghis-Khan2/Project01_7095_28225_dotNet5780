@@ -74,5 +74,14 @@ namespace PLWPF
         {
             Close();
         }
+
+        private void User_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Pass.Text == "" || ConfPass.Text == "" || mailAddress.Text == "" || User.Text == "" || privateNameBox.Text == "" || familyName.Text == "")
+                Register.IsEnabled = false;
+            else
+                Register.IsEnabled = true;
+
+        }
     }
 }

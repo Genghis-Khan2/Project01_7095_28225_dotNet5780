@@ -127,5 +127,13 @@ namespace PLWPF
             if (e.Key == Key.Enter)
                 Register_Click(sender, new RoutedEventArgs());
         }
+
+        private void PhoneNumberBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (PhoneNumberBox.Text == "" || FamilyNameBox.Text == "" || PrivateNameBox.Text == "" || MailAddressBox.Text == "" || Pass.Text == "" || ConfPass.Text == "" || User.Text == "")
+                Register.IsEnabled = false;
+            else
+                Register.IsEnabled = true;
+        }
     }
 }

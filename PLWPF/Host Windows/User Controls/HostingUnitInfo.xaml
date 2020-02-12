@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PLWPF.Host_Windows"
         xmlns:local1="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="HostingUnitInfo" Height="480" Width="810">
+        WindowStartupLocation="CenterScreen"
+        Title="Hosting Unit Info" Height="480" Width="810">
     <Window.Resources>
         <local1:IsOrNotToStringConverter x:Key="isOrNotConverter"/>
     </Window.Resources>

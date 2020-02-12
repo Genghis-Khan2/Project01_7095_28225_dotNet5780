@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Login page" Height="450" Width="600">
 
     <Grid ShowGridLines="False">
