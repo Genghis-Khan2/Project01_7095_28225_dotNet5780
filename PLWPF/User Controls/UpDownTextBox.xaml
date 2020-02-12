@@ -8,9 +8,9 @@
              d:DesignHeight="24" d:DesignWidth="83">
     <Grid >
         <StackPanel Orientation="Horizontal">
-            <Button x:Name="cmdDown" Margin="1" Content="˅" Click="CmdDown_Click" />
+            <RepeatButton x:Name="cmdDown" Margin="1" Content="˅" Click="CmdDown_Click" Interval="100"/>
             <TextBox x:Name="txtNum" Margin="1" Width="50" Text="0" TextChanged="TxtNum_TextChanged" />
-            <Button x:Name="cmdUp" Margin="1" Content="˄" Click="CmdUp_Click" />
+            <RepeatButton x:Name="cmdUp" Margin="1" Content="˄" Click="CmdUp_Click" Interval="100"/>
         </StackPanel>
 
     </Grid>

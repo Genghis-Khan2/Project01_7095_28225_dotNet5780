@@ -13,6 +13,19 @@ namespace PLWPF
     /// </summary>
     public partial class LoginPage : Window
     {
+       
+
+        public LoginPage()
+        {
+            InitializeComponent();
+            Style = (Style)FindResource(typeof(Window));
+            FrameworkElement.StyleProperty.OverrideMetadata(typeof(Window), new FrameworkPropertyMetadata
+            {
+                DefaultValue = FindResource(typeof(Window))
+            });
+            Thread t = new Thread(KillExpiredGRs);
+        }
+
         private void KillExpiredGRs()
         {
             try
@@ -34,12 +47,6 @@ namespace PLWPF
             Thread.Sleep(1000 * 60 * 60 * 24);
         }
 
-
-        public LoginPage()
-        {
-            InitializeComponent();
-            Thread t = new Thread(KillExpiredGRs);
-        }
 
         private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
         {
@@ -114,13 +121,5 @@ namespace PLWPF
                 LoginButton_Click(sender, new RoutedEventArgs());
         }
 
-        private void UserTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                PassBox.Focus();
-                e.Handled = true;
-            }
-        }
     }
 }

@@ -30,7 +30,7 @@ namespace PLWPF
             this.host = host;
             Complete_Refresh();
         }
-
+        
         private void AddUnit_Click(object sender, RoutedEventArgs e)
         {
             var win = new CreateHostingUnit(host);

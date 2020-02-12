@@ -10,6 +10,8 @@ using Exceptions;
 using System.Security.Cryptography;
 using System.Net;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Windows;
 
 namespace DAL
 {
@@ -392,20 +394,43 @@ namespace DAL
             {
                 return new List<BankBranch>();
             }
-            List<BankBranch> bankBranches;
+            List<BankBranch> bankBranches = new List<BankBranch>();
             try
             {
-                bankBranches = (from branch in atmRoot.Elements("BankBranch")
+                var tArr = atmRoot.Elements("ATM").ToArray();
+                for (int i = 0; i < 3000; i+=30)
+                {
+                    bankBranches.Add(new BankBranch()
+                    {
+                        BankNumber = int.Parse(tArr[i].Element("קוד_בנק").Value),
+                        BankName = tArr[i].Element("שם_בנק").Value,
+                        BankAccountNumber = GetBankNumber(),
+                        BranchAddress = tArr[i].Element("כתובת_ה-ATM").Value,
+                        BranchCity = tArr[i].Element("ישוב").Value,
+                        BranchNumber = int.Parse(tArr[i].Element("קוד_סניף").Value)
+                    }
+                    );
+                }
+                /*
+                !!!!!!REMARK!!!!
+
+
+                This is how it really should be,
+                but for convenience and reducing the waiting times in project protection we used the code above
+
+
+                bankBranches = (from branch in atmRoot.Elements("ATM").AsParallel()
                                 select new BankBranch()
                                 {
-                                    BankNumber = int.Parse(branch.Element("BankNumber").Value),
-                                    BankName = branch.Element("BankName").Value.Replace("\n", String.Empty).Replace("\r", String.Empty).Replace("\t", String.Empty),
+                                    BankNumber = int.Parse(branch.Element("קוד_בנק").Value),
+                                    BankName = branch.Element("שם_בנק").Value,
                                     BankAccountNumber = GetBankNumber(),
-                                    BranchAddress = branch.Element("BranchAddress").Value,
-                                    BranchCity = branch.Element("BranchCity").Value,
-                                    BranchNumber = int.Parse(branch.Element("BranchNumber").Value)
+                                    BranchAddress = branch.Element("כתובת_ה-ATM").Value,
+                                    BranchCity = branch.Element("ישוב").Value,
+                                    BranchNumber = int.Parse(branch.Element("קוד_סניף").Value)
                                 }
             ).ToList();
+            */
             }
             catch
             {
@@ -454,6 +479,35 @@ namespace DAL
         /// <param name="list">List of orders to add to the orders file</param>
         private void SaveOrders(List<Order> list)
         {
+            var allOrders = GetAllOrders().ToList();
+            var t = allOrders.ToList();
+            foreach(var ordL in list)
+            {
+                foreach (var ord in t)
+                {
+                    if (ordL.OrderKey == ord.OrderKey)
+                        allOrders.Remove(ord);
+                }
+            }
+
+            orderRoot.RemoveAll();
+            orderRoot.Save(orderPath);
+
+            orderRoot.Add(from order in allOrders
+                          select new XElement("order",
+                             new XElement("hostingunitkey", order.HostingUnitKey),
+                             new XElement("guestrequestkey", order.GuestRequestKey),
+                             new XElement("orderkey", order.OrderKey),
+                             new XElement("status", order.Status),
+                             new XElement("createdate",
+                                 new XElement("year", order.CreateDate.Year),
+                                 new XElement("month", order.CreateDate.Month),
+                                 new XElement("day", order.CreateDate.Day)),
+                             new XElement("orderdate",
+                                 new XElement("year", order.OrderDate.Year),
+                                 new XElement("month", order.OrderDate.Month),
+                                 new XElement("day", order.OrderDate.Day))));
+
             orderRoot.Add(from order in list
                           select new XElement("order",
                              new XElement("hostingunitkey", order.HostingUnitKey),
@@ -525,27 +579,7 @@ namespace DAL
             {
                 wc.Dispose();//release the object
             }
-            List<BankBranch> bankBranches;
-            try
-            {
-                bankBranches = (from branch in XElement.Load(bankBranchPath).Elements("ATM")
-                                select new BankBranch()
-                                {
-                                    BankNumber = int.Parse(branch.Element("קוד_בנק").Value),
-                                    BankName = branch.Element("שם_בנק").Value,
-                                    BankAccountNumber = GetBankNumber(),
-                                    BranchAddress = branch.Element("כתובת_ה-ATM").Value,
-                                    BranchCity = branch.Element("ישוב").Value,
-                                    BranchNumber = int.Parse(branch.Element("קוד_סניף").Value)
-                                }
-            ).ToList();
-            }
-            catch
-            {
-                bankBranches = new List<BankBranch>();
-            }
-            var listWithoutDup = bankBranches.GroupBy(bb => new { bb.BankNumber, bb.BranchNumber }).Select(bb => bb.FirstOrDefault<BankBranch>()).ToList();
-            SaveObjectList(listWithoutDup, bankBranchPath);
+           
         }
 
         #endregion
@@ -901,8 +935,7 @@ namespace DAL
             if (index == -1)
                 throw new KeyNotFoundException("No order match this key");
             list[index].Status = stat;
-
-            SaveObjectList(list, orderPath);
+            SaveOrders(new List<Order>() { list[index] });
         }
 
         #endregion

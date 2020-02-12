@@ -153,5 +153,11 @@ namespace PLWPF.Host_Windows
         {
             Close();
         }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                CreateButton_Click(sender, new RoutedEventArgs());
+        }
     }
 }

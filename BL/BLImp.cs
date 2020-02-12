@@ -494,7 +494,7 @@ namespace BL
                 var linkedOrder = from order in GetAllOrders()
                                   where order.GuestRequestKey == ord.GuestRequestKey
                                   select order;
-                linkedOrder.AsParallel().ForAll((x => UpdateOrderStatus(x.OrderKey, Enums.OrderStatus.ClosedByHost)));
+                linkedOrder.AsParallel().ForAll((x => UpdateOrderStatus(x.OrderKey, Enums.OrderStatus.ClosedByCustomerResponsiveness)));
 
                 //calculate the Commission
                 hostingUnit.Commission += GetNumberOfDateInRange(guestRequest.EntryDate, guestRequest.ReleaseDate) * DAL_Adapter.GetDAL().GetCommission();
@@ -1354,7 +1354,7 @@ namespace BL
             mail.To.Add(parameters[0]);
             mail.From = new MailAddress(parameters[1]);
             mail.Subject = "Request for accomodation";
-            mail.Body = "Hey there,\n I saw that you were interested in my hosting unit. Would you like to come over for your vacation? Shoot me back a text,\n" + parameters[2];
+            mail.Body = "Hey there,<br> I saw that you were interested in my hosting unit. Would you like to come over for your vacation? Shoot me back a text,<br>" + parameters[2];
             mail.IsBodyHtml = true;
             //mail.Priority = MailPriority.High;
 

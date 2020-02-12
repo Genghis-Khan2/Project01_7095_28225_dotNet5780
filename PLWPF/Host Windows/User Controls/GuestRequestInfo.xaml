@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF.Host_Windows.User_Controls"
         mc:Ignorable="d"
-        Title="GuestRequestInfo" Height="450" Width="800">
+        Title="GuestRequestInfo" Height="480" Width="810">
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -40,7 +40,6 @@
         <Label Grid.Row="9" Content="Jacuzzi" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
         <Label Grid.Row="10" Content="Garden" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
         <Label Grid.Row="11" Content="Children Attr." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
-        <Label Grid.Row="0" Content="Name" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
 
         <Label Grid.Row="0" Grid.Column="1" x:Name="NameLab"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
         <Label Grid.Row="1" Grid.Column="1" x:Name="MailLab" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"/>

@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:xctf="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="UnitComment" Height="450" Width="800">
+        Title="UnitComment" Height="300" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <ComboBox Grid.Row="0" x:Name="UnitName"/>
         <xctf:WatermarkTextBox Grid.Row="1" Watermark="Leave a comment..." x:Name="CommentBox" FontSize="25"/>

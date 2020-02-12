@@ -23,21 +23,33 @@
         <Label Content="The vacation area you are interested in:" HorizontalAlignment="Left" Margin="70,131,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Slider x:Name="AdultSlider" HorizontalAlignment="Left" Margin="130,188,0,0" VerticalAlignment="Top" Width="60" Maximum="20" Minimum="1" Value="1" SmallChange="1" IsSnapToTickEnabled="True"/>
         <Slider x:Name="ChildSlider" HorizontalAlignment="Left" Margin="295,188,0,0" VerticalAlignment="Top" Width="60" Maximum="20" SmallChange="1" IsSnapToTickEnabled="True"/>
-        <TextBlock HorizontalAlignment="Left" Margin="75,186,0,0" Text="Adults:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="14"/>
-        <TextBlock HorizontalAlignment="Left" Margin="242,186,0,0" Text="Child:" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" FontFamily="Segoe UI"/>
-        <TextBlock HorizontalAlignment="Left" Margin="195,189,0,0" Text="{Binding ElementName=AdultSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        <TextBlock HorizontalAlignment="Left" Margin="360,189,0,0" Text="{Binding ElementName=ChildSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        <Button x:Name="SubmitButton" Content="Submit" Margin="280,355,280,10.04" FontSize="16" Click="SubmitButton_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="75,186,0,0" Text="Adults:" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="242,186,0,0" Text="Child:" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" />
+        <TextBlock HorizontalAlignment="Left" Margin="195,189,0,0" Text="{Binding ElementName=AdultSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" />
+        <TextBlock HorizontalAlignment="Left" Margin="360,189,0,0" Text="{Binding ElementName=ChildSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" />
+        <Button x:Name="SubmitButton" Content="Submit" Margin="280,354,280,24.04" FontSize="16" Click="SubmitButton_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
         <ComboBox x:Name="HostingUnitComboBox"  HorizontalAlignment="Left" Margin="373,166,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="75,163,0,0" Text="The type of hosting unit you are interested in:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="75,163,0,0" Text="The type of hosting unit you are interested in:" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="14"/>
         <ComboBox x:Name="PoolComboBox" HorizontalAlignment="Left" Margin="223,222,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="75,221,0,0" Text="Interested in the pool?" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="75,221,0,0" Text="Interested in the pool?" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="14"/>
         <ComboBox x:Name="JacuzziComboBox" HorizontalAlignment="Left" Margin="223,256,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="75,253,0,0" Text="Interested in hot tub?" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="75,253,0,0" Text="Interested in hot tub?" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="14"/>
         <ComboBox x:Name="GardenComboBox" HorizontalAlignment="Left" Margin="242,286,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="75,283,0,0" Text="Interested in garden?" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="75,283,0,0" Text="Interested in garden?" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="14"/>
         <ComboBox x:Name="ChildrenAttractionsComboBox" HorizontalAlignment="Left" Margin="302,313,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="75,310,0,0" Text="Interested in childrens Attractions?" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="14"/>
-        <Button Content="Back" x:Name="backButton" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="18" VerticalAlignment="Top" Width="86" Click="backButton_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="75,310,0,0" Text="Interested in childrens Attractions?" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="14"/>
+        <Button Content="Back" x:Name="backButton" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="18" VerticalAlignment="Top" Width="86" Click="backButton_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>
